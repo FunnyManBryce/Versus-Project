@@ -5,13 +5,7 @@ using UnityEngine;
 
 public class PlayerNetwork : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     private void Update()
     {
         if (!IsOwner) return;
@@ -23,6 +17,7 @@ public class PlayerNetwork : NetworkBehaviour
         if (Input.GetKey(KeyCode.D)) moveDir.x = +1f;
 
         float moveSpeed = 3f;
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        transform.position += moveDir * moveSpeed * Time.deltaTime; 
     }
+
 }
