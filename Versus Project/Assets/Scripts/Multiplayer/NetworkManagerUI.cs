@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Netcode.Transports.UTP;
 
 public class NetworkManagerUI : MonoBehaviour
 {
     [SerializeField] private Button hostButton;
     [SerializeField] private Button clientButton;
+    public GameObject networkManager;
     
     private void Awake()
     {
@@ -19,4 +21,12 @@ public class NetworkManagerUI : MonoBehaviour
             NetworkManager.Singleton.StartClient();
         });
     }
+
+    public void IPString(string s)
+    {
+        networkManager.GetComponent<UnityTransport>().ConnectionData.Address = s;
+        Debug.Log(networkManager.GetComponent<UnityTransport>().ConnectionData.Address);
+    }
+
+
 }
