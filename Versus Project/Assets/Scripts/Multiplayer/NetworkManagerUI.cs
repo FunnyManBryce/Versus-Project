@@ -10,7 +10,7 @@ public class NetworkManagerUI : NetworkBehaviour
 {
     public GameObject playersInLobby;
     public TMP_Text playersInLobbyText;
-    public NetworkVariable<int> totalPlayers = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    //public NetworkVariable<int> totalPlayers = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     [SerializeField] private Button hostButton;
     [SerializeField] private Button clientButton;
     public GameObject networkManager;
@@ -25,26 +25,26 @@ public class NetworkManagerUI : NetworkBehaviour
             NetworkManager.Singleton.StartHost();
             playersInLobby.SetActive(true);
             //lobbyServerRpc(new ServerRpcParams());
-            totalPlayers.Value++;
+            //totalPlayers.Value++;
             //playersInLobbyText.text = "Players in Lobby: " + totalPlayers.Value;
         });
         clientButton.onClick.AddListener(() => {
             NetworkManager.Singleton.StartClient();
             playersInLobby.SetActive(true);
             //lobbyServerRpc(new ServerRpcParams());
-            totalPlayers.Value++;
+            //totalPlayers.Value++;
             //playersInLobbyText.text = "Players in Lobby: " + totalPlayers.Value;
         });
     }
 
-    public override void OnNetworkSpawn()
+    /*public override void OnNetworkSpawn()
     {
         totalPlayers.OnValueChanged += (int previousValue, int newValue) =>
         {
             playersInLobbyText.text = "Players in Lobby: " + totalPlayers.Value;
             Debug.Log(OwnerClientId + "; total players: " + totalPlayers.Value);
         };
-    }
+    }*/
 
     private void Update()
     {
@@ -58,9 +58,9 @@ public class NetworkManagerUI : NetworkBehaviour
         Debug.Log(networkManager.GetComponent<UnityTransport>().ConnectionData.Address);
     }
 
-    [ServerRpc]
+    /*[ServerRpc]
     private void lobbyServerRpc(ServerRpcParams serverRpcParams)
     {
         totalPlayers.Value++;
-    }
+    }*/
 }
