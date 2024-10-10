@@ -10,7 +10,8 @@ public class NetworkManagerUI : NetworkBehaviour
 {
     public GameObject playersInLobby;
     public TMP_Text playersInLobbyText;
-    //public NetworkVariable<int> totalPlayers = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> totalPlayers = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private int testValue = 0;
     [SerializeField] private Button hostButton;
     [SerializeField] private Button clientButton;
     public GameObject networkManager;
@@ -24,13 +25,16 @@ public class NetworkManagerUI : NetworkBehaviour
         hostButton.onClick.AddListener(() => {
             NetworkManager.Singleton.StartHost();
             playersInLobby.SetActive(true);
-            //lobbyServerRpc(new ServerRpcParams());
+            lobbyClientRpc();
+
+            //lobbyClientRpc();
             //totalPlayers.Value++;
             //playersInLobbyText.text = "Players in Lobby: " + totalPlayers.Value;
         });
         clientButton.onClick.AddListener(() => {
             NetworkManager.Singleton.StartClient();
             playersInLobby.SetActive(true);
+            lobbyClientRpc();
             //lobbyServerRpc(new ServerRpcParams());
             //totalPlayers.Value++;
             //playersInLobbyText.text = "Players in Lobby: " + totalPlayers.Value;
@@ -58,9 +62,18 @@ public class NetworkManagerUI : NetworkBehaviour
         Debug.Log(networkManager.GetComponent<UnityTransport>().ConnectionData.Address);
     }
 
-    /*[ServerRpc]
-    private void lobbyServerRpc(ServerRpcParams serverRpcParams)
+    [ServerRpc]
+    private void lobbyServerRpc()
     {
         totalPlayers.Value++;
-    }*/
+        Debug.Log(totalPlayers.Value);
+
+    }
+
+    [ClientRpc]
+    private void lobbyClientRpc()
+    {
+        totalPlayers.Value++;
+        Debug.Log(totalPlayers.Value);
+    }
 }
