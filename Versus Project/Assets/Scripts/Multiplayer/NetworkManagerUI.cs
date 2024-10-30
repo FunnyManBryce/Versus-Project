@@ -10,7 +10,7 @@ public class NetworkManagerUI : NetworkBehaviour
 {
     public GameObject playersInLobby;
     public TMP_Text playersInLobbyText;
-    public NetworkVariable<int> totalPlayers = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> totalPlayers = new NetworkVariable<int>();
     private int testValue = 0;
     [SerializeField] private Button hostButton;
     [SerializeField] private Button clientButton;
@@ -25,7 +25,7 @@ public class NetworkManagerUI : NetworkBehaviour
         hostButton.onClick.AddListener(() => {
             NetworkManager.Singleton.StartHost();
             playersInLobby.SetActive(true);
-            lobbyClientRpc();
+            //lobbyClientRpc();
 
             //lobbyClientRpc();
             //totalPlayers.Value++;
@@ -34,21 +34,22 @@ public class NetworkManagerUI : NetworkBehaviour
         clientButton.onClick.AddListener(() => {
             NetworkManager.Singleton.StartClient();
             playersInLobby.SetActive(true);
-            lobbyClientRpc();
+            //lobbyClientRpc();
             //lobbyServerRpc(new ServerRpcParams());
             //totalPlayers.Value++;
             //playersInLobbyText.text = "Players in Lobby: " + totalPlayers.Value;
         });
     }
 
-    /*public override void OnNetworkSpawn()
-    {
+    public override void OnNetworkSpawn()
+    {   
         totalPlayers.OnValueChanged += (int previousValue, int newValue) =>
         {
             playersInLobbyText.text = "Players in Lobby: " + totalPlayers.Value;
             Debug.Log(OwnerClientId + "; total players: " + totalPlayers.Value);
         };
-    }*/
+        totalPlayers.Value++;
+    }
 
     private void Update()
     {
@@ -62,11 +63,11 @@ public class NetworkManagerUI : NetworkBehaviour
         Debug.Log(networkManager.GetComponent<UnityTransport>().ConnectionData.Address);
     }
 
-    [ServerRpc]
+    /*[ServerRpc]
     private void lobbyServerRpc()
     {
         totalPlayers.Value++;
-        Debug.Log(totalPlayers.Value);
+        Debug.Log("ServerRPC: " + totalPlayers.Value);
 
     }
 
@@ -74,6 +75,6 @@ public class NetworkManagerUI : NetworkBehaviour
     private void lobbyClientRpc()
     {
         totalPlayers.Value++;
-        Debug.Log(totalPlayers.Value);
-    }
+        Debug.Log("ClientRPC: " + totalPlayers.Value);
+    }*/
 }
