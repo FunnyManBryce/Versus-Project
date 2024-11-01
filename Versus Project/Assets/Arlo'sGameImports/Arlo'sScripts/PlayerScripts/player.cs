@@ -2,11 +2,11 @@ using NavMeshPlus.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.InputSystem;
+using UnityEngine.InputSystem;
 
 public class player : MonoBehaviour
 {
-   /* [SerializeField] playerController PlayerController;
+    [SerializeField] playerController PlayerController;
 
     [SerializeField] InputActionReference movement, attack, mousePosition, dash;
 
@@ -61,5 +61,5 @@ public class player : MonoBehaviour
         Vector3 mousePos = mousePosition.action.ReadValue<Vector2>();
         mousePos.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(mousePos);
-    }*/
+    }
 }

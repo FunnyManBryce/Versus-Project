@@ -20,8 +20,8 @@ public class EnemyMeleeWeapon : MonoBehaviour
     {
         enemyScript = enemy.GetComponent<Enemy>();
         weapon.GetComponent<Renderer>().enabled = false;
-        //player = GameObject.FindGameObjectWithTag("Player");
-        //target = player.transform;
+        player = GameObject.FindGameObjectWithTag("Player");
+        target = player.transform;
     }
 
     // Update is called once per frame
