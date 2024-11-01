@@ -1123,12 +1123,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646b009da751319438537425684493cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  networkManagerScript: {fileID: 884756054}
   playersInLobby: {fileID: 234648206}
   playersInLobbyText: {fileID: 234648207}
   totalPlayers:
     m_InternalValue: 0
+  playerMaximum:
+    m_InternalValue: 2
   hostButton: {fileID: 695467347}
   clientButton: {fileID: 876122132}
+  objectHostButton: {fileID: 695467346}
+  objectClientButton: {fileID: 876122131}
+  IPText: {fileID: 1838357339}
   networkManager: {fileID: 884756052}
   networkManagerUI: {fileID: 1465937513}
 --- !u!114 &1465937515
@@ -1138,7 +1144,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465937513}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
@@ -1341,7 +1347,7 @@ GameObject:
   - component: {fileID: 1838357342}
   - component: {fileID: 1838357341}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: IPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
