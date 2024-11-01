@@ -29,8 +29,8 @@ public class Enemy : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.speed = 0;
-        player = GameObject.FindGameObjectWithTag("Player");
-        target = player.transform;
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //target = player.transform;
         StartCoroutine(SpawnCooldown());
     }
 
