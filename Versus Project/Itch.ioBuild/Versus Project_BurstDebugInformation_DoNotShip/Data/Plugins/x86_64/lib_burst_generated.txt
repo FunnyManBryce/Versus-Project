@@ -45,6 +45,8 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --assembly-defines=Unity.Burst.Unsafe;
 --assembly-defines=Unity.Collections;
 --assembly-defines=Unity.Collections.LowLevel.ILSupport;
+--assembly-defines=Unity.InputSystem;
+--assembly-defines=Unity.InputSystem.ForUI;
 --assembly-defines=Unity.InternalAPIEngineBridge.001;
 --assembly-defines=Unity.Mathematics;
 --assembly-defines=Unity.Multiplayer.Samples.Utilities.ClientAuthority;
@@ -158,6 +160,8 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --assembly-defines=Unity.Burst.Unsafe;
 --assembly-defines=Unity.Collections;
 --assembly-defines=Unity.Collections.LowLevel.ILSupport;
+--assembly-defines=Unity.InputSystem;
+--assembly-defines=Unity.InputSystem.ForUI;
 --assembly-defines=Unity.InternalAPIEngineBridge.001;
 --assembly-defines=Unity.Mathematics;
 --assembly-defines=Unity.Multiplayer.Samples.Utilities.ClientAuthority;
@@ -269,6 +273,8 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --assembly-defines=Unity.Burst.Unsafe;
 --assembly-defines=Unity.Collections;
 --assembly-defines=Unity.Collections.LowLevel.ILSupport;
+--assembly-defines=Unity.InputSystem;
+--assembly-defines=Unity.InputSystem.ForUI;
 --assembly-defines=Unity.InternalAPIEngineBridge.001;
 --assembly-defines=Unity.Mathematics;
 --assembly-defines=Unity.Multiplayer.Samples.Utilities.ClientAuthority;
@@ -382,6 +388,8 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --assembly-defines=Unity.Burst.Unsafe;
 --assembly-defines=Unity.Collections;
 --assembly-defines=Unity.Collections.LowLevel.ILSupport;
+--assembly-defines=Unity.InputSystem;
+--assembly-defines=Unity.InputSystem.ForUI;
 --assembly-defines=Unity.InternalAPIEngineBridge.001;
 --assembly-defines=Unity.Mathematics;
 --assembly-defines=Unity.Multiplayer.Samples.Utilities.ClientAuthority;
@@ -495,6 +503,8 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --assembly-defines=Unity.Burst.Unsafe;
 --assembly-defines=Unity.Collections;
 --assembly-defines=Unity.Collections.LowLevel.ILSupport;
+--assembly-defines=Unity.InputSystem;
+--assembly-defines=Unity.InputSystem.ForUI;
 --assembly-defines=Unity.InternalAPIEngineBridge.001;
 --assembly-defines=Unity.Mathematics;
 --assembly-defines=Unity.Multiplayer.Samples.Utilities.ClientAuthority;
@@ -704,6 +714,8 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --assembly-defines=Unity.Burst.Unsafe;
 --assembly-defines=Unity.Collections;
 --assembly-defines=Unity.Collections.LowLevel.ILSupport;
+--assembly-defines=Unity.InputSystem;
+--assembly-defines=Unity.InputSystem.ForUI;
 --assembly-defines=Unity.InternalAPIEngineBridge.001;
 --assembly-defines=Unity.Mathematics;
 --assembly-defines=Unity.Multiplayer.Samples.Utilities.ClientAuthority;
