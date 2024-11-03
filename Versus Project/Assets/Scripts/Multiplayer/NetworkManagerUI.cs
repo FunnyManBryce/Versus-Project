@@ -13,15 +13,19 @@ public class NetworkManagerUI : NetworkBehaviour
     public TMP_Text playersInLobbyText;
     public NetworkVariable<int> totalPlayers = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<int> playerMaximum = new NetworkVariable<int>(2, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    public NetworkVariable<int> charsSelected = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<int> playersReady = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> readyToStart = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    private bool serverQuitting = false;
     [SerializeField] private Button hostButton;
     [SerializeField] private Button clientButton;
 
     [SerializeField] private GameObject lobbyCreationUI;
     [SerializeField] private GameObject lobbySelectionUI;
     [SerializeField] private GameObject charSelectionUI;
+    [SerializeField] private GameObject readyToStartUI;
+    [SerializeField] private GameObject QuitOption;
     [SerializeField] private GameObject IPText;
+    private GameObject Character;
     public GameObject networkManager;
     public GameObject networkManagerUI;
     
@@ -29,15 +33,23 @@ public class NetworkManagerUI : NetworkBehaviour
     {
         hostButton.onClick.AddListener(() => { //Host button creates a lobby
             NetworkManager.Singleton.StartHost();
-            lobbySelectionUI.SetActive(true);
+            QuitOption.SetActive(true);
+            //lobbySelectionUI.SetActive(true); //For now let's only have a 1v1 mode. The code is in place to change this though
         });
         clientButton.onClick.AddListener(() => { //Lobby button joins a lobby
             NetworkManager.Singleton.StartClient();
+            QuitOption.SetActive(true);
         });
     }
 
     public override void OnNetworkSpawn()
     {
+        if(IsServer)
+        {
+            playersReady.Value = 0;
+            playerMaximum.Value = 2;
+            totalPlayers.Value = 0;
+        }
         lobbyCreationUI.SetActive(false);
         charSelectionUI.SetActive(true);
         playersInLobby.SetActive(true);
@@ -51,15 +63,24 @@ public class NetworkManagerUI : NetworkBehaviour
             playersInLobbyText.text = "Players in Lobby: " + totalPlayers.Value + "/" + playerMaximum.Value;
             Debug.Log(OwnerClientId + "; PlayerMaximum changed to: " + playerMaximum.Value);
         };
-        charsSelected.OnValueChanged += (int previousValue, int newValue) => //if everyone has selected a character, the game can start
+        playersReady.OnValueChanged += (int previousValue, int newValue) => //if everyone has ready'd up, the game can start
         {
-            if(charsSelected.Value == playerMaximum.Value) //WILL cause an issue if players disconnect after selecting a character, but this would only matter if the host started the game before a new player joined/selected a character
+            if (playersReady.Value == 0)
             {
-                readyToStart.Value = true;
+                charSelectionUI.SetActive(true);
+                readyToStartUI.SetActive(false);
+            }
+            if (playersReady.Value == playerMaximum.Value && IsServer == true) 
+            {
+                readyToStart.Value = true; 
+            } 
+            else if (playersReady.Value != playerMaximum.Value && IsServer == true)
+            {
+                readyToStart.Value = false; 
             }
         };
-        PlayerJoinedServerRPC();
-        if(totalPlayers.Value >= playerMaximum.Value) //if there are too many players in the lobby, kick out the most recently joined one
+        PlayerConnectedServerRPC();
+        if (totalPlayers.Value >= playerMaximum.Value) //if there are too many players in the lobby, kick out the most recently joined one
         {
             DisconnectClientServerRPC(networkManagerScript.LocalClientId);
         }
@@ -67,7 +88,7 @@ public class NetworkManagerUI : NetworkBehaviour
 
     private void Start() 
     {
-        networkManagerScript.OnClientDisconnectCallback += PlayerDisconnctedServerRPC; //Makes it so PlayerDisconnectedServerRPC triggers whenever a client disconnects
+        networkManagerScript.OnClientDisconnectCallback += PlayerDisconnectedServerRPC; //Makes it so PlayerDisconnectedServerRPC triggers whenever a client disconnects
     }
  
     public void IPString(string s) //Sets IP to whatever is typed into the IP box
@@ -76,20 +97,75 @@ public class NetworkManagerUI : NetworkBehaviour
         Debug.Log(networkManager.GetComponent<UnityTransport>().ConnectionData.Address);
     }
 
-    public void CharacterSelected(/*Could put in a gameobject variable to determine which character was selected*/)
+    public void CharacterSelected(GameObject character) //Allows us to make each button choose a seperate characters! Needs a way to determine if people pick the same one though...
     {
-        charSelectionUI.SetActive(false);
+        Character = character;
     }
 
-    [Rpc(SendTo.Server)] //Sends info that a new player has joined to the server. This is then syncronized accross all the clients, since that is how network variables work
-    public void PlayerJoinedServerRPC()
+    public void ReadyUp() 
     {
-        totalPlayers.Value++;      
+        if(Character != null) //Makes sure the player has selected a character before they're counted as ready
+        {
+            ReadyUpServerRPC();
+            charSelectionUI.SetActive(false);
+            readyToStartUI.SetActive(true);
+        }
+    }
+
+    public void UnReadyUp()
+    {
+        charSelectionUI.SetActive(true);
+        readyToStartUI.SetActive(false);
+        UnReadyUpServerRPC();
+    }
+
+    public void Quit()
+    {
+        if(IsServer == true)
+        {
+            networkManagerScript.Shutdown();
+            QuitOption.SetActive(false);
+            charSelectionUI.SetActive(false);
+            playersInLobby.SetActive(false);
+            readyToStartUI.SetActive(false);
+            lobbySelectionUI.SetActive(false);
+            lobbyCreationUI.SetActive(true);
+            Character = null;
+            Debug.Log("Server Disconnected");
+            serverQuitting = true;
+            ServerQuitClientRPC();
+        }
+        else
+        {
+            DisconnectClientServerRPC(networkManagerScript.LocalClientId);
+            QuitOption.SetActive(false);
+            charSelectionUI.SetActive(false);
+            playersInLobby.SetActive(false);
+            readyToStartUI.SetActive(false);
+            lobbySelectionUI.SetActive(false);
+            lobbyCreationUI.SetActive(true);
+            Debug.Log("Client Disconnected");
+            Character = null;
+        }
+    }
+
+    [Rpc(SendTo.Server)] //sends info that a client has connected to the server. This is then syncronized accross all the clients, since that is how network variables work
+    public void PlayerConnectedServerRPC()
+    {
+        totalPlayers.Value++;
     }
     [Rpc(SendTo.Server)] //sends info that a client has disconnected to the server. This is then syncronized accross all the clients, since that is how network variables work
-    public void PlayerDisconnctedServerRPC(ulong clientID)
+    public void PlayerDisconnectedServerRPC(ulong clientID)
     {
-        totalPlayers.Value--;
+        if(serverQuitting == false)
+        {
+            totalPlayers.Value--;
+            playersReady.Value = 0;
+        }
+        else
+        {
+            serverQuitting = false;
+        }
     }
     [Rpc(SendTo.Server)] //Disconnects a client based on their clientID
     public void DisconnectClientServerRPC(ulong clientID)
@@ -101,12 +177,28 @@ public class NetworkManagerUI : NetworkBehaviour
     {
         playerMaximum.Value = 4;
         lobbySelectionUI.SetActive(false);
-        readyToStart.Value = false;
-
+        playersReady.Value = 0;
     }
-    [Rpc(SendTo.Server)] //keeps track of how many players have selected their character
-    public void CharSelectedServerRPC()
+    [Rpc(SendTo.Server)] 
+    public void ReadyUpServerRPC()
     {
-        charsSelected.Value++;
+        playersReady.Value++;
+    }
+    [Rpc(SendTo.Server)]
+    public void UnReadyUpServerRPC()
+    {
+        playersReady.Value--;
+    }
+    [Rpc(SendTo.NotServer)] 
+    public void ServerQuitClientRPC()
+    {
+        QuitOption.SetActive(false);
+        charSelectionUI.SetActive(false);
+        playersInLobby.SetActive(false);
+        readyToStartUI.SetActive(false);
+        lobbySelectionUI.SetActive(false);
+        lobbyCreationUI.SetActive(true);
+        Character = null;
+        Debug.Log("Server Disconnected");
     }
 }
