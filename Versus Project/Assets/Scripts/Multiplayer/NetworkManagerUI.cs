@@ -4,6 +4,7 @@ using Unity.Netcode;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Unity.Netcode.Transports.UTP;
 
 public class NetworkManagerUI : NetworkBehaviour
@@ -18,6 +19,7 @@ public class NetworkManagerUI : NetworkBehaviour
     private bool serverQuitting = false;
     [SerializeField] private Button hostButton;
     [SerializeField] private Button clientButton;
+    [SerializeField] private Button startButton;
 
     [SerializeField] private GameObject lobbyCreationUI;
     [SerializeField] private GameObject lobbySelectionUI;
@@ -39,6 +41,14 @@ public class NetworkManagerUI : NetworkBehaviour
         clientButton.onClick.AddListener(() => { //Lobby button joins a lobby
             NetworkManager.Singleton.StartClient();
             QuitOption.SetActive(true);
+        });
+        startButton.onClick.AddListener(() => //starts game
+        {
+            if (IsServer == true && readyToStart.Value == true)
+            {
+                SceneManager.LoadScene("MapScene");
+                StartGameClientRPC();
+            }
         });
     }
 
@@ -88,6 +98,7 @@ public class NetworkManagerUI : NetworkBehaviour
 
     private void Start() 
     {
+        DontDestroyOnLoad(networkManagerUI);
         networkManagerScript.OnClientDisconnectCallback += PlayerDisconnectedServerRPC; //Makes it so PlayerDisconnectedServerRPC triggers whenever a client disconnects
     }
  
@@ -119,9 +130,9 @@ public class NetworkManagerUI : NetworkBehaviour
         UnReadyUpServerRPC();
     }
 
-    public void Quit()
+    public void Quit() 
     {
-        if(IsServer == true)
+        if(IsServer == true) //Server quit shuts down entire lobby
         {
             networkManagerScript.Shutdown();
             QuitOption.SetActive(false);
@@ -135,7 +146,7 @@ public class NetworkManagerUI : NetworkBehaviour
             serverQuitting = true;
             ServerQuitClientRPC();
         }
-        else
+        else //Client only quits individual client
         {
             DisconnectClientServerRPC(networkManagerScript.LocalClientId);
             QuitOption.SetActive(false);
@@ -200,5 +211,10 @@ public class NetworkManagerUI : NetworkBehaviour
         lobbyCreationUI.SetActive(true);
         Character = null;
         Debug.Log("Server Disconnected");
+    }
+    [Rpc(SendTo.NotServer)]
+    public void StartGameClientRPC()
+    {
+        SceneManager.LoadScene("MapScene");
     }
 }
