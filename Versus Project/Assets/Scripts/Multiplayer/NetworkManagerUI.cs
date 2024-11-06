@@ -9,6 +9,7 @@ using Unity.Netcode.Transports.UTP;
 
 public class NetworkManagerUI : NetworkBehaviour
 {
+    [SerializeField] private LameManager lameManager;
     [SerializeField] private NetworkManager networkManagerScript;
     public GameObject playersInLobby;
     public TMP_Text playersInLobbyText;
@@ -27,10 +28,11 @@ public class NetworkManagerUI : NetworkBehaviour
     [SerializeField] private GameObject readyToStartUI;
     [SerializeField] private GameObject QuitOption;
     [SerializeField] private GameObject IPText;
-    private GameObject Character;
+    public GameObject Character;
+    public int characterNumber;
     public GameObject networkManager;
     public GameObject networkManagerUI;
-    
+
     private void Awake()
     {
         hostButton.onClick.AddListener(() => { //Host button creates a lobby
@@ -48,6 +50,7 @@ public class NetworkManagerUI : NetworkBehaviour
             {
                 SceneManager.LoadScene("MapScene");
                 StartGameClientRPC();
+                lameManager.BeginGame();
             }
         });
     }
@@ -111,6 +114,11 @@ public class NetworkManagerUI : NetworkBehaviour
     public void CharacterSelected(GameObject character) //Allows us to make each button choose a seperate characters! Needs a way to determine if people pick the same one though...
     {
         Character = character;
+    }
+
+    public void CharacterNumber(int charNumber)
+    {
+        characterNumber = charNumber;
     }
 
     public void ReadyUp() 
@@ -216,5 +224,7 @@ public class NetworkManagerUI : NetworkBehaviour
     public void StartGameClientRPC()
     {
         SceneManager.LoadScene("MapScene");
+        lameManager.BeginGame();
+
     }
 }
