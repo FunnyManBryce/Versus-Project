@@ -27,6 +27,11 @@ public class LameManager : NetworkBehaviour
     private void Start()
     {
         DontDestroyOnLoad(lameManager);
+        foreach(var character in characterList)
+        {
+            Camera = character.transform.Find("Main Camera").gameObject;
+            Camera.SetActive(false);
+        }
     }
 
     void Update()
@@ -80,7 +85,7 @@ public class LameManager : NetworkBehaviour
         if(clientID == 0)
         {
             Camera = character.transform.Find("Main Camera").gameObject;
-            Camera.SetActive(true);
+            Camera.SetActive(true); 
         } else
         {
             CameraOnClientRPC(clientID, team);
