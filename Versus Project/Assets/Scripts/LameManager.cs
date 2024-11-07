@@ -17,17 +17,25 @@ public class LameManager : NetworkBehaviour
     public int characterNumber;
     public GameObject[] characterList;
 
+    private bool gameStarted;
+
     private GameObject Camera;
     private GameObject Character;
     private int Team;
     private ulong clientId;
     private GameObject spawnPoint;
-    private bool playerSpawned;
+
+    [SerializeField] private GameObject meleeMinion;
+    private GameObject minionSpawnPoint1;
+    private GameObject minionSpawnPoint2;
+    private float minionSpawnTimer;
+    [SerializeField] private float spawnTimerEnd;
 
     private void Start()
     {
         DontDestroyOnLoad(lameManager);
-        foreach(var character in characterList)
+        gameStarted = false;
+        foreach (var character in characterList)
         {
             Camera = character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(false);
@@ -36,7 +44,14 @@ public class LameManager : NetworkBehaviour
 
     void Update()
     {
-        
+        if(minionSpawnTimer < spawnTimerEnd && gameStarted == true)
+        {
+            minionSpawnTimer += Time.deltaTime;
+        } else if(gameStarted == true)
+        {
+            MinionSpawnServerRPC(Team);
+            minionSpawnTimer = 0;
+        }
     }
 
     public void BeginGame()
@@ -55,6 +70,9 @@ public class LameManager : NetworkBehaviour
         Debug.Log("Client ID: " + clientId + "he he he ha");
         player1SpawnPoint1 = GameObject.Find("Player1SpawnPoint");
         player2SpawnPoint1 = GameObject.Find("Player2SpawnPoint");
+        minionSpawnPoint1 = GameObject.Find("minionSpawnPoint1");
+        minionSpawnPoint2 = GameObject.Find("minionSpawnPoint2");
+
 
         if (clientId == 0)
         {
@@ -85,12 +103,13 @@ public class LameManager : NetworkBehaviour
         if(clientID == 0)
         {
             Camera = character.transform.Find("Main Camera").gameObject;
-            Camera.SetActive(true); 
+            Camera.SetActive(true);
+            gameStarted = true;
         } else
         {
             CameraOnClientRPC(clientID, team);
         }
-        
+        gameStarted = true;
         var characterNetworkObject = character.GetComponent<NetworkObject>();
         characterNetworkObject.SpawnWithOwnership(clientID);
         Debug.Log("They Spawned In!");
@@ -99,11 +118,29 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.NotServer)]
     public void CameraOnClientRPC(ulong clientID, int team)
     {
+        gameStarted = true;
         Debug.Log("Huh");
         if (clientId == clientID)
         {
             Camera = Character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
+        }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void MinionSpawnServerRPC(int team)
+    {
+        if(team == 1)
+        {
+            var minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
+            var minionNetworkObject = minion.GetComponent<NetworkObject>();
+            minionNetworkObject.Spawn();
+        }
+        else
+        {
+            var minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
+            var minionNetworkObject = minion.GetComponent<NetworkObject>();
+            minionNetworkObject.Spawn();
         }
     }
 
