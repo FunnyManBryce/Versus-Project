@@ -26,8 +26,8 @@ public class LameManager : NetworkBehaviour
     private GameObject spawnPoint;
 
     [SerializeField] private GameObject meleeMinion;
-    private GameObject minionSpawnPoint1;
-    private GameObject minionSpawnPoint2;
+    public GameObject minionSpawnPoint1;
+    public GameObject minionSpawnPoint2;
     private float minionSpawnTimer;
     [SerializeField] private float spawnTimerEnd;
 
@@ -70,9 +70,8 @@ public class LameManager : NetworkBehaviour
         Debug.Log("Client ID: " + clientId + "he he he ha");
         player1SpawnPoint1 = GameObject.Find("Player1SpawnPoint");
         player2SpawnPoint1 = GameObject.Find("Player2SpawnPoint");
-        minionSpawnPoint1 = GameObject.Find("minionSpawnPoint1");
-        minionSpawnPoint2 = GameObject.Find("minionSpawnPoint2");
-
+        minionSpawnPoint1 = GameObject.Find("MinionSpawnPoint1");
+        minionSpawnPoint2 = GameObject.Find("MinionSpawnPoint2");
 
         if (clientId == 0)
         {
@@ -82,6 +81,7 @@ public class LameManager : NetworkBehaviour
         {
             Team = 2;
         }
+        gameStarted = true;
         Debug.Log("wth is happening");
         Character = networkManagerUI.Character;
         characterNumber = networkManagerUI.characterNumber;
@@ -109,7 +109,6 @@ public class LameManager : NetworkBehaviour
         {
             CameraOnClientRPC(clientID, team);
         }
-        gameStarted = true;
         var characterNetworkObject = character.GetComponent<NetworkObject>();
         characterNetworkObject.SpawnWithOwnership(clientID);
         Debug.Log("They Spawned In!");
@@ -118,7 +117,6 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.NotServer)]
     public void CameraOnClientRPC(ulong clientID, int team)
     {
-        gameStarted = true;
         Debug.Log("Huh");
         if (clientId == clientID)
         {
