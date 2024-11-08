@@ -14,7 +14,7 @@ public class BasePlayerController : NetworkBehaviour
     [SerializeField]
     private float currentSpeed = 0;
 
-    private Vector2 oldMovementInput;
+    private Vector2 movementInput;
     private Vector2 playerInput;
 
     private void Awake()
@@ -66,7 +66,7 @@ public class BasePlayerController : NetworkBehaviour
 
         if (playerInput.magnitude > 0 && currentSpeed >= 0)
         {
-            oldMovementInput = playerInput;
+            movementInput = playerInput;
             currentSpeed += acceleration * maxSpeed * Time.fixedDeltaTime;
         }
         else
@@ -75,6 +75,6 @@ public class BasePlayerController : NetworkBehaviour
         }
 
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
-        rb2d.velocity = oldMovementInput * currentSpeed;
+        rb2d.velocity = movementInput * currentSpeed;
     }
 }
