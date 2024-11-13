@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9172525232582007022}
   - component: {fileID: 6782888038592277727}
   - component: {fileID: 2553727569301683880}
+  - component: {fileID: 690234349782495773}
   m_Layer: 8
   m_Name: MeleeMinion
   m_TagString: Untagged
@@ -98,7 +99,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8942386518775928844}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 0
@@ -238,3 +239,35 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &690234349782495773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942386518775928844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25ec85b94dcc214f81ec450bf67c66d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Team:
+    m_InternalValue: 0
+  target: {fileID: 0}
+  minionTarget: {fileID: 5134948185573290296}
+  agent: {fileID: 4082273046993157032}
+  animator: {fileID: 0}
+  weaponAttack: {fileID: 0}
+  minionPosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  distanceFromTarget: {x: 0, y: 0, z: 0}
+  isAttacking: 0
+  cooldown: 0
+  attackDistance: 2
+  moveSpeed: 3
+  enemyPlayer: {fileID: 0}
+  Minion: {fileID: 8942386518775928844}
+  Pentagon: {fileID: 0}
+  Inhibitor: {fileID: 0}
+  Tower2: {fileID: 0}
+  Tower1: {fileID: 0}

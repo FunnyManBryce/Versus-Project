@@ -52,6 +52,16 @@ public class LameManager : NetworkBehaviour
             MinionSpawnServerRPC(Team);
             minionSpawnTimer = 0;
         }
+        if(gameStarted == true && Input.GetKeyDown(KeyCode.Tab))
+        {
+            if(Team == 1)
+            {
+                Debug.Log("Team 1 wins");
+            } else
+            {
+                Debug.Log("Team 2 wins");
+            }
+        }
     }
 
     public void BeginGame()
@@ -131,12 +141,14 @@ public class LameManager : NetworkBehaviour
         if(team == 1)
         {
             var minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
+            minion.GetComponent<MeleeMinion>().Team = team;
             var minionNetworkObject = minion.GetComponent<NetworkObject>();
             minionNetworkObject.Spawn();
         }
         else
         {
             var minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
+            minion.GetComponent<MeleeMinion>().Team = team;
             var minionNetworkObject = minion.GetComponent<NetworkObject>();
             minionNetworkObject.Spawn();
         }
