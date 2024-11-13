@@ -55,6 +55,8 @@ public class LameManager : NetworkBehaviour
         if(gameStarted == true && Input.GetKeyDown(KeyCode.Tab))
         {
             gameStarted = false;
+            var endGameScreen = GameObject.Find("EndGameScreen");
+            endGameScreen.SetActive(true);
             if (Team == 1)
             {
                 TeamOneWinClientRPC();
@@ -165,6 +167,8 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void TeamTwoWinServerRPC()
     {
+        var endGameScreen = GameObject.Find("EndGameScreen");
+        endGameScreen.SetActive(true);
         gameStarted = false;
         Debug.Log("Team 2 wins");
         var text = GameObject.Find("TeamTwoWins");
@@ -174,6 +178,8 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.NotServer)]
     public void TeamOneWinClientRPC()
     {
+        var endGameScreen = GameObject.Find("EndGameScreen");
+        endGameScreen.SetActive(true);
         var text = GameObject.Find("TeamOneWins");
         text.SetActive(true);
         gameStarted = false;
