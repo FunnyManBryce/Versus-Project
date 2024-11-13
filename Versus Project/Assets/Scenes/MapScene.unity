@@ -1943,7 +1943,7 @@ GameObject:
   - component: {fileID: 995441282}
   - component: {fileID: 995441281}
   m_Layer: 5
-  m_Name: Team two wins
+  m_Name: TeamTwoWins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2981,7 +2981,7 @@ GameObject:
   - component: {fileID: 1574062981}
   - component: {fileID: 1574062980}
   m_Layer: 5
-  m_Name: Team one wins
+  m_Name: TeamOneWins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

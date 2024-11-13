@@ -59,14 +59,14 @@ public class LameManager : NetworkBehaviour
             {
                 TeamOneWinClientRPC();
                 Debug.Log("Team 1 wins");
-                var text = GameObject.Find("Team one wins");
+                var text = GameObject.Find("TeamOneWins");
                 text.SetActive(true);
             }
             else
             {
                 TeamTwoWinServerRPC();
                 Debug.Log("Team 2 wins");
-                var text = GameObject.Find("Team two wins");
+                var text = GameObject.Find("TeamTwoWins");
                 text.SetActive(true);
             }
         }
@@ -167,14 +167,14 @@ public class LameManager : NetworkBehaviour
     {
         gameStarted = false;
         Debug.Log("Team 2 wins");
-        var text = GameObject.Find("Team two wins");
+        var text = GameObject.Find("TeamTwoWins");
         text.SetActive(true);
     }
 
     [Rpc(SendTo.NotServer)]
     public void TeamOneWinClientRPC()
     {
-        var text = GameObject.Find("Team one wins");
+        var text = GameObject.Find("TeamOneWins");
         text.SetActive(true);
         gameStarted = false;
         Debug.Log("Team 1 wins");
