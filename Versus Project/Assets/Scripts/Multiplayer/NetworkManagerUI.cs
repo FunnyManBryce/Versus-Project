@@ -46,7 +46,7 @@ public class NetworkManagerUI : NetworkBehaviour
         });
         startButton.onClick.AddListener(() => //starts game
         {
-            if (IsServer == true /*&& readyToStart.Value == true //ADD THIS CODE BACK WHEN FINISHED PLAYTESTING OR GAME IS FUCKED*/)
+            if (IsServer == true && readyToStart.Value == true )
             {
                 SceneManager.LoadScene("MapScene");
                 StartGameClientRPC();

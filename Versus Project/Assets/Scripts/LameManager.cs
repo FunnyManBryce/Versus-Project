@@ -54,12 +54,20 @@ public class LameManager : NetworkBehaviour
         }
         if(gameStarted == true && Input.GetKeyDown(KeyCode.Tab))
         {
-            if(Team == 1)
+            gameStarted = false;
+            if (Team == 1)
             {
+                TeamOneWinClientRPC();
                 Debug.Log("Team 1 wins");
-            } else
+                var text = GameObject.Find("Team one wins");
+                text.SetActive(true);
+            }
+            else
             {
+                TeamTwoWinServerRPC();
                 Debug.Log("Team 2 wins");
+                var text = GameObject.Find("Team two wins");
+                text.SetActive(true);
             }
         }
     }
@@ -154,6 +162,23 @@ public class LameManager : NetworkBehaviour
         }
     }
 
+    [Rpc(SendTo.Server)]
+    public void TeamTwoWinServerRPC()
+    {
+        gameStarted = false;
+        Debug.Log("Team 2 wins");
+        var text = GameObject.Find("Team two wins");
+        text.SetActive(true);
+    }
 
+    [Rpc(SendTo.NotServer)]
+    public void TeamOneWinClientRPC()
+    {
+        var text = GameObject.Find("Team one wins");
+        text.SetActive(true);
+        gameStarted = false;
+        Debug.Log("Team 1 wins");
+
+    }
 
 }
