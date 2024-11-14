@@ -13,6 +13,9 @@ public class LameManager : NetworkBehaviour
     [SerializeField] private GameObject lameManager;
     [SerializeField] private GameObject player1SpawnPoint1;
     [SerializeField] private GameObject player2SpawnPoint1;
+    [SerializeField] private GameObject endGameScreen;
+    [SerializeField] private GameObject Player1Win;
+    [SerializeField] private GameObject Player2Win;
 
     public int characterNumber;
     public GameObject[] characterList;
@@ -22,6 +25,7 @@ public class LameManager : NetworkBehaviour
     private GameObject Camera;
     private GameObject Character;
     private int Team;
+    public int teamThatWon;
     private ulong clientId;
     private GameObject spawnPoint;
 
@@ -55,21 +59,17 @@ public class LameManager : NetworkBehaviour
         if(gameStarted == true && Input.GetKeyDown(KeyCode.Tab))
         {
             gameStarted = false;
-            var endGameScreen = GameObject.Find("EndGameScreen");
-            endGameScreen.SetActive(true);
             if (Team == 1)
             {
+                teamThatWon = 1;
                 TeamOneWinClientRPC();
-                Debug.Log("Team 1 wins");
-                var text = GameObject.Find("TeamOneWins");
-                text.SetActive(true);
+                SceneManager.LoadScene("GameOver");
             }
             else
             {
+                SceneManager.LoadScene("GameOver");
+                teamThatWon = 2;
                 TeamTwoWinServerRPC();
-                Debug.Log("Team 2 wins");
-                var text = GameObject.Find("TeamTwoWins");
-                text.SetActive(true);
             }
         }
     }
@@ -167,24 +167,17 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void TeamTwoWinServerRPC()
     {
-        var endGameScreen = GameObject.Find("EndGameScreen");
-        endGameScreen.SetActive(true);
+        teamThatWon = 2;
         gameStarted = false;
-        Debug.Log("Team 2 wins");
-        var text = GameObject.Find("TeamTwoWins");
-        text.SetActive(true);
+        SceneManager.LoadScene("GameOver");
     }
 
     [Rpc(SendTo.NotServer)]
     public void TeamOneWinClientRPC()
     {
-        var endGameScreen = GameObject.Find("EndGameScreen");
-        endGameScreen.SetActive(true);
-        var text = GameObject.Find("TeamOneWins");
-        text.SetActive(true);
+        teamThatWon = 1;
         gameStarted = false;
-        Debug.Log("Team 1 wins");
-
+        SceneManager.LoadScene("GameOver");
     }
 
 }
