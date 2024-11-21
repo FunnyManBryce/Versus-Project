@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 6782888038592277727}
   - component: {fileID: 2553727569301683880}
   - component: {fileID: 690234349782495773}
+  - component: {fileID: 2707982063788959245}
   m_Layer: 8
   m_Name: MeleeMinion
   m_TagString: Untagged
@@ -232,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 550038450
+  GlobalObjectIdHash: 1719995935
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -303,3 +304,15 @@ MonoBehaviour:
   Inhibitor: {fileID: 0}
   Tower2: {fileID: 0}
   Tower1: {fileID: 0}
+--- !u!114 &2707982063788959245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942386518775928844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

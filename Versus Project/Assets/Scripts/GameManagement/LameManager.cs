@@ -81,7 +81,6 @@ public class LameManager : NetworkBehaviour
 
     public IEnumerator LoadScene(string sceneName)
     {
-        Debug.Log("literally what balls");
         var asyncLoadLevel = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         yield return new WaitUntil(() => asyncLoadLevel.isDone);
         networkManagerUI = FindObjectOfType<NetworkManagerUI>();
@@ -102,7 +101,6 @@ public class LameManager : NetworkBehaviour
             Team = 2;
         }
         gameStarted = true;
-        Debug.Log("wth is happening");
         Character = networkManagerUI.Character;
         characterNumber = networkManagerUI.characterNumber;
         PlayerSpawnServerRPC(clientId, Team, characterNumber);

@@ -24,10 +24,10 @@ public class MeleeMinion : NetworkBehaviour
 
     public GameObject enemyPlayer;
     public GameObject Minion;
-    public GameObject Pentagon;
-    public GameObject Inhibitor;
-    public GameObject Tower2;
-    public GameObject Tower1;
+    public GameObject enemyPentagon;
+    public GameObject enemyInhibitor;
+    public GameObject enemyTower2;
+    public GameObject enemyTower1;
 
 
     void Start()
@@ -36,6 +36,20 @@ public class MeleeMinion : NetworkBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.speed = 0;
+        if(Team == 1)
+        {
+            enemyPentagon = GameObject.Find("Player2Pentagon");
+            enemyInhibitor = GameObject.Find("Player2Inhibitor");
+            enemyTower2 = GameObject.Find("Player2Tower2");
+            enemyTower1 = GameObject.Find("Player2Tower1");
+        }
+        else
+        {
+            enemyPentagon = GameObject.Find("Player1Pentagon");
+            enemyInhibitor = GameObject.Find("Player1Inhibitor");
+            enemyTower2 = GameObject.Find("Player1Tower2");
+            enemyTower1 = GameObject.Find("Player1Tower1");
+        }
     }
 
 
