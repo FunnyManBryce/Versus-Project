@@ -23,6 +23,8 @@ public class LameManager : NetworkBehaviour
 
     private bool gameStarted;
 
+    public GameObject playerOneChar;
+    public GameObject playerTwoChar;
     private GameObject Camera;
     private GameObject Character;
     private int Team;
@@ -49,14 +51,6 @@ public class LameManager : NetworkBehaviour
 
     void Update()
     {
-        if(minionSpawnTimer < spawnTimerEnd && gameStarted == true)
-        {
-            minionSpawnTimer += Time.deltaTime;
-        } else if(gameStarted == true)
-        {
-            MinionSpawnServerRPC(Team);
-            minionSpawnTimer = 0;
-        }
         if(gameStarted == true && Input.GetKeyDown(KeyCode.Tab))
         {
             gameStarted = false;
@@ -72,6 +66,15 @@ public class LameManager : NetworkBehaviour
                 teamThatWon = 2;
                 TeamTwoWinServerRPC();
             }
+        }
+        if (!IsServer) return;
+        if(minionSpawnTimer < spawnTimerEnd && gameStarted == true)
+        {
+            minionSpawnTimer += Time.deltaTime;
+        } else if(gameStarted == true)
+        {
+            MinionSpawnServerRPC();
+            minionSpawnTimer = 0;
         }
     }
 
@@ -131,7 +134,15 @@ public class LameManager : NetworkBehaviour
             spawnPoint = player2SpawnPoint1;
         }
         var character = Instantiate(characterList[charNumber], new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, spawnPoint.transform.position.z), Quaternion.identity);
-        if(clientID == 0)
+        if(team == 1)
+        {
+            playerOneChar = character;
+        }
+        else
+        {
+            playerTwoChar = character;
+        }
+        if (clientID == 0)
         {
             Camera = character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
@@ -157,22 +168,19 @@ public class LameManager : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void MinionSpawnServerRPC(int team)
+    public void MinionSpawnServerRPC()
     {
-        if(team == 1)
-        {
-            var minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
-            minion.GetComponent<MeleeMinion>().Team = team;
-            var minionNetworkObject = minion.GetComponent<NetworkObject>();
-            minionNetworkObject.Spawn();
-        }
-        else
-        {
-            var minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
-            minion.GetComponent<MeleeMinion>().Team = team;
-            var minionNetworkObject = minion.GetComponent<NetworkObject>();
-            minionNetworkObject.Spawn();
-        }
+        var minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
+        minion.GetComponent<MeleeMinion>().Team = 1;
+        minion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
+        var minionNetworkObject = minion.GetComponent<NetworkObject>();
+        minionNetworkObject.Spawn();
+
+        minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
+        minion.GetComponent<MeleeMinion>().Team = 2;
+        minion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
+        minionNetworkObject = minion.GetComponent<NetworkObject>();
+        minionNetworkObject.Spawn();
     }
 
     [Rpc(SendTo.Server)]
