@@ -33,6 +33,8 @@ public class NetworkManagerUI : NetworkBehaviour
     public GameObject networkManager;
     public GameObject networkManagerUI;
 
+
+
     private void Awake()
     {
         hostButton.onClick.AddListener(() => { //Host button creates a lobby
@@ -46,7 +48,7 @@ public class NetworkManagerUI : NetworkBehaviour
         });
         startButton.onClick.AddListener(() => //starts game
         {
-            if (IsServer == true && readyToStart.Value == true )
+            if (IsServer == true /*&& readyToStart.Value == true*/ ) //REMOVE THIS BEFORE GAME IS UPLOADED
             {
                 SceneManager.LoadScene("MapScene");
                 StartGameClientRPC();

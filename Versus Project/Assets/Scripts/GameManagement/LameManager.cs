@@ -10,15 +10,16 @@ public class LameManager : NetworkBehaviour
     private NetworkManagerUI networkManagerUI;
     private NetworkManager networkManager;
 
+    public NetworkVariable<int> TowersLeft = new NetworkVariable<int>(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
     [SerializeField] private GameObject lameManager;
     [SerializeField] private GameObject player1SpawnPoint1;
     [SerializeField] private GameObject player2SpawnPoint1;
-    [SerializeField] private GameObject endGameScreen;
-    [SerializeField] private GameObject Player1Win;
-    [SerializeField] private GameObject Player2Win;
 
     public int characterNumber;
     public GameObject[] characterList;
+    public GameObject[] teamOneTowers;
+    public GameObject[] teamTwoTowers;
 
     private bool gameStarted;
 
@@ -77,6 +78,7 @@ public class LameManager : NetworkBehaviour
     public void BeginGame()
     {
         StartCoroutine(LoadScene("MapScene"));
+        TowersLeft.Value = 3;
     }
 
     public IEnumerator LoadScene(string sceneName)
@@ -92,6 +94,17 @@ public class LameManager : NetworkBehaviour
         minionSpawnPoint1 = GameObject.Find("MinionSpawnPoint1");
         minionSpawnPoint2 = GameObject.Find("MinionSpawnPoint2");
 
+        teamOneTowers[0] = GameObject.Find("Player1Pentagon");
+        teamOneTowers[1] = GameObject.Find("Player1Inhibitor");
+        teamOneTowers[2] = GameObject.Find("Player1Tower2");
+        teamOneTowers[3] = GameObject.Find("Player1Tower1");
+
+        teamTwoTowers[0] = GameObject.Find("Player2Pentagon");
+        teamTwoTowers[1] = GameObject.Find("Player2Inhibitor");
+        teamTwoTowers[2] = GameObject.Find("Player2Tower2");
+        teamTwoTowers[3] = GameObject.Find("Player2Tower1");
+        
+            
         if (clientId == 0)
         {
             Team = 1;
@@ -178,4 +191,9 @@ public class LameManager : NetworkBehaviour
         SceneManager.LoadScene("GameOver");
     }
 
+    [Rpc(SendTo.Server)]
+    public void TowerDestroyedServerRPC()
+    {
+        TowersLeft.Value--;
+    }
 }

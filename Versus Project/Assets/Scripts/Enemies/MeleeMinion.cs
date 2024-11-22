@@ -8,7 +8,7 @@ public class MeleeMinion : NetworkBehaviour
 {
     public int Team;
 
-
+    private LameManager lameManager;
     public Transform target;
     public Transform minionTarget;
     public NavMeshAgent agent;
@@ -24,10 +24,6 @@ public class MeleeMinion : NetworkBehaviour
 
     public GameObject enemyPlayer;
     public GameObject Minion;
-    public GameObject enemyPentagon;
-    public GameObject enemyInhibitor;
-    public GameObject enemyTower2;
-    public GameObject enemyTower1;
 
 
     void Start()
@@ -36,44 +32,37 @@ public class MeleeMinion : NetworkBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.speed = 0;
-        if(Team == 1)
-        {
-            enemyPentagon = GameObject.Find("Player2Pentagon");
-            enemyInhibitor = GameObject.Find("Player2Inhibitor");
-            enemyTower2 = GameObject.Find("Player2Tower2");
-            enemyTower1 = GameObject.Find("Player2Tower1");
-        }
-        else
-        {
-            enemyPentagon = GameObject.Find("Player1Pentagon");
-            enemyInhibitor = GameObject.Find("Player1Inhibitor");
-            enemyTower2 = GameObject.Find("Player1Tower2");
-            enemyTower1 = GameObject.Find("Player1Tower1");
-        }
+        lameManager = FindObjectOfType<LameManager>();
+
     }
 
 
     void Update()
     {
-        if (enemyPlayer != null)
+        if(Team ==  1)
         {
-            minionPosition = new Vector3(minionTarget.position.x, minionTarget.position.y, 0);
-            targetPosition = new Vector3(target.position.x, target.position.y, 0);
-            distanceFromTarget = new Vector3(minionPosition.x - targetPosition.x, minionPosition.y - targetPosition.y, 0);
-            //animator.SetFloat("Speed", agent.speed);
-            //animator.SetBool("Attacking", isAttacking);
-            //weaponAttack.SetBool("Attacking", isAttacking);
-            if (distanceFromTarget.magnitude > attackDistance && isAttacking == false)
-            {
-                //agent.speed = moveSpeed;
-                //agent.SetDestination(target.position);
-            }
-            if (distanceFromTarget.magnitude < attackDistance && cooldown == false)
-            {
-                //agent.speed = 0;
-                //isAttacking = true;
+            target = lameManager.teamTwoTowers[lameManager.TowersLeft.Value].transform;
+        } else
+        {
+            target = lameManager.teamOneTowers[lameManager.TowersLeft.Value].transform;
+        }
 
-            }
+        minionPosition = new Vector3(minionTarget.position.x, minionTarget.position.y, 0);
+        targetPosition = new Vector3(target.position.x, target.position.y, 0);
+        distanceFromTarget = new Vector3(minionPosition.x - targetPosition.x, minionPosition.y - targetPosition.y, 0);
+        //animator.SetFloat("Speed", agent.speed);
+        //animator.SetBool("Attacking", isAttacking);
+        //weaponAttack.SetBool("Attacking", isAttacking);
+        if (distanceFromTarget.magnitude > attackDistance && isAttacking == false)
+        {
+            agent.speed = moveSpeed;
+            agent.SetDestination(target.position);
+        }
+        if (distanceFromTarget.magnitude < attackDistance && cooldown == false)
+        {
+            agent.speed = 0;
+            //isAttacking = true;
+
         }
     }
 
