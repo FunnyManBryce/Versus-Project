@@ -10,7 +10,7 @@ public class MeleeMinion : NetworkBehaviour
 
     private LameManager lameManager;
 
-    public Transform target;
+    public Transform towerTarget;
     public Transform minionTarget;
     public Transform enemyMinionTarget;
 
@@ -19,14 +19,11 @@ public class MeleeMinion : NetworkBehaviour
     public Animator animator;
     public Animator weaponAttack;
 
-    public Vector3 minionPosition;
-    public Vector3 enemyMinionPosition;
-    public Vector3 targetPosition;
-    public Vector3 playerPosition;
-    public Vector3 distanceFromTarget;
-    public Vector3 distanceFromPlayer;
-    public Vector3 distanceFromMinion;
-    public Vector3 oldTarget;
+    private Vector3 distanceFromTower;
+    private Vector3 distanceFromTarget;
+    private Vector3 distanceFromPlayer;
+    private Vector3 distanceFromMinion;
+    private Vector3 oldTarget;
 
     public bool isAttacking = false;
     public bool cooldown = false;
@@ -55,7 +52,7 @@ public class MeleeMinion : NetworkBehaviour
         if (Team == 1) //This is definitely spaghetti code, but it basically uses a list of every tower and every minion to determine which tower or enemy minion it should go after
         {
 
-            target = lameManager.teamTwoTowers[lameManager.TowersLeft.Value].transform; 
+            towerTarget = lameManager.teamTwoTowers[lameManager.TowersLeft.Value].transform; 
             oldTarget = new Vector3(1000, 1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamTwoMinions) 
             {
@@ -70,7 +67,7 @@ public class MeleeMinion : NetworkBehaviour
         }
         else
         {
-            target = lameManager.teamOneTowers[lameManager.TowersLeft.Value].transform; 
+            towerTarget = lameManager.teamOneTowers[lameManager.TowersLeft.Value].transform; 
             oldTarget = new Vector3(1000,1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamOneMinions)
             {
@@ -83,34 +80,34 @@ public class MeleeMinion : NetworkBehaviour
                 }
             }
         }
-        minionPosition = new Vector3(minionTarget.position.x, minionTarget.position.y, 0);
-        targetPosition = new Vector3(target.position.x, target.position.y, 0);
-        playerPosition = new Vector3(enemyPlayer.transform.position.x, enemyPlayer.transform.position.y, 0);
-        distanceFromTarget = new Vector3(minionPosition.x - targetPosition.x, minionPosition.y - targetPosition.y, 0);
-        distanceFromPlayer = new Vector3(minionPosition.x - playerPosition.x, minionPosition.y - playerPosition.y, 0);
+        distanceFromTower = new Vector3(minionTarget.position.x - towerTarget.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+        distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
         //animator.SetFloat("Speed", agent.speed);
         //animator.SetBool("Attacking", isAttacking);
         //weaponAttack.SetBool("Attacking", isAttacking);
-        if (distanceFromTarget.magnitude > attackDistance && isAttacking == false && distanceFromPlayer.magnitude > chasePlayerDistance && distanceFromMinion.magnitude > chaseMinionDistance)
+
+        if (distanceFromPlayer.magnitude > chasePlayerDistance && distanceFromMinion.magnitude > chaseMinionDistance)
         {
             agent.speed = moveSpeed;
-            agent.SetDestination(target.position);
+            agent.SetDestination(towerTarget.position);
+            distanceFromTarget = distanceFromTower;
         }
         else if (distanceFromPlayer.magnitude < chasePlayerDistance)
         {
             agent.speed = moveSpeed;
             agent.SetDestination(enemyPlayer.transform.position);
-        } 
+            distanceFromTarget = distanceFromPlayer;
+        }
         else if (distanceFromMinion.magnitude < chaseMinionDistance)
         {
             agent.speed = moveSpeed;
             agent.SetDestination(enemyMinionTarget.position);
+            distanceFromTarget = distanceFromMinion;
         }
         if (distanceFromTarget.magnitude < attackDistance && cooldown == false)
         {
             agent.speed = 0;
             //isAttacking = true;
-
         }
     }
     
