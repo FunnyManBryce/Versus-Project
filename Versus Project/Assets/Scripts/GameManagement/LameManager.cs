@@ -20,6 +20,9 @@ public class LameManager : NetworkBehaviour
     public GameObject[] characterList;
     public GameObject[] teamOneTowers;
     public GameObject[] teamTwoTowers;
+    public List<GameObject> teamOneMinions;
+    public List<GameObject> teamTwoMinions;
+
 
     private bool gameStarted;
 
@@ -173,12 +176,14 @@ public class LameManager : NetworkBehaviour
         var minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
         minion.GetComponent<MeleeMinion>().Team = 1;
         minion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
+        teamOneMinions.Add(minion);
         var minionNetworkObject = minion.GetComponent<NetworkObject>();
         minionNetworkObject.Spawn();
 
         minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
         minion.GetComponent<MeleeMinion>().Team = 2;
         minion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
+        teamTwoMinions.Add(minion);
         minionNetworkObject = minion.GetComponent<NetworkObject>();
         minionNetworkObject.Spawn();
     }
@@ -204,4 +209,5 @@ public class LameManager : NetworkBehaviour
     {
         TowersLeft.Value--;
     }
+
 }
