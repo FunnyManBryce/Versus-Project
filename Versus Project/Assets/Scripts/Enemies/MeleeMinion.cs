@@ -30,19 +30,23 @@ public class MeleeMinion : NetworkBehaviour
     public bool cooldown = false;
     public bool aggro = false;
 
-    public float chasePlayerDistance = 20;
+    public float chasePlayerDistance = 10;
     public float chaseMinionDistance = 10;
-    public float attackDistance = 2;
+    public float attackDistance = 5;
     public float moveSpeed = 3;
     public float aggroTimer = 10f;
 
     public GameObject enemyPlayer;
     public GameObject enemyMinion;
+    public GameObject enemyTower;
     public GameObject Minion;
+    public NetworkObject networkMinion;
+    public NetworkObject currentTarget;
 
 
     void Start()
     {
+        networkMinion = Minion.GetComponent<NetworkObject>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -50,7 +54,26 @@ public class MeleeMinion : NetworkBehaviour
         lameManager = FindObjectOfType<LameManager>();
     }
 
-    void Update()
+    public override void OnNetworkSpawn()
+    {
+        Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
+        {
+            if (Health.Value <= 0 && IsServer == true)
+            {
+                if(Team == 1)
+                {
+                    lameManager.teamOneMinions.Remove(Minion);
+                }
+                else 
+                {
+                    lameManager.teamTwoMinions.Remove(Minion);
+                }
+                Minion.GetComponent<NetworkObject>().Despawn();
+            }
+        };
+    }
+
+        void Update()
     {
         if (!IsServer) return;
         if(aggro == true && aggroTimer > 0)
@@ -63,8 +86,8 @@ public class MeleeMinion : NetworkBehaviour
         }
         if (Team == 1) //This is definitely spaghetti code, but it basically uses a list of every tower and every minion to determine which tower or enemy minion it should go after
         {
-
-            towerTarget = lameManager.teamTwoTowers[lameManager.TowersLeft.Value].transform;
+            enemyTower = lameManager.teamTwoTowers[lameManager.teamTwoTowersLeft.Value];
+            towerTarget = lameManager.teamTwoTowers[lameManager.teamTwoTowersLeft.Value].transform;
             oldTarget = new Vector3(1000, 1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamTwoMinions)
             {
@@ -80,7 +103,8 @@ public class MeleeMinion : NetworkBehaviour
         }
         else
         {
-            towerTarget = lameManager.teamOneTowers[lameManager.TowersLeft.Value].transform;
+            enemyTower = lameManager.teamOneTowers[lameManager.teamOneTowersLeft.Value];
+            towerTarget = lameManager.teamOneTowers[lameManager.teamOneTowersLeft.Value].transform;
             oldTarget = new Vector3(1000, 1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamOneMinions)
             {
@@ -90,6 +114,7 @@ public class MeleeMinion : NetworkBehaviour
                     oldTarget = directionToTarget;
                     distanceFromMinion = directionToTarget;
                     enemyMinionTarget = potentialTarget.transform;
+                    enemyMinion = potentialTarget;
                 }
             }
         }
@@ -104,33 +129,53 @@ public class MeleeMinion : NetworkBehaviour
             agent.speed = moveSpeed;
             agent.SetDestination(towerTarget.position);
             distanceFromTarget = distanceFromTower;
+            currentTarget = enemyTower.GetComponent<NetworkObject>();
         }
         else if (distanceFromMinion.magnitude < chaseMinionDistance && aggro == false)
         {
             agent.speed = moveSpeed;
             agent.SetDestination(enemyMinionTarget.position);
             distanceFromTarget = distanceFromMinion;
+            currentTarget = enemyMinion.GetComponent<NetworkObject>();
         }
         else if (distanceFromPlayer.magnitude < chasePlayerDistance)
         {
             agent.speed = moveSpeed;
             agent.SetDestination(enemyPlayer.transform.position);
             distanceFromTarget = distanceFromPlayer;
+            currentTarget = enemyPlayer.GetComponent<NetworkObject>();
         }
         if (distanceFromTarget.magnitude < attackDistance && cooldown == false)
         {
             agent.speed = 0;
-            //isAttacking = true;
+            DealDamageServerRPC(5, currentTarget, networkMinion);
         }
+        
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRPC(float damage) 
+    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender) 
     {
         Health.Value = Health.Value - damage;
+        Debug.Log("AHHHHH HELP ME IM HURT AHHHH");
         //something to check if they were hit by the player
         //if so, then set aggro to true and aggro timer to 10 seconds
+
     }
+
+    [Rpc(SendTo.Server)]
+    public void DealDamageServerRPC(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
+    {
+        if(reference.TryGet(out NetworkObject target))
+        {
+            target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
+        }
+        else
+        {
+            Debug.Log("This is bad");
+        }
+    }
+
 
 
 }

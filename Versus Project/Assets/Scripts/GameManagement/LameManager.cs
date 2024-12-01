@@ -10,7 +10,8 @@ public class LameManager : NetworkBehaviour
     private NetworkManagerUI networkManagerUI;
     private NetworkManager networkManager;
 
-    public NetworkVariable<int> TowersLeft = new NetworkVariable<int>(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<int> teamOneTowersLeft = new NetworkVariable<int>(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<int> teamTwoTowersLeft = new NetworkVariable<int>(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     [SerializeField] private GameObject lameManager;
     [SerializeField] private GameObject player1SpawnPoint1;
@@ -84,7 +85,8 @@ public class LameManager : NetworkBehaviour
     public void BeginGame()
     {
         StartCoroutine(LoadScene("MapScene"));
-        TowersLeft.Value = 3;
+        teamOneTowersLeft.Value = 3;
+        teamTwoTowersLeft.Value = 3;
     }
 
     public IEnumerator LoadScene(string sceneName)
@@ -205,9 +207,15 @@ public class LameManager : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void TowerDestroyedServerRPC()
+    public void TowerDestroyedServerRPC(int team)
     {
-        TowersLeft.Value--;
+        if(team == 1)
+        {
+            teamOneTowersLeft.Value--;
+        } else
+        {
+            teamTwoTowersLeft.Value--;
+        }
     }
 
 }
