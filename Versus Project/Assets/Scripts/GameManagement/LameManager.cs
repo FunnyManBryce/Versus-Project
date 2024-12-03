@@ -24,7 +24,6 @@ public class LameManager : NetworkBehaviour
     public List<GameObject> teamOneMinions;
     public List<GameObject> teamTwoMinions;
 
-
     private bool gameStarted;
 
     public GameObject playerOneChar;
@@ -111,8 +110,7 @@ public class LameManager : NetworkBehaviour
         teamTwoTowers[1] = GameObject.Find("Player2Inhibitor");
         teamTwoTowers[2] = GameObject.Find("Player2Tower2");
         teamTwoTowers[3] = GameObject.Find("Player2Tower1");
-        
-            
+          
         if (clientId == 0)
         {
             Team = 1;
@@ -205,7 +203,20 @@ public class LameManager : NetworkBehaviour
         gameStarted = false;
         SceneManager.LoadScene("GameOver");
     }
-
+    
+    [Rpc(SendTo.Server)]
+    public void TowerSpawnServerRPC()
+    {
+        var towerToSpawn = GameObject.Find("Player1Tower1").GetComponent<NetworkObject>();
+        towerToSpawn.Spawn();
+        towerToSpawn = GameObject.Find("Player1Tower2").GetComponent<NetworkObject>();
+        towerToSpawn.Spawn();
+        towerToSpawn = GameObject.Find("Player2Tower1").GetComponent<NetworkObject>();
+        towerToSpawn.Spawn();
+        towerToSpawn = GameObject.Find("Player2Tower2").GetComponent<NetworkObject>();
+        towerToSpawn.Spawn();
+    }
+    
     [Rpc(SendTo.Server)]
     public void TowerDestroyedServerRPC(int team)
     {

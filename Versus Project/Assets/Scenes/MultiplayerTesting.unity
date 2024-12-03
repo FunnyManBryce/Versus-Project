@@ -3307,6 +3307,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: Tower
+      value: 
+      objectReference: {fileID: 8003257773554308308, guid: 5e13d81c56ab83a45859b685c256fd41,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: meleeMinion
       value: 
       objectReference: {fileID: 8942386518775928844, guid: 0d7a16450bdf68d4ba2dc163cc33ce1e,

@@ -168,7 +168,17 @@ public class MeleeMinion : NetworkBehaviour
     {
         if(reference.TryGet(out NetworkObject target))
         {
-            target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
+            if(target.tag == "Player")
+            {
+
+            } else if(target.tag == "Tower")
+            {
+                target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
+            }
+            else if (target.tag == "Minion")
+            {
+                target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
+            }
         }
         else
         {
