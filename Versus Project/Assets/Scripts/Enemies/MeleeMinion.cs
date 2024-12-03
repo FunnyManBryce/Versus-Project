@@ -173,6 +173,7 @@ public class MeleeMinion : NetworkBehaviour
 
             } else if(target.tag == "Tower")
             {
+                Debug.Log("WHY WOnT YOU DIE");
                 target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
             }
             else if (target.tag == "Minion")

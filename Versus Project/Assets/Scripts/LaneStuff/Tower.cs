@@ -9,28 +9,26 @@ public class Tower : NetworkBehaviour
     public int Team;
     private LameManager lameManager;
 
-    public GameObject tower;
     public NetworkVariable<float> Health = new NetworkVariable<float>(1000, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    public GameObject tower;
+    
     void Start()
     {
         lameManager = FindObjectOfType<LameManager>();
+        //var towerToSpawn = tower.GetComponent<NetworkObject>();
+        //towerToSpawn.Spawn();
+        Health.Value = 1000;
     }
 
     public override void OnNetworkSpawn()
     {
+        Debug.Log("Iaminagony");
         Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
             if (Health.Value <= 0 && IsServer == true)
             {
-                if (Team == 1)
-                {
-                    lameManager.TowerDestroyedServerRPC(Team);
-                }
-                else
-                {
-                    lameManager.TowerDestroyedServerRPC(Team);
-                }
+                lameManager.TowerDestroyedServerRPC(Team);
                 tower.GetComponent<NetworkObject>().Despawn();
             }
         };

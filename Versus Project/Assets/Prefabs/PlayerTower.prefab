@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2991641484458318829}
   m_Layer: 0
   m_Name: PlayerTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
-  tower: {fileID: 8003257773554308308}
   Health:
     m_InternalValue: 1000
+  tower: {fileID: 8003257773554308308}
 --- !u!50 &3814562962944772117
 Rigidbody2D:
   serializedVersion: 4

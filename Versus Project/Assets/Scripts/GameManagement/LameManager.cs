@@ -36,6 +36,7 @@ public class LameManager : NetworkBehaviour
     private GameObject spawnPoint;
 
     [SerializeField] private GameObject meleeMinion;
+    [SerializeField] private GameObject Tower;
     public GameObject minionSpawnPoint1;
     public GameObject minionSpawnPoint2;
     private float minionSpawnTimer;
@@ -101,15 +102,15 @@ public class LameManager : NetworkBehaviour
         minionSpawnPoint1 = GameObject.Find("MinionSpawnPoint1");
         minionSpawnPoint2 = GameObject.Find("MinionSpawnPoint2");
 
+        if(IsServer)
+        {
+            LaneSpawnServerRPC();
+        }
         teamOneTowers[0] = GameObject.Find("Player1Pentagon");
         teamOneTowers[1] = GameObject.Find("Player1Inhibitor");
-        teamOneTowers[2] = GameObject.Find("Player1Tower2");
-        teamOneTowers[3] = GameObject.Find("Player1Tower1");
 
         teamTwoTowers[0] = GameObject.Find("Player2Pentagon");
         teamTwoTowers[1] = GameObject.Find("Player2Inhibitor");
-        teamTwoTowers[2] = GameObject.Find("Player2Tower2");
-        teamTwoTowers[3] = GameObject.Find("Player2Tower1");
           
         if (clientId == 0)
         {
@@ -156,18 +157,45 @@ public class LameManager : NetworkBehaviour
         }
         var characterNetworkObject = character.GetComponent<NetworkObject>();
         characterNetworkObject.SpawnWithOwnership(clientID);
-        Debug.Log("They Spawned In!");
     }
 
     [Rpc(SendTo.NotServer)]
     public void CameraOnClientRPC(ulong clientID, int team)
     {
-        Debug.Log("Huh");
         if (clientId == clientID)
         {
             Camera = Character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
         }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void LaneSpawnServerRPC()
+    {
+        Debug.Log("how many times is this happening?!?!?!");
+        var tower = Instantiate(Tower, new Vector3(-20, 0, 0), Quaternion.identity);
+        tower.GetComponent<Tower>().Team = 1;
+        teamOneTowers[3] = tower;
+        var towerNetworkObject = tower.GetComponent<NetworkObject>();
+        towerNetworkObject.Spawn();
+
+        tower = Instantiate(Tower, new Vector3(-50, 0, 0), Quaternion.identity);
+        tower.GetComponent<Tower>().Team = 1;
+        teamOneTowers[2] = tower;
+        towerNetworkObject = tower.GetComponent<NetworkObject>();
+        towerNetworkObject.Spawn();
+
+        tower = Instantiate(Tower, new Vector3(20, 0, 0), Quaternion.identity);
+        tower.GetComponent<Tower>().Team = 2;
+        teamTwoTowers[3] = tower;
+        towerNetworkObject = tower.GetComponent<NetworkObject>();
+        towerNetworkObject.Spawn();
+
+        tower = Instantiate(Tower, new Vector3(50, 0, 0), Quaternion.identity);
+        tower.GetComponent<Tower>().Team = 2;
+        teamTwoTowers[2] = tower;
+        towerNetworkObject = tower.GetComponent<NetworkObject>();
+        towerNetworkObject.Spawn();
     }
 
     [Rpc(SendTo.Server)]
@@ -205,25 +233,12 @@ public class LameManager : NetworkBehaviour
     }
     
     [Rpc(SendTo.Server)]
-    public void TowerSpawnServerRPC()
-    {
-        var towerToSpawn = GameObject.Find("Player1Tower1").GetComponent<NetworkObject>();
-        towerToSpawn.Spawn();
-        towerToSpawn = GameObject.Find("Player1Tower2").GetComponent<NetworkObject>();
-        towerToSpawn.Spawn();
-        towerToSpawn = GameObject.Find("Player2Tower1").GetComponent<NetworkObject>();
-        towerToSpawn.Spawn();
-        towerToSpawn = GameObject.Find("Player2Tower2").GetComponent<NetworkObject>();
-        towerToSpawn.Spawn();
-    }
-    
-    [Rpc(SendTo.Server)]
     public void TowerDestroyedServerRPC(int team)
     {
         if(team == 1)
         {
             teamOneTowersLeft.Value--;
-        } else
+        } else if(team == 2)
         {
             teamTwoTowersLeft.Value--;
         }
