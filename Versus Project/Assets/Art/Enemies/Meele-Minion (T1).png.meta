@@ -1,0 +1,802 @@
+fileFormatVersion: 2
+guid: 9e7d0aeb25da40f46a04467337b49a28
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3370123259006527542
+    second: Meele-Minion (T1)_0
+  - first:
+      213: -5382984905530380466
+    second: Meele-Minion (T1)_1
+  - first:
+      213: 1732349411115491369
+    second: Meele-Minion (T1)_2
+  - first:
+      213: -3845910975054346266
+    second: Meele-Minion (T1)_3
+  - first:
+      213: 8095458322470043534
+    second: Meele-Minion (T1)_4
+  - first:
+      213: 4484057197492486381
+    second: Meele-Minion (T1)_5
+  - first:
+      213: 7560862194868426230
+    second: Meele-Minion (T1)_6
+  - first:
+      213: -1203725772448841886
+    second: Meele-Minion (T1)_7
+  - first:
+      213: 4234855285580068273
+    second: Meele-Minion (T1)_8
+  - first:
+      213: 5916227152020783223
+    second: Meele-Minion (T1)_9
+  - first:
+      213: 6946567360161156105
+    second: Meele-Minion (T1)_10
+  - first:
+      213: -1183870802215711915
+    second: Meele-Minion (T1)_11
+  - first:
+      213: 6741929200123657942
+    second: Meele-Minion (T1)_12
+  - first:
+      213: 6647015745636998618
+    second: Meele-Minion (T1)_13
+  - first:
+      213: 8469999399677293698
+    second: Meele-Minion (T1)_14
+  - first:
+      213: -5115165655180897305
+    second: Meele-Minion (T1)_15
+  - first:
+      213: -4184634830748732809
+    second: Meele-Minion (T1)_16
+  - first:
+      213: 6187679098935669079
+    second: Meele-Minion (T1)_17
+  - first:
+      213: -6770466417177316568
+    second: Meele-Minion (T1)_18
+  - first:
+      213: -4379991338122141920
+    second: Meele-Minion (T1)_19
+  - first:
+      213: 3281266386929954777
+    second: Meele-Minion (T1)_20
+  - first:
+      213: 1411605656881960328
+    second: Meele-Minion (T1)_21
+  - first:
+      213: -3620958015228088059
+    second: Meele-Minion (T1)_22
+  - first:
+      213: 5574951426815424872
+    second: Meele-Minion (T1)_23
+  - first:
+      213: 4624712136877433052
+    second: Meele-Minion (T1)_24
+  - first:
+      213: -2265133595227223758
+    second: Meele-Minion (T1)_25
+  - first:
+      213: 5890737060016001075
+    second: Meele-Minion (T1)_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 8
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 9, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac752a960caea31d0800000000000000
+      internalID: -3370123259006527542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 1, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f629aafbbcb45b0800000000000000
+      internalID: -5382984905530380466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_2
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 7
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 9, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920656c6c9a8a0810800000000000000
+      internalID: 1732349411115491369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 9
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e70c1e385490aac0800000000000000
+      internalID: -3845910975054346266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 1, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8f7ec4e378d85070800000000000000
+      internalID: 8095458322470043534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_5
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 0
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de0c21973429a3e30800000000000000
+      internalID: 4484057197492486381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_6
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f510d86b149de860800000000000000
+      internalID: 7560862194868426230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_7
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 0
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26f343e99c18b4fe0800000000000000
+      internalID: -1203725772448841886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_8
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 8
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b57f2ce17a35ca30800000000000000
+      internalID: 4234855285580068273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_9
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 0
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77048becf39aa1250800000000000000
+      internalID: 5916227152020783223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_10
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 0
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90c8ab6a53a276060800000000000000
+      internalID: 6946567360161156105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_11
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55bc9fd17cb029fe0800000000000000
+      internalID: -1183870802215711915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_12
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 8
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de343223e4209d50800000000000000
+      internalID: 6741929200123657942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_13
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 0
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add1f1f6a91fe3c50800000000000000
+      internalID: 6647015745636998618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_14
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 8
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2847989f39b7b8570800000000000000
+      internalID: 8469999399677293698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_15
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 0
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e31aab10f74309b0800000000000000
+      internalID: -5115165655180897305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_16
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 8
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 772be76eac03de5c0800000000000000
+      internalID: -4184634830748732809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_17
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 0
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7517b245b5d0fd550800000000000000
+      internalID: 6187679098935669079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_18
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 8
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8233f604aa87a02a0800000000000000
+      internalID: -6770466417177316568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_19
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 0
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02f11fb85152733c0800000000000000
+      internalID: -4379991338122141920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_20
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 8
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dfa36ed466698d20800000000000000
+      internalID: 3281266386929954777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_21
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 0
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 885916dadd7079310800000000000000
+      internalID: 1411605656881960328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_22
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 8
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 501f9bbaed5cfbdc0800000000000000
+      internalID: -3620958015228088059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_23
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 0
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 869f36b09c43e5d40800000000000000
+      internalID: 5574951426815424872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_24
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 8
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0640b8f274e2040800000000000000
+      internalID: 4624712136877433052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_25
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 0
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2398daf0ff0a090e0800000000000000
+      internalID: -2265133595227223758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meele-Minion (T1)_26
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 1, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3309b77452a10c150800000000000000
+      internalID: 5890737060016001075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 29a095d462bf66f4a8e87576aece4de8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Meele-Minion (T1)_0: -3370123259006527542
+      Meele-Minion (T1)_1: -5382984905530380466
+      Meele-Minion (T1)_10: 6946567360161156105
+      Meele-Minion (T1)_11: -1183870802215711915
+      Meele-Minion (T1)_12: 6741929200123657942
+      Meele-Minion (T1)_13: 6647015745636998618
+      Meele-Minion (T1)_14: 8469999399677293698
+      Meele-Minion (T1)_15: -5115165655180897305
+      Meele-Minion (T1)_16: -4184634830748732809
+      Meele-Minion (T1)_17: 6187679098935669079
+      Meele-Minion (T1)_18: -6770466417177316568
+      Meele-Minion (T1)_19: -4379991338122141920
+      Meele-Minion (T1)_2: 1732349411115491369
+      Meele-Minion (T1)_20: 3281266386929954777
+      Meele-Minion (T1)_21: 1411605656881960328
+      Meele-Minion (T1)_22: -3620958015228088059
+      Meele-Minion (T1)_23: 5574951426815424872
+      Meele-Minion (T1)_24: 4624712136877433052
+      Meele-Minion (T1)_25: -2265133595227223758
+      Meele-Minion (T1)_26: 5890737060016001075
+      Meele-Minion (T1)_3: -3845910975054346266
+      Meele-Minion (T1)_4: 8095458322470043534
+      Meele-Minion (T1)_5: 4484057197492486381
+      Meele-Minion (T1)_6: 7560862194868426230
+      Meele-Minion (T1)_7: -1203725772448841886
+      Meele-Minion (T1)_8: 4234855285580068273
+      Meele-Minion (T1)_9: 5916227152020783223
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -9,7 +9,7 @@ public class Tower : NetworkBehaviour
     public int Team;
     private LameManager lameManager;
 
-    public NetworkVariable<float> Health = new NetworkVariable<float>(1000, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<float> Health = new NetworkVariable<float>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public GameObject tower;
     
@@ -18,7 +18,7 @@ public class Tower : NetworkBehaviour
         lameManager = FindObjectOfType<LameManager>();
         //var towerToSpawn = tower.GetComponent<NetworkObject>();
         //towerToSpawn.Spawn();
-        Health.Value = 1000;
+        Health.Value = 100;
     }
 
     public override void OnNetworkSpawn()

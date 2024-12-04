@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class MeleeMinion : NetworkBehaviour
 {
     public int Team;
-    public NetworkVariable<float> Health = new NetworkVariable<float>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<float> Health = new NetworkVariable<float>(50, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     private LameManager lameManager;
 
@@ -18,7 +18,6 @@ public class MeleeMinion : NetworkBehaviour
     public NavMeshAgent agent;
 
     public Animator animator;
-    public Animator weaponAttack;
 
     private Vector3 distanceFromTower;
     private Vector3 distanceFromTarget;
@@ -34,7 +33,10 @@ public class MeleeMinion : NetworkBehaviour
     public float chaseMinionDistance = 10;
     public float attackDistance = 5;
     public float moveSpeed = 3;
-    public float aggroTimer = 10f;
+    public float aggroTimer = 0f;
+    public float aggroLength = 10f;
+    public float cooldownLength = 2f;
+    public float cooldownTimer = 0f;
 
     public GameObject enemyPlayer;
     public GameObject enemyMinion;
@@ -56,6 +58,7 @@ public class MeleeMinion : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        Health.Value = 50;
         Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
             if (Health.Value <= 0 && IsServer == true)
@@ -76,13 +79,24 @@ public class MeleeMinion : NetworkBehaviour
         void Update()
     {
         if (!IsServer) return;
-        if(aggro == true && aggroTimer > 0)
+        animator.SetBool("Attacking", isAttacking);
+        if (isAttacking) return;
+        if (cooldown == true && cooldownTimer < cooldownLength)
         {
-            aggroTimer -= Time.deltaTime;
-        } else if(aggroTimer < 0)
+            cooldownTimer += Time.deltaTime;
+        } else if (cooldownTimer >= cooldownLength)
         {
-            aggroTimer = 10;
+            cooldown = false;
+            cooldownTimer = 0;
+        }
+        if (aggro == true && aggroTimer < aggroLength)
+        {
+            aggroTimer += Time.deltaTime;
+        }
+        else if (aggroTimer >= aggroLength)
+        {
             aggro = false;
+            aggroTimer = 0;
         }
         if (Team == 1) //This is definitely spaghetti code, but it basically uses a list of every tower and every minion to determine which tower or enemy minion it should go after
         {
@@ -120,10 +134,6 @@ public class MeleeMinion : NetworkBehaviour
         }
         distanceFromTower = new Vector3(minionTarget.position.x - towerTarget.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
         distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
-        //animator.SetFloat("Speed", agent.speed); //We aren't using animators yet
-        //animator.SetBool("Attacking", isAttacking);
-        //weaponAttack.SetBool("Attacking", isAttacking);
-
         if (distanceFromPlayer.magnitude > chasePlayerDistance && distanceFromMinion.magnitude > chaseMinionDistance && aggro == false)
         {
             agent.speed = moveSpeed;
@@ -148,9 +158,21 @@ public class MeleeMinion : NetworkBehaviour
         if (distanceFromTarget.magnitude < attackDistance && cooldown == false)
         {
             agent.speed = 0;
-            DealDamageServerRPC(5, currentTarget, networkMinion);
+            isAttacking = true;
         }
-        
+
+    }
+
+    public void DealDamage()
+    {
+        if(currentTarget != null)
+        {
+            DealDamageServerRPC(20, currentTarget, networkMinion); //Minions can't attack tower because pathfinding radius away from them is too high. Need to make attack distance based on edge of target somehow?
+
+        } else
+        {
+            isAttacking = false;
+        }
     }
 
     [Rpc(SendTo.Server)]
@@ -158,8 +180,14 @@ public class MeleeMinion : NetworkBehaviour
     {
         Health.Value = Health.Value - damage;
         Debug.Log("AHHHHH HELP ME IM HURT AHHHH");
-        //something to check if they were hit by the player
-        //if so, then set aggro to true and aggro timer to 10 seconds
+        if (sender.TryGet(out NetworkObject attacker))
+        {
+            if (attacker.tag == "Player")
+            {
+                aggro = true;
+                aggroTimer = 0;
+            }
+        }
 
     }
 
@@ -185,6 +213,8 @@ public class MeleeMinion : NetworkBehaviour
         {
             Debug.Log("This is bad");
         }
+        isAttacking = false;
+        cooldown = true;
     }
 
 
