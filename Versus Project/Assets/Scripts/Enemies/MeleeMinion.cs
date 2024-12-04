@@ -180,7 +180,7 @@ public class MeleeMinion : NetworkBehaviour
     {
         if(currentTarget != null)
         {
-            DealDamageServerRPC(20, currentTarget, networkMinion); //Minions can't attack tower because pathfinding radius away from them is too high. Need to make attack distance based on edge of target somehow?
+            DealDamageServerRPC(20, currentTarget, networkMinion); 
 
         } else
         {

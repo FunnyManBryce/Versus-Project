@@ -127,9 +127,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
+  towerTarget: {fileID: 3319039571354012073}
+  enemyMinionTarget: {fileID: 0}
+  animator: {fileID: 0}
+  isAttacking: 0
+  cooldown: 0
+  aggro: 0
+  tower: {fileID: 8003257773554308308}
+  enemyPlayer: {fileID: 0}
+  enemyMinion: {fileID: 0}
+  networkTower: {fileID: 0}
+  currentTarget: {fileID: 0}
+  aggroTimer: 0
+  aggroLength: 10
+  cooldownLength: 2
+  cooldownTimer: 0
+  towerRange: 10
   Health:
     m_InternalValue: 1000
-  tower: {fileID: 8003257773554308308}
 --- !u!50 &3814562962944772117
 Rigidbody2D:
   serializedVersion: 4

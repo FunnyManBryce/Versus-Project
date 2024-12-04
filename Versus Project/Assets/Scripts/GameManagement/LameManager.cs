@@ -176,24 +176,28 @@ public class LameManager : NetworkBehaviour
         Debug.Log("how many times is this happening?!?!?!");
         var tower = Instantiate(Tower, new Vector3(-20, 0, 0), Quaternion.identity);
         tower.GetComponent<Tower>().Team = 1;
+        //tower.GetComponent<Tower>().enemyPlayer = playerTwoChar;
         teamOneTowers[3] = tower;
         var towerNetworkObject = tower.GetComponent<NetworkObject>();
         towerNetworkObject.Spawn();
 
         tower = Instantiate(Tower, new Vector3(-50, 0, 0), Quaternion.identity);
         tower.GetComponent<Tower>().Team = 1;
+        //tower.GetComponent<Tower>().enemyPlayer = playerTwoChar;
         teamOneTowers[2] = tower;
         towerNetworkObject = tower.GetComponent<NetworkObject>();
         towerNetworkObject.Spawn();
 
         tower = Instantiate(Tower, new Vector3(20, 0, 0), Quaternion.identity);
         tower.GetComponent<Tower>().Team = 2;
+        //tower.GetComponent<Tower>().enemyPlayer = playerOneChar;
         teamTwoTowers[3] = tower;
         towerNetworkObject = tower.GetComponent<NetworkObject>();
         towerNetworkObject.Spawn();
 
         tower = Instantiate(Tower, new Vector3(50, 0, 0), Quaternion.identity);
         tower.GetComponent<Tower>().Team = 2;
+        //tower.GetComponent<Tower>().enemyPlayer = playerOneChar;
         teamTwoTowers[2] = tower;
         towerNetworkObject = tower.GetComponent<NetworkObject>();
         towerNetworkObject.Spawn();

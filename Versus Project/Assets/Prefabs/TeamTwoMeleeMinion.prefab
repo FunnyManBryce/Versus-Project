@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 550038450
+  GlobalObjectIdHash: 2270008670
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -211,9 +211,12 @@ MonoBehaviour:
   isAttacking: 0
   cooldown: 0
   aggro: 0
+  targetName: 
   chasePlayerDistance: 10
   chaseMinionDistance: 10
-  attackDistance: 4
+  minionAttackDistance: 5
+  towerAttackDistance: 3
+  playerAttackDistance: 4
   moveSpeed: 3
   aggroTimer: 0
   aggroLength: 5
@@ -305,7 +308,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -5382984905530380466, guid: 9e7d0aeb25da40f46a04467337b49a28,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.12, y: 0.16}
