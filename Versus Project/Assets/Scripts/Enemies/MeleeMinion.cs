@@ -32,13 +32,13 @@ public class MeleeMinion : NetworkBehaviour
     public string targetName;
     public float chasePlayerDistance = 10;
     public float chaseMinionDistance = 10;
-    public float minionAttackDistance = 5;
-    public float towerAttackDistance = 3;
+    public float minionAttackDistance = 3;
+    public float towerAttackDistance = 5;
     public float playerAttackDistance = 4;
     public float moveSpeed = 3;
     public float aggroTimer = 0f;
     public float aggroLength = 10f;
-    public float cooldownLength = 2f;
+    public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
 
     public GameObject enemyPlayer;
@@ -66,11 +66,11 @@ public class MeleeMinion : NetworkBehaviour
         {
             if (Health.Value <= 0 && IsServer == true)
             {
-                if(Team == 1)
+                if (Team == 1)
                 {
                     lameManager.teamOneMinions.Remove(Minion);
                 }
-                else 
+                else
                 {
                     lameManager.teamTwoMinions.Remove(Minion);
                 }
@@ -79,15 +79,14 @@ public class MeleeMinion : NetworkBehaviour
         };
     }
 
-        void Update()
+    void Update()
     {
-        if (!IsServer) return;
-        animator.SetBool("Attacking", isAttacking);
-        if (isAttacking) return;
+        if (isAttacking || !IsServer) return;
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
             cooldownTimer += Time.deltaTime;
-        } else if (cooldownTimer >= cooldownLength)
+        }
+        else if (cooldownTimer >= cooldownLength)
         {
             cooldown = false;
             cooldownTimer = 0;
@@ -165,31 +164,38 @@ public class MeleeMinion : NetworkBehaviour
         {
             agent.speed = 0;
             isAttacking = true;
-        } else if (targetName == "Player" && distanceFromTarget.magnitude < playerAttackDistance && cooldown == false)
+            animator.SetBool("Attacking", isAttacking);
+        }
+        else if (targetName == "Player" && distanceFromTarget.magnitude < playerAttackDistance && cooldown == false)
         {
             agent.speed = 0;
             isAttacking = true;
-        } else if (targetName == "Tower" && distanceFromTarget.magnitude < towerAttackDistance && cooldown == false)
+            animator.SetBool("Attacking", isAttacking);
+        }
+        else if (targetName == "Tower" && distanceFromTarget.magnitude < towerAttackDistance && cooldown == false)
         {
             agent.speed = 0;
             isAttacking = true;
+            animator.SetBool("Attacking", isAttacking);
         }
     }
 
     public void DealDamage()
     {
-        if(currentTarget != null)
+        if (currentTarget != null)
         {
-            DealDamageServerRPC(20, currentTarget, networkMinion); 
+            DealDamageServerRPC(20, currentTarget, networkMinion);
 
-        } else
+        }
+        else
         {
             isAttacking = false;
+            animator.SetBool("Attacking", isAttacking);
         }
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender) 
+    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender)
     {
         Health.Value = Health.Value - damage;
         if (sender.TryGet(out NetworkObject attacker))
@@ -206,12 +212,13 @@ public class MeleeMinion : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void DealDamageServerRPC(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
     {
-        if(reference.TryGet(out NetworkObject target))
+        if (reference.TryGet(out NetworkObject target))
         {
-            if(target.tag == "Player")
+            if (target.tag == "Player")
             {
                 //need something here for when player is real
-            } else if(target.tag == "Tower")
+            }
+            else if (target.tag == "Tower")
             {
                 target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
             }
@@ -225,6 +232,7 @@ public class MeleeMinion : NetworkBehaviour
             Debug.Log("This is bad");
         }
         isAttacking = false;
+        animator.SetBool("Attacking", isAttacking);
         cooldown = true;
     }
 
