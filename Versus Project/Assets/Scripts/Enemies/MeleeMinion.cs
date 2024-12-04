@@ -29,9 +29,12 @@ public class MeleeMinion : NetworkBehaviour
     public bool cooldown = false;
     public bool aggro = false;
 
+    public string targetName;
     public float chasePlayerDistance = 10;
     public float chaseMinionDistance = 10;
-    public float attackDistance = 5;
+    public float minionAttackDistance = 5;
+    public float towerAttackDistance = 3;
+    public float playerAttackDistance = 4;
     public float moveSpeed = 3;
     public float aggroTimer = 0f;
     public float aggroLength = 10f;
@@ -140,6 +143,7 @@ public class MeleeMinion : NetworkBehaviour
             agent.SetDestination(towerTarget.position);
             distanceFromTarget = distanceFromTower;
             currentTarget = enemyTower.GetComponent<NetworkObject>();
+            targetName = "Tower";
         }
         else if (distanceFromMinion.magnitude < chaseMinionDistance && aggro == false)
         {
@@ -147,6 +151,7 @@ public class MeleeMinion : NetworkBehaviour
             agent.SetDestination(enemyMinionTarget.position);
             distanceFromTarget = distanceFromMinion;
             currentTarget = enemyMinion.GetComponent<NetworkObject>();
+            targetName = "Minion";
         }
         else if (distanceFromPlayer.magnitude < chasePlayerDistance)
         {
@@ -154,13 +159,21 @@ public class MeleeMinion : NetworkBehaviour
             agent.SetDestination(enemyPlayer.transform.position);
             distanceFromTarget = distanceFromPlayer;
             currentTarget = enemyPlayer.GetComponent<NetworkObject>();
+            targetName = "Player";
         }
-        if (distanceFromTarget.magnitude < attackDistance && cooldown == false)
+        if (targetName == "Minion" && distanceFromTarget.magnitude < minionAttackDistance && cooldown == false)
+        {
+            agent.speed = 0;
+            isAttacking = true;
+        } else if (targetName == "Player" && distanceFromTarget.magnitude < playerAttackDistance && cooldown == false)
+        {
+            agent.speed = 0;
+            isAttacking = true;
+        } else if (targetName == "Tower" && distanceFromTarget.magnitude < towerAttackDistance && cooldown == false)
         {
             agent.speed = 0;
             isAttacking = true;
         }
-
     }
 
     public void DealDamage()
@@ -179,7 +192,6 @@ public class MeleeMinion : NetworkBehaviour
     public void TakeDamageServerRPC(float damage, NetworkObjectReference sender) 
     {
         Health.Value = Health.Value - damage;
-        Debug.Log("AHHHHH HELP ME IM HURT AHHHH");
         if (sender.TryGet(out NetworkObject attacker))
         {
             if (attacker.tag == "Player")
@@ -198,10 +210,9 @@ public class MeleeMinion : NetworkBehaviour
         {
             if(target.tag == "Player")
             {
-
+                //need something here for when player is real
             } else if(target.tag == "Tower")
             {
-                Debug.Log("WHY WOnT YOU DIE");
                 target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
             }
             else if (target.tag == "Minion")

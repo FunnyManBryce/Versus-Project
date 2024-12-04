@@ -35,7 +35,8 @@ public class LameManager : NetworkBehaviour
     private ulong clientId;
     private GameObject spawnPoint;
 
-    [SerializeField] private GameObject meleeMinion;
+    [SerializeField] private GameObject teamOneMeleeMinion;
+    [SerializeField] private GameObject teamTwoMeleeMinion;
     [SerializeField] private GameObject Tower;
     public GameObject minionSpawnPoint1;
     public GameObject minionSpawnPoint2;
@@ -201,14 +202,14 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void MinionSpawnServerRPC()
     {
-        var minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
+        var minion = Instantiate(teamOneMeleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
         minion.GetComponent<MeleeMinion>().Team = 1;
         minion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
         teamOneMinions.Add(minion);
         var minionNetworkObject = minion.GetComponent<NetworkObject>();
         minionNetworkObject.Spawn();
 
-        minion = Instantiate(meleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
+        minion = Instantiate(teamTwoMeleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
         minion.GetComponent<MeleeMinion>().Team = 2;
         minion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
         teamTwoMinions.Add(minion);

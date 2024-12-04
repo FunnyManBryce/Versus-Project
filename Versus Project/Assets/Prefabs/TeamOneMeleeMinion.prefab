@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 385054977924169405}
   - component: {fileID: 7173644152583605978}
   m_Layer: 8
-  m_Name: MeleeMinion
+  m_Name: TeamOneMeleeMinion
   m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.00016484037, y: -0.011361092}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0.01, w: 0}
+    border: {x: 0.01, y: 0, z: 0.01, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.12, y: 0.16}
     newSize: {x: 0.12, y: 0.16}
@@ -247,7 +247,7 @@ Animator:
   m_GameObject: {fileID: 8942386518775928844}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d37b25a99edb39b43ab305904afe872b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5e6b54e33306b1246ab5c81fc80ed0eb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -302,7 +302,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -5382984905530380466, guid: 9e7d0aeb25da40f46a04467337b49a28,
+  m_Sprite: {fileID: -3230171090254896671, guid: 3995895ed5b319c4ca0a0b3da7606efe,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

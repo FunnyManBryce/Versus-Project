@@ -16,14 +16,11 @@ public class Tower : NetworkBehaviour
     void Start()
     {
         lameManager = FindObjectOfType<LameManager>();
-        //var towerToSpawn = tower.GetComponent<NetworkObject>();
-        //towerToSpawn.Spawn();
         Health.Value = 100;
     }
 
     public override void OnNetworkSpawn()
     {
-        Debug.Log("Iaminagony");
         Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
             if (Health.Value <= 0 && IsServer == true)
@@ -38,6 +35,5 @@ public class Tower : NetworkBehaviour
     public void TakeDamageServerRPC(float damage, NetworkObjectReference sender)
     {
         Health.Value = Health.Value - damage;
-        Debug.Log("Tower is in pain");
     }
 }
