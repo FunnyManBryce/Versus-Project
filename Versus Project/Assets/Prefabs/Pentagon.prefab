@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 3319039571354012073}
   - component: {fileID: 5995719351801416829}
   - component: {fileID: 6359264415148085581}
-  - component: {fileID: 6025091493457403097}
   - component: {fileID: 3814562962944772117}
   - component: {fileID: 6529231957832308889}
   - component: {fileID: 8834905677104542529}
   - component: {fileID: 2991641484458318829}
+  - component: {fileID: 6470028386234375860}
   m_Layer: 0
-  m_Name: PlayerTower
+  m_Name: Pentagon
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -20, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 862493579
+  GlobalObjectIdHash: 958113541
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -114,39 +114,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &6025091493457403097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8003257773554308308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7cbdf6547ba414ab0c622154e21262, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Team: 0
-  towerTarget: {fileID: 3319039571354012073}
-  enemyMinionTarget: {fileID: 0}
-  animator: {fileID: 0}
-  isAttacking: 0
-  cooldown: 0
-  aggro: 0
-  tower: {fileID: 8003257773554308308}
-  enemyPlayer: {fileID: 0}
-  enemyMinion: {fileID: 0}
-  networkTower: {fileID: 0}
-  currentTarget: {fileID: 0}
-  Damage: 30
-  aggroTimer: 0
-  aggroLength: 10
-  cooldownLength: 2
-  cooldownTimer: 0
-  towerRange: 10
-  startingHealth: 100
-  Health:
-    m_InternalValue: 1000
 --- !u!50 &3814562962944772117
 Rigidbody2D:
   serializedVersion: 4
@@ -263,3 +230,36 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6470028386234375860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003257773554308308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f7cbdf6547ba414ab0c622154e21262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Team: 0
+  towerTarget: {fileID: 3319039571354012073}
+  enemyMinionTarget: {fileID: 0}
+  animator: {fileID: 0}
+  isAttacking: 0
+  cooldown: 0
+  aggro: 0
+  tower: {fileID: 8003257773554308308}
+  enemyPlayer: {fileID: 0}
+  enemyMinion: {fileID: 0}
+  networkTower: {fileID: 0}
+  currentTarget: {fileID: 0}
+  Damage: 50
+  aggroTimer: 0
+  aggroLength: 10
+  cooldownLength: 3
+  cooldownTimer: 0
+  towerRange: 20
+  startingHealth: 200
+  Health:
+    m_InternalValue: 200

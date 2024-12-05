@@ -29,11 +29,13 @@ public class Tower : NetworkBehaviour
     private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
 
+    public float Damage;
     public float aggroTimer = 0f;
     public float aggroLength = 10f;
     public float cooldownLength = 2f;
     public float cooldownTimer = 0f;
     public float towerRange = 10f;
+    public float startingHealth;
     public NetworkVariable<float> Health = new NetworkVariable<float>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
 
@@ -42,7 +44,6 @@ public class Tower : NetworkBehaviour
     {
         networkTower = tower.GetComponent<NetworkObject>();
         lameManager = FindObjectOfType<LameManager>();
-        Health.Value = 100;
     }
 
     void Update()
@@ -121,6 +122,10 @@ public class Tower : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        if(IsServer)
+        {
+            Health.Value = startingHealth;
+        }
         Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
             if (Health.Value <= 0 && IsServer == true)
@@ -135,7 +140,7 @@ public class Tower : NetworkBehaviour
     {
         if (currentTarget != null)
         {
-            DealDamageServerRPC(30, currentTarget, networkTower);
+            DealDamageServerRPC(Damage, currentTarget, networkTower);
         }
         else
         {

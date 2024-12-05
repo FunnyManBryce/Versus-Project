@@ -131,6 +131,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   inhibitor: {fileID: 761847280962229105}
   networkInhibitor: {fileID: 0}
+  startingHealth: 150
   Health:
     m_InternalValue: 100
 --- !u!50 &147550970692666639

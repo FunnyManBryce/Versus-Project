@@ -30,6 +30,7 @@ public class MeleeMinion : NetworkBehaviour
     public bool aggro = false;
 
     public string targetName;
+    public float Damage;
     public float chasePlayerDistance = 10;
     public float chaseMinionDistance = 10;
     public float minionAttackDistance = 3;
@@ -184,7 +185,7 @@ public class MeleeMinion : NetworkBehaviour
     {
         if (currentTarget != null)
         {
-            DealDamageServerRPC(20, currentTarget, networkMinion);
+            DealDamageServerRPC(Damage, currentTarget, networkMinion);
 
         }
         else

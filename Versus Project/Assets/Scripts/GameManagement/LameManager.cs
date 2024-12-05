@@ -41,6 +41,7 @@ public class LameManager : NetworkBehaviour
     [SerializeField] private GameObject teamTwoMeleeMinion;
     [SerializeField] private GameObject Tower;
     [SerializeField] private GameObject Inhibitor;
+    [SerializeField] private GameObject Pentagon;
     public GameObject minionSpawnPoint1;
     public GameObject minionSpawnPoint2;
     private float minionSpawnTimer;
@@ -59,22 +60,6 @@ public class LameManager : NetworkBehaviour
 
     void Update()
     {
-        if(gameStarted == true && Input.GetKeyDown(KeyCode.Tab))
-        {
-            gameStarted = false;
-            if (Team == 1)
-            {
-                teamThatWon = 1;
-                TeamOneWinClientRPC();
-                SceneManager.LoadScene("GameOver");
-            }
-            else
-            {
-                SceneManager.LoadScene("GameOver");
-                teamThatWon = 2;
-                TeamTwoWinServerRPC();
-            }
-        }
         if (!IsServer) return;
         if(minionSpawnTimer < spawnTimerEnd && gameStarted == true)
         {
@@ -110,9 +95,6 @@ public class LameManager : NetworkBehaviour
         {
             LaneSpawnServerRPC();
         }
-        teamOneTowers[0] = GameObject.Find("Player1Pentagon");
-
-        teamTwoTowers[0] = GameObject.Find("Player2Pentagon");
           
         if (clientId == 0)
         {
@@ -174,7 +156,6 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void LaneSpawnServerRPC()
     {
-        Debug.Log("how many times is this happening?!?!?!");
         var tower = Instantiate(Tower, new Vector3(-20, 0, 0), Quaternion.identity);
         tower.GetComponent<Tower>().Team = 1;
         teamOneTowers[3] = tower;
@@ -210,6 +191,18 @@ public class LameManager : NetworkBehaviour
         teamTwoTowers[1] = inhibitor;
         inhibitorNetworkObject = inhibitor.GetComponent<NetworkObject>();
         inhibitorNetworkObject.Spawn();
+
+        var pentagon = Instantiate(Pentagon, new Vector3(-75, 0, 0), Quaternion.identity);
+        pentagon.GetComponent<Tower>().Team = 1;
+        teamOneTowers[0] = pentagon;
+        var pentagonNetworkObject = pentagon.GetComponent<NetworkObject>();
+        pentagonNetworkObject.Spawn();
+
+        pentagon = Instantiate(Pentagon, new Vector3(75, 0, 0), Quaternion.identity);
+        pentagon.GetComponent<Tower>().Team = 2;
+        teamTwoTowers[0] = pentagon;
+        pentagonNetworkObject = pentagon.GetComponent<NetworkObject>();
+        pentagonNetworkObject.Spawn();
     }
 
     [Rpc(SendTo.Server)]
@@ -222,6 +215,20 @@ public class LameManager : NetworkBehaviour
         var minionNetworkObject = minion.GetComponent<NetworkObject>();
         minionNetworkObject.Spawn();
 
+        minion = Instantiate(teamOneMeleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
+        minion.GetComponent<MeleeMinion>().Team = 1;
+        minion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
+        teamOneMinions.Add(minion);
+        minionNetworkObject = minion.GetComponent<NetworkObject>();
+        minionNetworkObject.Spawn();
+
+        minion = Instantiate(teamTwoMeleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
+        minion.GetComponent<MeleeMinion>().Team = 2;
+        minion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
+        teamTwoMinions.Add(minion);
+        minionNetworkObject = minion.GetComponent<NetworkObject>();
+        minionNetworkObject.Spawn();
+
         minion = Instantiate(teamTwoMeleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
         minion.GetComponent<MeleeMinion>().Team = 2;
         minion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
@@ -231,7 +238,7 @@ public class LameManager : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void TeamTwoWinServerRPC()
+    public void TeamTwoWinClientRPC()
     {
         teamThatWon = 2;
         gameStarted = false;
@@ -252,9 +259,23 @@ public class LameManager : NetworkBehaviour
         if(team == 1)
         {
             teamOneTowersLeft.Value--;
+            if(teamOneTowersLeft.Value < 0)
+            {
+                gameStarted = false;
+                teamThatWon = 2;
+                TeamTwoWinClientRPC();
+                SceneManager.LoadScene("GameOver");
+            }
         } else if(team == 2)
         {
             teamTwoTowersLeft.Value--;
+            if (teamTwoTowersLeft.Value < 0)
+            {
+                gameStarted = false;
+                teamThatWon = 1;
+                TeamOneWinClientRPC();
+                SceneManager.LoadScene("GameOver");
+            }
         }
     }
 

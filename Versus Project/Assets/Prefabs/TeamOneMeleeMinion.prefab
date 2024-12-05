@@ -212,10 +212,11 @@ MonoBehaviour:
   cooldown: 0
   aggro: 0
   targetName: 
+  Damage: 20
   chasePlayerDistance: 10
   chaseMinionDistance: 10
   minionAttackDistance: 3
-  towerAttackDistance: 5
+  towerAttackDistance: 6
   playerAttackDistance: 4
   moveSpeed: 3
   aggroTimer: 0
