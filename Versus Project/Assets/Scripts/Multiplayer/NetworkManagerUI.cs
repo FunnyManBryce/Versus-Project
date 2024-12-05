@@ -96,6 +96,7 @@ public class NetworkManagerUI : NetworkBehaviour
             }
         };
         PlayerConnectedServerRPC();
+        Debug.Log("Game Connected");
         if (totalPlayers.Value >= playerMaximum.Value) //if there are too many players in the lobby, kick out the most recently joined one
         {
             DisconnectClientServerRPC(networkManagerScript.LocalClientId);
@@ -179,6 +180,7 @@ public class NetworkManagerUI : NetworkBehaviour
     [Rpc(SendTo.Server)] //sends info that a client has disconnected to the server. This is then syncronized accross all the clients, since that is how network variables work
     public void PlayerDisconnectedServerRPC(ulong clientID)
     {
+        Debug.Log("PlayerDisconnectedServerRPC");
         if(serverQuitting == false)
         {
             totalPlayers.Value--;
@@ -193,6 +195,7 @@ public class NetworkManagerUI : NetworkBehaviour
     public void DisconnectClientServerRPC(ulong clientID)
     {
         networkManagerScript.DisconnectClient(clientID);
+        Debug.Log("DisconnectClientServerRPC");
     }
     [Rpc(SendTo.Server)] //Changes the lobby to become a 2v2 game. Will need extra parameters to actually affect the gameplay later
     public void FourPlayerServerRPC()
