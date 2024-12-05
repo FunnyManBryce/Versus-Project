@@ -25,6 +25,8 @@ public class LameManager : NetworkBehaviour
     public List<GameObject> teamTwoMinions;
 
     private bool gameStarted;
+    public bool teamOneInhibAlive = true;
+    public bool teamTwoInhibAlive = true;
 
     public GameObject playerOneChar;
     public GameObject playerTwoChar;
@@ -38,6 +40,7 @@ public class LameManager : NetworkBehaviour
     [SerializeField] private GameObject teamOneMeleeMinion;
     [SerializeField] private GameObject teamTwoMeleeMinion;
     [SerializeField] private GameObject Tower;
+    [SerializeField] private GameObject Inhibitor;
     public GameObject minionSpawnPoint1;
     public GameObject minionSpawnPoint2;
     private float minionSpawnTimer;
@@ -108,10 +111,8 @@ public class LameManager : NetworkBehaviour
             LaneSpawnServerRPC();
         }
         teamOneTowers[0] = GameObject.Find("Player1Pentagon");
-        teamOneTowers[1] = GameObject.Find("Player1Inhibitor");
 
         teamTwoTowers[0] = GameObject.Find("Player2Pentagon");
-        teamTwoTowers[1] = GameObject.Find("Player2Inhibitor");
           
         if (clientId == 0)
         {
@@ -176,31 +177,39 @@ public class LameManager : NetworkBehaviour
         Debug.Log("how many times is this happening?!?!?!");
         var tower = Instantiate(Tower, new Vector3(-20, 0, 0), Quaternion.identity);
         tower.GetComponent<Tower>().Team = 1;
-        //tower.GetComponent<Tower>().enemyPlayer = playerTwoChar;
         teamOneTowers[3] = tower;
         var towerNetworkObject = tower.GetComponent<NetworkObject>();
         towerNetworkObject.Spawn();
 
         tower = Instantiate(Tower, new Vector3(-50, 0, 0), Quaternion.identity);
         tower.GetComponent<Tower>().Team = 1;
-        //tower.GetComponent<Tower>().enemyPlayer = playerTwoChar;
         teamOneTowers[2] = tower;
         towerNetworkObject = tower.GetComponent<NetworkObject>();
         towerNetworkObject.Spawn();
 
         tower = Instantiate(Tower, new Vector3(20, 0, 0), Quaternion.identity);
         tower.GetComponent<Tower>().Team = 2;
-        //tower.GetComponent<Tower>().enemyPlayer = playerOneChar;
         teamTwoTowers[3] = tower;
         towerNetworkObject = tower.GetComponent<NetworkObject>();
         towerNetworkObject.Spawn();
 
         tower = Instantiate(Tower, new Vector3(50, 0, 0), Quaternion.identity);
         tower.GetComponent<Tower>().Team = 2;
-        //tower.GetComponent<Tower>().enemyPlayer = playerOneChar;
         teamTwoTowers[2] = tower;
         towerNetworkObject = tower.GetComponent<NetworkObject>();
         towerNetworkObject.Spawn();
+
+        var inhibitor = Instantiate(Inhibitor, new Vector3(-60, 0, 0), Quaternion.identity);
+        inhibitor.GetComponent<Inhibitor>().Team = 1;
+        teamOneTowers[1] = inhibitor;
+        var inhibitorNetworkObject = inhibitor.GetComponent<NetworkObject>();
+        inhibitorNetworkObject.Spawn();
+        
+        inhibitor = Instantiate(Inhibitor, new Vector3(60, 0, 0), Quaternion.identity);
+        inhibitor.GetComponent<Inhibitor>().Team = 2;
+        teamTwoTowers[1] = inhibitor;
+        inhibitorNetworkObject = inhibitor.GetComponent<NetworkObject>();
+        inhibitorNetworkObject.Spawn();
     }
 
     [Rpc(SendTo.Server)]

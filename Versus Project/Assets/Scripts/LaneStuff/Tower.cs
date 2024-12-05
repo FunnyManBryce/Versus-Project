@@ -90,7 +90,6 @@ public class Tower : NetworkBehaviour
         }
         else if (cooldownTimer >= cooldownLength)
         {
-            Debug.Log("cooldownend?");
             cooldown = false;
             cooldownTimer = 0;
         }
@@ -115,7 +114,6 @@ public class Tower : NetworkBehaviour
         }
         if (distanceFromTarget.magnitude < towerRange && cooldown == false)
         {
-            Debug.Log("huh");
             isAttacking = true;
             DealDamage();
         }
@@ -138,12 +136,9 @@ public class Tower : NetworkBehaviour
         if (currentTarget != null)
         {
             DealDamageServerRPC(30, currentTarget, networkTower);
-            Debug.Log("so far so good...");
-
         }
         else
         {
-            Debug.Log("so that's why???");
             isAttacking = false;
         }
     }
@@ -165,7 +160,6 @@ public class Tower : NetworkBehaviour
             }
             else if (target.tag == "Minion")
             {
-                Debug.Log("GOOD SHIT TOWER");
                 target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
             }
         }
@@ -173,7 +167,6 @@ public class Tower : NetworkBehaviour
         {
             Debug.Log("This is bad");
         }
-        Debug.Log("GOODER SHIT TOWER");
         isAttacking = false;
         cooldown = true;
     }

@@ -3313,6 +3313,12 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: Inhibitor
+      value: 
+      objectReference: {fileID: 761847280962229105, guid: dded58fc9d48d0447be011ccd462cc01,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: meleeMinion
       value: 
       objectReference: {fileID: 8942386518775928844, guid: 0d7a16450bdf68d4ba2dc163cc33ce1e,

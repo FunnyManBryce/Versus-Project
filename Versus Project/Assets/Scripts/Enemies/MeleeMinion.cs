@@ -222,6 +222,10 @@ public class MeleeMinion : NetworkBehaviour
             {
                 target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
             }
+            else if (target.tag == "Inhibitor")
+            {
+                target.GetComponent<Inhibitor>().TakeDamageServerRPC(damage, sender);
+            }
             else if (target.tag == "Minion")
             {
                 target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
