@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 3297089066167603808}
   m_Layer: 0
   m_Name: Character 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,10 +298,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 3704004338721201214}
   PlayerSprite: {fileID: 2570568061770048435}
+  AutoAttackSprite: {fileID: 0}
   maxSpeed: 8
   acceleration: 100
   deacceleration: 200
   currentSpeed: 0
+  currentHealth:
+    m_InternalValue: 0
+  maxHealth: 100
+  attackDamage: 10
+  autoAttackSpeed: 1
+  autoAttackProjSpeed: 5
+  attackRange: 10
+  lastAttackTime: 0
+  showAttackRange: 1
+  rangeIndicatorColor: {r: 1, g: 0, b: 0, a: 0.2}
+  projectilePrefab: {fileID: 0}
 --- !u!114 &2628991981076659366
 MonoBehaviour:
   m_ObjectHideFlags: 0

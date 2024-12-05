@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BryEvid1 1_0: -6330041929619803601
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
