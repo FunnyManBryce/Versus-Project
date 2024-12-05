@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2243242971483942013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5253030862850965775}
+  - component: {fileID: 9015054174805324056}
+  - component: {fileID: 7218120947281338993}
+  m_Layer: 5
+  m_Name: NetworkManagerUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5253030862850965775
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243242971483942013}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01529475, y: 0.015251987, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3.2690957, y: 0}
+  m_SizeDelta: {x: 1283, y: 647}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9015054174805324056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243242971483942013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3369784198
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &7218120947281338993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243242971483942013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646b009da751319438537425684493cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lameManager: {fileID: 0}
+  networkManagerScript: {fileID: 0}
+  playersInLobby: {fileID: 0}
+  playersInLobbyText: {fileID: 0}
+  totalPlayers:
+    m_InternalValue: 0
+  playerMaximum:
+    m_InternalValue: 2
+  playersReady:
+    m_InternalValue: 0
+  readyToStart:
+    m_InternalValue: 0
+  hostButton: {fileID: 0}
+  clientButton: {fileID: 0}
+  startButton: {fileID: 0}
+  lobbyCreationUI: {fileID: 0}
+  lobbySelectionUI: {fileID: 0}
+  charSelectionUI: {fileID: 0}
+  readyToStartUI: {fileID: 0}
+  QuitOption: {fileID: 0}
+  IPText: {fileID: 0}
+  Character: {fileID: 0}
+  characterNumber: 0
+  networkManager: {fileID: 0}
+  networkManagerUI: {fileID: 2243242971483942013}
