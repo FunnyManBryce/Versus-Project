@@ -51,11 +51,10 @@ public class Tower : NetworkBehaviour
     void Update()
     {
         if (!IsServer || isAttacking) return;
-        if (Team == 1 && lameManager.playerOneChar != null)
+        if (Team == 1 && lameManager.playerTwoChar != null)
         {
             enemyPlayer = lameManager.playerTwoChar;
-            distanceFromPlayer = new Vector3(towerTarget.position.x - enemyPlayer.transform.position.x, towerTarget.position.y - enemyPlayer.transform.position.y, 0);
-            oldTarget = distanceFromPlayer;
+            oldTarget = new Vector3(1000, 1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamTwoMinions)
             {
                 Vector3 directionToTarget = new Vector3(towerTarget.position.x - potentialTarget.transform.position.x, towerTarget.position.y - potentialTarget.transform.position.y, 0);
@@ -68,11 +67,10 @@ public class Tower : NetworkBehaviour
                 }
             }
         }
-        else if (Team == 2 && lameManager.playerTwoChar != null)
+        else if (Team == 2 && lameManager.playerOneChar != null)
         {
             enemyPlayer = lameManager.playerOneChar;
-            distanceFromPlayer = new Vector3(towerTarget.position.x - enemyPlayer.transform.position.x, towerTarget.position.y - enemyPlayer.transform.position.y, 0);
-            oldTarget = distanceFromPlayer;
+            oldTarget = new Vector3(1000, 1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamOneMinions)
             {
                 Vector3 directionToTarget = new Vector3(towerTarget.position.x - potentialTarget.transform.position.x, towerTarget.position.y - potentialTarget.transform.position.y, 0);
@@ -106,7 +104,7 @@ public class Tower : NetworkBehaviour
             aggro = false;
             aggroTimer = 0;
         }
-        if (distanceFromMinion.magnitude < distanceFromPlayer.magnitude && aggro == false)
+        if ((distanceFromMinion.magnitude < distanceFromPlayer.magnitude && aggro == false) || (distanceFromMinion.magnitude < towerRange && aggro == false))
         {
             distanceFromTarget = distanceFromMinion;
             currentTarget = enemyMinion.GetComponent<NetworkObject>();
