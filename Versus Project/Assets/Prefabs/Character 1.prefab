@@ -311,6 +311,7 @@ MonoBehaviour:
   autoAttackProjSpeed: 5
   attackRange: 10
   lastAttackTime: 0
+  isAttacking: 0
   showAttackRange: 1
   rangeIndicatorColor: {r: 1, g: 0, b: 0, a: 0.2}
   projectilePrefab: {fileID: 0}

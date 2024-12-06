@@ -25,6 +25,7 @@ public class MeleeMinion : NetworkBehaviour
     private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
 
+    public bool isRanged;
     public bool isAttacking = false;
     public bool cooldown = false;
     public bool aggro = false;
@@ -41,6 +42,7 @@ public class MeleeMinion : NetworkBehaviour
     public float aggroLength = 10f;
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
+    public float startingHealth;
 
     public GameObject enemyPlayer;
     public GameObject enemyMinion;
@@ -62,7 +64,7 @@ public class MeleeMinion : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        Health.Value = 50;
+        Health.Value = startingHealth;
         Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
             if (Health.Value <= 0 && IsServer == true)
@@ -86,11 +88,21 @@ public class MeleeMinion : NetworkBehaviour
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
             cooldownTimer += Time.deltaTime;
+            if(isRanged && distanceFromTarget.magnitude < minionAttackDistance)
+            {
+                moveSpeed = 0;
+                agent.speed = moveSpeed;
+            }
         }
         else if (cooldownTimer >= cooldownLength)
         {
             cooldown = false;
             cooldownTimer = 0;
+            if(isRanged)
+            {
+                moveSpeed = 3;
+                agent.speed = moveSpeed;
+            }
         }
         if (aggro == true && aggroTimer < aggroLength)
         {
@@ -186,7 +198,6 @@ public class MeleeMinion : NetworkBehaviour
         if (currentTarget != null)
         {
             DealDamageServerRPC(Damage, currentTarget, networkMinion);
-
         }
         else
         {

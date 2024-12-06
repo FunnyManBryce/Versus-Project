@@ -59,8 +59,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 0.25
-  m_BaseOffset: 0.125
+  m_Height: 0.2
+  m_BaseOffset: 0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
 --- !u!50 &937868224023570168
@@ -75,7 +75,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 3
   m_AngularDrag: 3
   m_GravityScale: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25ec85b94dcc214f81ec450bf67c66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team: 0
+  Team: 2
   Health:
     m_InternalValue: 100
   towerTarget: {fileID: 0}
@@ -208,6 +208,7 @@ MonoBehaviour:
   enemyMinionTarget: {fileID: 0}
   agent: {fileID: 4082273046993157032}
   animator: {fileID: 5958823289627424989}
+  isRanged: 0
   isAttacking: 0
   cooldown: 0
   aggro: 0
@@ -223,6 +224,7 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 0.5
   cooldownTimer: 0
+  startingHealth: 50
   enemyPlayer: {fileID: 0}
   enemyMinion: {fileID: 0}
   enemyTower: {fileID: 0}

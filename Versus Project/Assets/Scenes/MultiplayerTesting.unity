@@ -3336,6 +3336,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: LaneSP.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: player1SpawnPoint1
       value: 
       objectReference: {fileID: 0}
@@ -3356,6 +3361,83 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8942386518775928844, guid: d6d4a9566d5b9ab4d8c6327d117df043,
         type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: MinionSP.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: teamOneRangedMinion
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 36ca15cb1fd443a43a4c2f27bc978840,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: teamTwoRangedMinion
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 054c73986c457654982fb974c5f88e64,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: LaneSP.Array.data[0].x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: LaneSP.Array.data[1].x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: LaneSP.Array.data[2].x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: LaneSP.Array.data[3].x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: MinionSP.Array.data[0].x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: MinionSP.Array.data[0].y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: MinionSP.Array.data[1].x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: MinionSP.Array.data[1].y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: MinionSP.Array.data[2].x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: MinionSP.Array.data[2].y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: MinionSP.Array.data[3].x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: MinionSP.Array.data[3].y
+      value: -7
+      objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: characterList.Array.size
@@ -3383,6 +3465,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: towerSpawnOrder.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: 'characterList.Array.data[0]'
       value: 
       objectReference: {fileID: 7846404579260722031, guid: a4fafb22d6cc4e04db69f5e55b92e755,
@@ -3392,6 +3479,146 @@ PrefabInstance:
       propertyPath: 'characterList.Array.data[1]'
       value: 
       objectReference: {fileID: 7846404579260722031, guid: 7362ffdd7bd723f4abad45351edcfc03,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'towerSpawnOrder.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8003257773554308308, guid: 6537b8bf58ef29a41933b5a57bfb6f72,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'towerSpawnOrder.Array.data[1]'
+      value: 
+      objectReference: {fileID: 761847280962229105, guid: dded58fc9d48d0447be011ccd462cc01,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'towerSpawnOrder.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8003257773554308308, guid: 5e13d81c56ab83a45859b685c256fd41,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'towerSpawnOrder.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8003257773554308308, guid: 5e13d81c56ab83a45859b685c256fd41,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: teamOneMinionSpawnOrder.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: teamOneminionSpawnOrder.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: teamTwoMinionSpawnOrder.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: teamTwominionSpawnOrder.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamOneMinionSpawnOrder.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 0d7a16450bdf68d4ba2dc163cc33ce1e,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamOneMinionSpawnOrder.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 36ca15cb1fd443a43a4c2f27bc978840,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamOneMinionSpawnOrder.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 0d7a16450bdf68d4ba2dc163cc33ce1e,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamOneMinionSpawnOrder.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 36ca15cb1fd443a43a4c2f27bc978840,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamOneminionSpawnOrder.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 0d7a16450bdf68d4ba2dc163cc33ce1e,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamOneminionSpawnOrder.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 36ca15cb1fd443a43a4c2f27bc978840,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamOneminionSpawnOrder.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 0d7a16450bdf68d4ba2dc163cc33ce1e,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamOneminionSpawnOrder.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 36ca15cb1fd443a43a4c2f27bc978840,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamTwoMinionSpawnOrder.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: d6d4a9566d5b9ab4d8c6327d117df043,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamTwoMinionSpawnOrder.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 054c73986c457654982fb974c5f88e64,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamTwoMinionSpawnOrder.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: d6d4a9566d5b9ab4d8c6327d117df043,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamTwoMinionSpawnOrder.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 054c73986c457654982fb974c5f88e64,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamTwominionSpawnOrder.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: d6d4a9566d5b9ab4d8c6327d117df043,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamTwominionSpawnOrder.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 054c73986c457654982fb974c5f88e64,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamTwominionSpawnOrder.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: d6d4a9566d5b9ab4d8c6327d117df043,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'teamTwominionSpawnOrder.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8942386518775928844, guid: 054c73986c457654982fb974c5f88e64,
         type: 3}
     - target: {fileID: 4913751169940418971, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}

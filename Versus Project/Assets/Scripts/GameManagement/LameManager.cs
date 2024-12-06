@@ -21,6 +21,11 @@ public class LameManager : NetworkBehaviour
     public GameObject[] characterList;
     public GameObject[] teamOneTowers;
     public GameObject[] teamTwoTowers;
+    public GameObject[] towerSpawnOrder;
+    public GameObject[] teamOneMinionSpawnOrder;
+    public GameObject[] teamTwoMinionSpawnOrder;
+    public Vector3[] MinionSP;
+    public Vector3[] LaneSP;
     public List<GameObject> teamOneMinions;
     public List<GameObject> teamTwoMinions;
 
@@ -37,13 +42,11 @@ public class LameManager : NetworkBehaviour
     private ulong clientId;
     private GameObject spawnPoint;
 
-    [SerializeField] private GameObject teamOneMeleeMinion;
-    [SerializeField] private GameObject teamTwoMeleeMinion;
+    [SerializeField] private GameObject teamOneSuperMinion;
+    [SerializeField] private GameObject teamTwoSuperMinion;
     [SerializeField] private GameObject Tower;
     [SerializeField] private GameObject Inhibitor;
     [SerializeField] private GameObject Pentagon;
-    public GameObject minionSpawnPoint1;
-    public GameObject minionSpawnPoint2;
     private float minionSpawnTimer;
     [SerializeField] private float spawnTimerEnd;
 
@@ -88,8 +91,6 @@ public class LameManager : NetworkBehaviour
         Debug.Log("Client ID: " + clientId + "he he he ha");
         player1SpawnPoint1 = GameObject.Find("Player1SpawnPoint");
         player2SpawnPoint1 = GameObject.Find("Player2SpawnPoint");
-        minionSpawnPoint1 = GameObject.Find("MinionSpawnPoint1");
-        minionSpawnPoint2 = GameObject.Find("MinionSpawnPoint2");
 
         if(IsServer)
         {
@@ -156,85 +157,58 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void LaneSpawnServerRPC()
     {
-        var tower = Instantiate(Tower, new Vector3(-20, 0, 0), Quaternion.identity);
-        tower.GetComponent<Tower>().Team = 1;
-        teamOneTowers[3] = tower;
-        var towerNetworkObject = tower.GetComponent<NetworkObject>();
-        towerNetworkObject.Spawn();
-
-        tower = Instantiate(Tower, new Vector3(-50, 0, 0), Quaternion.identity);
-        tower.GetComponent<Tower>().Team = 1;
-        teamOneTowers[2] = tower;
-        towerNetworkObject = tower.GetComponent<NetworkObject>();
-        towerNetworkObject.Spawn();
-
-        tower = Instantiate(Tower, new Vector3(20, 0, 0), Quaternion.identity);
-        tower.GetComponent<Tower>().Team = 2;
-        teamTwoTowers[3] = tower;
-        towerNetworkObject = tower.GetComponent<NetworkObject>();
-        towerNetworkObject.Spawn();
-
-        tower = Instantiate(Tower, new Vector3(50, 0, 0), Quaternion.identity);
-        tower.GetComponent<Tower>().Team = 2;
-        teamTwoTowers[2] = tower;
-        towerNetworkObject = tower.GetComponent<NetworkObject>();
-        towerNetworkObject.Spawn();
-
-        var inhibitor = Instantiate(Inhibitor, new Vector3(-60, 0, 0), Quaternion.identity);
-        inhibitor.GetComponent<Inhibitor>().Team = 1;
-        teamOneTowers[1] = inhibitor;
-        var inhibitorNetworkObject = inhibitor.GetComponent<NetworkObject>();
-        inhibitorNetworkObject.Spawn();
-        
-        inhibitor = Instantiate(Inhibitor, new Vector3(60, 0, 0), Quaternion.identity);
-        inhibitor.GetComponent<Inhibitor>().Team = 2;
-        teamTwoTowers[1] = inhibitor;
-        inhibitorNetworkObject = inhibitor.GetComponent<NetworkObject>();
-        inhibitorNetworkObject.Spawn();
-
-        var pentagon = Instantiate(Pentagon, new Vector3(-75, 0, 0), Quaternion.identity);
-        pentagon.GetComponent<Tower>().Team = 1;
-        teamOneTowers[0] = pentagon;
-        var pentagonNetworkObject = pentagon.GetComponent<NetworkObject>();
-        pentagonNetworkObject.Spawn();
-
-        pentagon = Instantiate(Pentagon, new Vector3(75, 0, 0), Quaternion.identity);
-        pentagon.GetComponent<Tower>().Team = 2;
-        teamTwoTowers[0] = pentagon;
-        pentagonNetworkObject = pentagon.GetComponent<NetworkObject>();
-        pentagonNetworkObject.Spawn();
+        for(int i = 0; i < 4; i++)
+        {
+            var tower = Instantiate(towerSpawnOrder[i], -LaneSP[i], Quaternion.identity);
+            if(i == 1)
+            {
+                tower.GetComponent<Inhibitor>().Team = 1;
+            } else
+            {
+                tower.GetComponent<Tower>().Team = 1;
+            }
+            teamOneTowers[i] = tower;
+            var towerNetworkObject = tower.GetComponent<NetworkObject>();
+            towerNetworkObject.Spawn();
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            var tower = Instantiate(towerSpawnOrder[i], LaneSP[i], Quaternion.identity);
+            if (i == 1)
+            {
+                tower.GetComponent<Inhibitor>().Team = 2;
+            }
+            else
+            {
+                tower.GetComponent<Tower>().Team = 2;
+            }
+            teamTwoTowers[i] = tower;
+            var towerNetworkObject = tower.GetComponent<NetworkObject>();
+            towerNetworkObject.Spawn();
+        }
     }
 
     [Rpc(SendTo.Server)]
     public void MinionSpawnServerRPC()
     {
-        var minion = Instantiate(teamOneMeleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
-        minion.GetComponent<MeleeMinion>().Team = 1;
-        minion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
-        teamOneMinions.Add(minion);
-        var minionNetworkObject = minion.GetComponent<NetworkObject>();
-        minionNetworkObject.Spawn();
+        for (int i = 0; i < 4; i++)
+        {
+            var minion = Instantiate(teamOneMinionSpawnOrder[i], -MinionSP[i], Quaternion.identity);
+            minion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
+            teamOneMinions.Add(minion);
+            var minionNetworkObject = minion.GetComponent<NetworkObject>();
+            minionNetworkObject.Spawn();
+        }
 
-        minion = Instantiate(teamOneMeleeMinion, new Vector3(minionSpawnPoint1.transform.position.x, minionSpawnPoint1.transform.position.y, minionSpawnPoint1.transform.position.z), Quaternion.identity);
-        minion.GetComponent<MeleeMinion>().Team = 1;
-        minion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
-        teamOneMinions.Add(minion);
-        minionNetworkObject = minion.GetComponent<NetworkObject>();
-        minionNetworkObject.Spawn();
+        for (int i = 0; i < 4; i++)
+        {
+            var minion = Instantiate(teamTwoMinionSpawnOrder[i], MinionSP[i], Quaternion.identity);
+            minion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
+            teamTwoMinions.Add(minion);
+            var minionNetworkObject = minion.GetComponent<NetworkObject>();
+            minionNetworkObject.Spawn();
+        }
 
-        minion = Instantiate(teamTwoMeleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
-        minion.GetComponent<MeleeMinion>().Team = 2;
-        minion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
-        teamTwoMinions.Add(minion);
-        minionNetworkObject = minion.GetComponent<NetworkObject>();
-        minionNetworkObject.Spawn();
-
-        minion = Instantiate(teamTwoMeleeMinion, new Vector3(minionSpawnPoint2.transform.position.x, minionSpawnPoint2.transform.position.y, minionSpawnPoint2.transform.position.z), Quaternion.identity);
-        minion.GetComponent<MeleeMinion>().Team = 2;
-        minion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
-        teamTwoMinions.Add(minion);
-        minionNetworkObject = minion.GetComponent<NetworkObject>();
-        minionNetworkObject.Spawn();
     }
 
     [Rpc(SendTo.Server)]
