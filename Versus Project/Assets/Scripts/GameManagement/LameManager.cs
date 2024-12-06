@@ -197,7 +197,6 @@ public class LameManager : NetworkBehaviour
             var minionNetworkObject = minion.GetComponent<NetworkObject>();
             minionNetworkObject.Spawn();
         }
-
         for (int i = 0; i < 4; i++)
         {
             var minion = Instantiate(teamTwoMinionSpawnOrder[i], MinionSP[i], Quaternion.identity);
@@ -206,7 +205,6 @@ public class LameManager : NetworkBehaviour
             var minionNetworkObject = minion.GetComponent<NetworkObject>();
             minionNetworkObject.Spawn();
         }
-
         if (teamTwoInhibAlive == false)
         {
             var superMinion = Instantiate(teamOneMinionSpawnOrder[4], -MinionSP[4], Quaternion.identity);
@@ -215,7 +213,6 @@ public class LameManager : NetworkBehaviour
             var SMinionNetworkObject = superMinion.GetComponent<NetworkObject>();
             SMinionNetworkObject.Spawn();
         }
-
         if (teamOneInhibAlive == false)
         {
             var superMinion = Instantiate(teamTwoMinionSpawnOrder[4], MinionSP[4], Quaternion.identity);

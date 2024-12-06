@@ -28,6 +28,8 @@ public class Tower : NetworkBehaviour
     private Vector3 distanceFromPlayer;
     private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
+    
+    public string targetName;
 
     public float Damage;
     public float aggroTimer = 0f;
@@ -85,6 +87,7 @@ public class Tower : NetworkBehaviour
         }
         //animator.SetBool("Attacking", isAttacking);
         if (enemyPlayer == null || enemyMinion == null) return;
+        distanceFromPlayer = new Vector3(towerTarget.position.x - enemyPlayer.transform.position.x, towerTarget.position.y - enemyPlayer.transform.position.y, 0);
         if (cooldown == true && cooldownTimer <= cooldownLength)
         {
             cooldownTimer += Time.deltaTime;
@@ -107,13 +110,20 @@ public class Tower : NetworkBehaviour
         {
             distanceFromTarget = distanceFromMinion;
             currentTarget = enemyMinion.GetComponent<NetworkObject>();
+            targetName = "Minion";
         }
         else if (distanceFromPlayer.magnitude < distanceFromMinion.magnitude)
         {
             distanceFromTarget = distanceFromPlayer;
             currentTarget = enemyPlayer.GetComponent<NetworkObject>();
+            targetName = "Player";
+            Debug.Log("Is this real chat");
         }
-        if (distanceFromTarget.magnitude < towerRange && cooldown == false)
+        if (targetName == "Minion" && distanceFromTarget.magnitude < towerRange && cooldown == false)
+        {
+            isAttacking = true;
+            DealDamage();
+        } else if (targetName == "Player" && distanceFromTarget.magnitude < towerRange && cooldown == false)
         {
             isAttacking = true;
             DealDamage();
@@ -161,7 +171,7 @@ public class Tower : NetworkBehaviour
         {
             if (target.tag == "Player")
             {
-                //need something here for when player is real
+                target.GetComponent<BasePlayerController>().TakeDamageServerRpc(damage, sender);
             }
             else if (target.tag == "Minion")
             {

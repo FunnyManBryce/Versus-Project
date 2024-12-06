@@ -178,6 +178,12 @@ public class BasePlayerController : NetworkBehaviour
         }
     }
 
+    [ServerRpc]
+    public void TakeDamageServerRpc(float damage, NetworkObjectReference sender)
+    {
+        currentHealth.Value = currentHealth.Value - damage;
+    }
+
     private void FixedUpdate()
     {
         if (!IsOwner) return;

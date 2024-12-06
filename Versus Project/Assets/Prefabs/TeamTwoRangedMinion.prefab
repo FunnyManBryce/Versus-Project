@@ -53,7 +53,7 @@ NavMeshAgent:
   m_Radius: 0.1
   m_Speed: 0
   m_Acceleration: 15
-  avoidancePriority: 0
+  avoidancePriority: 50
   m_AngularSpeed: 50
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -216,9 +216,9 @@ MonoBehaviour:
   Damage: 15
   chasePlayerDistance: 10
   chaseMinionDistance: 10
-  minionAttackDistance: 10
+  minionAttackDistance: 8
   towerAttackDistance: 8
-  playerAttackDistance: 10
+  playerAttackDistance: 8
   moveSpeed: 3
   aggroTimer: 0
   aggroLength: 5
