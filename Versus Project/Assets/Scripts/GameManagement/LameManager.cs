@@ -42,8 +42,6 @@ public class LameManager : NetworkBehaviour
     private ulong clientId;
     private GameObject spawnPoint;
 
-    [SerializeField] private GameObject teamOneSuperMinion;
-    [SerializeField] private GameObject teamTwoSuperMinion;
     [SerializeField] private GameObject Tower;
     [SerializeField] private GameObject Inhibitor;
     [SerializeField] private GameObject Pentagon;
@@ -209,6 +207,23 @@ public class LameManager : NetworkBehaviour
             minionNetworkObject.Spawn();
         }
 
+        if (teamTwoInhibAlive == false)
+        {
+            var superMinion = Instantiate(teamOneMinionSpawnOrder[4], -MinionSP[4], Quaternion.identity);
+            superMinion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
+            teamOneMinions.Add(superMinion);
+            var SMinionNetworkObject = superMinion.GetComponent<NetworkObject>();
+            SMinionNetworkObject.Spawn();
+        }
+
+        if (teamOneInhibAlive == false)
+        {
+            var superMinion = Instantiate(teamTwoMinionSpawnOrder[4], MinionSP[4], Quaternion.identity);
+            superMinion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
+            teamTwoMinions.Add(superMinion);
+            var SMinionNetworkObject = superMinion.GetComponent<NetworkObject>();
+            SMinionNetworkObject.Spawn();
+        }
     }
 
     [Rpc(SendTo.Server)]
