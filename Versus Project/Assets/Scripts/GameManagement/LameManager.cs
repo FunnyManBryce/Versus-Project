@@ -14,8 +14,6 @@ public class LameManager : NetworkBehaviour
     public NetworkVariable<int> teamTwoTowersLeft = new NetworkVariable<int>(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     [SerializeField] private GameObject lameManager;
-    [SerializeField] private GameObject player1SpawnPoint1;
-    [SerializeField] private GameObject player2SpawnPoint1;
 
     public int characterNumber;
     public GameObject[] characterList;
@@ -26,6 +24,7 @@ public class LameManager : NetworkBehaviour
     public GameObject[] teamTwoMinionSpawnOrder;
     public Vector3[] MinionSP;
     public Vector3[] LaneSP;
+    public Vector3[] playerSP;
     public List<GameObject> teamOneMinions;
     public List<GameObject> teamTwoMinions;
 
@@ -40,7 +39,6 @@ public class LameManager : NetworkBehaviour
     private int Team;
     public int teamThatWon;
     private ulong clientId;
-    private GameObject spawnPoint;
 
     [SerializeField] private GameObject Tower;
     [SerializeField] private GameObject Inhibitor;
@@ -87,14 +85,10 @@ public class LameManager : NetworkBehaviour
         networkManager = FindObjectOfType<NetworkManager>();
         clientId = networkManager.LocalClientId;
         Debug.Log("Client ID: " + clientId + "he he he ha");
-        player1SpawnPoint1 = GameObject.Find("Player1SpawnPoint");
-        player2SpawnPoint1 = GameObject.Find("Player2SpawnPoint");
-
         if(IsServer)
         {
             LaneSpawnServerRPC();
         }
-          
         if (clientId == 0)
         {
             Team = 1;
@@ -112,20 +106,12 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.Server)] 
     public void PlayerSpawnServerRPC(ulong clientID, int team, int charNumber) 
     {
-        if (team == 1)
-        {
-            spawnPoint = player1SpawnPoint1;
-        }
-        else if (team == 2)
-        {
-            spawnPoint = player2SpawnPoint1;
-        }
-        var character = Instantiate(characterList[charNumber], new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, spawnPoint.transform.position.z), Quaternion.identity);
+        var character = Instantiate(characterList[charNumber], playerSP[team - 1], Quaternion.identity);
         if(team == 1)
         {
             playerOneChar = character;
         }
-        else
+        else if(team == 2)
         {
             playerTwoChar = character;
         }

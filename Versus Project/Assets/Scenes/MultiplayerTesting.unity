@@ -3380,6 +3380,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: playerSP.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: teamOneRangedMinion
       value: 
       objectReference: {fileID: 8942386518775928844, guid: 36ca15cb1fd443a43a4c2f27bc978840,
@@ -3464,6 +3469,16 @@ PrefabInstance:
         type: 3}
       propertyPath: characterList.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: playerSP.Array.data[0].x
+      value: -82
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: playerSP.Array.data[1].x
+      value: 82
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
