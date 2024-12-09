@@ -138,7 +138,8 @@ MonoBehaviour:
   enemyMinion: {fileID: 0}
   networkTower: {fileID: 0}
   currentTarget: {fileID: 0}
-  Damage: 30
+  targetName: 
+  Damage: 40
   aggroTimer: 0
   aggroLength: 10
   cooldownLength: 2

@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3321161849
+  GlobalObjectIdHash: 556010456
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -213,18 +213,18 @@ MonoBehaviour:
   cooldown: 0
   aggro: 0
   targetName: 
-  Damage: 40
+  Damage: 30
   chasePlayerDistance: 10
   chaseMinionDistance: 10
-  minionAttackDistance: 6
-  towerAttackDistance: 6
-  playerAttackDistance: 6
+  minionAttackDistance: 4
+  towerAttackDistance: 4
+  playerAttackDistance: 4
   moveSpeed: 2.5
   aggroTimer: 0
   aggroLength: 5
   cooldownLength: 1.25
   cooldownTimer: 0
-  startingHealth: 100
+  startingHealth: 160
   enemyPlayer: {fileID: 0}
   enemyMinion: {fileID: 0}
   enemyTower: {fileID: 0}
