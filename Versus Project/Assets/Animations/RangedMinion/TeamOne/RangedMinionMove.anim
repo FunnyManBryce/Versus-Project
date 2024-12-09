@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MeleeMinionMove
+  m_Name: RangedMinionMove
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -5382984905530380466, guid: 9e7d0aeb25da40f46a04467337b49a28,
+      value: {fileID: 3713926552324390114, guid: 06fd8dad5a65a294b8662bb1a8671313,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -45,7 +45,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -5382984905530380466, guid: 9e7d0aeb25da40f46a04467337b49a28, type: 3}
+    - {fileID: 3713926552324390114, guid: 06fd8dad5a65a294b8662bb1a8671313, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

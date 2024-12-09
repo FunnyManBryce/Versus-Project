@@ -194,9 +194,9 @@ TextureImporter:
       name: Meele Minion (T2)_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 8
-        width: 9
+        width: 1
         height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -236,13 +236,13 @@ TextureImporter:
       name: Meele Minion (T2)_2
       rect:
         serializedVersion: 2
-        x: 20
+        x: 17
         y: 7
-        width: 9
+        width: 1
         height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 1, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -259,11 +259,11 @@ TextureImporter:
         serializedVersion: 2
         x: 31
         y: 9
-        width: 12
+        width: 1
         height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 1, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -362,13 +362,13 @@ TextureImporter:
       name: Meele Minion (T2)_8
       rect:
         serializedVersion: 2
-        x: 84
+        x: 95
         y: 8
-        width: 11
+        width: 4
         height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 1, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -473,7 +473,7 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 1, y: 0, z: 1, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
