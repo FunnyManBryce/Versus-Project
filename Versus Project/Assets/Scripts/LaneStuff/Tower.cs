@@ -104,7 +104,7 @@ public class Tower : NetworkBehaviour
             aggro = false;
             aggroTimer = 0;
         }
-        if ((distanceFromMinion.magnitude < distanceFromPlayer.magnitude && aggro == false) || (distanceFromMinion.magnitude < towerRange && aggro == false))
+        if ((distanceFromMinion.magnitude < distanceFromPlayer.magnitude && aggro == false && enemyMinion != null) || (distanceFromMinion.magnitude < towerRange && aggro == false && enemyMinion != null))
         {
             distanceFromTarget = distanceFromMinion;
             currentTarget = enemyMinion.GetComponent<NetworkObject>();
@@ -115,7 +115,6 @@ public class Tower : NetworkBehaviour
             distanceFromTarget = distanceFromPlayer;
             currentTarget = enemyPlayer.GetComponent<NetworkObject>();
             targetName = "Player";
-            Debug.Log("Is this real chat");
         }
         if (targetName == "Minion" && distanceFromTarget.magnitude < towerRange && cooldown == false)
         {

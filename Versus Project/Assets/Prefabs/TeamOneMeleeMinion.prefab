@@ -215,7 +215,8 @@ MonoBehaviour:
   targetName: 
   Damage: 10
   chasePlayerDistance: 10
-  chaseMinionDistance: 10
+  chaseMinionDistance: 8
+  chaseTowerDistance: 10
   minionAttackDistance: 3
   towerAttackDistance: 4
   playerAttackDistance: 3

@@ -34,6 +34,7 @@ public class MeleeMinion : NetworkBehaviour
     public float Damage;
     public float chasePlayerDistance = 10;
     public float chaseMinionDistance = 10;
+    public float chaseTowerDistance = 10;
     public float minionAttackDistance = 3;
     public float towerAttackDistance = 5;
     public float playerAttackDistance = 4;
@@ -149,7 +150,7 @@ public class MeleeMinion : NetworkBehaviour
         }
         distanceFromTower = new Vector3(minionTarget.position.x - towerTarget.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
         distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
-        if (distanceFromPlayer.magnitude > chasePlayerDistance && distanceFromMinion.magnitude > chaseMinionDistance && aggro == false)
+        if ((distanceFromTower.magnitude < chaseTowerDistance && aggro == false) || (distanceFromMinion.magnitude > chaseMinionDistance && distanceFromPlayer.magnitude > chasePlayerDistance && aggro == false))
         {
             agent.speed = moveSpeed;
             agent.SetDestination(towerTarget.position);
@@ -157,7 +158,7 @@ public class MeleeMinion : NetworkBehaviour
             currentTarget = enemyTower.GetComponent<NetworkObject>();
             targetName = "Tower";
         }
-        else if (distanceFromMinion.magnitude < chaseMinionDistance && aggro == false)
+        else if (distanceFromMinion.magnitude < chaseMinionDistance && aggro == false && enemyMinionTarget != null)
         {
             agent.speed = moveSpeed;
             agent.SetDestination(enemyMinionTarget.position);
