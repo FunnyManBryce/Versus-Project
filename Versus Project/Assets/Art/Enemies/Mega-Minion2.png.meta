@@ -1,0 +1,525 @@
+fileFormatVersion: 2
+guid: b2f17cb15bd391a429454382c90cbee1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7266436682002993689
+    second: Mega-Minion2_0
+  - first:
+      213: 3465312642012644501
+    second: Mega-Minion2_1
+  - first:
+      213: -5475894686940985993
+    second: Mega-Minion2_2
+  - first:
+      213: -5303542998317056692
+    second: Mega-Minion2_3
+  - first:
+      213: -1559143805176451456
+    second: Mega-Minion2_4
+  - first:
+      213: 7218216222807390672
+    second: Mega-Minion2_5
+  - first:
+      213: 6000960205122409243
+    second: Mega-Minion2_6
+  - first:
+      213: -3573719900408497224
+    second: Mega-Minion2_7
+  - first:
+      213: 6978288429087892699
+    second: Mega-Minion2_8
+  - first:
+      213: 7728397750202262503
+    second: Mega-Minion2_9
+  - first:
+      213: 8853389467265920497
+    second: Mega-Minion2_10
+  - first:
+      213: 777065591988725461
+    second: Mega-Minion2_11
+  - first:
+      213: -4016376295674488475
+    second: Mega-Minion2_12
+  - first:
+      213: -319987840835979786
+    second: Mega-Minion2_13
+  - first:
+      213: 187425125877421127
+    second: Mega-Minion2_14
+  - first:
+      213: -3853148135019531587
+    second: Mega-Minion2_15
+  - first:
+      213: 5781535653305721507
+    second: Mega-Minion2_16
+  - first:
+      213: 259273824591718857
+    second: Mega-Minion2_17
+  - first:
+      213: -5144662552966262202
+    second: Mega-Minion2_18
+  - first:
+      213: 4949736509618610571
+    second: Mega-Minion2_19
+  - first:
+      213: 4975186091795050415
+    second: Mega-Minion2_20
+  - first:
+      213: 5313832005438792262
+    second: Mega-Minion2_21
+  - first:
+      213: -4917690247248728259
+    second: Mega-Minion2_22
+  - first:
+      213: -6570232346374962980
+    second: Mega-Minion2_23
+  - first:
+      213: 1059662768301415935
+    second: Mega-Minion2_24
+  - first:
+      213: 5201770089485202761
+    second: Mega-Minion2_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mega-Minion2_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 3
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91218adb9a197d460800000000000000
+      internalID: 7266436682002993689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_3
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 4
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4d3d4e0eb70666b0800000000000000
+      internalID: -5303542998317056692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_8
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 2
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd4a00c8a5cd7d060800000000000000
+      internalID: 6978288429087892699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_9
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 3
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e3ebb79ec8c04b60800000000000000
+      internalID: 7728397750202262503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 2
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fde19e20de8dda70800000000000000
+      internalID: 8853389467265920497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_17
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 3
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c9a8567b20299300800000000000000
+      internalID: 259273824591718857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_18
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 5
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64211396aac7a98b0800000000000000
+      internalID: -5144662552966262202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_19
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 0
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b816993712ff0b440800000000000000
+      internalID: 4949736509618610571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_20
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faf68ec04696b0540800000000000000
+      internalID: 4975186091795050415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_21
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 3
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 642e7481e068eb940800000000000000
+      internalID: 5313832005438792262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_22
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 3
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f265176cad0cbb0800000000000000
+      internalID: -4917690247248728259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_23
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 3
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd00a86dd78d1d4a0800000000000000
+      internalID: -6570232346374962980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_24
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 3
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd10566cada4be00800000000000000
+      internalID: 1059662768301415935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mega-Minion2_25
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 3
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94574031656603840800000000000000
+      internalID: 5201770089485202761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 69af26aef007f764bb28e91a6df36930
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Mega-Minion2_0: 7266436682002993689
+      Mega-Minion2_1: 3465312642012644501
+      Mega-Minion2_10: 8853389467265920497
+      Mega-Minion2_11: 777065591988725461
+      Mega-Minion2_12: -4016376295674488475
+      Mega-Minion2_13: -319987840835979786
+      Mega-Minion2_14: 187425125877421127
+      Mega-Minion2_15: -3853148135019531587
+      Mega-Minion2_16: 5781535653305721507
+      Mega-Minion2_17: 259273824591718857
+      Mega-Minion2_18: -5144662552966262202
+      Mega-Minion2_19: 4949736509618610571
+      Mega-Minion2_2: -5475894686940985993
+      Mega-Minion2_20: 4975186091795050415
+      Mega-Minion2_21: 5313832005438792262
+      Mega-Minion2_22: -4917690247248728259
+      Mega-Minion2_23: -6570232346374962980
+      Mega-Minion2_24: 1059662768301415935
+      Mega-Minion2_25: 5201770089485202761
+      Mega-Minion2_3: -5303542998317056692
+      Mega-Minion2_4: -1559143805176451456
+      Mega-Minion2_5: 7218216222807390672
+      Mega-Minion2_6: 6000960205122409243
+      Mega-Minion2_7: -3573719900408497224
+      Mega-Minion2_8: 6978288429087892699
+      Mega-Minion2_9: 7728397750202262503
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
