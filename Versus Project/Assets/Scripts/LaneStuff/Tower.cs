@@ -84,7 +84,7 @@ public class Tower : NetworkBehaviour
             }
         }
         //animator.SetBool("Attacking", isAttacking);
-        if (enemyPlayer == null || enemyMinion == null) return;
+        if (enemyPlayer == null) return;
         distanceFromPlayer = new Vector3(towerTarget.position.x - enemyPlayer.transform.position.x, towerTarget.position.y - enemyPlayer.transform.position.y, 0);
         if (cooldown == true && cooldownTimer <= cooldownLength)
         {

@@ -178,7 +178,7 @@ public class BasePlayerController : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
+    [Rpc(SendTo.Server)]
     public void TakeDamageServerRpc(float damage, NetworkObjectReference sender)
     {
         currentHealth.Value = currentHealth.Value - damage;

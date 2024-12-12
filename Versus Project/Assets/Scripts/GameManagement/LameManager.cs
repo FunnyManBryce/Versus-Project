@@ -209,7 +209,7 @@ public class LameManager : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.Server)]
+    [Rpc(SendTo.NotServer)]
     public void TeamTwoWinClientRPC()
     {
         teamThatWon = 2;

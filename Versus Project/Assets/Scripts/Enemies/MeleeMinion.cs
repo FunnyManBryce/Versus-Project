@@ -190,7 +190,7 @@ public class MeleeMinion : NetworkBehaviour
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
         }
-        else if (targetName == "Tower" && distanceFromTarget.magnitude < towerAttackDistance && cooldown == false)
+        else if (distanceFromTarget.magnitude < towerAttackDistance && cooldown == false)
         {
             agent.speed = 0;
             isAttacking = true;
