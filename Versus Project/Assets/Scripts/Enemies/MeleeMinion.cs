@@ -150,6 +150,10 @@ public class MeleeMinion : NetworkBehaviour
         }
         distanceFromTower = new Vector3(minionTarget.position.x - towerTarget.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
         distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+        if(enemyMinion == null)
+        {
+            distanceFromMinion = new Vector3(100, 100, 0);
+        }
         if ((distanceFromTower.magnitude < chaseTowerDistance && aggro == false) || (distanceFromMinion.magnitude > chaseMinionDistance && distanceFromPlayer.magnitude > chasePlayerDistance && aggro == false))
         {
             agent.speed = moveSpeed;
@@ -174,7 +178,7 @@ public class MeleeMinion : NetworkBehaviour
             currentTarget = enemyPlayer.GetComponent<NetworkObject>();
             targetName = "Player";
         }
-        if (targetName == "Minion" && distanceFromTarget.magnitude < minionAttackDistance && cooldown == false)
+        if (targetName == "Minion" && distanceFromTarget.magnitude < minionAttackDistance && cooldown == false && enemyMinionTarget != null)
         {
             agent.speed = 0;
             isAttacking = true;

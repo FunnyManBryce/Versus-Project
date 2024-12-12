@@ -104,6 +104,10 @@ public class Tower : NetworkBehaviour
             aggro = false;
             aggroTimer = 0;
         }
+        if (enemyMinion == null)
+        {
+            distanceFromMinion = new Vector3(100, 100, 0);
+        }
         if ((distanceFromMinion.magnitude < distanceFromPlayer.magnitude && aggro == false && enemyMinion != null) || (distanceFromMinion.magnitude < towerRange && aggro == false && enemyMinion != null))
         {
             distanceFromTarget = distanceFromMinion;
@@ -116,7 +120,7 @@ public class Tower : NetworkBehaviour
             currentTarget = enemyPlayer.GetComponent<NetworkObject>();
             targetName = "Player";
         }
-        if (targetName == "Minion" && distanceFromTarget.magnitude < towerRange && cooldown == false)
+        if (targetName == "Minion" && distanceFromTarget.magnitude < towerRange && cooldown == false && enemyMinion != null)
         {
             isAttacking = true;
             DealDamage();

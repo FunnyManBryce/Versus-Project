@@ -214,9 +214,9 @@ MonoBehaviour:
   aggro: 0
   targetName: 
   Damage: 30
-  chasePlayerDistance: 10
-  chaseMinionDistance: 8
-  chaseTowerDistance: 10
+  chasePlayerDistance: 7
+  chaseMinionDistance: 10
+  chaseTowerDistance: 5
   minionAttackDistance: 4
   towerAttackDistance: 4
   playerAttackDistance: 4

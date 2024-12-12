@@ -60,7 +60,7 @@ public class LameManager : NetworkBehaviour
     void Update()
     {
         if (!IsServer) return;
-        if(minionSpawnTimer < spawnTimerEnd && gameStarted == true)
+        if (minionSpawnTimer < spawnTimerEnd && gameStarted == true)
         {
             minionSpawnTimer += Time.deltaTime;
         } else if(gameStarted == true)
@@ -107,7 +107,7 @@ public class LameManager : NetworkBehaviour
     public void PlayerSpawnServerRPC(ulong clientID, int team, int charNumber) 
     {
         var character = Instantiate(characterList[charNumber], playerSP[team - 1], Quaternion.identity);
-        if(team == 1)
+        if (team == 1)
         {
             playerOneChar = character;
         }

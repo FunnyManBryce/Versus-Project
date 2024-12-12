@@ -56,7 +56,7 @@ public class BasePlayerController : NetworkBehaviour
 
     private void Start()
     {
-        playerInput = transform.position;
+        playerInput = new Vector2(0,0);
         lastAttackTime = -autoAttackSpeed;
     }
 
