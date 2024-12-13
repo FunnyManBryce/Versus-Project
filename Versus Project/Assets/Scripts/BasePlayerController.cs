@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BasePlayerController : NetworkBehaviour
@@ -33,6 +34,7 @@ public class BasePlayerController : NetworkBehaviour
     public Color rangeIndicatorColor = new Color(1, 0, 0, 0.2f);
 
     public GameObject projectilePrefab;
+    public NetworkVariable<int> teamNumber = new NetworkVariable<int>();
     
 
     private void Awake()
@@ -44,9 +46,19 @@ public class BasePlayerController : NetworkBehaviour
         if (IsOwner)
         {
             InitializeHealthServerRpc();
+
+            int team = NetworkManager.LocalClientId == 0 ? 1 : 2;
+            SetTeamServerRpc(team);
             Debug.Log("1");
         }
     }
+
+    [ServerRpc]
+    private void SetTeamServerRpc(int team)
+    {
+        teamNumber.Value = team;
+    }
+
 
     [ServerRpc]
     private void InitializeHealthServerRpc()
@@ -125,17 +137,47 @@ public class BasePlayerController : NetworkBehaviour
                 Debug.Log("5");
                 if (distanceToTarget <= attackRange)
                 {
-                    SpawnProjectileClientRpc(hit.point);
+                    if (CanAttackTarget(targetObject))
+                    {
+                        SpawnProjectileClientRpc(hit.point);
 
-                    DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+                        DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
 
-                    isAttacking = true;
-                    attackCooldown = 1f / autoAttackSpeed;
-                    Debug.Log("6");
+                        isAttacking = true;
+                        attackCooldown = 1f / autoAttackSpeed;
+                        Debug.Log("6");
+                    }
                 }
             }
         }
     }
+
+    private bool CanAttackTarget(NetworkObject targetObject)
+    {
+        // Check if target has a team component
+        if (targetObject.TryGetComponent(out BasePlayerController targetPlayer))
+        {
+            return targetPlayer.teamNumber.Value != teamNumber.Value;
+        }
+
+        if (targetObject.TryGetComponent(out Tower targetTower))
+        {
+            return targetTower.Team != teamNumber.Value;
+        }
+
+        if (targetObject.TryGetComponent(out MeleeMinion targetMinion))
+        {
+            return targetMinion.enemyPlayer.GetComponent<BasePlayerController>().teamNumber.Value != teamNumber.Value;
+        }
+
+        if (targetObject.TryGetComponent(out Inhibitor targetInhibitor))
+        {
+            return targetInhibitor.Team != teamNumber.Value;
+        }
+
+        return true; // Default to allowing attack if no team check is possible
+    }
+
     [ClientRpc]
     private void SpawnProjectileClientRpc(Vector3 targetPosition)
     {
@@ -152,36 +194,46 @@ public class BasePlayerController : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
-    private void DealDamageServerRpc(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
+[ServerRpc]
+private void DealDamageServerRpc(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
+{
+    if (reference.TryGet(out NetworkObject target))
     {
-        if (reference.TryGet(out NetworkObject target))
+        Debug.Log("9");
+        if (target.tag == "Player")
         {
-            Debug.Log("9");
-            if (target.tag == "Player")
+            // player damage logic
+            BasePlayerController playerController = target.GetComponent<BasePlayerController>();
+            if (playerController != null)
             {
-                // player damage logic
-                Debug.Log("10");
+                playerController.TakeDamageServerRpc(damage, sender);
             }
-            else if (target.tag == "Tower")
-            {
-                target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
-            }
-            else if (target.tag == "Minion")
-            {
-                target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
-            }
+            Debug.Log("10");
         }
-        else
+        else if (target.tag == "Tower")
         {
-            Debug.Log("BZZZZ wrong answer");
+            target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
+        }
+        else if (target.tag == "Minion")
+        {
+            target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
         }
     }
+    else
+    {
+        Debug.Log("BZZZZ wrong answer");
+    }
+}
 
     [Rpc(SendTo.Server)]
     public void TakeDamageServerRpc(float damage, NetworkObjectReference sender)
     {
-        currentHealth.Value = currentHealth.Value - damage;
+        currentHealth.Value -= damage;
+
+        if (currentHealth.Value <= 0)
+        {
+            NetworkObject.Despawn();
+        }
     }
 
     private void FixedUpdate()
