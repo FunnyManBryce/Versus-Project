@@ -40,6 +40,7 @@ public class JungleEnemy : NetworkBehaviour
     public float cooldownTimer = 0f;
     public float startingHealth;
 
+    public GameObject spawner;
     public GameObject PlayerOne;
     public GameObject PlayerTwo;
     public GameObject jungleEnemy;
@@ -66,6 +67,7 @@ public class JungleEnemy : NetworkBehaviour
         {
             if (Health.Value <= 0 && IsServer == true)
             {
+                spawner.GetComponent<JungleSpawner>().isSpawnedEnemyAlive = false;
                 jungleEnemy.GetComponent<NetworkObject>().Despawn();
             }
         };

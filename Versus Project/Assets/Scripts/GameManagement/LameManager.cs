@@ -22,7 +22,9 @@ public class LameManager : NetworkBehaviour
     public GameObject[] towerSpawnOrder;
     public GameObject[] teamOneMinionSpawnOrder;
     public GameObject[] teamTwoMinionSpawnOrder;
+    public GameObject[] jungleSpawnOrder;
     public Vector3[] MinionSP;
+    public Vector3[] JungleSP;
     public Vector3[] LaneSP;
     public Vector3[] playerSP;
     public List<GameObject> teamOneMinions;
@@ -88,6 +90,7 @@ public class LameManager : NetworkBehaviour
         if(IsServer)
         {
             LaneSpawnServerRPC();
+            JungleSpawnServerRPC();
         }
         if (clientId == 0)
         {
@@ -169,6 +172,17 @@ public class LameManager : NetworkBehaviour
             teamTwoTowers[i] = tower;
             var towerNetworkObject = tower.GetComponent<NetworkObject>();
             towerNetworkObject.Spawn();
+        }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void JungleSpawnServerRPC()
+    {
+        for (int i = 0; i <= JungleSP.Length; i++)
+        {
+            var jungle = Instantiate(jungleSpawnOrder[i], JungleSP[i], Quaternion.identity);
+            var jungleNetworkObject = jungle.GetComponent<NetworkObject>();
+            jungleNetworkObject.Spawn();
         }
     }
 
