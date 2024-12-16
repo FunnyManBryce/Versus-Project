@@ -14,14 +14,14 @@ GameObject:
   - component: {fileID: 9172525232582007022}
   - component: {fileID: 6782888038592277727}
   - component: {fileID: 2553727569301683880}
-  - component: {fileID: 690234349782495773}
   - component: {fileID: 2707982063788959245}
   - component: {fileID: 5958823289627424989}
   - component: {fileID: 385054977924169405}
   - component: {fileID: 7173644152583605978}
+  - component: {fileID: 9174658247447894326}
   m_Layer: 8
   m_Name: JungleGoblin
-  m_TagString: Minion
+  m_TagString: JungleEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,50 +188,6 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &690234349782495773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8942386518775928844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25ec85b94dcc214f81ec450bf67c66d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Team: 1
-  Health:
-    m_InternalValue: 100
-  towerTarget: {fileID: 0}
-  minionTarget: {fileID: 5134948185573290296}
-  enemyMinionTarget: {fileID: 0}
-  agent: {fileID: 4082273046993157032}
-  animator: {fileID: 5958823289627424989}
-  isRanged: 0
-  isAttacking: 0
-  cooldown: 0
-  aggro: 0
-  targetName: 
-  Damage: 10
-  chasePlayerDistance: 7
-  chaseMinionDistance: 10
-  chaseTowerDistance: 5
-  minionAttackDistance: 3
-  towerAttackDistance: 4
-  playerAttackDistance: 3
-  moveSpeed: 3
-  aggroTimer: 0
-  aggroLength: 5
-  cooldownLength: 0.5
-  cooldownTimer: 0
-  startingHealth: 70
-  enemyPlayer: {fileID: 0}
-  enemyMinion: {fileID: 0}
-  enemyTower: {fileID: 0}
-  Minion: {fileID: 8942386518775928844}
-  networkMinion: {fileID: 0}
-  currentTarget: {fileID: 0}
 --- !u!114 &2707982063788959245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,3 +291,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 5958823289627424989}
+--- !u!114 &9174658247447894326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942386518775928844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6f7a3198c241c4198bd8ab37979696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health:
+    m_InternalValue: 50
+  agent: {fileID: 4082273046993157032}
+  jungleTarget: {fileID: 5134948185573290296}
+  playerOneTarget: {fileID: 0}
+  playerTwoTarget: {fileID: 0}
+  animator: {fileID: 0}
+  Moves: 0
+  isRanged: 1
+  isAttacking: 0
+  cooldown: 0
+  aggro: 0
+  targetName: 
+  Damage: 10
+  chasePlayerDistance: 10
+  range: 10
+  moveSpeed: 0
+  aggroTimer: 0
+  aggroLength: 10
+  cooldownLength: 0.5
+  cooldownTimer: 0
+  startingHealth: 50
+  spawner: {fileID: 0}
+  PlayerOne: {fileID: 0}
+  PlayerTwo: {fileID: 0}
+  jungleEnemy: {fileID: 8942386518775928844}
+  networkEnemy: {fileID: 6782888038592277727}
+  currentTarget: {fileID: 0}
