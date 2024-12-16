@@ -36,7 +36,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 6.666667}
+  m_LocalScale: {x: 2, y: 2, z: 1.3333334}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,17 +124,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.00016484037, y: -0.011361092}
+  m_Offset: {x: 0.037698, y: -0.0018952787}
   m_SpriteTilingProperty:
-    border: {x: 0.01, y: 0, z: 0.01, w: 0}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.12, y: 0.16}
+    oldSize: {x: 0.76, y: 1.08}
     newSize: {x: 0.12, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.10219785, y: 0.16715905}
+  m_Size: {x: 0.735048, y: 1.1002076}
   m_EdgeRadius: 0
 --- !u!114 &6782888038592277727
 MonoBehaviour:
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1728252279
+  GlobalObjectIdHash: 3071331536
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -210,7 +210,7 @@ Animator:
   m_GameObject: {fileID: 8942386518775928844}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5e6b54e33306b1246ab5c81fc80ed0eb, type: 2}
+  m_Controller: {fileID: 9100000, guid: a56cb5afa5a711b449704fbce9041ca4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -265,7 +265,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -3230171090254896671, guid: 3995895ed5b319c4ca0a0b3da7606efe,
+  m_Sprite: {fileID: -2765929901467384572, guid: 53f3ea61b4b68634593edc0947288dba,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   jungleTarget: {fileID: 5134948185573290296}
   playerOneTarget: {fileID: 0}
   playerTwoTarget: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 5958823289627424989}
   Moves: 0
   isRanged: 1
   isAttacking: 0
@@ -318,11 +318,11 @@ MonoBehaviour:
   targetName: 
   Damage: 10
   chasePlayerDistance: 10
-  range: 10
+  range: 6
   moveSpeed: 0
   aggroTimer: 0
-  aggroLength: 10
-  cooldownLength: 0.5
+  aggroLength: 5
+  cooldownLength: 0.75
   cooldownTimer: 0
   startingHealth: 50
   spawner: {fileID: 0}
