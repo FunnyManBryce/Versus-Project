@@ -220,14 +220,6 @@ private void DealDamageServerRpc(float damage, NetworkObjectReference reference,
         {
             target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
         }
-        else if (target.tag == "Inhibitor")
-        {
-            target.GetComponent<Inhibitor>().TakeDamageServerRPC(damage, sender);
-        }
-        else if (target.tag == "JungleEnemy")
-        {
-            target.GetComponent<JungleEnemy>().TakeDamageServerRPC(damage, sender);
-        }
     }
     else
     {
@@ -242,7 +234,7 @@ private void DealDamageServerRpc(float damage, NetworkObjectReference reference,
 
         if (currentHealth.Value <= 0)
         {
-            //NetworkObject.Despawn();
+            NetworkObject.Despawn();
         }
     }
 
