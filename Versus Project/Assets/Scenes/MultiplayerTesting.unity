@@ -3376,7 +3376,7 @@ PrefabInstance:
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: JungleSP.Array.size
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -3423,7 +3423,7 @@ PrefabInstance:
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: JungleSP.Array.data[0].x
-      value: -17
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -3433,7 +3433,7 @@ PrefabInstance:
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: JungleSP.Array.data[1].x
-      value: -15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -3443,37 +3443,37 @@ PrefabInstance:
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: JungleSP.Array.data[2].x
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
-        type: 3}
-      propertyPath: JungleSP.Array.data[2].y
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
-        type: 3}
-      propertyPath: JungleSP.Array.data[3].x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
-        type: 3}
-      propertyPath: JungleSP.Array.data[3].y
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
-        type: 3}
-      propertyPath: JungleSP.Array.data[4].x
       value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
-      propertyPath: JungleSP.Array.data[4].y
+      propertyPath: JungleSP.Array.data[2].y
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
-      propertyPath: JungleSP.Array.data[5].x
+      propertyPath: JungleSP.Array.data[3].x
       value: -36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: JungleSP.Array.data[3].y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: JungleSP.Array.data[4].x
+      value: -38
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: JungleSP.Array.data[4].y
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: JungleSP.Array.data[5].x
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -3483,42 +3483,42 @@ PrefabInstance:
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: JungleSP.Array.data[6].x
-      value: -38
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
-        type: 3}
-      propertyPath: JungleSP.Array.data[6].y
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
-        type: 3}
-      propertyPath: JungleSP.Array.data[7].x
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
-        type: 3}
-      propertyPath: JungleSP.Array.data[7].y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
-        type: 3}
-      propertyPath: JungleSP.Array.data[8].x
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
-      propertyPath: JungleSP.Array.data[8].y
+      propertyPath: JungleSP.Array.data[6].y
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
-      propertyPath: JungleSP.Array.data[9].x
+      propertyPath: JungleSP.Array.data[7].x
       value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
-      propertyPath: JungleSP.Array.data[9].y
+      propertyPath: JungleSP.Array.data[7].y
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: JungleSP.Array.data[8].x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: JungleSP.Array.data[8].y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: JungleSP.Array.data[9].x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: JungleSP.Array.data[9].y
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -3625,7 +3625,7 @@ PrefabInstance:
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: jungleSpawnOrder.Array.size
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
