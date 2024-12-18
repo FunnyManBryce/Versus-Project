@@ -119,12 +119,14 @@ public class BasePlayerController : NetworkBehaviour
     [ServerRpc]
     private void TryAutoAttackServerRpc()
     {
-        
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
 
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
         Debug.Log("3");
+        Debug.Log("Mouse Position: " + mousePosition);
+        Debug.Log("Hit: " + (hit.collider != null ? hit.collider.name : "None"));
+
         if (hit.collider != null)
         {
             // Check if the hit object is a valid target 
@@ -132,9 +134,11 @@ public class BasePlayerController : NetworkBehaviour
             Debug.Log("4");
             if (targetObject != null)
             {
+                Debug.Log("Found Target: " + targetObject.name);
                 // Check distance to target
                 float distanceToTarget = Vector2.Distance(transform.position, hit.point);
                 Debug.Log("5");
+                Debug.Log("Distance to Target: " + distanceToTarget + " vs Range: " + attackRange);
                 if (distanceToTarget <= attackRange)
                 {
                     if (CanAttackTarget(targetObject))
@@ -151,7 +155,6 @@ public class BasePlayerController : NetworkBehaviour
             }
         }
     }
-
     private bool CanAttackTarget(NetworkObject targetObject)
     {
         // Check if target has a team component
@@ -265,6 +268,7 @@ private void DealDamageServerRpc(float damage, NetworkObjectReference reference,
 
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
         rb2d.velocity = movementInput * currentSpeed;
+
     }
 
     private void OnDrawGizmosSelected()
