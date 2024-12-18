@@ -101,7 +101,8 @@ public class BasePlayerController : NetworkBehaviour
 
         if (Input.GetMouseButtonDown(0) && !isAttacking)
         {
-            TryAutoAttackServerRpc();
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            TryAutoAttack(mousePosition);
             Debug.Log("2");
         }
 
@@ -116,10 +117,8 @@ public class BasePlayerController : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
-    private void TryAutoAttackServerRpc()
+    private void TryAutoAttack(Vector3 mousePosition)
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
 
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
@@ -143,7 +142,7 @@ public class BasePlayerController : NetworkBehaviour
                 {
                     if (CanAttackTarget(targetObject))
                     {
-                        SpawnProjectileClientRpc(hit.point);
+                        //SpawnProjectileClientRpc(hit.point);
 
                         DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
 
