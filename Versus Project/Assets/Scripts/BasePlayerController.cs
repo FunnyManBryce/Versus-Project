@@ -169,7 +169,7 @@ public class BasePlayerController : NetworkBehaviour
 
         if (targetObject.TryGetComponent(out MeleeMinion targetMinion))
         {
-            return targetMinion.enemyPlayer.GetComponent<BasePlayerController>().teamNumber.Value != teamNumber.Value;
+            return targetMinion.Team != teamNumber.Value;
         }
 
         if (targetObject.TryGetComponent(out Inhibitor targetInhibitor))
