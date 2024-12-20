@@ -19,7 +19,8 @@ public class LameManager : NetworkBehaviour
     public GameObject[] characterList;
     public GameObject[] teamOneTowers;
     public GameObject[] teamTwoTowers;
-    public GameObject[] towerSpawnOrder;
+    public GameObject[] blueTowerSpawnOrder;
+    public GameObject[] redTowerSpawnOrder;
     public GameObject[] teamOneMinionSpawnOrder;
     public GameObject[] teamTwoMinionSpawnOrder;
     public GameObject[] jungleSpawnOrder;
@@ -42,9 +43,6 @@ public class LameManager : NetworkBehaviour
     public int teamThatWon;
     private ulong clientId;
 
-    [SerializeField] private GameObject Tower;
-    [SerializeField] private GameObject Inhibitor;
-    [SerializeField] private GameObject Pentagon;
     private float minionSpawnTimer;
     [SerializeField] private float spawnTimerEnd;
 
@@ -146,7 +144,7 @@ public class LameManager : NetworkBehaviour
     {
         for(int i = 0; i < 4; i++)
         {
-            var tower = Instantiate(towerSpawnOrder[i], -LaneSP[i], Quaternion.identity);
+            var tower = Instantiate(blueTowerSpawnOrder[i], -LaneSP[i], Quaternion.identity);
             if(i == 1)
             {
                 tower.GetComponent<Inhibitor>().Team = 1;
@@ -160,7 +158,7 @@ public class LameManager : NetworkBehaviour
         }
         for (int i = 0; i < 4; i++)
         {
-            var tower = Instantiate(towerSpawnOrder[i], LaneSP[i], Quaternion.identity);
+            var tower = Instantiate(redTowerSpawnOrder[i], LaneSP[i], Quaternion.identity);
             if (i == 1)
             {
                 tower.GetComponent<Inhibitor>().Team = 2;
@@ -178,7 +176,7 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void JungleSpawnServerRPC()
     {
-        for (int i = 0; i <= JungleSP.Length; i++)
+        for (int i = 0; i <= JungleSP.Length - 1; i++)
         {
             var jungle = Instantiate(jungleSpawnOrder[i], JungleSP[i], Quaternion.identity);
             var jungleNetworkObject = jungle.GetComponent<NetworkObject>();
