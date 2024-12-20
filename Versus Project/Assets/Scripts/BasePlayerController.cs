@@ -35,7 +35,9 @@ public class BasePlayerController : NetworkBehaviour
 
     public GameObject projectilePrefab;
     public NetworkVariable<int> teamNumber = new NetworkVariable<int>();
-    
+    [SerializeField] NetworkObject currentTarget; // current attack target
+    [SerializeField] bool isAutoAttacking = false;
+
 
     private void Awake()
     {
@@ -99,20 +101,28 @@ public class BasePlayerController : NetworkBehaviour
 
         playerInput = moveDir.normalized;
 
-        if (isAttacking)
+        if (playerInput.magnitude > 0)
         {
-            if (Time.time - lastAttackTime >= 1f / autoAttackSpeed)
-            {
-                lastAttackTime = 0;
-                isAttacking = false;
-            }
+            currentTarget = null;
+            isAutoAttacking = false;
         }
 
-        if (Input.GetMouseButtonDown(0) && !isAttacking)
+        if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             TryAutoAttack(mousePosition);
             Debug.Log("2");
+        }
+
+        if (isAutoAttacking && currentTarget != null && !isAttacking)
+        {
+            float timeSinceLastAttack = Time.time - lastAttackTime;
+            if (Time.time - lastAttackTime >= 1f / autoAttackSpeed)
+            {
+                PerformAutoAttack(currentTarget);
+                //lastAttackTime = 0;
+                //isAttacking = false;
+            }
         }
 
     }
@@ -126,7 +136,6 @@ public class BasePlayerController : NetworkBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
         Debug.Log("3");
         Debug.Log("Mouse Position: " + mousePosition);
-        Debug.Log("Hit: " + (hit.collider != null ? hit.collider.name : "None"));
 
         if (hit.collider != null)
         {
@@ -145,16 +154,31 @@ public class BasePlayerController : NetworkBehaviour
                     {
                         //SpawnProjectileClientRpc(hit.point);
 
-                        DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+                        currentTarget = targetObject; // Set the current target
+                        isAutoAttacking = true; // Enable auto-attacking
+                        PerformAutoAttack(targetObject); // Execute the first attack
 
-                        isAttacking = true;
-                        lastAttackTime = Time.time;
+                        //isAttacking = true;
+                        //lastAttackTime = Time.time;
                         Debug.Log("6");
                     }
                 }
             }
         }
     }
+    private void PerformAutoAttack(NetworkObject targetObject)
+    {
+        if (targetObject == null || isAttacking) return; // Ensure a valid target and not already attacking
+
+        // Execute attack logic
+        DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+
+        isAttacking = true; // Set attacking state
+        lastAttackTime = Time.time; // Update the last attack time
+
+        isAttacking = false;
+    }
+
     private bool CanAttackTarget(NetworkObject targetObject)
     {
         // Check if target has a team component
@@ -196,8 +220,9 @@ public class BasePlayerController : NetworkBehaviour
             Debug.Log("8");
         }
     }
-
-[ServerRpc]
+    //region deal damage and take damage server rpc
+    #region
+    [ServerRpc]
 private void DealDamageServerRpc(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
 {
     if (reference.TryGet(out NetworkObject target))
@@ -246,7 +271,7 @@ private void DealDamageServerRpc(float damage, NetworkObjectReference reference,
             //NetworkObject.Despawn();
         }
     }
-
+    #endregion 
     private void FixedUpdate()
     {
         if (!IsOwner) return;
