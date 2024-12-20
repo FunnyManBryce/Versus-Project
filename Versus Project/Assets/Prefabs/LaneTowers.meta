@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Versus Project/Assets/Prefabs/LaneTowers.meta
 guid: 76b864e81a1825e46b6bced394079cf0
 folderAsset: yes
 DefaultImporter:
+========
+guid: 22f0071d8d140450499f36f7ed7cb1da
+PrefabImporter:
+>>>>>>>> 111892a9dfdca42e0601dfd6f178b352ad3ce420:Versus Project/Assets/Prefabs/JungleGoblin.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
