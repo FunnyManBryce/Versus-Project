@@ -99,6 +99,15 @@ public class BasePlayerController : NetworkBehaviour
 
         playerInput = moveDir.normalized;
 
+        if (isAttacking)
+        {
+            if (Time.time - lastAttackTime >= 1f / autoAttackSpeed)
+            {
+                lastAttackTime = 0;
+                isAttacking = false;
+            }
+        }
+
         if (Input.GetMouseButtonDown(0) && !isAttacking)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -106,19 +115,12 @@ public class BasePlayerController : NetworkBehaviour
             Debug.Log("2");
         }
 
-        if (isAttacking)
-        {
-            attackCooldown= Time.deltaTime;
-            if (attackCooldown <= autoAttackSpeed)
-            {
-                lastAttackTime = 0;
-                isAttacking = false;
-            }
-        }
     }
 
     private void TryAutoAttack(Vector3 mousePosition)
     {
+        if (isAttacking) return;
+
         mousePosition.z = 0;
 
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
@@ -133,7 +135,6 @@ public class BasePlayerController : NetworkBehaviour
             Debug.Log("4");
             if (targetObject != null)
             {
-                Debug.Log("Found Target: " + targetObject.name);
                 // Check distance to target
                 float distanceToTarget = Vector2.Distance(transform.position, hit.point);
                 Debug.Log("5");
@@ -147,7 +148,7 @@ public class BasePlayerController : NetworkBehaviour
                         DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
 
                         isAttacking = true;
-                        attackCooldown = 1f / autoAttackSpeed;
+                        lastAttackTime = Time.time;
                         Debug.Log("6");
                     }
                 }
