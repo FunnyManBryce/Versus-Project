@@ -40,8 +40,6 @@ public class Tower : NetworkBehaviour
     public float startingHealth;
     public NetworkVariable<float> Health = new NetworkVariable<float>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
-
-
     void Start()
     {
         networkTower = tower.GetComponent<NetworkObject>();
@@ -123,11 +121,12 @@ public class Tower : NetworkBehaviour
         if (targetName == "Minion" && distanceFromTarget.magnitude < towerRange && cooldown == false && enemyMinion != null)
         {
             isAttacking = true;
-            DealDamage();
-        } else if (targetName == "Player" && distanceFromTarget.magnitude < towerRange && cooldown == false)
+            animator.SetBool("Attacking", isAttacking);
+        }
+        else if (targetName == "Player" && distanceFromTarget.magnitude < towerRange && cooldown == false)
         {
             isAttacking = true;
-            DealDamage();
+            animator.SetBool("Attacking", isAttacking);
         }
     }
 
@@ -156,6 +155,7 @@ public class Tower : NetworkBehaviour
         else
         {
             isAttacking = false;
+            animator.SetBool("Attacking", isAttacking);
         }
     }
 
@@ -184,6 +184,7 @@ public class Tower : NetworkBehaviour
             Debug.Log("This is bad");
         }
         isAttacking = false;
+        animator.SetBool("Attacking", isAttacking);
         cooldown = true;
     }
 }

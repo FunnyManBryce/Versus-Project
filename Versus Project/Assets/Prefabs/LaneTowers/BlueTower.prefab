@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2518130113755198442}
   - component: {fileID: 7644838041655011798}
   m_Layer: 0
-  m_Name: PlayerTower
+  m_Name: BlueTower
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
