@@ -148,7 +148,7 @@ public class BasePlayerController : NetworkBehaviour
                 float distanceToTarget = Vector2.Distance(transform.position, hit.point);
                 Debug.Log("5");
                 Debug.Log("Distance to Target: " + distanceToTarget + " vs Range: " + attackRange);
-                if (distanceToTarget <= attackRange)
+                /*if (distanceToTarget <= attackRange)
                 {
                     if (CanAttackTarget(targetObject))
                     {
@@ -162,6 +162,22 @@ public class BasePlayerController : NetworkBehaviour
                         //lastAttackTime = Time.time;
                         Debug.Log("6");
                     }
+                }*/
+
+                if (distanceToTarget <= attackRange)
+                {
+                    if (CanAttackTarget(targetObject))
+                    {
+                        currentTarget = targetObject;
+                        isAutoAttacking = true;
+                        PerformAutoAttack(targetObject);
+                    }
+                }
+                else
+                {
+                    // Move toward target
+                    currentTarget = targetObject;
+                    isAutoAttacking = true;
                 }
             }
         }
@@ -279,6 +295,28 @@ private void DealDamageServerRpc(float damage, NetworkObjectReference reference,
         if (animator != null)
         {
             animator.SetFloat("Speed", currentSpeed);
+        }
+
+        if (isAutoAttacking && currentTarget != null)
+        {
+            // Move toward the target if out of range
+            Vector2 directionToTarget = ((Vector2)currentTarget.transform.position - (Vector2)transform.position).normalized;
+            float distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
+            PlayerSprite.flipX = currentTarget.transform.position.x < transform.position.x;
+
+            if (distanceToTarget > attackRange)
+            {
+                movementInput = directionToTarget;
+                currentSpeed += acceleration * maxSpeed * Time.fixedDeltaTime;
+            }
+            else
+            {
+                movementInput = Vector2.zero;
+                currentSpeed = 0;
+
+                // Attack once in range
+                PerformAutoAttack(currentTarget);
+            }
         }
 
         if (playerInput.magnitude > 0 && currentSpeed >= 0)
