@@ -10,6 +10,7 @@ public class Resevoir : NetworkBehaviour
     public GameObject teamPlayer;
     public GameObject resevoir;
     public NetworkObject networkResevoir;
+    public NetworkObject networkReference;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,24 @@ public class Resevoir : NetworkBehaviour
 
     private void OnTriggerStay(Collider target)
     {
-        if (target.tag == "Player")
+        Debug.Log("resevoir working?");
+        if(IsServer && target.tag == "Player")
         {
-            target.GetComponent<BasePlayerController>().TakeDamageServerRpc(-10, networkResevoir);
+            networkReference = target.GetComponent<NetworkObject>();
+            DealDamageServerRPC(-1, networkReference, networkResevoir);
+        }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void DealDamageServerRPC(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
+    {
+        if (reference.TryGet(out NetworkObject target))
+        {
+            target.GetComponent<BasePlayerController>().TakeDamageServerRpc(damage, sender);
+        }
+        else
+        {
+            Debug.Log("This is bad");
         }
     }
 }
