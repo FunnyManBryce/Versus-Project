@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Unity.Netcode;
+
+public class Resevoir : NetworkBehaviour
+{
+    public int Team;
+    private LameManager lameManager;
+    public GameObject teamPlayer;
+    public GameObject resevoir;
+    public NetworkObject networkResevoir;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        networkResevoir = resevoir.GetComponent<NetworkObject>();
+    }
+
+    private void OnTriggerStay(Collider target)
+    {
+        if (target.tag == "Player")
+        {
+            target.GetComponent<BasePlayerController>().TakeDamageServerRpc(-10, networkResevoir);
+        }
+    }
+}

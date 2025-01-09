@@ -3319,6 +3319,12 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: Resevoir
+      value: 
+      objectReference: {fileID: 1295046624559876456, guid: 9a93c0cf83b8d2f49a06659ddfe0db78,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: Inhibitor
       value: 
       objectReference: {fileID: 761847280962229105, guid: dded58fc9d48d0447be011ccd462cc01,

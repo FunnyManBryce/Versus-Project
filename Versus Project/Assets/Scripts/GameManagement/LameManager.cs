@@ -37,6 +37,7 @@ public class LameManager : NetworkBehaviour
 
     public GameObject playerOneChar;
     public GameObject playerTwoChar;
+    public GameObject Resevoir;
     private GameObject Camera;
     private GameObject Character;
     private int Team;
@@ -85,11 +86,6 @@ public class LameManager : NetworkBehaviour
         networkManager = FindObjectOfType<NetworkManager>();
         clientId = networkManager.LocalClientId;
         Debug.Log("Client ID: " + clientId + "he he he ha");
-        if(IsServer)
-        {
-            LaneSpawnServerRPC();
-            JungleSpawnServerRPC();
-        }
         if (clientId == 0)
         {
             Team = 1;
@@ -102,6 +98,11 @@ public class LameManager : NetworkBehaviour
         Character = networkManagerUI.Character;
         characterNumber = networkManagerUI.characterNumber;
         PlayerSpawnServerRPC(clientId, Team, characterNumber);
+        if (IsServer)
+        {
+            LaneSpawnServerRPC();
+            JungleSpawnServerRPC();
+        }
     }
 
     [Rpc(SendTo.Server)] 
@@ -142,7 +143,17 @@ public class LameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void LaneSpawnServerRPC()
     {
-        for(int i = 0; i < 4; i++)
+        var resevoir = Instantiate(Resevoir, playerSP[0], Quaternion.identity);
+        resevoir.GetComponent<Resevoir>().Team = 1;
+        resevoir.GetComponent<Resevoir>().teamPlayer = playerOneChar;
+        var resevoirNetworkObject = resevoir.GetComponent<NetworkObject>();
+        resevoirNetworkObject.Spawn();
+        resevoir = Instantiate(Resevoir, playerSP[1], Quaternion.identity);
+        resevoir.GetComponent<Resevoir>().Team = 2;
+        resevoir.GetComponent<Resevoir>().teamPlayer = playerTwoChar;
+        resevoirNetworkObject = resevoir.GetComponent<NetworkObject>();
+        resevoirNetworkObject.Spawn();
+        for (int i = 0; i < 4; i++)
         {
             var tower = Instantiate(blueTowerSpawnOrder[i], -LaneSP[i], Quaternion.identity);
             if(i == 1)
