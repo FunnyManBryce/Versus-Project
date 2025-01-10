@@ -70,7 +70,7 @@ public class BasePlayerController : NetworkBehaviour
 
     private void Start()
     {
-        playerInput = new Vector2(0,0);
+        playerInput = new Vector2(0, 0);
         lastAttackTime = -autoAttackSpeed;
     }
 
@@ -111,89 +111,70 @@ public class BasePlayerController : NetworkBehaviour
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             TryAutoAttack(mousePosition);
-            Debug.Log("2");
         }
 
-        if (isAutoAttacking && currentTarget != null && !isAttacking)
+        // Update attack state
+        if (isAttacking)
         {
             float timeSinceLastAttack = Time.time - lastAttackTime;
-            if (Time.time - lastAttackTime >= 1f / autoAttackSpeed)
+            if (timeSinceLastAttack >= 1f / autoAttackSpeed)
             {
-                PerformAutoAttack(currentTarget);
-                //lastAttackTime = 0;
-                //isAttacking = false;
+                isAttacking = false;
             }
         }
 
+        // Check for auto-attack
+        if (isAutoAttacking && currentTarget != null && !isAttacking)
+        {
+            float distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
+            if (distanceToTarget <= attackRange)
+            {
+                float timeSinceLastAttack = Time.time - lastAttackTime;
+                if (timeSinceLastAttack >= 1f / autoAttackSpeed)
+                {
+                    PerformAutoAttack(currentTarget);
+                }
+            }
+        }
     }
-
     private void TryAutoAttack(Vector3 mousePosition)
     {
-        if (isAttacking) return;
-
         mousePosition.z = 0;
-
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-        Debug.Log("3");
-        Debug.Log("Mouse Position: " + mousePosition);
 
         if (hit.collider != null)
         {
-            // Check if the hit object is a valid target 
             NetworkObject targetObject = hit.collider.GetComponent<NetworkObject>();
-            Debug.Log("4");
-            if (targetObject != null)
+            if (targetObject != null && CanAttackTarget(targetObject))
             {
-                // Check distance to target
+                currentTarget = targetObject;
+                isAutoAttacking = true;
+
                 float distanceToTarget = Vector2.Distance(transform.position, hit.point);
-                Debug.Log("5");
-                Debug.Log("Distance to Target: " + distanceToTarget + " vs Range: " + attackRange);
-                /*if (distanceToTarget <= attackRange)
+                if (distanceToTarget <= attackRange && !isAttacking)
                 {
-                    if (CanAttackTarget(targetObject))
+                    float timeSinceLastAttack = Time.time - lastAttackTime;
+                    if (timeSinceLastAttack >= 1f / autoAttackSpeed)
                     {
-                        //SpawnProjectileClientRpc(hit.point);
-
-                        currentTarget = targetObject; // Set the current target
-                        isAutoAttacking = true; // Enable auto-attacking
-                        PerformAutoAttack(targetObject); // Execute the first attack
-
-                        //isAttacking = true;
-                        //lastAttackTime = Time.time;
-                        Debug.Log("6");
-                    }
-                }*/
-
-                if (distanceToTarget <= attackRange)
-                {
-                    if (CanAttackTarget(targetObject))
-                    {
-                        currentTarget = targetObject;
-                        isAutoAttacking = true;
                         PerformAutoAttack(targetObject);
                     }
-                }
-                else
-                {
-                    // Move toward target
-                    currentTarget = targetObject;
-                    isAutoAttacking = true;
                 }
             }
         }
     }
     private void PerformAutoAttack(NetworkObject targetObject)
     {
-        if (targetObject == null || isAttacking) return; // Ensure a valid target and not already attacking
+        if (targetObject == null || isAttacking) return;
 
-        // Execute attack logic
-        DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
-
-        isAttacking = true; // Set attacking state
-        lastAttackTime = Time.time; // Update the last attack time
-
-        isAttacking = false;
+        float distanceToTarget = Vector2.Distance(transform.position, targetObject.transform.position);
+        if (distanceToTarget <= attackRange)
+        {
+            DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+            isAttacking = true;
+            lastAttackTime = Time.time;
+        }
     }
+
 
     private bool CanAttackTarget(NetworkObject targetObject)
     {
@@ -227,7 +208,7 @@ public class BasePlayerController : NetworkBehaviour
         if (projectilePrefab != null)
             Debug.Log("7");
         {
-            
+
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
             Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
@@ -239,43 +220,43 @@ public class BasePlayerController : NetworkBehaviour
     //region deal damage and take damage server rpc
     #region
     [ServerRpc]
-private void DealDamageServerRpc(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
-{
-    if (reference.TryGet(out NetworkObject target))
+    private void DealDamageServerRpc(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
     {
-        Debug.Log("9");
-        if (target.tag == "Player")
+        if (reference.TryGet(out NetworkObject target))
         {
-            // player damage logic
-            BasePlayerController playerController = target.GetComponent<BasePlayerController>();
-            if (playerController != null)
+            Debug.Log("9");
+            if (target.tag == "Player")
             {
-                playerController.TakeDamageServerRpc(damage, sender);
+                // player damage logic
+                BasePlayerController playerController = target.GetComponent<BasePlayerController>();
+                if (playerController != null)
+                {
+                    playerController.TakeDamageServerRpc(damage, sender);
+                }
+                Debug.Log("10");
             }
-            Debug.Log("10");
+            else if (target.tag == "Tower")
+            {
+                target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
+            }
+            else if (target.tag == "Minion")
+            {
+                target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
+            }
+            else if (target.tag == "Inhibitor")
+            {
+                target.GetComponent<Inhibitor>().TakeDamageServerRPC(damage, sender);
+            }
+            else if (target.tag == "JungleEnemy")
+            {
+                target.GetComponent<JungleEnemy>().TakeDamageServerRPC(damage, sender);
+            }
         }
-        else if (target.tag == "Tower")
+        else
         {
-            target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
-        }
-        else if (target.tag == "Minion")
-        {
-            target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
-        }
-        else if (target.tag == "Inhibitor")
-        {
-            target.GetComponent<Inhibitor>().TakeDamageServerRPC(damage, sender);
-        }
-        else if (target.tag == "JungleEnemy")
-        {
-            target.GetComponent<JungleEnemy>().TakeDamageServerRPC(damage, sender);
+            Debug.Log("BZZZZ wrong answer");
         }
     }
-    else
-    {
-        Debug.Log("BZZZZ wrong answer");
-    }
-}
 
     [Rpc(SendTo.Server)]
     public void TakeDamageServerRpc(float damage, NetworkObjectReference sender)
@@ -287,7 +268,7 @@ private void DealDamageServerRpc(float damage, NetworkObjectReference reference,
             //NetworkObject.Despawn();
         }
     }
-    #endregion 
+    #endregion
     private void FixedUpdate()
     {
         if (!IsOwner) return;
@@ -332,14 +313,5 @@ private void DealDamageServerRpc(float damage, NetworkObjectReference reference,
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
         rb2d.velocity = movementInput * currentSpeed;
 
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (showAttackRange)
-        {
-            Gizmos.color = rangeIndicatorColor;
-            Gizmos.DrawWireSphere(transform.position, attackRange);
-        }
     }
 }

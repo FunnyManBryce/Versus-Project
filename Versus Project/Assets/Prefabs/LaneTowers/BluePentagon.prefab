@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2991641484458318829}
   - component: {fileID: 6470028386234375860}
   m_Layer: 0
-  m_Name: Pentagon
+  m_Name: BluePentagon
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

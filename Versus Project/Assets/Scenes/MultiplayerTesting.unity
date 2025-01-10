@@ -3731,13 +3731,13 @@ PrefabInstance:
         type: 3}
       propertyPath: 'redTowerSpawnOrder.Array.data[0]'
       value: 
-      objectReference: {fileID: 8003257773554308308, guid: 6537b8bf58ef29a41933b5a57bfb6f72,
+      objectReference: {fileID: 8003257773554308308, guid: 6bb38de2f77cc844f925060ffd08a342,
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: 'redTowerSpawnOrder.Array.data[1]'
       value: 
-      objectReference: {fileID: 761847280962229105, guid: dded58fc9d48d0447be011ccd462cc01,
+      objectReference: {fileID: 761847280962229105, guid: da98825aad61b434698a697a503e9b98,
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}

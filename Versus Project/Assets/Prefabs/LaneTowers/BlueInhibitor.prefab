@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2543246040788520168}
   - component: {fileID: 4309010894493914732}
   m_Layer: 0
-  m_Name: Inhibitor
+  m_Name: BlueInhibitor
   m_TagString: Inhibitor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
