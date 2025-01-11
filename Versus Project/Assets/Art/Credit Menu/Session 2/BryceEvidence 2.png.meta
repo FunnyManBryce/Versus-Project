@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BryceEvidence 2_0: -1537471904070762980
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

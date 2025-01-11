@@ -169,7 +169,7 @@ public class BasePlayerController : NetworkBehaviour
         float distanceToTarget = Vector2.Distance(transform.position, targetObject.transform.position);
         if (distanceToTarget <= attackRange)
         {
-            DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+            SpawnProjectileServerRpc(new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
             isAttacking = true;
             lastAttackTime = Time.time;
         }
@@ -202,19 +202,17 @@ public class BasePlayerController : NetworkBehaviour
         return true; // Default to allowing attack if no team check is possible
     }
 
-    [ClientRpc]
-    private void SpawnProjectileClientRpc(Vector3 targetPosition)
+    [ServerRpc]
+    private void SpawnProjectileServerRpc(NetworkObjectReference target, NetworkObjectReference sender)
     {
-        if (projectilePrefab != null)
-            Debug.Log("7");
+        if (target.TryGet(out NetworkObject targetObj) && sender.TryGet(out NetworkObject senderObj))
         {
-
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            NetworkObject netObj = projectile.GetComponent<NetworkObject>();
+            netObj.Spawn();
 
-            Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-            Vector2 direction = (targetPosition - transform.position).normalized;
-            projectileRb.velocity = direction * autoAttackProjSpeed;
-            Debug.Log("8");
+            ProjectileController controller = projectile.GetComponent<ProjectileController>();
+            controller.Initialize(autoAttackProjSpeed, attackDamage, targetObj, senderObj);
         }
     }
     //region deal damage and take damage server rpc

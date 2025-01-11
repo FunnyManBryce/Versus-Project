@@ -314,7 +314,8 @@ MonoBehaviour:
   isAttacking: 0
   showAttackRange: 1
   rangeIndicatorColor: {r: 1, g: 0, b: 0, a: 0.2}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 315554442559877787, guid: 81b6ba07eb9f35642a910177aa04f334,
+    type: 3}
   teamNumber:
     m_InternalValue: 0
   currentTarget: {fileID: 0}

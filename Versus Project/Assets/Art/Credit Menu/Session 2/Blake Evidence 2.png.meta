@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Blake Evidence 2_0: -984777020896545326
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
