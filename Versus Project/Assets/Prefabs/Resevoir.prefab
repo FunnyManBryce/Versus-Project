@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5516962357468186102
 Transform:
   m_ObjectHideFlags: 0
@@ -128,6 +128,7 @@ MonoBehaviour:
   teamPlayer: {fileID: 0}
   resevoir: {fileID: 1295046624559876456}
   networkResevoir: {fileID: 6513747495002229095}
+  networkReference: {fileID: 0}
 --- !u!61 &7621698178547781523
 BoxCollider2D:
   m_ObjectHideFlags: 0

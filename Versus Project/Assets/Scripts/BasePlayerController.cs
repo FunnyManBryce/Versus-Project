@@ -101,12 +101,14 @@ public class BasePlayerController : NetworkBehaviour
 
         playerInput = moveDir.normalized;
 
+        // Only cancel auto-attacking if player initiates movement with WASD
         if (playerInput.magnitude > 0)
         {
             currentTarget = null;
             isAutoAttacking = false;
         }
 
+        // Handle clicking on targets
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -123,20 +125,21 @@ public class BasePlayerController : NetworkBehaviour
             }
         }
 
-        // Check for auto-attack
-        if (isAutoAttacking && currentTarget != null && !isAttacking)
+        // Handle auto-attacking
+        if (currentTarget != null && !isAttacking)
         {
-            float distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
-            if (distanceToTarget <= attackRange)
+            float timeSinceLastAttack = Time.time - lastAttackTime;
+            if (timeSinceLastAttack >= 1f / autoAttackSpeed)
             {
-                float timeSinceLastAttack = Time.time - lastAttackTime;
-                if (timeSinceLastAttack >= 1f / autoAttackSpeed)
+                float distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
+                if (distanceToTarget <= attackRange)
                 {
                     PerformAutoAttack(currentTarget);
                 }
             }
         }
     }
+
     private void TryAutoAttack(Vector3 mousePosition)
     {
         mousePosition.z = 0;
@@ -147,18 +150,9 @@ public class BasePlayerController : NetworkBehaviour
             NetworkObject targetObject = hit.collider.GetComponent<NetworkObject>();
             if (targetObject != null && CanAttackTarget(targetObject))
             {
+                // Set target regardless of distance
                 currentTarget = targetObject;
                 isAutoAttacking = true;
-
-                float distanceToTarget = Vector2.Distance(transform.position, hit.point);
-                if (distanceToTarget <= attackRange && !isAttacking)
-                {
-                    float timeSinceLastAttack = Time.time - lastAttackTime;
-                    if (timeSinceLastAttack >= 1f / autoAttackSpeed)
-                    {
-                        PerformAutoAttack(targetObject);
-                    }
-                }
             }
         }
     }
@@ -276,40 +270,43 @@ public class BasePlayerController : NetworkBehaviour
             animator.SetFloat("Speed", currentSpeed);
         }
 
-        if (isAutoAttacking && currentTarget != null)
+        if (currentTarget != null && playerInput.magnitude == 0)
         {
             // Move toward the target if out of range
-            Vector2 directionToTarget = ((Vector2)currentTarget.transform.position - (Vector2)transform.position).normalized;
             float distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
-            PlayerSprite.flipX = currentTarget.transform.position.x < transform.position.x;
-
             if (distanceToTarget > attackRange)
             {
+                Vector2 directionToTarget = ((Vector2)currentTarget.transform.position - (Vector2)transform.position).normalized;
                 movementInput = directionToTarget;
                 currentSpeed += acceleration * maxSpeed * Time.fixedDeltaTime;
+
+                // Update sprite direction
+                if (PlayerSprite != null)
+                {
+                    PlayerSprite.flipX = currentTarget.transform.position.x < transform.position.x;
+                }
             }
             else
             {
+                // Within attack range, stop moving
                 movementInput = Vector2.zero;
-                currentSpeed = 0;
-
-                // Attack once in range
-                PerformAutoAttack(currentTarget);
+                currentSpeed -= deacceleration * maxSpeed * Time.fixedDeltaTime;
             }
         }
-
-        if (playerInput.magnitude > 0 && currentSpeed >= 0)
+        else if (playerInput.magnitude > 0)
         {
+            // Handle direct player movement input
             movementInput = playerInput;
             currentSpeed += acceleration * maxSpeed * Time.fixedDeltaTime;
         }
         else
         {
+            // No input and no target, decelerate
+            movementInput = Vector2.zero;
             currentSpeed -= deacceleration * maxSpeed * Time.fixedDeltaTime;
         }
 
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
         rb2d.velocity = movementInput * currentSpeed;
-
     }
 }

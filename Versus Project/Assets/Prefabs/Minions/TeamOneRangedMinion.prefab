@@ -216,7 +216,7 @@ MonoBehaviour:
   Damage: 7.5
   chasePlayerDistance: 7
   chaseMinionDistance: 10
-  chaseTowerDistance: 5
+  chaseTowerDistance: 6
   minionAttackDistance: 6
   towerAttackDistance: 7
   playerAttackDistance: 6
