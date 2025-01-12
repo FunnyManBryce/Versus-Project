@@ -3408,13 +3408,33 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: redLaneSP.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: blueLaneSP.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: LaneSP.Array.data[0].x
       value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: LaneSP.Array.data[0].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: LaneSP.Array.data[1].x
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: LaneSP.Array.data[1].y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -3600,6 +3620,76 @@ PrefabInstance:
         type: 3}
       propertyPath: teamTwoTowers.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: redLaneSP.Array.data[0].x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: redLaneSP.Array.data[0].y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: redLaneSP.Array.data[1].x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: redLaneSP.Array.data[2].x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: redLaneSP.Array.data[2].y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: redLaneSP.Array.data[3].x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: redLaneSP.Array.data[3].y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: blueLaneSP.Array.data[0].x
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: blueLaneSP.Array.data[0].y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: blueLaneSP.Array.data[1].x
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: blueLaneSP.Array.data[2].x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: blueLaneSP.Array.data[2].y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: blueLaneSP.Array.data[3].x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: blueLaneSP.Array.data[3].y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}

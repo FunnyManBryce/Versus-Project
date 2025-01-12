@@ -26,7 +26,8 @@ public class LameManager : NetworkBehaviour
     public GameObject[] jungleSpawnOrder;
     public Vector3[] MinionSP;
     public Vector3[] JungleSP;
-    public Vector3[] LaneSP;
+    public Vector3[] redLaneSP;
+    public Vector3[] blueLaneSP;
     public Vector3[] playerSP;
     public List<GameObject> teamOneMinions;
     public List<GameObject> teamTwoMinions;
@@ -155,7 +156,7 @@ public class LameManager : NetworkBehaviour
         resevoirNetworkObject.Spawn();
         for (int i = 0; i < 4; i++)
         {
-            var tower = Instantiate(blueTowerSpawnOrder[i], -LaneSP[i], Quaternion.identity);
+            var tower = Instantiate(blueTowerSpawnOrder[i], blueLaneSP[i], Quaternion.identity);
             if(i == 1)
             {
                 tower.GetComponent<Inhibitor>().Team = 1;
@@ -169,7 +170,7 @@ public class LameManager : NetworkBehaviour
         }
         for (int i = 0; i < 4; i++)
         {
-            var tower = Instantiate(redTowerSpawnOrder[i], LaneSP[i], Quaternion.identity);
+            var tower = Instantiate(redTowerSpawnOrder[i], redLaneSP[i], Quaternion.identity);
             if (i == 1)
             {
                 tower.GetComponent<Inhibitor>().Team = 2;
