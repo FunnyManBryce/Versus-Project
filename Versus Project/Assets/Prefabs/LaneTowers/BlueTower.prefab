@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1283965587
+  GlobalObjectIdHash: 862493579
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
   cooldownLength: 2
   cooldownTimer: 0
   towerRange: 10
-  startingHealth: 100
+  startingHealth: 1000
   Health:
     m_InternalValue: 1000
 --- !u!50 &3814562962944772117

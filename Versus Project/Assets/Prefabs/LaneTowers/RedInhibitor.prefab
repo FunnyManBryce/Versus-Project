@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2304862857
+  GlobalObjectIdHash: 1225754387
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   inhibitor: {fileID: 761847280962229105}
   networkInhibitor: {fileID: 0}
-  startingHealth: 150
+  startingHealth: 1250
   Health:
     m_InternalValue: 100
 --- !u!50 &147550970692666639
