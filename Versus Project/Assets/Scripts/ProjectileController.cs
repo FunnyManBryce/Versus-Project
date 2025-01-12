@@ -7,6 +7,7 @@ public class ProjectileController : NetworkBehaviour
     public float damage;
     private NetworkObject target;
     private NetworkObject sender;
+    private bool isTargetDestroyed = false;
 
     public void Initialize(float projSpeed, float projDamage, NetworkObject targetObj, NetworkObject senderObj)
     {
@@ -18,7 +19,18 @@ public class ProjectileController : NetworkBehaviour
 
     private void Update()
     {
-        if (!IsServer || target == null) return;
+        if (!IsServer) return;
+
+        // Check if target is destroyed or null
+        if (target == null || !target.IsSpawned)
+        {
+            if (!isTargetDestroyed)
+            {
+                isTargetDestroyed = true;
+                DestroyProjectileServerRpc();
+            }
+            return;
+        }
 
         Vector2 direction = ((Vector2)target.transform.position - (Vector2)transform.position).normalized;
         transform.Translate(direction * speed * Time.deltaTime);
@@ -54,5 +66,19 @@ public class ProjectileController : NetworkBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    [ServerRpc]
+    private void DestroyProjectileServerRpc()
+    {
+        NetworkObject.Despawn();
+        Destroy(gameObject);
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        target = null;
+        sender = null;
     }
 }
