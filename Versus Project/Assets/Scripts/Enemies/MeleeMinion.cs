@@ -114,7 +114,7 @@ public class MeleeMinion : NetworkBehaviour
             aggro = false;
             aggroTimer = 0;
         }
-        if (Team == 1) //This is definitely spaghetti code, but it basically uses a list of every tower and every minion to determine which tower or enemy minion it should go after
+        if (Team == 1) 
         {
             enemyTower = lameManager.teamTwoTowers[lameManager.teamTwoTowersLeft.Value];
             towerTarget = lameManager.teamTwoTowers[lameManager.teamTwoTowersLeft.Value].transform;
@@ -161,6 +161,7 @@ public class MeleeMinion : NetworkBehaviour
             distanceFromTarget = distanceFromTower;
             currentTarget = enemyTower.GetComponent<NetworkObject>();
             targetName = "Tower";
+            Debug.Log(Team + ": " + distanceFromTower.magnitude);
         }
         else if (distanceFromMinion.magnitude < chaseMinionDistance && aggro == false && enemyMinionTarget != null)
         {
