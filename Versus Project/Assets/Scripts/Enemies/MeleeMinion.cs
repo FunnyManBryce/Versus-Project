@@ -19,8 +19,8 @@ public class MeleeMinion : NetworkBehaviour
 
     public Animator animator;
 
-    private Vector3 distanceFromTower;
-    private Vector3 distanceFromTarget;
+    public Vector3 distanceFromTower;
+    public Vector3 distanceFromTarget;
     private Vector3 distanceFromPlayer;
     private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
@@ -148,7 +148,7 @@ public class MeleeMinion : NetworkBehaviour
                 }
             }
         }
-        distanceFromTower = new Vector3(minionTarget.position.x - towerTarget.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+        distanceFromTower = new Vector3(minionTarget.position.x - towerTarget.position.x, minionTarget.position.y - towerTarget.position.y, 0);
         distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
         if(enemyMinion == null)
         {
@@ -161,7 +161,6 @@ public class MeleeMinion : NetworkBehaviour
             distanceFromTarget = distanceFromTower;
             currentTarget = enemyTower.GetComponent<NetworkObject>();
             targetName = "Tower";
-            Debug.Log(Team + ": " + distanceFromTower.magnitude);
         }
         else if (distanceFromMinion.magnitude < chaseMinionDistance && aggro == false && enemyMinionTarget != null)
         {

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8078649625449316039}
   - component: {fileID: 147550970692666639}
   - component: {fileID: 2723332158049792593}
-  - component: {fileID: 7825435693774000982}
   - component: {fileID: 2543246040788520168}
   - component: {fileID: 4309010894493914732}
   m_Layer: 0
@@ -106,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 99363003
+  GlobalObjectIdHash: 197699025
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -131,7 +130,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   inhibitor: {fileID: 761847280962229105}
   networkInhibitor: {fileID: 0}
-  startingHealth: 150
+  startingHealth: 1250
   Health:
     m_InternalValue: 100
 --- !u!50 &147550970692666639
@@ -142,7 +141,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761847280962229105}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -192,18 +191,6 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &7825435693774000982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761847280962229105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &2543246040788520168
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -238,8 +225,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.009298706, y: 0}
-  m_Radius: 0.1527069
+  m_Offset: {x: 0.009298706, y: -0.00055017474}
+  m_Radius: 0.12684767
 --- !u!114 &4309010894493914732
 MonoBehaviour:
   m_ObjectHideFlags: 0
