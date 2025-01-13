@@ -37,7 +37,7 @@ public class BasePlayerController : NetworkBehaviour
     public NetworkVariable<int> teamNumber = new NetworkVariable<int>();
     [SerializeField] NetworkObject currentTarget; // current attack target
     [SerializeField] bool isAutoAttacking = false;
-
+    public GameObject healthBarPrefab; 
 
     private void Awake()
     {
@@ -52,6 +52,9 @@ public class BasePlayerController : NetworkBehaviour
             int team = NetworkManager.LocalClientId == 0 ? 1 : 2;
             SetTeamServerRpc(team);
             Debug.Log("1");
+
+            GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Screen Space Canvas").transform);
+            healthBar.GetComponent<PlayerHealthBar>().enabled = true;
         }
     }
 
