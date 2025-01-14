@@ -300,20 +300,24 @@ MonoBehaviour:
   PlayerSprite: {fileID: 2570568061770048435}
   AutoAttackSprite: {fileID: 0}
   maxSpeed: 8
-  acceleration: 100
-  deacceleration: 200
   currentSpeed: 0
   currentHealth:
     m_InternalValue: 0
-  maxHealth: 100
+  maxHealth: 600
   attackDamage: 10
-  autoAttackSpeed: 1
-  autoAttackProjSpeed: 5
-  attackRange: 10
+  autoAttackSpeed: 0.7
+  autoAttackProjSpeed: 8
+  attackRange: 6
   lastAttackTime: 0
   isAttacking: 0
-  showAttackRange: 1
-  rangeIndicatorColor: {r: 1, g: 0, b: 0, a: 0.2}
+  armor: 20
+  cDR: 0
+  armorPen: 0
+  regen: 1.5
+  isMelee: 0
+  maxMana: 400
+  mana: 0
+  manaRegen: 0
   projectilePrefab: {fileID: 315554442559877787, guid: 81b6ba07eb9f35642a910177aa04f334,
     type: 3}
   teamNumber:
