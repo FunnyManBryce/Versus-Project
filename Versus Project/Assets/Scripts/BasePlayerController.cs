@@ -13,7 +13,7 @@ public class BasePlayerController : NetworkBehaviour
     public SpriteRenderer AutoAttackSprite;
 
     //Movement variables
-    public float maxSpeed = 2, acceleration = 50, deacceleration = 100;
+    public float maxSpeed = 2;
     [SerializeField]
     private float currentSpeed = 0;
     private Vector2 movementInput;
@@ -28,10 +28,16 @@ public class BasePlayerController : NetworkBehaviour
     public float attackRange = 10f;
     public float lastAttackTime;
     public bool isAttacking = false;
-    private float attackCooldown = 0f;
+    public float armor = 0f;
+    public float cDR = 0f;
+    public float armorPen = 0f;
+    public float regen = 0f;
+    public bool isMelee = false;
+    public float maxMana = 0f;
+    public float mana = 0f;
+    public float manaRegen = 0f;
 
-    public bool showAttackRange = true;
-    public Color rangeIndicatorColor = new Color(1, 0, 0, 0.2f);
+    private float lastRegenTick = 0f;
 
     public GameObject projectilePrefab;
     public NetworkVariable<int> teamNumber = new NetworkVariable<int>();
@@ -141,6 +147,12 @@ public class BasePlayerController : NetworkBehaviour
                 }
             }
         }
+        float currentTime = Time.time;
+        if (currentTime - lastRegenTick >= 1f) // Check every second
+        {
+                RegenHealthServerRpc(regen);
+                lastRegenTick = currentTime;
+        }
     }
 
     private void TryAutoAttack(Vector3 mousePosition)
@@ -166,7 +178,16 @@ public class BasePlayerController : NetworkBehaviour
         float distanceToTarget = Vector2.Distance(transform.position, targetObject.transform.position);
         if (distanceToTarget <= attackRange)
         {
-            SpawnProjectileServerRpc(new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+            if (isMelee)
+            {
+                // melee damage
+                DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+            }
+            else
+            {
+                // Ranged attack with projectile
+                SpawnProjectileServerRpc(new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+            }
             isAttacking = true;
             lastAttackTime = Time.time;
         }
@@ -256,11 +277,22 @@ public class BasePlayerController : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void TakeDamageServerRpc(float damage, NetworkObjectReference sender)
     {
-        currentHealth.Value -= damage;
-
-        if (currentHealth.Value <= 0)
+        if (sender.TryGet(out NetworkObject attackerObj))
         {
-            //NetworkObject.Despawn();
+            BasePlayerController attacker = attackerObj.GetComponent<BasePlayerController>();
+            float effectiveArmor = armor * (1 - (attacker != null ? attacker.armorPen / 100f : 0f));
+
+            // Apply armor damage reduction formula: 100 - (10000 / (100 + armor)) which is the laegue one
+            // I decided to do this for armor as it will not be as premium of a stat as abilty haste
+            float damageReduction = 100f - (10000f / (100f + effectiveArmor));
+            float reducedDamage = damage * (1f - (damageReduction / 100f));
+
+            currentHealth.Value -= reducedDamage;
+
+            if (currentHealth.Value <= 0)
+            {
+                //NetworkObject.Despawn();
+            }
         }
     }
     #endregion
@@ -281,7 +313,7 @@ public class BasePlayerController : NetworkBehaviour
             {
                 Vector2 directionToTarget = ((Vector2)currentTarget.transform.position - (Vector2)transform.position).normalized;
                 movementInput = directionToTarget;
-                currentSpeed += acceleration * maxSpeed * Time.fixedDeltaTime;
+                currentSpeed += maxSpeed;
 
                 // Update sprite direction
                 if (PlayerSprite != null)
@@ -293,23 +325,28 @@ public class BasePlayerController : NetworkBehaviour
             {
                 // Within attack range, stop moving
                 movementInput = Vector2.zero;
-                currentSpeed -= deacceleration * maxSpeed * Time.fixedDeltaTime;
+                currentSpeed -= maxSpeed;
             }
         }
         else if (playerInput.magnitude > 0)
         {
             // Handle direct player movement input
             movementInput = playerInput;
-            currentSpeed += acceleration * maxSpeed * Time.fixedDeltaTime;
+            currentSpeed += maxSpeed;
         }
         else
         {
             // No input and no target, decelerate
             movementInput = Vector2.zero;
-            currentSpeed -= deacceleration * maxSpeed * Time.fixedDeltaTime;
+            currentSpeed -= maxSpeed;
         }
 
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
         rb2d.velocity = movementInput * currentSpeed;
+    }
+    [ServerRpc]
+    private void RegenHealthServerRpc(float regenAmount)
+    {
+        currentHealth.Value = Mathf.Min(currentHealth.Value + regenAmount, maxHealth);
     }
 }

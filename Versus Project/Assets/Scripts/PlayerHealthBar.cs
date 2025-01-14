@@ -13,7 +13,6 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        // Find the local player's controller
         var localPlayer = GameObject.FindGameObjectWithTag("Player");
         if (localPlayer != null)
         {
@@ -22,9 +21,7 @@ public class PlayerHealthBar : MonoBehaviour
             {
                 maxHealth = playerController.maxHealth;
                 InitializeHealthBar();
-                // Subscribe to health changes
                 playerController.currentHealth.OnValueChanged += UpdateHealthBar;
-                // Set initial health
                 UpdateHealthBar(0, playerController.currentHealth.Value);
             }
         }

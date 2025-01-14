@@ -21,7 +21,6 @@ public class ProjectileController : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        // Check if target is destroyed or null
         if (target == null || !target.IsSpawned)
         {
             if (!isTargetDestroyed)
@@ -44,6 +43,8 @@ public class ProjectileController : NetworkBehaviour
 
     private void HandleCollision()
     {
+        if (target == null || !target.IsSpawned) return;
+
         if (target.CompareTag("Player"))
         {
             target.GetComponent<BasePlayerController>().TakeDamageServerRpc(damage, new NetworkObjectReference(sender));
@@ -65,7 +66,7 @@ public class ProjectileController : NetworkBehaviour
             target.GetComponent<JungleEnemy>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender));
         }
 
-        Destroy(gameObject);
+        DestroyProjectileServerRpc();
     }
 
     [ServerRpc]
