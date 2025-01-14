@@ -53,7 +53,7 @@ public class BasePlayerController : NetworkBehaviour
             SetTeamServerRpc(team);
             Debug.Log("1");
 
-            GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Screen Space Canvas").transform);
+            GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Player UI Canvas").transform);
             healthBar.GetComponent<PlayerHealthBar>().enabled = true;
         }
     }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.Netcode;
 
 public class PlayerHealthBar : MonoBehaviour
 {
@@ -9,50 +8,63 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private Image fillImage;
     [SerializeField] private TextMeshProUGUI healthText;
 
-    private BasePlayerController playerController;
-    private Camera mainCamera;
+    [SerializeField] private BasePlayerController playerController;
     private float maxHealth;
 
-    private void Start()
+    private void OnEnable()
     {
-        mainCamera = Camera.main;
-        playerController = GetComponentInParent<BasePlayerController>();
-
-        if (playerController != null)
+        // Find the local player's controller
+        var localPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (localPlayer != null)
         {
-            maxHealth = playerController.maxHealth;
-            healthSlider.maxValue = maxHealth;
-            UpdateHealth(playerController.currentHealth.Value);
-            Debug.Log("why would I think that would work");
-
-            // get health changes
-            playerController.currentHealth.OnValueChanged += OnHealthChanged;
+            playerController = localPlayer.GetComponent<BasePlayerController>();
+            if (playerController != null)
+            {
+                maxHealth = playerController.maxHealth;
+                InitializeHealthBar();
+                // Subscribe to health changes
+                playerController.currentHealth.OnValueChanged += UpdateHealthBar;
+                // Set initial health
+                UpdateHealthBar(0, playerController.currentHealth.Value);
+            }
         }
     }
 
-    private void Update()
-    {
-        if (playerController == null) return;
-    }
-    private void OnHealthChanged(float previousValue, float newValue)
-    {
-        UpdateHealth(newValue);
-    }
-
-    private void UpdateHealth(float currentHealth)
-    {
-        // Update slider value
-        healthSlider.value = currentHealth;
-
-        // Update text
-        healthText.text = $"{Mathf.CeilToInt(currentHealth)}/{maxHealth}";
-    }
-
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (playerController != null)
         {
-            playerController.currentHealth.OnValueChanged -= OnHealthChanged;
+            playerController.currentHealth.OnValueChanged -= UpdateHealthBar;
+        }
+    }
+
+    private void InitializeHealthBar()
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = maxHealth;
+        }
+
+        UpdateHealthText(maxHealth);
+    }
+
+    private void UpdateHealthBar(float previousHealth, float newHealth)
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.value = newHealth;
+        }
+
+        float healthPercentage = newHealth / maxHealth;
+        UpdateHealthText(newHealth);
+    }
+
+    private void UpdateHealthText(float currentHealth)
+    {
+        if (healthText != null)
+        {
+            healthText.text = $"{Mathf.Ceil(currentHealth)}/{maxHealth}";
         }
     }
 }
