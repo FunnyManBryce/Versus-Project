@@ -52,6 +52,7 @@ public class MeleeMinion : NetworkBehaviour
     public NetworkObject networkMinion;
     public NetworkObject currentTarget;
 
+    public GameObject healthBarPrefab;
 
     void Start()
     {
@@ -81,6 +82,10 @@ public class MeleeMinion : NetworkBehaviour
                 Minion.GetComponent<NetworkObject>().Despawn();
             }
         };
+        GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
+        healthBar.GetComponent<EnemyHealthBar>().enabled = true;
+        healthBar.GetComponent<EnemyHealthBar>().minion = Minion;
+        healthBar.GetComponent<EnemyHealthBar>().minionPosition = minionTarget;
     }
 
     void Update()

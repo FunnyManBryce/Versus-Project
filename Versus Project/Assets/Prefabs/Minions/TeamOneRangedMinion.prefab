@@ -207,6 +207,8 @@ MonoBehaviour:
   enemyMinionTarget: {fileID: 0}
   agent: {fileID: 4082273046993157032}
   animator: {fileID: 5958823289627424989}
+  distanceFromTower: {x: 0, y: 0, z: 0}
+  distanceFromTarget: {x: 0, y: 0, z: 0}
   isRanged: 1
   isAttacking: 0
   cooldown: 0
@@ -231,6 +233,8 @@ MonoBehaviour:
   Minion: {fileID: 8942386518775928844}
   networkMinion: {fileID: 0}
   currentTarget: {fileID: 0}
+  healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
+    type: 3}
 --- !u!95 &5958823289627424989
 Animator:
   serializedVersion: 7
