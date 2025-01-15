@@ -35,4 +35,27 @@ public class Inhibitor : Tower
             }
         }
     }
+
+    public override void OnNetworkSpawn()
+    {
+        health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
+        {
+            if (health.currentHealth.Value <= 0 && IsServer == true)
+            {
+                if(Team == 1)
+                {
+                    lameManager.teamOneInhibAlive = false;
+                } else if(Team == 2)
+                {
+                    lameManager.teamTwoInhibAlive = false;
+                }
+                lameManager.TowerDestroyedServerRPC(Team);
+                tower.GetComponent<NetworkObject>().Despawn();
+            }
+        };
+        GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
+        HealthBar = healthBar;
+        healthBar.GetComponent<EnemyHealthBar>().enabled = true;
+        healthBar.GetComponent<EnemyHealthBar>().SyncValues(tower, towerTarget);
+    }
 }

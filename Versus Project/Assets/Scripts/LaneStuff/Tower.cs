@@ -154,6 +154,7 @@ public class Tower : NetworkBehaviour
         {
             if (health.currentHealth.Value <= 0 && IsServer == true)
             {
+                Debug.Log("Tower has been destroyed");
                 lameManager.TowerDestroyedServerRPC(Team);
                 tower.GetComponent<NetworkObject>().Despawn();
             }

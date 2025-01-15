@@ -19,7 +19,6 @@ public class Resevoir : NetworkBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("resevoir working?");
         if(IsServer && other.tag == "Player")
         {
             other.GetComponent<BasePlayerController>().resevoirRegen = true;
@@ -28,7 +27,6 @@ public class Resevoir : NetworkBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("resevoir working?");
         if (IsServer && other.tag == "Player")
         {
             other.GetComponent<BasePlayerController>().resevoirRegen = false;
