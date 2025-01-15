@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -9,14 +11,15 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] private Image fillImage;
     //[SerializeField] private TextMeshProUGUI healthText;
 
-    public GameObject minion;
+    public GameObject Minion;
     public Transform minionPosition;
     public MeleeMinion meleeMinion;
-    private float maxHealth;
+    public float maxHealth;
 
-    private void OnEnable()
+    public void SyncValues(GameObject minion, Transform position)
     {
-        // Find the local player's controller
+        Minion = minion;
+        minionPosition = position;
         if (minion != null)
         {
             meleeMinion = minion.GetComponent<MeleeMinion>();
@@ -24,9 +27,7 @@ public class EnemyHealthBar : MonoBehaviour
             {
                 maxHealth = meleeMinion.startingHealth;
                 InitializeHealthBar();
-                // Subscribe to health changes
                 meleeMinion.Health.OnValueChanged += UpdateHealthBar;
-                // Set initial health
                 UpdateHealthBar(0, meleeMinion.Health.Value);
             }
         }
@@ -53,10 +54,6 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void UpdateHealthBar(float previousHealth, float newHealth)
     {
-        if (newHealth <= 0)
-        {
-            Destroy(healthBar);
-        }
         if (healthSlider != null)
         {
             healthSlider.value = newHealth;
@@ -76,6 +73,13 @@ public class EnemyHealthBar : MonoBehaviour
 
     void Update()
     {
-        healthBar.transform.position = new Vector3(minionPosition.position.x, minionPosition.position.y + 1.5f, minionPosition.position.z);
+        if(Minion == null)
+        {
+            Destroy(healthBar);
+        } 
+        if(minionPosition != null)
+        {
+            healthBar.transform.position = new Vector3(minionPosition.position.x, minionPosition.position.y + 1.5f, minionPosition.position.z);
+        }
     }
 }

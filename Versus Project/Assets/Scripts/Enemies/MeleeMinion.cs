@@ -53,6 +53,7 @@ public class MeleeMinion : NetworkBehaviour
     public NetworkObject currentTarget;
 
     public GameObject healthBarPrefab;
+    public GameObject HealthBar;
 
     void Start()
     {
@@ -69,23 +70,27 @@ public class MeleeMinion : NetworkBehaviour
         Health.Value = startingHealth;
         Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
-            if (Health.Value <= 0 && IsServer == true)
+            if(Health.Value <= 0)
             {
-                if (Team == 1)
+                //Destroy(HealthBar);
+                if (IsServer == true)
                 {
-                    lameManager.teamOneMinions.Remove(Minion);
+                    if (Team == 1)
+                    {
+                        lameManager.teamOneMinions.Remove(Minion);
+                    }
+                    else
+                    {
+                        lameManager.teamTwoMinions.Remove(Minion);
+                    }
+                    Minion.GetComponent<NetworkObject>().Despawn();
                 }
-                else
-                {
-                    lameManager.teamTwoMinions.Remove(Minion);
-                }
-                Minion.GetComponent<NetworkObject>().Despawn();
             }
         };
         GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
+        HealthBar = healthBar;
         healthBar.GetComponent<EnemyHealthBar>().enabled = true;
-        healthBar.GetComponent<EnemyHealthBar>().minion = Minion;
-        healthBar.GetComponent<EnemyHealthBar>().minionPosition = minionTarget;
+        healthBar.GetComponent<EnemyHealthBar>().SyncValues(Minion, minionTarget);
     }
 
     void Update()

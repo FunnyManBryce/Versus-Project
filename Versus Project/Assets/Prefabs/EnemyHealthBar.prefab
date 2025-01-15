@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 8187290949873536771}
   - component: {fileID: 5340779785853953692}
   - component: {fileID: 1378630783674585961}
+  - component: {fileID: 7370470316000004515}
   m_Layer: 5
   m_Name: EnemyHealthBar
   m_TagString: Untagged
@@ -255,6 +256,28 @@ MonoBehaviour:
   healthBar: {fileID: 8908759716115922835}
   healthSlider: {fileID: 5340779785853953692}
   fillImage: {fileID: 937504445481456510}
-  healthText: {fileID: 0}
-  minion: {fileID: 0}
+  Minion: {fileID: 0}
+  minionPosition: {fileID: 0}
   meleeMinion: {fileID: 0}
+  maxHealth: 0
+--- !u!114 &7370470316000004515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8908759716115922835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
