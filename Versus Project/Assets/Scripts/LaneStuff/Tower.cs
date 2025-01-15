@@ -17,7 +17,6 @@ public class Tower : NetworkBehaviour
     public bool isAttacking = false;
     public bool cooldown = false;
     public bool aggro = false;
-    protected private bool invulnerable = false;
 
     public GameObject tower;
     public GameObject enemyPlayer;
@@ -39,8 +38,10 @@ public class Tower : NetworkBehaviour
     public float cooldownLength = 2f;
     public float cooldownTimer = 0f;
     public float towerRange = 10f;
-    public float startingHealth;
-    public NetworkVariable<float> Health = new NetworkVariable<float>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public Health health;
+
+    public GameObject healthBarPrefab;
+    public GameObject HealthBar;
 
     void Start()
     {
@@ -55,10 +56,10 @@ public class Tower : NetworkBehaviour
         {
             if (lameManager.teamOneTowersLeft.Value != orderInLane)
             {
-                invulnerable = true;
+                health.invulnerable = true;
             } else
             {
-                invulnerable = false;
+                health.invulnerable = false;
             }
             enemyPlayer = lameManager.playerTwoChar;
             oldTarget = new Vector3(1000, 1000, 0);
@@ -78,11 +79,11 @@ public class Tower : NetworkBehaviour
         {
             if (lameManager.teamTwoTowersLeft.Value != orderInLane)
             {
-                invulnerable = true;
+                health.invulnerable = true;
             }
             else
             {
-                invulnerable = false;
+                health.invulnerable = false;
             }
             enemyPlayer = lameManager.playerOneChar;
             oldTarget = new Vector3(1000, 1000, 0);
@@ -149,18 +150,18 @@ public class Tower : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if(IsServer)
+        health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
-            Health.Value = startingHealth;
-        }
-        Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
-        {
-            if (Health.Value <= 0 && IsServer == true)
+            if (health.currentHealth.Value <= 0 && IsServer == true)
             {
                 lameManager.TowerDestroyedServerRPC(Team);
                 tower.GetComponent<NetworkObject>().Despawn();
             }
         };
+        GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
+        HealthBar = healthBar;
+        healthBar.GetComponent<EnemyHealthBar>().enabled = true;
+        healthBar.GetComponent<EnemyHealthBar>().SyncValues(tower, towerTarget);
     }
 
     public void DealDamage()
@@ -177,27 +178,11 @@ public class Tower : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender)
-    {
-        if(invulnerable == false)
-        {
-            Health.Value = Health.Value - damage;
-        }
-    }
-
-    [Rpc(SendTo.Server)]
     public void DealDamageServerRPC(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
     {
         if (reference.TryGet(out NetworkObject target))
         {
-            if (target.tag == "Player")
-            {
-                target.GetComponent<BasePlayerController>().TakeDamageServerRpc(damage, sender);
-            }
-            else if (target.tag == "Minion")
-            {
-                target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
-            }
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, 0);
         }
         else
         {

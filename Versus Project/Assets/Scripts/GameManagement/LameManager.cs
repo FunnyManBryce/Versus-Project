@@ -160,7 +160,9 @@ public class LameManager : NetworkBehaviour
             if(i == 1)
             {
                 tower.GetComponent<Inhibitor>().Team = 1;
-            } else
+                tower.GetComponent<Inhibitor>().orderInLane = i;
+            }
+            else
             {
                 tower.GetComponent<Tower>().Team = 1;
                 tower.GetComponent<Tower>().orderInLane = i;
@@ -175,6 +177,7 @@ public class LameManager : NetworkBehaviour
             if (i == 1)
             {
                 tower.GetComponent<Inhibitor>().Team = 2;
+                tower.GetComponent<Inhibitor>().orderInLane = i;
             }
             else
             {

@@ -45,27 +45,7 @@ public class ProjectileController : NetworkBehaviour
     {
         if (target == null || !target.IsSpawned) return;
 
-        if (target.CompareTag("Player"))
-        {
-            target.GetComponent<BasePlayerController>().TakeDamageServerRpc(damage, new NetworkObjectReference(sender));
-        }
-        else if (target.CompareTag("Tower"))
-        {
-            target.GetComponent<Tower>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender));
-        }
-        else if (target.CompareTag("Minion"))
-        {
-            target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender));
-        }
-        else if (target.CompareTag("Inhibitor"))
-        {
-            target.GetComponent<Inhibitor>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender));
-        }
-        else if (target.CompareTag("JungleEnemy"))
-        {
-            target.GetComponent<JungleEnemy>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender));
-        }
-
+        target.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), 0);
         DestroyProjectileServerRpc();
     }
 

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5958823289627424989}
   - component: {fileID: 385054977924169405}
   - component: {fileID: 7173644152583605978}
+  - component: {fileID: -2313241330200202607}
   m_Layer: 8
   m_Name: TeamOneRangedMinion
   m_TagString: Minion
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 767557504
+  GlobalObjectIdHash: 2877106500
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -200,8 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 1
-  Health:
-    m_InternalValue: 100
+  health: {fileID: -2313241330200202607}
   towerTarget: {fileID: 0}
   minionTarget: {fileID: 5134948185573290296}
   enemyMinionTarget: {fileID: 0}
@@ -226,7 +226,6 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 0.75
   cooldownTimer: 0
-  startingHealth: 40
   enemyPlayer: {fileID: 0}
   enemyMinion: {fileID: 0}
   enemyTower: {fileID: 0}
@@ -235,6 +234,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
     type: 3}
+  HealthBar: {fileID: 0}
 --- !u!95 &5958823289627424989
 Animator:
   serializedVersion: 7
@@ -326,3 +326,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 5958823289627424989}
+--- !u!114 &-2313241330200202607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942386518775928844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f21187303ef2be479ce062faafd0dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth:
+    m_InternalValue: 0
+  maxHealth:
+    m_InternalValue: 0
+  startingMaxHealth: 40
+  armor: 0

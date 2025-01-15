@@ -20,8 +20,6 @@ public class BasePlayerController : NetworkBehaviour
     private Vector2 playerInput;
 
     //Combat variables
-    public NetworkVariable<float> currentHealth = new NetworkVariable<float>();
-    public float maxHealth = 100;
     public float attackDamage = 10f;
     public float autoAttackSpeed = 1f;
     public float autoAttackProjSpeed = 5f;
@@ -39,6 +37,7 @@ public class BasePlayerController : NetworkBehaviour
 
     private float lastRegenTick = 0f;
     public bool resevoirRegen = false;
+    public Health health;
 
     public GameObject projectilePrefab;
     public NetworkVariable<int> teamNumber = new NetworkVariable<int>();
@@ -54,8 +53,6 @@ public class BasePlayerController : NetworkBehaviour
     {
         if (IsOwner)
         {
-            InitializeHealthServerRpc();
-
             int team = NetworkManager.LocalClientId == 0 ? 1 : 2;
             SetTeamServerRpc(team);
             Debug.Log("1");
@@ -69,13 +66,6 @@ public class BasePlayerController : NetworkBehaviour
     private void SetTeamServerRpc(int team)
     {
         teamNumber.Value = team;
-    }
-
-
-    [ServerRpc]
-    private void InitializeHealthServerRpc()
-    {
-        currentHealth.Value = maxHealth;
     }
 
     private void Start()
@@ -242,32 +232,7 @@ public class BasePlayerController : NetworkBehaviour
         if (reference.TryGet(out NetworkObject target))
         {
             Debug.Log("9");
-            if (target.tag == "Player")
-            {
-                // player damage logic
-                BasePlayerController playerController = target.GetComponent<BasePlayerController>();
-                if (playerController != null)
-                {
-                    playerController.TakeDamageServerRpc(damage, sender);
-                }
-                Debug.Log("10");
-            }
-            else if (target.tag == "Tower")
-            {
-                target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
-            }
-            else if (target.tag == "Minion")
-            {
-                target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
-            }
-            else if (target.tag == "Inhibitor")
-            {
-                target.GetComponent<Inhibitor>().TakeDamageServerRPC(damage, sender);
-            }
-            else if (target.tag == "JungleEnemy")
-            {
-                target.GetComponent<JungleEnemy>().TakeDamageServerRPC(damage, sender);
-            }
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, 0);
         }
         else
         {
@@ -275,7 +240,7 @@ public class BasePlayerController : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.Server)]
+    /*[Rpc(SendTo.Server)]
     public void TakeDamageServerRpc(float damage, NetworkObjectReference sender)
     {
         if (sender.TryGet(out NetworkObject attackerObj))
@@ -295,7 +260,7 @@ public class BasePlayerController : NetworkBehaviour
                 //NetworkObject.Despawn();
             }
         }
-    }
+    }*/
     #endregion
     private void FixedUpdate()
     {
@@ -308,7 +273,7 @@ public class BasePlayerController : NetworkBehaviour
 
         if(resevoirRegen == true)
         {
-            currentHealth.Value = Mathf.Min(currentHealth.Value + 1, maxHealth);
+            health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + 1, health.maxHealth.Value);
         }
 
         if (currentTarget != null && playerInput.magnitude == 0)
@@ -353,6 +318,6 @@ public class BasePlayerController : NetworkBehaviour
     [ServerRpc]
     private void RegenHealthServerRpc(float regenAmount)
     {
-        currentHealth.Value = Mathf.Min(currentHealth.Value + regenAmount, maxHealth);
+        health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + regenAmount, health.maxHealth.Value);
     }
 }

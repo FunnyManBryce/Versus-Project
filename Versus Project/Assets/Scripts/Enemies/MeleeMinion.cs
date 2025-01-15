@@ -7,8 +7,9 @@ using UnityEngine.AI;
 public class MeleeMinion : NetworkBehaviour
 {
     public int Team;
-    public NetworkVariable<float> Health = new NetworkVariable<float>(50, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    //public NetworkVariable<float> Health = new NetworkVariable<float>(50, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    public Health health;
     private LameManager lameManager;
 
     public Transform towerTarget;
@@ -43,7 +44,6 @@ public class MeleeMinion : NetworkBehaviour
     public float aggroLength = 10f;
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
-    public float startingHealth;
 
     public GameObject enemyPlayer;
     public GameObject enemyMinion;
@@ -67,10 +67,17 @@ public class MeleeMinion : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        Health.Value = startingHealth;
-        Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
+        health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
-            if(Health.Value <= 0)
+            if (health.lastAttacker.TryGet(out NetworkObject attacker))
+            {
+                if (attacker.tag == "Player")
+                {
+                    aggro = true;
+                    aggroTimer = 0;
+                }
+            }
+            if (health.currentHealth.Value <= 0)
             {
                 if (IsServer == true)
                 {
@@ -221,41 +228,11 @@ public class MeleeMinion : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender)
-    {
-        Health.Value = Health.Value - damage;
-        if (sender.TryGet(out NetworkObject attacker))
-        {
-            if (attacker.tag == "Player")
-            {
-                aggro = true;
-                aggroTimer = 0;
-            }
-        }
-
-    }
-
-    [Rpc(SendTo.Server)]
     public void DealDamageServerRPC(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
     {
         if (reference.TryGet(out NetworkObject target))
         {
-            if (target.tag == "Player")
-            {
-                target.GetComponent<BasePlayerController>().TakeDamageServerRpc(damage, sender);
-            }
-            else if (target.tag == "Tower")
-            {
-                target.GetComponent<Tower>().TakeDamageServerRPC(damage, sender);
-            }
-            else if (target.tag == "Inhibitor")
-            {
-                target.GetComponent<Inhibitor>().TakeDamageServerRPC(damage, sender);
-            }
-            else if (target.tag == "Minion")
-            {
-                target.GetComponent<MeleeMinion>().TakeDamageServerRPC(damage, sender);
-            }
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, 0);
         }
         else
         {

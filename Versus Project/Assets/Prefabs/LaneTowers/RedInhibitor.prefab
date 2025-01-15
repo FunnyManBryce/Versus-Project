@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2723332158049792593}
   - component: {fileID: 2543246040788520168}
   - component: {fileID: 4309010894493914732}
+  - component: {fileID: -74645087721382134}
   m_Layer: 0
   m_Name: RedInhibitor
   m_TagString: Inhibitor
@@ -104,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2304862857
+  GlobalObjectIdHash: 1225754387
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -145,9 +146,10 @@ MonoBehaviour:
   cooldownLength: 2
   cooldownTimer: 0
   towerRange: 10
-  startingHealth: 250
-  Health:
-    m_InternalValue: 100
+  health: {fileID: -74645087721382134}
+  healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
+    type: 3}
+  HealthBar: {fileID: 0}
 --- !u!50 &147550970692666639
 Rigidbody2D:
   serializedVersion: 4
@@ -254,3 +256,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-74645087721382134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761847280962229105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f21187303ef2be479ce062faafd0dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth:
+    m_InternalValue: 0
+  maxHealth:
+    m_InternalValue: 0
+  startingMaxHealth: 250
+  armor: 0
+  initialValuesSynced: 0

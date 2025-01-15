@@ -7,8 +7,7 @@ using UnityEngine.AI;
 public class JungleEnemy : NetworkBehaviour
 {
 
-    public NetworkVariable<float> Health = new NetworkVariable<float>(50, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-
+    public Health health;
     private LameManager lameManager;
 
     public NavMeshAgent agent;
@@ -38,7 +37,6 @@ public class JungleEnemy : NetworkBehaviour
     public float aggroLength = 10f;
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
-    public float startingHealth;
 
     public GameObject spawner;
     public GameObject PlayerOne;
@@ -46,6 +44,9 @@ public class JungleEnemy : NetworkBehaviour
     public GameObject jungleEnemy;
     public NetworkObject networkEnemy;
     public NetworkObject currentTarget;
+
+    public GameObject healthBarPrefab;
+    public GameObject HealthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -62,15 +63,26 @@ public class JungleEnemy : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        Health.Value = startingHealth;
-        Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
+        health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
-            if (Health.Value <= 0 && IsServer == true)
+            if (health.lastAttacker.TryGet(out NetworkObject attacker))
+            {
+                if (attacker.tag == "Player")
+                {
+                    aggro = true;
+                    aggroTimer = 0;
+                }
+            }
+            if (health.currentHealth.Value <= 0 && IsServer == true)
             {
                 spawner.GetComponent<JungleSpawner>().isSpawnedEnemyAlive = false;
                 jungleEnemy.GetComponent<NetworkObject>().Despawn();
             }
         };
+        GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
+        HealthBar = healthBar;
+        healthBar.GetComponent<EnemyHealthBar>().enabled = true;
+        healthBar.GetComponent<EnemyHealthBar>().SyncValues(jungleEnemy, jungleTarget);
     }
 
     // Update is called once per frame
@@ -129,29 +141,11 @@ public class JungleEnemy : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender)
-    {
-        Health.Value = Health.Value - damage;
-        if (sender.TryGet(out NetworkObject attacker))
-        {
-            if (attacker.tag == "Player")
-            {
-                aggro = true;
-                aggroTimer = 0;
-            }
-        }
-
-    }
-
-    [Rpc(SendTo.Server)]
     public void DealDamageServerRPC(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
     {
         if (reference.TryGet(out NetworkObject target))
         {
-            if (target.tag == "Player")
-            {
-                target.GetComponent<BasePlayerController>().TakeDamageServerRpc(damage, sender);
-            }
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, 0);
         }
         else
         {

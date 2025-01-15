@@ -8,35 +8,38 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private Image fillImage;
     [SerializeField] private TextMeshProUGUI healthText;
 
-    [SerializeField] private BasePlayerController playerController;
+    [SerializeField] private Health health;
     private float maxHealth;
+
+    public bool initializedHealth;
 
     private void OnEnable()
     {
         var localPlayer = GameObject.FindGameObjectWithTag("Player");
         if (localPlayer != null)
         {
-            playerController = localPlayer.GetComponent<BasePlayerController>();
-            if (playerController != null)
-            {
-                maxHealth = playerController.maxHealth;
-                InitializeHealthBar();
-                playerController.currentHealth.OnValueChanged += UpdateHealthBar;
-                UpdateHealthBar(0, playerController.currentHealth.Value);
-            }
+            health = localPlayer.GetComponent<Health>();
         }
     }
 
     private void OnDisable()
     {
-        if (playerController != null)
+        if (health != null)
         {
-            playerController.currentHealth.OnValueChanged -= UpdateHealthBar;
+            health.currentHealth.OnValueChanged -= UpdateHealthBar;
         }
     }
 
     private void InitializeHealthBar()
     {
+        if (health != null)
+        {
+            maxHealth = health.maxHealth.Value;
+            health.currentHealth.OnValueChanged += UpdateHealthBar;
+            UpdateHealthBar(0, health.currentHealth.Value);
+            Debug.Log("Max health is " + health.maxHealth.Value);
+            Debug.Log("Current health is " + health.currentHealth.Value);
+        }
         if (healthSlider != null)
         {
             healthSlider.maxValue = maxHealth;
@@ -62,6 +65,15 @@ public class PlayerHealthBar : MonoBehaviour
         if (healthText != null)
         {
             healthText.text = $"{Mathf.Ceil(currentHealth)}/{maxHealth}";
+        }
+    }
+    
+    void Update()
+    {
+        if (initializedHealth == false && health.initialValuesSynced == true)
+        {
+            InitializeHealthBar();
+            initializedHealth = true;
         }
     }
 }

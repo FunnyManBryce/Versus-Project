@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2991641484458318829}
   - component: {fileID: 2518130113755198442}
   - component: {fileID: 7644838041655011798}
+  - component: {fileID: -4208672958087887873}
   m_Layer: 0
   m_Name: BlueTower
   m_TagString: Tower
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1283965587
+  GlobalObjectIdHash: 862493579
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -141,14 +142,16 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   targetName: 
   Damage: 40
+  orderInLane: 0
   aggroTimer: 0
   aggroLength: 10
   cooldownLength: 2
   cooldownTimer: 0
   towerRange: 10
-  startingHealth: 100
-  Health:
-    m_InternalValue: 1000
+  health: {fileID: -4208672958087887873}
+  healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
+    type: 3}
+  HealthBar: {fileID: 0}
 --- !u!50 &3814562962944772117
 Rigidbody2D:
   serializedVersion: 4
@@ -289,3 +292,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 2518130113755198442}
+--- !u!114 &-4208672958087887873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003257773554308308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f21187303ef2be479ce062faafd0dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth:
+    m_InternalValue: 0
+  maxHealth:
+    m_InternalValue: 0
+  startingMaxHealth: 100
+  armor: 0
+  initialValuesSynced: 0

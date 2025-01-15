@@ -17,21 +17,21 @@ public class Inhibitor : Tower
         {
             if (lameManager.teamOneTowersLeft.Value != orderInLane)
             {
-                invulnerable = true;
+                health.invulnerable = true;
             }
             else
             {
-                invulnerable = false;
+                health.invulnerable = false;
             }
-        } else
+        } else if(Team == 2)
         {
             if (lameManager.teamTwoTowersLeft.Value != orderInLane)
             {
-                invulnerable = true;
+                health.invulnerable = true;
             }
             else
             {
-                invulnerable = false;
+                health.invulnerable = false;
             }
         }
     }

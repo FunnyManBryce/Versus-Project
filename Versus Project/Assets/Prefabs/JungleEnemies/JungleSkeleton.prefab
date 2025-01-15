@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 385054977924169405}
   - component: {fileID: 7173644152583605978}
   - component: {fileID: 9174658247447894326}
+  - component: {fileID: 5261390317281957475}
   m_Layer: 8
   m_Name: JungleSkeleton
   m_TagString: JungleEnemy
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4008936018
+  GlobalObjectIdHash: 4088190194
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -303,8 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6f7a3198c241c4198bd8ab37979696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health:
-    m_InternalValue: 30
+  health: {fileID: 5261390317281957475}
   agent: {fileID: 4082273046993157032}
   jungleTarget: {fileID: 5134948185573290296}
   playerOneTarget: {fileID: 0}
@@ -324,10 +324,31 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 0.75
   cooldownTimer: 0
-  startingHealth: 50
   spawner: {fileID: 0}
   PlayerOne: {fileID: 0}
   PlayerTwo: {fileID: 0}
   jungleEnemy: {fileID: 8942386518775928844}
   networkEnemy: {fileID: 6782888038592277727}
   currentTarget: {fileID: 0}
+  healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
+    type: 3}
+  HealthBar: {fileID: 0}
+--- !u!114 &5261390317281957475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942386518775928844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f21187303ef2be479ce062faafd0dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth:
+    m_InternalValue: 0
+  maxHealth:
+    m_InternalValue: 50
+  startingMaxHealth: 50
+  armor: 0
+  initialValuesSynced: 0

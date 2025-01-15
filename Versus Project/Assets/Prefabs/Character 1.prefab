@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 7670937510975769395}
   - component: {fileID: 3297089066167603808}
   - component: {fileID: 4824983665588721915}
+  - component: {fileID: -8253534391822271971}
   m_Layer: 0
   m_Name: Character 1
   m_TagString: Player
@@ -276,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 813428587
+  GlobalObjectIdHash: 2373298642
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -302,9 +303,6 @@ MonoBehaviour:
   AutoAttackSprite: {fileID: 0}
   maxSpeed: 8
   currentSpeed: 0
-  currentHealth:
-    m_InternalValue: 0
-  maxHealth: 600
   attackDamage: 10
   autoAttackSpeed: 0.7
   autoAttackProjSpeed: 8
@@ -319,6 +317,8 @@ MonoBehaviour:
   maxMana: 400
   mana: 0
   manaRegen: 0
+  resevoirRegen: 0
+  health: {fileID: -8253534391822271971}
   projectilePrefab: {fileID: 315554442559877787, guid: 81b6ba07eb9f35642a910177aa04f334,
     type: 3}
   teamNumber:
@@ -499,3 +499,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.53441936, y: 0.9627313}
   m_EdgeRadius: 0
+--- !u!114 &-8253534391822271971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846404579260722031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f21187303ef2be479ce062faafd0dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth:
+    m_InternalValue: 0
+  maxHealth:
+    m_InternalValue: 0
+  startingMaxHealth: 600
+  armor: 0

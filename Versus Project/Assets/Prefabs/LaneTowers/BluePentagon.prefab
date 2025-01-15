@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6529231957832308889}
   - component: {fileID: 2991641484458318829}
   - component: {fileID: 6470028386234375860}
+  - component: {fileID: 4081588848957086884}
   m_Layer: 0
   m_Name: BluePentagon
   m_TagString: Tower
@@ -104,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1579353524
+  GlobalObjectIdHash: 958113541
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -243,11 +244,32 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   targetName: 
   Damage: 80
+  orderInLane: 0
   aggroTimer: 0
   aggroLength: 10
   cooldownLength: 3
   cooldownTimer: 0
   towerRange: 20
-  startingHealth: 400
-  Health:
-    m_InternalValue: 200
+  health: {fileID: 4081588848957086884}
+  healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
+    type: 3}
+  HealthBar: {fileID: 0}
+--- !u!114 &4081588848957086884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003257773554308308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f21187303ef2be479ce062faafd0dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth:
+    m_InternalValue: 0
+  maxHealth:
+    m_InternalValue: 0
+  startingMaxHealth: 400
+  armor: 0
+  initialValuesSynced: 0

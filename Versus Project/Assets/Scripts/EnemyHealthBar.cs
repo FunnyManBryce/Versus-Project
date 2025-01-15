@@ -11,26 +11,18 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] private Image fillImage;
     //[SerializeField] private TextMeshProUGUI healthText;
 
-    public GameObject Minion;
-    public Transform minionPosition;
-    public MeleeMinion meleeMinion;
+    public GameObject Object;
+    public Transform objPosition;
+    public Health health;
     public float maxHealth;
 
-    public void SyncValues(GameObject minion, Transform position)
+    public bool initializedHealth;
+
+    public void SyncValues(GameObject gameObject, Transform position)
     {
-        Minion = minion;
-        minionPosition = position;
-        if (minion != null)
-        {
-            meleeMinion = minion.GetComponent<MeleeMinion>();
-            if (meleeMinion != null)
-            {
-                maxHealth = meleeMinion.startingHealth;
-                InitializeHealthBar();
-                meleeMinion.Health.OnValueChanged += UpdateHealthBar;
-                UpdateHealthBar(0, meleeMinion.Health.Value);
-            }
-        }
+        Object = gameObject;
+        objPosition = position;
+        health = Object.GetComponent<Health>();
     }
 
     /*private void OnDisable()
@@ -43,6 +35,16 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void InitializeHealthBar()
     {
+        if (Object != null)
+        {
+            health = Object.GetComponent<Health>();
+            if (health != null)
+            {
+                maxHealth = health.maxHealth.Value;
+                health.currentHealth.OnValueChanged += UpdateHealthBar;
+                UpdateHealthBar(0, health.currentHealth.Value);
+            }
+        }
         if (healthSlider != null)
         {
             healthSlider.maxValue = maxHealth;
@@ -73,13 +75,18 @@ public class EnemyHealthBar : MonoBehaviour
 
     void Update()
     {
-        if(Minion == null)
+        if(initializedHealth == false && health.initialValuesSynced == true)
+        {
+            InitializeHealthBar();
+            initializedHealth = true;
+        }
+        if(Object == null)
         {
             Destroy(healthBar);
         } 
-        if(minionPosition != null)
+        if(objPosition != null)
         {
-            healthBar.transform.position = new Vector3(minionPosition.position.x, minionPosition.position.y + 1.5f, minionPosition.position.z);
+            healthBar.transform.position = new Vector3(objPosition.position.x, objPosition.position.y + 1.5f, objPosition.position.z);
         }
     }
 }
