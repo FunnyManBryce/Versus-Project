@@ -17,6 +17,8 @@ public class Tower : NetworkBehaviour
     public bool isAttacking = false;
     public bool cooldown = false;
     public bool aggro = false;
+    public bool dead;
+    public bool playerLastHit = false;
 
     public GameObject tower;
     public GameObject enemyPlayer;
@@ -28,7 +30,9 @@ public class Tower : NetworkBehaviour
     private Vector3 distanceFromPlayer;
     private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
-    
+
+    public int goldGiven;
+
     public string targetName;
 
     public float Damage;
@@ -152,8 +156,24 @@ public class Tower : NetworkBehaviour
     {
         health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
-            if (health.currentHealth.Value <= 0 && IsServer == true)
+            if (health.lastAttacker.TryGet(out NetworkObject attacker))
             {
+                if (attacker.tag == "Player")
+                {
+                    playerLastHit = true;
+                }
+                else
+                {
+                    playerLastHit = false;
+                }
+            }
+            if (health.currentHealth.Value <= 0 && IsServer == true && dead == false)
+            {
+                dead = true;
+                if (playerLastHit)
+                {
+                    enemyPlayer.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
+                }
                 Debug.Log("Tower has been destroyed");
                 lameManager.TowerDestroyedServerRPC(Team);
                 tower.GetComponent<NetworkObject>().Despawn();

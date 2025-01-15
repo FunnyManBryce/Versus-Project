@@ -40,9 +40,25 @@ public class Inhibitor : Tower
     {
         health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
-            if (health.currentHealth.Value <= 0 && IsServer == true)
+            if (health.lastAttacker.TryGet(out NetworkObject attacker))
             {
-                if(Team == 1)
+                if (attacker.tag == "Player")
+                {
+                    playerLastHit = true;
+                }
+                else
+                {
+                    playerLastHit = false;
+                }
+            }
+            if (health.currentHealth.Value <= 0 && IsServer == true && dead == false)
+            {
+                dead = true;
+                if (playerLastHit)
+                {
+                    enemyPlayer.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
+                }
+                if (Team == 1)
                 {
                     lameManager.teamOneInhibAlive = false;
                 } else if(Team == 2)

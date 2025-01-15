@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 15770413
+  GlobalObjectIdHash: 1536596993
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -213,6 +213,7 @@ MonoBehaviour:
   isAttacking: 0
   cooldown: 0
   aggro: 0
+  playerLastHit: 0
   targetName: 
   Damage: 7.5
   chasePlayerDistance: 7
@@ -226,6 +227,8 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 0.75
   cooldownTimer: 0
+  XPGiven: 20
+  goldGiven: 20
   enemyPlayer: {fileID: 0}
   enemyMinion: {fileID: 0}
   enemyTower: {fileID: 0}
@@ -344,3 +347,5 @@ MonoBehaviour:
     m_InternalValue: 0
   startingMaxHealth: 40
   armor: 0
+  initialValuesSynced: 0
+  invulnerable: 0

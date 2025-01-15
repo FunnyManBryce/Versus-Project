@@ -9,6 +9,7 @@ public class JungleEnemy : NetworkBehaviour
 
     public Health health;
     private LameManager lameManager;
+    private BasePlayerController playerToGetGold;
 
     public NavMeshAgent agent;
 
@@ -27,6 +28,8 @@ public class JungleEnemy : NetworkBehaviour
     public bool isAttacking = false;
     public bool cooldown = false;
     public bool aggro = false;
+    public bool playerLastHit = false;
+    public bool dead;
 
     public string targetName;
     public float Damage;
@@ -37,6 +40,9 @@ public class JungleEnemy : NetworkBehaviour
     public float aggroLength = 10f;
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
+
+    public float XPGiven;
+    public int goldGiven;
 
     public GameObject spawner;
     public GameObject PlayerOne;
@@ -71,10 +77,20 @@ public class JungleEnemy : NetworkBehaviour
                 {
                     aggro = true;
                     aggroTimer = 0;
+                    playerLastHit = true;
+                    playerToGetGold = attacker.GetComponent<BasePlayerController>();
+                } else
+                {
+                    playerLastHit = false;
                 }
             }
-            if (health.currentHealth.Value <= 0 && IsServer == true)
+            if (health.currentHealth.Value <= 0 && IsServer == true && dead == false)
             {
+                dead = true;
+                if (playerLastHit)
+                {
+                    playerToGetGold.Gold.Value += goldGiven;
+                }
                 spawner.GetComponent<JungleSpawner>().isSpawnedEnemyAlive = false;
                 jungleEnemy.GetComponent<NetworkObject>().Despawn();
             }

@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public class MeleeMinion : NetworkBehaviour
 {
     public int Team;
-    //public NetworkVariable<float> Health = new NetworkVariable<float>(50, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public Health health;
     private LameManager lameManager;
@@ -30,6 +29,8 @@ public class MeleeMinion : NetworkBehaviour
     public bool isAttacking = false;
     public bool cooldown = false;
     public bool aggro = false;
+    public bool playerLastHit = false;
+    public bool dead;
 
     public string targetName;
     public float Damage;
@@ -44,6 +45,9 @@ public class MeleeMinion : NetworkBehaviour
     public float aggroLength = 10f;
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
+
+    public float XPGiven;
+    public int goldGiven;
 
     public GameObject enemyPlayer;
     public GameObject enemyMinion;
@@ -75,12 +79,17 @@ public class MeleeMinion : NetworkBehaviour
                 {
                     aggro = true;
                     aggroTimer = 0;
+                    playerLastHit = true;
+                } else
+                {
+                    playerLastHit = false;
                 }
             }
             if (health.currentHealth.Value <= 0)
             {
-                if (IsServer == true)
+                if (IsServer == true && dead == false)
                 {
+                    dead = true;
                     if (Team == 1)
                     {
                         lameManager.teamOneMinions.Remove(Minion);
@@ -88,6 +97,10 @@ public class MeleeMinion : NetworkBehaviour
                     else
                     {
                         lameManager.teamTwoMinions.Remove(Minion);
+                    }
+                    if(playerLastHit)
+                    {
+                        enemyPlayer.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
                     }
                     Minion.GetComponent<NetworkObject>().Despawn();
                 }

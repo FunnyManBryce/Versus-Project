@@ -38,6 +38,10 @@ public class BasePlayerController : NetworkBehaviour
     private float lastRegenTick = 0f;
     public bool resevoirRegen = false;
     public Health health;
+    public float XPToNextLevel;
+    public NetworkVariable<float> XP = new NetworkVariable<float>();
+    public NetworkVariable<int> Gold = new NetworkVariable<int>();
+
 
     public GameObject projectilePrefab;
     public NetworkVariable<int> teamNumber = new NetworkVariable<int>();
@@ -264,16 +268,19 @@ public class BasePlayerController : NetworkBehaviour
     #endregion
     private void FixedUpdate()
     {
+        if(IsServer)
+        {
+            if(resevoirRegen == true)
+            {
+                health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + 1, health.maxHealth.Value);
+            }
+        }
+
         if (!IsOwner) return;
 
         if (animator != null)
         {
             animator.SetFloat("Speed", currentSpeed);
-        }
-
-        if(resevoirRegen == true)
-        {
-            health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + 1, health.maxHealth.Value);
         }
 
         if (currentTarget != null && playerInput.magnitude == 0)
