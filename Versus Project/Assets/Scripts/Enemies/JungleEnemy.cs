@@ -41,6 +41,7 @@ public class JungleEnemy : NetworkBehaviour
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
 
+    public float XPRange;
     public float XPGiven;
     public int goldGiven;
 
@@ -90,7 +91,9 @@ public class JungleEnemy : NetworkBehaviour
                 if (playerLastHit)
                 {
                     playerToGetGold.Gold.Value += goldGiven;
+                    playerToGetGold.XP.Value += XPGiven;
                 }
+
                 spawner.GetComponent<JungleSpawner>().isSpawnedEnemyAlive = false;
                 jungleEnemy.GetComponent<NetworkObject>().Despawn();
             }

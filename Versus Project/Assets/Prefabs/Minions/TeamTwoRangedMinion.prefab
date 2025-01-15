@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 385054977924169405}
   - component: {fileID: 7173644152583605978}
   - component: {fileID: -2088482487770314610}
+  - component: {fileID: 6779535956853169842}
   m_Layer: 8
   m_Name: TeamTwoRangedMinion
   m_TagString: Minion
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1536596993
+  GlobalObjectIdHash: 15770413
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -214,6 +215,7 @@ MonoBehaviour:
   cooldown: 0
   aggro: 0
   playerLastHit: 0
+  dead: 0
   targetName: 
   Damage: 7.5
   chasePlayerDistance: 7
@@ -227,6 +229,7 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 0.75
   cooldownTimer: 0
+  XPRange: 10
   XPGiven: 20
   goldGiven: 20
   enemyPlayer: {fileID: 0}
@@ -349,3 +352,49 @@ MonoBehaviour:
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
+--- !u!61 &6779535956853169842
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942386518775928844}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.12, y: 0.16}
+    newSize: {x: 0.12, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.12, y: 0.16}
+  m_EdgeRadius: 0

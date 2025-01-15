@@ -174,7 +174,6 @@ public class Tower : NetworkBehaviour
                 {
                     enemyPlayer.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
                 }
-                Debug.Log("Tower has been destroyed");
                 lameManager.TowerDestroyedServerRPC(Team);
                 tower.GetComponent<NetworkObject>().Despawn();
             }

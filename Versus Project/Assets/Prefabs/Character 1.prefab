@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 813428587
+  GlobalObjectIdHash: 2373298642
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -319,6 +319,11 @@ MonoBehaviour:
   manaRegen: 0
   resevoirRegen: 0
   health: {fileID: -8253534391822271971}
+  XPToNextLevel: 0
+  XP:
+    m_InternalValue: 0
+  Gold:
+    m_InternalValue: 0
   projectilePrefab: {fileID: 315554442559877787, guid: 81b6ba07eb9f35642a910177aa04f334,
     type: 3}
   teamNumber:
@@ -487,7 +492,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.009392828, y: 0.024421245}
+  m_Offset: {x: 0.007686019, y: -0.0021455884}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -497,7 +502,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.53441936, y: 0.9627313}
+  m_Size: {x: 1.4111261, y: 1.1145419}
   m_EdgeRadius: 0
 --- !u!114 &-8253534391822271971
 MonoBehaviour:

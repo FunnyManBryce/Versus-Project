@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2543246040788520168}
   - component: {fileID: 4309010894493914732}
   - component: {fileID: -74645087721382134}
+  - component: {fileID: 5408749681070355075}
   m_Layer: 0
   m_Name: RedInhibitor
   m_TagString: Inhibitor
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1225754387
+  GlobalObjectIdHash: 2304862857
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -133,11 +134,14 @@ MonoBehaviour:
   isAttacking: 0
   cooldown: 0
   aggro: 0
+  dead: 0
+  playerLastHit: 0
   tower: {fileID: 761847280962229105}
   enemyPlayer: {fileID: 0}
   enemyMinion: {fileID: 0}
   networkTower: {fileID: -3539533397057558113}
   currentTarget: {fileID: 0}
+  goldGiven: 100
   targetName: 
   Damage: 0
   orderInLane: 0
@@ -272,6 +276,43 @@ MonoBehaviour:
     m_InternalValue: 0
   maxHealth:
     m_InternalValue: 0
-  startingMaxHealth: 250
+  startingMaxHealth: 200
   armor: 0
   initialValuesSynced: 0
+  invulnerable: 0
+--- !u!58 &5408749681070355075
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761847280962229105}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.00041675568, y: 0}
+  m_Radius: 0.17626476

@@ -46,6 +46,7 @@ public class MeleeMinion : NetworkBehaviour
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
 
+    public float XPRange;
     public float XPGiven;
     public int goldGiven;
 
@@ -101,6 +102,10 @@ public class MeleeMinion : NetworkBehaviour
                     if(playerLastHit)
                     {
                         enemyPlayer.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
+                    }
+                    if(distanceFromPlayer.magnitude < XPRange)
+                    {
+                        enemyPlayer.GetComponent<BasePlayerController>().XP.Value += XPGiven;
                     }
                     Minion.GetComponent<NetworkObject>().Despawn();
                 }
