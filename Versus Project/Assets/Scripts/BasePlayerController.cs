@@ -38,6 +38,7 @@ public class BasePlayerController : NetworkBehaviour
     public float manaRegen = 0f;
 
     private float lastRegenTick = 0f;
+    public bool resevoirRegen = false;
 
     public GameObject projectilePrefab;
     public NetworkVariable<int> teamNumber = new NetworkVariable<int>();
@@ -303,6 +304,11 @@ public class BasePlayerController : NetworkBehaviour
         if (animator != null)
         {
             animator.SetFloat("Speed", currentSpeed);
+        }
+
+        if(resevoirRegen == true)
+        {
+            currentHealth.Value = Mathf.Min(currentHealth.Value + 1, maxHealth);
         }
 
         if (currentTarget != null && playerInput.magnitude == 0)

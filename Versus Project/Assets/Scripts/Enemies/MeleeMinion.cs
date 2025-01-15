@@ -72,7 +72,6 @@ public class MeleeMinion : NetworkBehaviour
         {
             if(Health.Value <= 0)
             {
-                //Destroy(HealthBar);
                 if (IsServer == true)
                 {
                     if (Team == 1)

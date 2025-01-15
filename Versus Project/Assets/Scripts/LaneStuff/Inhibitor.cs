@@ -3,55 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class Inhibitor : NetworkBehaviour
+public class Inhibitor : Tower
 {
-    public int Team;
-    private LameManager lameManager;
-
-    public Animator animator;
-
-
-    public GameObject inhibitor;
-    public NetworkObject networkInhibitor;
-
-    public float startingHealth;
-    public NetworkVariable<float> Health = new NetworkVariable<float>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-
-
-
     void Start()
     {
-        networkInhibitor = inhibitor.GetComponent<NetworkObject>();
+        networkTower = tower.GetComponent<NetworkObject>();
         lameManager = FindObjectOfType<LameManager>();
     }
 
-    public override void OnNetworkSpawn()
+    protected override void Update()
     {
-        if(IsServer)
+        if(Team == 1)
         {
-            Health.Value = startingHealth;
-        }
-        Health.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
-        {
-            if (Health.Value <= 0 && IsServer == true)
+            if (lameManager.teamOneTowersLeft.Value != orderInLane)
             {
-                lameManager.TowerDestroyedServerRPC(Team);
-                if(Team == 1)
-                {
-                    lameManager.teamOneInhibAlive = false;
-                } else if(Team == 2)
-                {
-                    lameManager.teamTwoInhibAlive = false;
-                }
-                inhibitor.GetComponent<NetworkObject>().Despawn();
+                invulnerable = true;
             }
-        };
+            else
+            {
+                invulnerable = false;
+            }
+        } else
+        {
+            if (lameManager.teamTwoTowersLeft.Value != orderInLane)
+            {
+                invulnerable = true;
+            }
+            else
+            {
+                invulnerable = false;
+            }
+        }
     }
-
-    [Rpc(SendTo.Server)]
-    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender)
-    {
-        Health.Value = Health.Value - damage;
-    }
-
 }

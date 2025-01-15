@@ -7,7 +7,7 @@ using Unity.Netcode;
 public class Tower : NetworkBehaviour
 {
     public int Team;
-    private LameManager lameManager;
+    protected private LameManager lameManager;
 
     public Transform towerTarget;
     public Transform enemyMinionTarget;
@@ -17,6 +17,7 @@ public class Tower : NetworkBehaviour
     public bool isAttacking = false;
     public bool cooldown = false;
     public bool aggro = false;
+    protected private bool invulnerable = false;
 
     public GameObject tower;
     public GameObject enemyPlayer;
@@ -32,6 +33,7 @@ public class Tower : NetworkBehaviour
     public string targetName;
 
     public float Damage;
+    public int orderInLane;
     public float aggroTimer = 0f;
     public float aggroLength = 10f;
     public float cooldownLength = 2f;
@@ -46,11 +48,18 @@ public class Tower : NetworkBehaviour
         lameManager = FindObjectOfType<LameManager>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (!IsServer || isAttacking) return;
         if (Team == 1 && lameManager.playerTwoChar != null)
         {
+            if (lameManager.teamOneTowersLeft.Value != orderInLane)
+            {
+                invulnerable = true;
+            } else
+            {
+                invulnerable = false;
+            }
             enemyPlayer = lameManager.playerTwoChar;
             oldTarget = new Vector3(1000, 1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamTwoMinions)
@@ -67,6 +76,14 @@ public class Tower : NetworkBehaviour
         }
         else if (Team == 2 && lameManager.playerOneChar != null)
         {
+            if (lameManager.teamTwoTowersLeft.Value != orderInLane)
+            {
+                invulnerable = true;
+            }
+            else
+            {
+                invulnerable = false;
+            }
             enemyPlayer = lameManager.playerOneChar;
             oldTarget = new Vector3(1000, 1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamOneMinions)
@@ -162,7 +179,10 @@ public class Tower : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void TakeDamageServerRPC(float damage, NetworkObjectReference sender)
     {
-        Health.Value = Health.Value - damage;
+        if(invulnerable == false)
+        {
+            Health.Value = Health.Value - damage;
+        }
     }
 
     [Rpc(SendTo.Server)]

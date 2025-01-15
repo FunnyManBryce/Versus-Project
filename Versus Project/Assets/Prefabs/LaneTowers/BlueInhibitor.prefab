@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 197699025
+  GlobalObjectIdHash: 99363003
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -127,9 +127,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
+  towerTarget: {fileID: 1967155613948874045}
+  enemyMinionTarget: {fileID: 0}
   animator: {fileID: 0}
-  inhibitor: {fileID: 761847280962229105}
-  networkInhibitor: {fileID: 0}
+  isAttacking: 0
+  cooldown: 0
+  aggro: 0
+  tower: {fileID: 761847280962229105}
+  enemyPlayer: {fileID: 0}
+  enemyMinion: {fileID: 0}
+  networkTower: {fileID: -3539533397057558113}
+  currentTarget: {fileID: 0}
+  targetName: 
+  Damage: 0
+  orderInLane: 0
+  aggroTimer: 0
+  aggroLength: 10
+  cooldownLength: 2
+  cooldownTimer: 0
+  towerRange: 10
   startingHealth: 250
   Health:
     m_InternalValue: 100

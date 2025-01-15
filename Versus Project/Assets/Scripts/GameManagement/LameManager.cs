@@ -163,6 +163,7 @@ public class LameManager : NetworkBehaviour
             } else
             {
                 tower.GetComponent<Tower>().Team = 1;
+                tower.GetComponent<Tower>().orderInLane = i;
             }
             teamOneTowers[i] = tower;
             var towerNetworkObject = tower.GetComponent<NetworkObject>();
@@ -178,6 +179,7 @@ public class LameManager : NetworkBehaviour
             else
             {
                 tower.GetComponent<Tower>().Team = 2;
+                tower.GetComponent<Tower>().orderInLane = i;
             }
             teamTwoTowers[i] = tower;
             var towerNetworkObject = tower.GetComponent<NetworkObject>();
