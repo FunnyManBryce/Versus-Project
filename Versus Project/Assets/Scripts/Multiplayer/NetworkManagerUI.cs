@@ -26,6 +26,7 @@ public class NetworkManagerUI : NetworkBehaviour
     [SerializeField] private GameObject lobbySelectionUI;
     [SerializeField] private GameObject charSelectionUI;
     [SerializeField] private GameObject readyToStartUI;
+    [SerializeField] private GameObject[] characterInfoUI;
     [SerializeField] private GameObject QuitOption;
     [SerializeField] private GameObject IPText;
     public GameObject Character;
@@ -122,6 +123,11 @@ public class NetworkManagerUI : NetworkBehaviour
     public void CharacterNumber(int charNumber)
     {
         characterNumber = charNumber;
+        foreach(GameObject character in characterInfoUI)
+        {
+            character.SetActive(false);
+        }
+        characterInfoUI[charNumber].SetActive(true);
     }
 
     public void ReadyUp() 
