@@ -12,6 +12,8 @@ public class LameManager : NetworkBehaviour
 
     public NetworkVariable<int> teamOneTowersLeft = new NetworkVariable<int>(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<int> teamTwoTowersLeft = new NetworkVariable<int>(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<float> matchTimer = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<int> intMatchTimer = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     [SerializeField] private GameObject lameManager;
 
@@ -62,13 +64,19 @@ public class LameManager : NetworkBehaviour
     void Update()
     {
         if (!IsServer) return;
-        if (minionSpawnTimer < spawnTimerEnd && gameStarted == true)
+        if(gameStarted)
         {
-            minionSpawnTimer += Time.deltaTime;
-        } else if(gameStarted == true)
-        {
-            MinionSpawnServerRPC();
-            minionSpawnTimer = 0;
+            matchTimer.Value += Time.deltaTime;
+            intMatchTimer.Value = (int)matchTimer.Value;
+            if (minionSpawnTimer < spawnTimerEnd)
+            {
+                minionSpawnTimer += Time.deltaTime;
+            }
+            else
+            {
+                MinionSpawnServerRPC();
+                minionSpawnTimer = 0;
+            }
         }
     }
 
