@@ -61,8 +61,14 @@ public class BasePlayerController : NetworkBehaviour
             SetTeamServerRpc(team);
             Debug.Log("1");
 
-            GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Player UI Canvas").transform);
-            healthBar.GetComponent<PlayerHealthBar>().enabled = true;
+            string canvasName = NetworkManager.LocalClientId == 0 ? "Player1UICanvas" : "Player2UICanvas";
+            GameObject playerCanvas = GameObject.Find(canvasName);
+
+            if (playerCanvas != null)
+            {
+                GameObject healthBar = Instantiate(healthBarPrefab, playerCanvas.transform);
+                healthBar.GetComponent<PlayerHealthBar>().enabled = true;
+            }
         }
     }
 
