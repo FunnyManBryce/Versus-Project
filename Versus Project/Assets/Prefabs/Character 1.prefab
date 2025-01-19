@@ -521,6 +521,6 @@ MonoBehaviour:
   maxHealth:
     m_InternalValue: 0
   startingMaxHealth: 600
-  armor: 0
+  armor: 20
   initialValuesSynced: 0
   invulnerable: 0

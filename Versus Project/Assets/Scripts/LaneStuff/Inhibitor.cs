@@ -23,7 +23,9 @@ public class Inhibitor : Tower
             {
                 health.invulnerable = false;
             }
-        } else if(Team == 2)
+            enemyPlayer = lameManager.playerTwoChar;
+        }
+        else if(Team == 2)
         {
             if (lameManager.teamTwoTowersLeft.Value != orderInLane)
             {
@@ -33,6 +35,7 @@ public class Inhibitor : Tower
             {
                 health.invulnerable = false;
             }
+            enemyPlayer = lameManager.playerOneChar;
         }
     }
 

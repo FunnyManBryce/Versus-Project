@@ -339,10 +339,18 @@ public class BasePlayerController : NetworkBehaviour
     {
         if (buffType == "Speed")
         {
-            IEnumerator coroutine = BuffDuration(buffType, amount, duration);
-            StartCoroutine(coroutine);
             maxSpeed += amount;
         }
+        if (buffType == "Attack Damage")
+        {
+            attackDamage += amount;
+        }
+        if (buffType == "Armor")
+        {
+            health.armor += amount;
+        }
+        IEnumerator coroutine = BuffDuration(buffType, amount, duration);
+        StartCoroutine(coroutine);
         StatChangeClientRpc(buffType, amount, duration);
     }
 
@@ -359,6 +367,14 @@ public class BasePlayerController : NetworkBehaviour
         {
             maxSpeed -= amount;
         }
+        if (buffType == "Attack Damage")
+        {
+            attackDamage -= amount;
+        }
+        if (buffType == "Armor")
+        {
+            health.armor -= amount;
+        }
         StatChangeClientRpc(buffType, -amount, duration);
     }
 
@@ -368,6 +384,14 @@ public class BasePlayerController : NetworkBehaviour
         if (buffType == "Speed")
         {
             maxSpeed += amount;
+        }
+        if (buffType == "Attack Damage")
+        {
+            attackDamage += amount;
+        }
+        if (buffType == "Armor")
+        {
+            health.armor += amount;
         }
     }
 }

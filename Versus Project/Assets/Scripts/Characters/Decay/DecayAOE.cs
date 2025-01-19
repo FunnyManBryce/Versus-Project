@@ -22,9 +22,9 @@ public class DecayAOE : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.localPosition = new Vector3(0, 0, 0);
         if (!IsServer) return;
         lifespan -= Time.deltaTime;
-        transform.localPosition = new Vector3(0,0,0);
         if(lifespan < 0)
         {
             gameObject.GetComponent<NetworkObject>().Despawn();

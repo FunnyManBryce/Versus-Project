@@ -155,6 +155,7 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
     type: 3}
   HealthBar: {fileID: 0}
+  inhibitor: {fileID: 761847280962229105}
 --- !u!50 &147550970692666639
 Rigidbody2D:
   serializedVersion: 4

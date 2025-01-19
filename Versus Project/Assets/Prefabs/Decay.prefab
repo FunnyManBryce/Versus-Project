@@ -475,7 +475,7 @@ MonoBehaviour:
   maxHealth:
     m_InternalValue: 0
   startingMaxHealth: 600
-  armor: 0
+  armor: 30
   initialValuesSynced: 0
   invulnerable: 0
 --- !u!114 &2299055155951191650
@@ -495,10 +495,10 @@ MonoBehaviour:
   AutoAttackSprite: {fileID: 2570568061770048435}
   maxSpeed: 8
   currentSpeed: 0
-  attackDamage: 10
+  attackDamage: 15
   autoAttackSpeed: 1
   autoAttackProjSpeed: 5
-  attackRange: 10
+  attackRange: 5
   lastAttackTime: 0
   isAttacking: 0
   armor: 20
