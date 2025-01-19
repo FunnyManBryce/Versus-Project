@@ -123,21 +123,11 @@ public class MeleeMinion : NetworkBehaviour
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
             cooldownTimer += Time.deltaTime;
-            if(isRanged && distanceFromTarget.magnitude < minionAttackDistance)
-            {
-                moveSpeed = 0;
-                agent.speed = moveSpeed;
-            }
         }
         else if (cooldownTimer >= cooldownLength)
         {
             cooldown = false;
             cooldownTimer = 0;
-            if(isRanged)
-            {
-                moveSpeed = 3;
-                agent.speed = moveSpeed;
-            }
         }
         if (aggro == true && aggroTimer < aggroLength)
         {
@@ -261,6 +251,30 @@ public class MeleeMinion : NetworkBehaviour
         cooldown = true;
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
+    {
+        if (buffType == "Speed")
+        {
+            IEnumerator coroutine = BuffDuration(buffType, amount, duration);
+            StartCoroutine(coroutine);
+            moveSpeed += amount;
+        }
+    }
 
+    public IEnumerator BuffDuration(string buffType, float amount, float duration) //Waits a bit before changing stats back to default
+    {
+        yield return new WaitForSeconds(duration);
+        BuffEndServerRpc(buffType, amount, duration);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void BuffEndServerRpc(string buffType, float amount, float duration) //changes stat to what it was before
+    {
+        if (buffType == "Speed")
+        {
+            moveSpeed -= amount;
+        }
+    }
 
 }

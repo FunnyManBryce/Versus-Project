@@ -47,7 +47,6 @@ public class DecayPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void AOESummonServerRpc()
     {
-        Debug.Log("Umm?");
         var AOE = Instantiate(AOEObject, Decay.transform.position, Quaternion.identity);
         AOE.GetComponent<DecayAOE>().team = teamNumber.Value;
         AOE.GetComponent<DecayAOE>().sender = Decay.GetComponent<NetworkObject>();

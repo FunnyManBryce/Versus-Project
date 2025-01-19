@@ -46,11 +46,14 @@ public class DecayAOE : NetworkBehaviour
 
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                Debug.Log("wait a minute...");
                 collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), 0);
                 if(collider.GetComponent<BasePlayerController>() != null)
                 {
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", speedReductionPerTick, 5f);
+                }
+                if (collider.GetComponent<MeleeMinion>() != null)
+                {
+                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Speed", speedReductionPerTick/2f, 5f);
                 }
             }
         }
