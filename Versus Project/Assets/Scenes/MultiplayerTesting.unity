@@ -6047,7 +6047,7 @@ MonoBehaviour:
         m_MethodName: CharacterSelected
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7846404579260722031, guid: 7362ffdd7bd723f4abad45351edcfc03,
+          m_ObjectArgument: {fileID: 7846404579260722031, guid: cdafb0e314815a64699a13b46c6fb70a,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -8961,7 +8961,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'characterList.Array.data[1]'
       value: 
-      objectReference: {fileID: 7846404579260722031, guid: 7362ffdd7bd723f4abad45351edcfc03,
+      objectReference: {fileID: 7846404579260722031, guid: cdafb0e314815a64699a13b46c6fb70a,
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}

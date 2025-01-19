@@ -78,13 +78,13 @@ public class BasePlayerController : NetworkBehaviour
         teamNumber.Value = team;
     }
 
-    private void Start()
+    private protected void Start()
     {
         playerInput = new Vector2(0, 0);
         lastAttackTime = -autoAttackSpeed;
     }
 
-    private void Update()
+    private protected void Update()
     {
         if (!IsOwner) return;
 
