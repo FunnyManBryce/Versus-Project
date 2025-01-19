@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   lastTick: 0
-  damagePerTick: 1
-  speedReductionPerTick: 0.1
+  damagePerTick: 2.5
+  speedReductionPerTick: -0.5
   AOEPos: {fileID: 5437192985226083262}
   lifespan: 5
   sender: {fileID: 0}

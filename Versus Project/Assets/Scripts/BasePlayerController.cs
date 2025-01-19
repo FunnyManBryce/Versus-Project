@@ -333,4 +333,41 @@ public class BasePlayerController : NetworkBehaviour
     {
         health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + regenAmount, health.maxHealth.Value);
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
+    {
+        if (buffType == "Speed")
+        {
+            IEnumerator coroutine = BuffDuration(buffType, amount, duration);
+            StartCoroutine(coroutine);
+            maxSpeed += amount;
+        }
+        StatChangeClientRpc(buffType, amount, duration);
+    }
+
+    public IEnumerator BuffDuration(string buffType, float amount, float duration) //Waits a bit before changing stats back to default
+    {
+        yield return new WaitForSeconds(duration);
+        BuffEndServerRpc(buffType, amount, duration);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void BuffEndServerRpc(string buffType, float amount, float duration) //changes stat to what it was before
+    {
+        if (buffType == "Speed")
+        {
+            maxSpeed -= amount;
+        }
+        StatChangeClientRpc(buffType, -amount, duration);
+    }
+
+    [Rpc(SendTo.NotServer)]
+    public void StatChangeClientRpc(string buffType, float amount, float duration) //The fact that I effectively have to do the code twice kinda sucks, but it has to happen for stats to be synced to client and host.
+    {
+        if (buffType == "Speed")
+        {
+            maxSpeed += amount;
+        }
+    }
 }

@@ -44,10 +44,14 @@ public class DecayAOE : NetworkBehaviour
         foreach (var collider in hitColliders)
         {
 
-            if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()))
+            if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-
+                Debug.Log("wait a minute...");
                 collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), 0);
+                if(collider.GetComponent<BasePlayerController>() != null)
+                {
+                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", speedReductionPerTick, 5f);
+                }
             }
         }
     }
