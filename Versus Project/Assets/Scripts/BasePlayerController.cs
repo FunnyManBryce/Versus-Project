@@ -195,7 +195,7 @@ public class BasePlayerController : NetworkBehaviour
     }
 
 
-    private bool CanAttackTarget(NetworkObject targetObject)
+    public bool CanAttackTarget(NetworkObject targetObject)
     {
         // Check if target has a team component
         if (targetObject.TryGetComponent(out BasePlayerController targetPlayer))
@@ -234,7 +234,7 @@ public class BasePlayerController : NetworkBehaviour
             controller.Initialize(autoAttackProjSpeed, attackDamage, targetObj, senderObj);
         }
     }
-    //region deal damage and take damage server rpc
+    //region deal damage server rpc
     #region
     [ServerRpc]
     private void DealDamageServerRpc(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
@@ -249,28 +249,6 @@ public class BasePlayerController : NetworkBehaviour
             Debug.Log("BZZZZ wrong answer");
         }
     }
-
-    /*[Rpc(SendTo.Server)]
-    public void TakeDamageServerRpc(float damage, NetworkObjectReference sender)
-    {
-        if (sender.TryGet(out NetworkObject attackerObj))
-        {
-            BasePlayerController attacker = attackerObj.GetComponent<BasePlayerController>();
-            float effectiveArmor = armor * (1 - (attacker != null ? attacker.armorPen / 100f : 0f));
-
-            // Apply armor damage reduction formula: 100 - (10000 / (100 + armor)) which is the laegue one
-            // I decided to do this for armor as it will not be as premium of a stat as abilty haste
-            float damageReduction = 100f - (10000f / (100f + effectiveArmor));
-            float reducedDamage = damage * (1f - (damageReduction / 100f));
-
-            currentHealth.Value -= reducedDamage;
-
-            if (currentHealth.Value <= 0)
-            {
-                //NetworkObject.Despawn();
-            }
-        }
-    }*/
     #endregion
     private void FixedUpdate()
     {
@@ -379,7 +357,7 @@ public class BasePlayerController : NetworkBehaviour
     }
 
     [Rpc(SendTo.NotServer)]
-    public void StatChangeClientRpc(string buffType, float amount, float duration) //The fact that I effectively have to do the code twice kinda sucks, but it has to happen for stats to be synced to client and host.
+    public void StatChangeClientRpc(string buffType, float amount, float duration) //This makes sure that stats are synced to client and host
     {
         if (buffType == "Speed")
         {

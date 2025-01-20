@@ -502,7 +502,7 @@ MonoBehaviour:
   lastAttackTime: 0
   isAttacking: 0
   armor: 20
-  cDR: 0
+  cDR: 2
   armorPen: 0
   regen: 1.5
   isMelee: 1
@@ -528,6 +528,15 @@ MonoBehaviour:
   lastDecayTime: 0
   decayAmount: 1
   totalStatDecay: 0
+  Decay: {fileID: 7846404579260722031}
+  AOneManaCost: 0
+  abilityOneCD: 20
   AOEObject: {fileID: 6191041724843646727, guid: c5347d732afcf6d40910e3bbf5f563eb,
     type: 3}
-  Decay: {fileID: 7846404579260722031}
+  ATwoManaCost: 0
+  abilityTwoCD: 10
+  shockwaveDamage: 20
+  shockwaveProjectile: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
+    type: 3}
+  ultManaCost: 0
+  ultCD: 60
