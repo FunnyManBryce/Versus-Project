@@ -19,9 +19,9 @@ public class MeleeMinion : NetworkBehaviour
 
     public Animator animator;
 
-    public Vector3 distanceFromTower;
+    private Vector3 distanceFromTower;
     public Vector3 distanceFromTarget;
-    private Vector3 distanceFromPlayer;
+    public Vector3 distanceFromPlayer;
     private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
 
@@ -131,6 +131,12 @@ public class MeleeMinion : NetworkBehaviour
         }
         if (aggro == true && aggroTimer < aggroLength)
         {
+            agent.speed = moveSpeed;
+            distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+            agent.SetDestination(enemyPlayer.transform.position);
+            distanceFromTarget = distanceFromPlayer;
+            currentTarget = enemyPlayer.GetComponent<NetworkObject>();
+            targetName = "Player";
             aggroTimer += Time.deltaTime;
         }
         else if (aggroTimer >= aggroLength)
@@ -174,9 +180,9 @@ public class MeleeMinion : NetworkBehaviour
         }
         distanceFromTower = new Vector3(minionTarget.position.x - towerTarget.position.x, minionTarget.position.y - towerTarget.position.y, 0);
         distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
-        if(enemyMinion == null)
+        if (enemyMinion == null)
         {
-            distanceFromMinion = new Vector3(100, 100, 0);
+            distanceFromMinion = new Vector3(1000, 1000, 0);
         }
         if ((distanceFromTower.magnitude < chaseTowerDistance && aggro == false) || (distanceFromMinion.magnitude > chaseMinionDistance && distanceFromPlayer.magnitude > chasePlayerDistance && aggro == false))
         {
@@ -194,9 +200,10 @@ public class MeleeMinion : NetworkBehaviour
             currentTarget = enemyMinion.GetComponent<NetworkObject>();
             targetName = "Minion";
         }
-        else if (distanceFromPlayer.magnitude < chasePlayerDistance)
+        else if (distanceFromPlayer.magnitude < chasePlayerDistance && aggro == false)
         {
             agent.speed = moveSpeed;
+            distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
             agent.SetDestination(enemyPlayer.transform.position);
             distanceFromTarget = distanceFromPlayer;
             currentTarget = enemyPlayer.GetComponent<NetworkObject>();
@@ -210,6 +217,7 @@ public class MeleeMinion : NetworkBehaviour
         }
         else if (targetName == "Player" && distanceFromTarget.magnitude < playerAttackDistance && cooldown == false)
         {
+            Debug.Log("the worst timeline");
             agent.speed = 0;
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);

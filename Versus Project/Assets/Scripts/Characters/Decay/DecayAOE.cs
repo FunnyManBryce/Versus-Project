@@ -46,7 +46,7 @@ public class DecayAOE : NetworkBehaviour
 
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), 0);
+                collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
                 if(collider.GetComponent<BasePlayerController>() != null)
                 {
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", speedReductionPerTick, 5f);

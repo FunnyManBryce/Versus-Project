@@ -151,8 +151,9 @@ public class BasePlayerController : NetworkBehaviour
         float currentTime = Time.time;
         if (currentTime - lastRegenTick >= 1f) // Check every second
         {
-                RegenHealthServerRpc(regen);
-                lastRegenTick = currentTime;
+            RegenHealthServerRpc(regen);
+            RegenMana(manaRegen);
+            lastRegenTick = currentTime;
         }
     }
 
@@ -242,7 +243,7 @@ public class BasePlayerController : NetworkBehaviour
         if (reference.TryGet(out NetworkObject target))
         {
             Debug.Log("9");
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, 0);
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
         }
         else
         {
@@ -311,6 +312,11 @@ public class BasePlayerController : NetworkBehaviour
     {
         health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + regenAmount, health.maxHealth.Value);
     }
+   
+    private void RegenMana(float regenAmount)
+    {
+        mana = Mathf.Min(mana + regenAmount, maxMana);
+    }
 
     [ServerRpc(RequireOwnership = false)]
     public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
@@ -326,6 +332,22 @@ public class BasePlayerController : NetworkBehaviour
         if (buffType == "Armor")
         {
             health.armor += amount;
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen += amount;
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            autoAttackSpeed += amount;
+        }
+        if (buffType == "Regen")
+        {
+            regen += amount;
+        }
+        if (buffType == "Mana Regen")
+        {
+            manaRegen += amount;
         }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
@@ -353,6 +375,22 @@ public class BasePlayerController : NetworkBehaviour
         {
             health.armor -= amount;
         }
+        if (buffType == "Armor Pen")
+        {
+            armorPen -= amount;
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            autoAttackSpeed -= amount;
+        }
+        if (buffType == "Regen")
+        {
+            regen -= amount;
+        }
+        if (buffType == "Mana Regen")
+        {
+            manaRegen -= amount;
+        }
         StatChangeClientRpc(buffType, -amount, duration);
     }
 
@@ -370,6 +408,22 @@ public class BasePlayerController : NetworkBehaviour
         if (buffType == "Armor")
         {
             health.armor += amount;
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen += amount;
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            autoAttackSpeed += amount;
+        }
+        if (buffType == "Regen")
+        {
+            regen += amount;
+        }
+        if (buffType == "Mana Regen")
+        {
+            manaRegen += amount;
         }
     }
 }

@@ -41,8 +41,8 @@ public class DecayShockWaveProjectile : NetworkBehaviour
         if (!IsServer) return;
         if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
         {
-            collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), 0);
-            gameObject.GetComponent<NetworkObject>().Despawn();
+            collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
+            //gameObject.GetComponent<NetworkObject>().Despawn();
         }
     } 
 

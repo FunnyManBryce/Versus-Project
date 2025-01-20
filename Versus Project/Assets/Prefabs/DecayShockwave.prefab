@@ -151,7 +151,7 @@ MonoBehaviour:
   ProjPos: {fileID: 6691222576543609610}
   speed: 15
   lifespan: 1.5
-  damage: 10
+  damage: 5
   sender: {fileID: 0}
   target: {x: 0, y: 0}
 --- !u!50 &88028790097030155

@@ -9,7 +9,7 @@ public class DecayPlayerController : BasePlayerController
     public LameManager lameManager;
     public float lastDecayTime;
     public float decayAmount;
-    public float totalStatDecay;
+    public NetworkVariable<float> totalStatDecay = new NetworkVariable<float>();
     public GameObject Decay;
 
     //Ability 1
@@ -62,19 +62,26 @@ public class DecayPlayerController : BasePlayerController
             mana -= ultManaCost;
             IEnumerator coroutine = CooldownTimer(ultCD / (cDR / 2), 3);
             StartCoroutine(coroutine);
-            UltimateServerRpc(lameManager.playerTwoChar.GetComponent<NetworkObject>());
+            if(teamNumber.Value == 1)
+            {
+                UltimateServerRpc(lameManager.playerTwoChar.GetComponent<NetworkObject>());
+            }
+            else if(teamNumber.Value == 2)
+            {
+                UltimateServerRpc(lameManager.playerOneChar.GetComponent<NetworkObject>());
+            }
         }
         float currentTime = lameManager.matchTimer.Value;
         if(currentTime - lastDecayTime >= 10f)
         {
             StatDecay();
+            TrackStatDecayServerRpc();
         }
     }
 
     public void StatDecay()
     {
         lastDecayTime = lameManager.matchTimer.Value;
-        totalStatDecay += decayAmount;
         attackDamage -= decayAmount;
         autoAttackSpeed -= 0.1f * decayAmount;
         health.armor -= decayAmount;
@@ -104,7 +111,7 @@ public class DecayPlayerController : BasePlayerController
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                collider.GetComponent<Health>().TakeDamageServerRPC(shockwaveDamage, new NetworkObjectReference(Decay.GetComponent<NetworkObject>()), 0);
+                collider.GetComponent<Health>().TakeDamageServerRPC(shockwaveDamage, new NetworkObjectReference(Decay.GetComponent<NetworkObject>()), armorPen);
             }
         }
         var shockwave = Instantiate(shockwaveProjectile, Decay.transform.position, Quaternion.identity);
@@ -121,13 +128,28 @@ public class DecayPlayerController : BasePlayerController
         {
             if (attacker.GetComponent<BasePlayerController>() != null)
             {
-                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Attack Damage", -totalStatDecay, 10f);
-                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor", -totalStatDecay, 10f);
+                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Attack Damage", -totalStatDecay.Value, 10f);
+                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor", -totalStatDecay.Value, 10f);
+                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * totalStatDecay.Value), 10f);
+                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor Pen", -totalStatDecay.Value, 10f);
+                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Regen", -(0.05f * totalStatDecay.Value), 10f);
+                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Mana Regen", -(0.05f * totalStatDecay.Value), 10f);
             }
         }
-        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Attack Damage", totalStatDecay, 10f);
-        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor", totalStatDecay, 10f);
+        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, 10f);
+        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor", totalStatDecay.Value, 10f);
+        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Auto Attack Speed", (0.1f * totalStatDecay.Value), 10f);
+        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, 10f);
+        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), 10f);
+        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), 10f);
         Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", 3f, 10f);
+    }
+
+    [Rpc(SendTo.Server)]
+    private void TrackStatDecayServerRpc()
+    {
+        totalStatDecay.Value += decayAmount;
+
     }
 
     public IEnumerator CooldownTimer(float duration, int abilityNumber) 
