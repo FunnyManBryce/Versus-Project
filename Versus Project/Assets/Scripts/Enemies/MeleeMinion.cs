@@ -217,7 +217,6 @@ public class MeleeMinion : NetworkBehaviour
         }
         else if (targetName == "Player" && distanceFromTarget.magnitude < playerAttackDistance && cooldown == false)
         {
-            Debug.Log("the worst timeline");
             agent.speed = 0;
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);

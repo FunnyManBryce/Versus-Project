@@ -11,6 +11,7 @@ public class BasePlayerController : NetworkBehaviour
     public Animator animator;
     [SerializeField] SpriteRenderer PlayerSprite;
     public SpriteRenderer AutoAttackSprite;
+    public ulong clientID;
 
     //Movement variables
     public float maxSpeed = 2;

@@ -14,21 +14,26 @@ public class DecayShockWaveProjectile : NetworkBehaviour
     public NetworkObject sender;
     public Vector2 target;
 
-    private void Awake()
+    public override void OnNetworkSpawn()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 rotation = mousePosition - transform.position;
-        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
-        //gameObject.transform.LookAt(new Vector3(0,0,Input.GetAxis("Mouse Z")));
-        //target = mousePosition;
-
+        if (IsOwner)
+        {
+            GameObject camera = GameObject.Find("Main Camera");
+            Vector3 mousePosition = camera.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
+            Vector3 rotation = mousePosition - transform.position;
+            float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
+            //ChangeRotationServerRpc(rotZ);
+        }
     }
 
     void Update()
     {
+        if (IsOwner)
+        {
+            transform.Translate(Vector2.up * speed * Time.deltaTime);
+        }
         if (!IsServer) return;
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
         lifespan -= Time.deltaTime;
         if (lifespan < 0)
         {
@@ -44,7 +49,13 @@ public class DecayShockWaveProjectile : NetworkBehaviour
             collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
             //gameObject.GetComponent<NetworkObject>().Despawn();
         }
-    } 
+    }
+
+    [Rpc(SendTo.Server)]
+    private void ChangeRotationServerRpc(float rotZ)
+    {
+        transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
+    }
 
     private bool CanAttackTarget(NetworkObject targetObject)
     {

@@ -94,7 +94,6 @@ public class LameManager : NetworkBehaviour
         networkManagerUI = FindObjectOfType<NetworkManagerUI>();
         networkManager = FindObjectOfType<NetworkManager>();
         clientId = networkManager.LocalClientId;
-        Debug.Log("Client ID: " + clientId + "he he he ha");
         if (clientId == 0)
         {
             Team = 1;
@@ -135,6 +134,7 @@ public class LameManager : NetworkBehaviour
         {
             CameraOnClientRPC(clientID, team);
         }
+        character.GetComponent<BasePlayerController>().clientID = clientID;
         var characterNetworkObject = character.GetComponent<NetworkObject>();
         characterNetworkObject.SpawnWithOwnership(clientID);
     }

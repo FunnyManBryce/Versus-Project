@@ -29,6 +29,7 @@ public class DecayPlayerController : BasePlayerController
     private bool isUltOnCD;
     public float ultManaCost;
     public float ultCD;
+    private BasePlayerController enemyPlayer;
 
     new private void Start()
     {
@@ -62,14 +63,7 @@ public class DecayPlayerController : BasePlayerController
             mana -= ultManaCost;
             IEnumerator coroutine = CooldownTimer(ultCD / (cDR / 2), 3);
             StartCoroutine(coroutine);
-            if(teamNumber.Value == 1)
-            {
-                UltimateServerRpc(lameManager.playerTwoChar.GetComponent<NetworkObject>());
-            }
-            else if(teamNumber.Value == 2)
-            {
-                UltimateServerRpc(lameManager.playerOneChar.GetComponent<NetworkObject>());
-            }
+            UltimateServerRpc(teamNumber.Value);
         }
         float currentTime = lameManager.matchTimer.Value;
         if(currentTime - lastDecayTime >= 10f)
@@ -98,7 +92,7 @@ public class DecayPlayerController : BasePlayerController
         AOE.GetComponent<DecayAOE>().team = teamNumber.Value;
         AOE.GetComponent<DecayAOE>().sender = Decay.GetComponent<NetworkObject>();
         var AOENetworkObject = AOE.GetComponent<NetworkObject>();
-        AOENetworkObject.Spawn();
+        AOENetworkObject.SpawnWithOwnership(clientID);
         AOE.transform.SetParent(Decay.transform);
     }
 
@@ -118,24 +112,25 @@ public class DecayPlayerController : BasePlayerController
         shockwave.GetComponent<DecayShockWaveProjectile>().team = teamNumber.Value;
         shockwave.GetComponent<DecayShockWaveProjectile>().sender = Decay.GetComponent<NetworkObject>();
         var shockwaveNetworkObject = shockwave.GetComponent<NetworkObject>();
-        shockwaveNetworkObject.Spawn();
+        shockwaveNetworkObject.SpawnWithOwnership(clientID);
     }
 
     [Rpc(SendTo.Server)]
-    private void UltimateServerRpc(NetworkObjectReference target)
+    private void UltimateServerRpc(int team)
     {
-        if (target.TryGet(out NetworkObject attacker))
+        if(team == 1)
         {
-            if (attacker.GetComponent<BasePlayerController>() != null)
-            {
-                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Attack Damage", -totalStatDecay.Value, 10f);
-                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor", -totalStatDecay.Value, 10f);
-                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * totalStatDecay.Value), 10f);
-                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor Pen", -totalStatDecay.Value, 10f);
-                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Regen", -(0.05f * totalStatDecay.Value), 10f);
-                attacker.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Mana Regen", -(0.05f * totalStatDecay.Value), 10f);
-            }
+            enemyPlayer = lameManager.playerTwoChar.GetComponent<BasePlayerController>();
+        } else if(team == 2)
+        {
+            enemyPlayer = lameManager.playerOneChar.GetComponent<BasePlayerController>();
         }
+        enemyPlayer.TriggerBuffServerRpc("Attack Damage", -totalStatDecay.Value, 10f);
+        enemyPlayer.TriggerBuffServerRpc("Armor", -totalStatDecay.Value, 10f);
+        enemyPlayer.TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * totalStatDecay.Value), 10f);
+        enemyPlayer.TriggerBuffServerRpc("Armor Pen", -totalStatDecay.Value, 10f);
+        enemyPlayer.TriggerBuffServerRpc("Regen", -(0.05f * totalStatDecay.Value), 10f);
+        enemyPlayer.TriggerBuffServerRpc("Mana Regen", -(0.05f * totalStatDecay.Value), 10f);
         Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, 10f);
         Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor", totalStatDecay.Value, 10f);
         Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Auto Attack Speed", (0.1f * totalStatDecay.Value), 10f);
