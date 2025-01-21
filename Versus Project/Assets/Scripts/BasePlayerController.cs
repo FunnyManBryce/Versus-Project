@@ -74,7 +74,7 @@ public class BasePlayerController : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void SetTeamServerRpc(int team)
+    public void SetTeamServerRpc(int team)
     {
         teamNumber.Value = team;
     }

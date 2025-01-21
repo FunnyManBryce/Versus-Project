@@ -8834,7 +8834,7 @@ PrefabInstance:
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: characterList.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -8962,6 +8962,12 @@ PrefabInstance:
       propertyPath: 'characterList.Array.data[1]'
       value: 
       objectReference: {fileID: 7846404579260722031, guid: cdafb0e314815a64699a13b46c6fb70a,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'characterList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7846404579260722031, guid: fee6572ee7344c7448942309c25fcd9e,
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -10638,7 +10644,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1302543918}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1465937514}
+        m_TargetAssemblyTypeName: NetworkManagerUI, Assembly-CSharp
+        m_MethodName: CharacterNumber
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1465937514}
+        m_TargetAssemblyTypeName: NetworkManagerUI, Assembly-CSharp
+        m_MethodName: CharacterSelected
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7846404579260722031, guid: fee6572ee7344c7448942309c25fcd9e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1302543918
 MonoBehaviour:
   m_ObjectHideFlags: 0

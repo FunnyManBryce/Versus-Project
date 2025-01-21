@@ -144,12 +144,20 @@ public class NetworkManagerUI : NetworkBehaviour
     {
         charSelectionUI.SetActive(true);
         readyToStartUI.SetActive(false);
+        foreach (GameObject character in characterInfoUI)
+        {
+            character.SetActive(false);
+        }
         UnReadyUpServerRPC();
     }
 
     public void Quit() 
     {
-        if(IsServer == true) //Server quit shuts down entire lobby
+        foreach (GameObject character in characterInfoUI)
+        {
+            character.SetActive(false);
+        }
+        if (IsServer == true) //Server quit shuts down entire lobby
         {
             networkManagerScript.Shutdown();
             QuitOption.SetActive(false);
