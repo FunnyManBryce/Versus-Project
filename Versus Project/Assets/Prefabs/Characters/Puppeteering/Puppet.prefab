@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 6031784323790341043}
   m_Layer: 8
   m_Name: Puppet
-  m_TagString: Minion
+  m_TagString: Puppet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,7 +364,7 @@ MonoBehaviour:
   puppetPos: {fileID: 5134948185573290296}
   minionTarget: {fileID: 0}
   jungleTarget: {fileID: 0}
-  agent: {fileID: 0}
+  agent: {fileID: 4082273046993157032}
   animator: {fileID: 0}
   distanceFromTarget: {x: 0, y: 0, z: 0}
   distanceFromPlayer: {x: 0, y: 0, z: 0}
@@ -374,13 +374,11 @@ MonoBehaviour:
   dead: 0
   targetName: 
   Damage: 0
-  chasePlayerDistance: 10
-  chaseMinionDistance: 10
-  chaseTowerDistance: 10
+  chaseDistance: 10
+  followDistance: 10
+  stopFollowDistance: 5
   attackDistance: 3
   moveSpeed: 6
-  aggroTimer: 0
-  aggroLength: 10
   cooldownLength: 0.5
   cooldownTimer: 0
   enemyPlayer: {fileID: 0}
@@ -388,8 +386,10 @@ MonoBehaviour:
   enemyMinion: {fileID: 0}
   enemyTower: {fileID: 0}
   jungleEnemy: {fileID: 0}
+  enemyTarget: {fileID: 0}
   puppet: {fileID: 8942386518775928844}
   networkPuppet: {fileID: 6782888038592277727}
   currentTarget: {fileID: 0}
-  healthBarPrefab: {fileID: 0}
+  healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
+    type: 3}
   HealthBar: {fileID: 0}

@@ -60,8 +60,10 @@ public class PuppeteeringPlayerController : BasePlayerController
         currentPuppet = Instantiate(Puppet, gameObject.transform.position, Quaternion.identity);
         currentPuppet.GetComponent<Puppet>().Team = teamNumber.Value;
         currentPuppet.GetComponent<Puppet>().Father = gameObject;
+        currentPuppet.GetComponent<Puppet>().Damage = 1.5f * attackDamage;
+        currentPuppet.GetComponent<Puppet>().moveSpeed = maxSpeed;
         var puppetNetworkObject = currentPuppet.GetComponent<NetworkObject>();
         puppetNetworkObject.SpawnWithOwnership(clientID);
-        currentPuppet.transform.SetParent(gameObject.transform);
+        //currentPuppet.transform.SetParent(gameObject.transform);
     }
 }
