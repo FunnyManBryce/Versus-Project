@@ -325,30 +325,65 @@ public class BasePlayerController : NetworkBehaviour
         if (buffType == "Speed")
         {
             maxSpeed += amount;
+            if(maxSpeed <= 1f)
+            {
+                amount = -maxSpeed + 1f + amount;
+                maxSpeed = 1f;
+            }
         }
         if (buffType == "Attack Damage")
         {
             attackDamage += amount;
+            if (attackDamage <= 1f)
+            {
+                amount = -attackDamage + 1f + amount;
+                attackDamage = 1f;
+            }
         }
         if (buffType == "Armor")
         {
             health.armor += amount;
+            if (health.armor <= 1f)
+            {
+                amount = -health.armor + 1f + amount;
+                health.armor = 1f;
+            }
         }
         if (buffType == "Armor Pen")
         {
             armorPen += amount;
+            if (armorPen <= 1f)
+            {
+                amount = -armorPen + 1f + amount;
+                armorPen = 1f;
+            }
         }
         if (buffType == "Auto Attack Speed")
         {
             autoAttackSpeed += amount;
+            if (autoAttackSpeed <= 0.1f)
+            {
+                amount = -autoAttackSpeed + 0.1f + amount;
+                autoAttackSpeed = 0.1f;
+            }
         }
         if (buffType == "Regen")
         {
             regen += amount;
+            if (regen <= 0.1f)
+            {
+                amount = -regen + 0.1f + amount;
+                regen = 0.1f;
+            }
         }
         if (buffType == "Mana Regen")
         {
             manaRegen += amount;
+            if (manaRegen <= 0.1f)
+            {
+                amount = -manaRegen + 0.1f + amount;
+                manaRegen = 0.1f;
+            }
         }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
@@ -401,30 +436,59 @@ public class BasePlayerController : NetworkBehaviour
         if (buffType == "Speed")
         {
             maxSpeed += amount;
+            if (maxSpeed <= 1f)
+            {
+                maxSpeed = 1f;
+            }
         }
         if (buffType == "Attack Damage")
         {
             attackDamage += amount;
+            if (attackDamage <= 1f)
+            {
+                attackDamage = 1f;
+            }
         }
         if (buffType == "Armor")
         {
             health.armor += amount;
+            if (health.armor <= 1f)
+            {
+                health.armor = 1f;
+            }
         }
         if (buffType == "Armor Pen")
         {
             armorPen += amount;
+            if (armorPen <= 1f)
+            {
+                armorPen = 1f;
+            }
         }
         if (buffType == "Auto Attack Speed")
         {
             autoAttackSpeed += amount;
+            if (autoAttackSpeed <= 0.1f)
+            {
+                autoAttackSpeed = 0.1f;
+            }
         }
         if (buffType == "Regen")
         {
             regen += amount;
+            if (regen <= 0.1f)
+            {
+                regen = 0.1f;
+            }
         }
         if (buffType == "Mana Regen")
         {
             manaRegen += amount;
+            if (manaRegen <= 0.1f)
+            {
+                amount = -manaRegen + 0.1f + amount;
+                manaRegen = 0.1f;
+            }
         }
     }
 }
