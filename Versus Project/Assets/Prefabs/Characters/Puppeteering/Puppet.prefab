@@ -56,7 +56,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 25
   m_AngularSpeed: 50
-  m_StoppingDistance: 1
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 769142589
+  GlobalObjectIdHash: 3048931788
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -360,15 +360,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Team: 0
   health: {fileID: -7393066880315347473}
-  towerTarget: {fileID: 0}
   puppetPos: {fileID: 5134948185573290296}
-  minionTarget: {fileID: 0}
   jungleTarget: {fileID: 0}
   agent: {fileID: 4082273046993157032}
   animator: {fileID: 0}
   distanceFromTarget: {x: 0, y: 0, z: 0}
-  distanceFromPlayer: {x: 0, y: 0, z: 0}
   defensiveMode: 0
+  isChasing: 0
   isAttacking: 0
   cooldown: 0
   dead: 0
@@ -376,15 +374,13 @@ MonoBehaviour:
   Damage: 0
   chaseDistance: 10
   followDistance: 10
-  stopFollowDistance: 5
-  attackDistance: 3
+  stopFollowDistance: 3
+  lastTick: 0
+  attackDistance: 4
   moveSpeed: 6
-  cooldownLength: 0.5
+  cooldownLength: 2
   cooldownTimer: 0
-  enemyPlayer: {fileID: 0}
   Father: {fileID: 0}
-  enemyMinion: {fileID: 0}
-  enemyTower: {fileID: 0}
   jungleEnemy: {fileID: 0}
   enemyTarget: {fileID: 0}
   puppet: {fileID: 8942386518775928844}

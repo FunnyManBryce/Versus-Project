@@ -11,9 +11,7 @@ public class Puppet : NetworkBehaviour
     public Health health;
     private LameManager lameManager;
 
-    public Transform towerTarget;
     public Transform puppetPos;
-    public Transform minionTarget;
     public Transform jungleTarget;
 
     public NavMeshAgent agent;
@@ -21,13 +19,11 @@ public class Puppet : NetworkBehaviour
     public Animator animator;
 
     private Vector3 distanceFromFather;
-    private Vector3 distanceFromTower;
     public Vector3 distanceFromTarget;
-    public Vector3 distanceFromPlayer;
-    private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
 
     public bool defensiveMode;
+    public bool isChasing = false;
     public bool isAttacking = false;
     public bool cooldown = false;
     public bool dead;
@@ -43,10 +39,7 @@ public class Puppet : NetworkBehaviour
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
 
-    public GameObject enemyPlayer;
     public GameObject Father;
-    public GameObject enemyMinion;
-    public GameObject enemyTower;
     public GameObject jungleEnemy;
     public GameObject enemyTarget;
     public GameObject puppet;
@@ -79,48 +72,53 @@ public class Puppet : NetworkBehaviour
             cooldown = false;
             cooldownTimer = 0;
         }
-        distanceFromFather = new Vector3(puppetPos.position.x - Father.transform.position.x, puppetPos.position.y - Father.transform.position.y, 0);
-        if(distanceFromFather.magnitude > followDistance)
+        if (enemyTarget == null)
         {
+            isChasing = false;
+        }
+        else if (cooldown == false)
+        {
+            agent.SetDestination(enemyTarget.transform.position);
+            agent.speed = moveSpeed;
+            currentTarget = enemyTarget.GetComponent<NetworkObject>();
+        }
+        if (enemyTarget != null && distanceFromTarget.magnitude < attackDistance && cooldown == false)
+        {
+            isAttacking = true;
+            //animator.SetBool("Attacking", isAttacking);
+            agent.speed = moveSpeed;
+            DealDamage();
+        }
+        distanceFromFather = new Vector3(puppetPos.position.x - Father.transform.position.x, puppetPos.position.y - Father.transform.position.y, 0);
+        if (distanceFromFather.magnitude > followDistance)
+        {
+            isChasing = false;
             agent.speed = moveSpeed;
             agent.SetDestination(Father.transform.position);
-        } else if(distanceFromFather.magnitude < stopFollowDistance)
-        {
-            agent.speed = 0;
-
         }
         oldTarget = new Vector3(1000, 1000, 0);
         Vector2 pos = new Vector2(Father.transform.position.x, Father.transform.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 5f);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 10f);
+        //Debug.Log(hitColliders.Length);
         foreach (var collider in hitColliders)
         {
-            if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
+            Debug.Log("1");
+            if (collider.GetComponent<Health>() != null && collider.GetComponent<Puppet>() == null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger == false)
             {
+                Debug.Log("2");
+                isChasing = true;
                 GameObject potentialTarget = collider.gameObject;
                 Vector3 directionToTarget = new Vector3(puppetPos.position.x - potentialTarget.transform.position.x, puppetPos.position.y - potentialTarget.transform.position.y, 0);
                 if (oldTarget.magnitude > directionToTarget.magnitude)
                 {
+                    Debug.Log("3");
                     oldTarget = directionToTarget;
                     distanceFromTarget = directionToTarget;
                     enemyTarget = potentialTarget;
                 }
             }
-        }
-        if(distanceFromTarget != null && distanceFromTarget.magnitude > attackDistance) 
-        {
-            agent.SetDestination(enemyTarget.transform.position);
-            agent.speed = moveSpeed;
-            currentTarget = enemyTarget.GetComponent<NetworkObject>();
-        } else if(distanceFromTarget != null && distanceFromTarget.magnitude < attackDistance && cooldown == false)
-        {
-            isAttacking = true;
-            //animator.SetBool("Attacking", isAttacking);
-            agent.speed = moveSpeed;
-            Debug.Log("I am attackin!");
-            DealDamage();
-        }
+        }  
     }
-
     public void DealDamage()
     {
         if (currentTarget != null)
