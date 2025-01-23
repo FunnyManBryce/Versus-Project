@@ -22,6 +22,7 @@ public class Tower : NetworkBehaviour
 
     public GameObject tower;
     public GameObject enemyPlayer;
+    public GameObject puppet;
     public GameObject enemyMinion;
     public NetworkObject networkTower;
     public NetworkObject currentTarget;
@@ -31,9 +32,8 @@ public class Tower : NetworkBehaviour
     private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
 
+    public float goldRange;
     public int goldGiven;
-
-    public string targetName;
 
     public float Damage;
     public int orderInLane;
@@ -133,20 +133,23 @@ public class Tower : NetworkBehaviour
         {
             distanceFromTarget = distanceFromMinion;
             currentTarget = enemyMinion.GetComponent<NetworkObject>();
-            targetName = "Minion";
         }
         else if (distanceFromPlayer.magnitude < distanceFromMinion.magnitude)
         {
             distanceFromTarget = distanceFromPlayer;
             currentTarget = enemyPlayer.GetComponent<NetworkObject>();
-            targetName = "Player";
         }
-        if (targetName == "Minion" && distanceFromTarget.magnitude < towerRange && cooldown == false && enemyMinion != null)
+        if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
         {
-            isAttacking = true;
-            animator.SetBool("Attacking", isAttacking);
+            puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+            Vector3 distanceFromPuppet = new Vector3(towerTarget.position.x - puppet.transform.position.x, towerTarget.position.y - puppet.transform.position.y, 0);
+            if (distanceFromPuppet.magnitude < distanceFromPlayer.magnitude && distanceFromPuppet.magnitude < distanceFromMinion.magnitude)
+            {
+                currentTarget = puppet.GetComponent<NetworkObject>();
+                distanceFromTarget = distanceFromPuppet;
+            }
         }
-        else if (targetName == "Player" && distanceFromTarget.magnitude < towerRange && cooldown == false)
+        if (distanceFromTarget.magnitude < towerRange && cooldown == false && currentTarget != null)
         {
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
@@ -171,7 +174,7 @@ public class Tower : NetworkBehaviour
             if (health.currentHealth.Value <= 0 && IsServer == true && dead == false)
             {
                 dead = true;
-                if (playerLastHit)
+                if (distanceFromPlayer.magnitude < goldRange)
                 {
                     enemyPlayer.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
                 }

@@ -32,14 +32,11 @@ public class MeleeMinion : NetworkBehaviour
     public bool playerLastHit = false;
     public bool dead;
 
-    public string targetName;
     public float Damage;
     public float chasePlayerDistance = 10;
     public float chaseMinionDistance = 10;
     public float chaseTowerDistance = 10;
-    public float minionAttackDistance = 3;
-    public float towerAttackDistance = 5;
-    public float playerAttackDistance = 4;
+    public float attackDistance = 3;
     public float moveSpeed = 3;
     public float aggroTimer = 0f;
     public float aggroLength = 10f;
@@ -51,6 +48,7 @@ public class MeleeMinion : NetworkBehaviour
     public int goldGiven;
 
     public GameObject enemyPlayer;
+    public GameObject puppet;
     public GameObject enemyMinion;
     public GameObject enemyTower;
     public GameObject Minion;
@@ -76,15 +74,16 @@ public class MeleeMinion : NetworkBehaviour
         {
             if (health.lastAttacker.TryGet(out NetworkObject attacker))
             {
-                if (attacker.tag == "Player")
+                if (attacker.tag == "Player" || attacker.tag == "Puppet")
                 {
                     aggro = true;
                     aggroTimer = 0;
                     playerLastHit = true;
                 } else
                 {
-                    playerLastHit = false;
+                    playerLastHit = true;
                 }
+                
             }
             if (health.currentHealth.Value <= 0)
             {
@@ -131,13 +130,35 @@ public class MeleeMinion : NetworkBehaviour
         }
         if (aggro == true && aggroTimer < aggroLength)
         {
-            agent.speed = moveSpeed;
-            distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
-            agent.SetDestination(enemyPlayer.transform.position);
-            distanceFromTarget = distanceFromPlayer;
-            currentTarget = enemyPlayer.GetComponent<NetworkObject>();
-            targetName = "Player";
-            aggroTimer += Time.deltaTime;
+            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
+            {
+                puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+                Vector3 distanceFromPuppet = new Vector3(minionTarget.position.x - puppet.transform.position.x, minionTarget.position.y - puppet.transform.position.y, 0);
+                if (distanceFromPuppet.magnitude < distanceFromPlayer.magnitude)
+                {
+                    agent.speed = moveSpeed;
+                    distanceFromPlayer = distanceFromPuppet;
+                    agent.SetDestination(puppet.transform.position);
+                    currentTarget = puppet.GetComponent<NetworkObject>();
+                    distanceFromTarget = distanceFromPuppet;
+                }
+                else
+                {
+                    agent.speed = moveSpeed;
+                    distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+                    agent.SetDestination(enemyPlayer.transform.position);
+                    distanceFromTarget = distanceFromPlayer;
+                    currentTarget = enemyPlayer.GetComponent<NetworkObject>();
+                }
+            } else
+            {
+                agent.speed = moveSpeed;
+                distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+                agent.SetDestination(enemyPlayer.transform.position);
+                distanceFromTarget = distanceFromPlayer;
+                currentTarget = enemyPlayer.GetComponent<NetworkObject>();
+                aggroTimer += Time.deltaTime;
+            }
         }
         else if (aggroTimer >= aggroLength)
         {
@@ -190,7 +211,6 @@ public class MeleeMinion : NetworkBehaviour
             agent.SetDestination(towerTarget.position);
             distanceFromTarget = distanceFromTower;
             currentTarget = enemyTower.GetComponent<NetworkObject>();
-            targetName = "Tower";
         }
         else if (distanceFromMinion.magnitude < chaseMinionDistance && aggro == false && enemyMinionTarget != null)
         {
@@ -198,30 +218,39 @@ public class MeleeMinion : NetworkBehaviour
             agent.SetDestination(enemyMinionTarget.position);
             distanceFromTarget = distanceFromMinion;
             currentTarget = enemyMinion.GetComponent<NetworkObject>();
-            targetName = "Minion";
         }
         else if (distanceFromPlayer.magnitude < chasePlayerDistance && aggro == false)
         {
-            agent.speed = moveSpeed;
-            distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
-            agent.SetDestination(enemyPlayer.transform.position);
-            distanceFromTarget = distanceFromPlayer;
-            currentTarget = enemyPlayer.GetComponent<NetworkObject>();
-            targetName = "Player";
+            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
+            {
+                puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+                Vector3 distanceFromPuppet = new Vector3(minionTarget.position.x - puppet.transform.position.x, minionTarget.position.y - puppet.transform.position.y, 0);
+                if (distanceFromPuppet.magnitude < distanceFromPlayer.magnitude)
+                {
+                    agent.speed = moveSpeed;
+                    distanceFromPlayer = distanceFromPuppet;
+                    agent.SetDestination(puppet.transform.position);
+                    currentTarget = puppet.GetComponent<NetworkObject>();
+                    distanceFromTarget = distanceFromPuppet;
+                } else
+                {
+                    agent.speed = moveSpeed;
+                    distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+                    agent.SetDestination(enemyPlayer.transform.position);
+                    distanceFromTarget = distanceFromPlayer;
+                    currentTarget = enemyPlayer.GetComponent<NetworkObject>();
+                }
+            }
+            else
+            {
+                agent.speed = moveSpeed;
+                distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+                agent.SetDestination(enemyPlayer.transform.position);
+                distanceFromTarget = distanceFromPlayer;
+                currentTarget = enemyPlayer.GetComponent<NetworkObject>();
+            }
         }
-        if (targetName == "Minion" && distanceFromTarget.magnitude < minionAttackDistance && cooldown == false && enemyMinionTarget != null)
-        {
-            agent.speed = 0;
-            isAttacking = true;
-            animator.SetBool("Attacking", isAttacking);
-        }
-        else if (targetName == "Player" && distanceFromTarget.magnitude < playerAttackDistance && cooldown == false)
-        {
-            agent.speed = 0;
-            isAttacking = true;
-            animator.SetBool("Attacking", isAttacking);
-        }
-        else if (distanceFromTarget.magnitude < towerAttackDistance && cooldown == false)
+        if (distanceFromTarget.magnitude < attackDistance && cooldown == false && currentTarget != null)
         {
             agent.speed = 0;
             isAttacking = true;

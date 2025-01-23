@@ -48,6 +48,8 @@ public class JungleEnemy : NetworkBehaviour
     public GameObject spawner;
     public GameObject PlayerOne;
     public GameObject PlayerTwo;
+    public GameObject puppetOne;
+    public GameObject puppetTwo;
     public GameObject jungleEnemy;
     public NetworkObject networkEnemy;
     public NetworkObject currentTarget;
@@ -80,9 +82,17 @@ public class JungleEnemy : NetworkBehaviour
                     aggroTimer = 0;
                     playerLastHit = true;
                     playerToGetGold = attacker.GetComponent<BasePlayerController>();
-                } else
+                }
+                else if (attacker.tag == "Puppet")
                 {
-                    playerLastHit = false;
+                    aggro = true;
+                    aggroTimer = 0;
+                    playerToGetGold = attacker.GetComponent<Puppet>().Father.GetComponent<BasePlayerController>();
+                    playerLastHit = true;
+                }
+                else
+                {
+                    playerLastHit = true;
                 }
             }
             if (health.currentHealth.Value <= 0 && IsServer == true && dead == false)
@@ -128,28 +138,68 @@ public class JungleEnemy : NetworkBehaviour
             aggro = false;
             aggroTimer = 0;
         }
-        distanceFromPlayerOne = new Vector3(jungleTarget.position.x - playerOneTarget.position.x, jungleTarget.position.y - playerOneTarget.position.y, 0);
-        distanceFromPlayerTwo = new Vector3(jungleTarget.position.x - playerTwoTarget.position.x, jungleTarget.position.y - playerTwoTarget.position.y, 0);
+        if (PlayerOne.GetComponent<PuppeteeringPlayerController>() != null && PlayerOne.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
+        {
+            puppetOne = PlayerOne.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+            Vector3 distanceFromPuppet = new Vector3(jungleTarget.position.x - puppetOne.transform.position.x, jungleTarget.position.y - puppetOne.transform.position.y, 0);
+            if (distanceFromPuppet.magnitude < distanceFromPlayerOne.magnitude)
+            {
+                distanceFromPlayerOne = distanceFromPuppet;
+                currentTarget = puppetOne.GetComponent<NetworkObject>();
+            } else
+            {
+                distanceFromPlayerOne = new Vector3(jungleTarget.position.x - playerOneTarget.position.x, jungleTarget.position.y - playerOneTarget.position.y, 0);
+                currentTarget = PlayerOne.GetComponent<NetworkObject>();
+            }
+        } else
+        {
+            distanceFromPlayerOne = new Vector3(jungleTarget.position.x - playerOneTarget.position.x, jungleTarget.position.y - playerOneTarget.position.y, 0);
+        }
+        if (PlayerTwo.GetComponent<PuppeteeringPlayerController>() != null && PlayerTwo.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
+        {
+            puppetTwo = PlayerTwo.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+            Vector3 distanceFromPuppet = new Vector3(jungleTarget.position.x - puppetTwo.transform.position.x, jungleTarget.position.y - puppetTwo.transform.position.y, 0);
+            if (distanceFromPuppet.magnitude < distanceFromPlayerTwo.magnitude)
+            {
+                distanceFromPlayerTwo = distanceFromPuppet;
+                currentTarget = puppetTwo.GetComponent<NetworkObject>();
+            }
+            else
+            {
+                distanceFromPlayerTwo = new Vector3(jungleTarget.position.x - playerTwoTarget.position.x, jungleTarget.position.y - playerTwoTarget.position.y, 0);
+                currentTarget = PlayerTwo.GetComponent<NetworkObject>();
+            }
+        } else
+        {
+            distanceFromPlayerTwo = new Vector3(jungleTarget.position.x - playerTwoTarget.position.x, jungleTarget.position.y - playerTwoTarget.position.y, 0);
+        } 
         if (distanceFromPlayerOne.magnitude < distanceFromPlayerTwo.magnitude && distanceFromPlayerOne.magnitude < range && aggro == true && cooldown == false)
         {
+            if (PlayerOne.GetComponent<PuppeteeringPlayerController>() == null)
+            {
+                currentTarget = PlayerOne.GetComponent<NetworkObject>();
+            }
             agent.speed = 0;
-            currentTarget = PlayerOne.GetComponent<NetworkObject>();
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
         }
         else if (distanceFromPlayerTwo.magnitude < range && aggro == true && cooldown == false)
         {
+            if (PlayerTwo.GetComponent<PuppeteeringPlayerController>() == null)
+            {
+                currentTarget = PlayerTwo.GetComponent<NetworkObject>();
+            }
             agent.speed = 0;
-            currentTarget = PlayerTwo.GetComponent<NetworkObject>();
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
-        }
+        } 
     }
 
     public void DealDamage()
     {
         if (currentTarget != null)
         {
+            Debug.Log(currentTarget.name);
             DealDamageServerRPC(Damage, currentTarget, networkEnemy);
         }
         else

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5134948185573290296}
-  - component: {fileID: 4082273046993157032}
   - component: {fileID: 937868224023570168}
   - component: {fileID: 9172525232582007022}
   - component: {fileID: 6782888038592277727}
@@ -20,6 +19,7 @@ GameObject:
   - component: {fileID: -7393066880315347473}
   - component: {fileID: 5975008587194333854}
   - component: {fileID: 6031784323790341043}
+  - component: {fileID: 410319945200821465}
   m_Layer: 8
   m_Name: Puppet
   m_TagString: Puppet
@@ -42,28 +42,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &4082273046993157032
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8942386518775928844}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.1
-  m_Speed: 0
-  m_Acceleration: 15
-  avoidancePriority: 25
-  m_AngularSpeed: 50
-  m_StoppingDistance: 2
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 0.2
-  m_BaseOffset: 0.1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
 --- !u!50 &937868224023570168
 Rigidbody2D:
   serializedVersion: 4
@@ -76,7 +54,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 1
   m_LinearDrag: 3
   m_AngularDrag: 3
   m_GravityScale: 0
@@ -149,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3048931788
+  GlobalObjectIdHash: 769142589
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -362,11 +340,10 @@ MonoBehaviour:
   health: {fileID: -7393066880315347473}
   puppetPos: {fileID: 5134948185573290296}
   jungleTarget: {fileID: 0}
-  agent: {fileID: 4082273046993157032}
+  agent: {fileID: 410319945200821465}
   animator: {fileID: 0}
   distanceFromTarget: {x: 0, y: 0, z: 0}
   defensiveMode: 0
-  isChasing: 0
   isAttacking: 0
   cooldown: 0
   dead: 0
@@ -375,7 +352,6 @@ MonoBehaviour:
   chaseDistance: 10
   followDistance: 10
   stopFollowDistance: 3
-  lastTick: 0
   attackDistance: 4
   moveSpeed: 6
   cooldownLength: 2
@@ -389,3 +365,25 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
     type: 3}
   HealthBar: {fileID: 0}
+--- !u!195 &410319945200821465
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942386518775928844}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 0
+  m_Acceleration: 10
+  avoidancePriority: 25
+  m_AngularSpeed: 50
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 0.2
+  m_BaseOffset: 0.1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 1

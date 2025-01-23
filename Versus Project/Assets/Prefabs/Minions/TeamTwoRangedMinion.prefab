@@ -76,7 +76,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 1000
   m_LinearDrag: 3
   m_AngularDrag: 3
   m_GravityScale: 0
@@ -208,8 +208,8 @@ MonoBehaviour:
   enemyMinionTarget: {fileID: 0}
   agent: {fileID: 4082273046993157032}
   animator: {fileID: 5958823289627424989}
-  distanceFromTower: {x: 0, y: 0, z: 0}
   distanceFromTarget: {x: 0, y: 0, z: 0}
+  distanceFromPlayer: {x: 0, y: 0, z: 0}
   isRanged: 1
   isAttacking: 0
   cooldown: 0
@@ -221,18 +221,17 @@ MonoBehaviour:
   chasePlayerDistance: 7
   chaseMinionDistance: 10
   chaseTowerDistance: 6
-  minionAttackDistance: 6
-  towerAttackDistance: 6
-  playerAttackDistance: 6
+  attackDistance: 6
   moveSpeed: 3
   aggroTimer: 0
   aggroLength: 5
   cooldownLength: 0.75
   cooldownTimer: 0
-  XPRange: 10
+  XPRange: 20
   XPGiven: 20
   goldGiven: 20
   enemyPlayer: {fileID: 0}
+  puppet: {fileID: 0}
   enemyMinion: {fileID: 0}
   enemyTower: {fileID: 0}
   Minion: {fileID: 8942386518775928844}

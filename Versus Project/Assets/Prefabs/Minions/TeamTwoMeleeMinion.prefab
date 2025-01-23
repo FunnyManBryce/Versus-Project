@@ -76,7 +76,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 1000
   m_LinearDrag: 3
   m_AngularDrag: 3
   m_GravityScale: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2270008670
+  GlobalObjectIdHash: 859078789
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -208,8 +208,8 @@ MonoBehaviour:
   enemyMinionTarget: {fileID: 0}
   agent: {fileID: 4082273046993157032}
   animator: {fileID: 5958823289627424989}
-  distanceFromTower: {x: 0, y: 0, z: 0}
   distanceFromTarget: {x: 0, y: 0, z: 0}
+  distanceFromPlayer: {x: 0, y: 0, z: 0}
   isRanged: 0
   isAttacking: 0
   cooldown: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 0.5
   cooldownTimer: 0
-  XPRange: 10
+  XPRange: 20
   XPGiven: 20
   goldGiven: 20
   enemyPlayer: {fileID: 0}

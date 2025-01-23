@@ -23,7 +23,6 @@ public class Puppet : NetworkBehaviour
     private Vector3 oldTarget;
 
     public bool defensiveMode;
-    public bool isChasing = false;
     public bool isAttacking = false;
     public bool cooldown = false;
     public bool dead;
@@ -72,18 +71,17 @@ public class Puppet : NetworkBehaviour
             cooldown = false;
             cooldownTimer = 0;
         }
-        if (enemyTarget == null)
+        if (enemyTarget != null)
         {
-            isChasing = false;
-        }
-        else if (cooldown == false)
-        {
-            agent.SetDestination(enemyTarget.transform.position);
+            Debug.Log("Actually moving towards a target!");
+            //agent.SetDestination(enemyTarget.transform.position);
             agent.speed = moveSpeed;
             currentTarget = enemyTarget.GetComponent<NetworkObject>();
+            agent.SetDestination(currentTarget.transform.position);
         }
         if (enemyTarget != null && distanceFromTarget.magnitude < attackDistance && cooldown == false)
         {
+            Debug.Log("Actually attacking a target!");
             isAttacking = true;
             //animator.SetBool("Attacking", isAttacking);
             agent.speed = moveSpeed;
@@ -92,26 +90,22 @@ public class Puppet : NetworkBehaviour
         distanceFromFather = new Vector3(puppetPos.position.x - Father.transform.position.x, puppetPos.position.y - Father.transform.position.y, 0);
         if (distanceFromFather.magnitude > followDistance)
         {
-            isChasing = false;
+            Debug.Log("Moving towards father");
             agent.speed = moveSpeed;
-            agent.SetDestination(Father.transform.position);
+            agent.SetDestination(Father.GetComponent<NetworkObject>().transform.position);
         }
         oldTarget = new Vector3(1000, 1000, 0);
         Vector2 pos = new Vector2(Father.transform.position.x, Father.transform.position.y);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 10f);
-        //Debug.Log(hitColliders.Length);
         foreach (var collider in hitColliders)
         {
-            Debug.Log("1");
-            if (collider.GetComponent<Health>() != null && collider.GetComponent<Puppet>() == null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger == false)
+            if (collider.GetComponent<Health>() != null && collider != puppet.GetComponent<Collider2D>() && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger == false)
             {
-                Debug.Log("2");
-                isChasing = true;
                 GameObject potentialTarget = collider.gameObject;
                 Vector3 directionToTarget = new Vector3(puppetPos.position.x - potentialTarget.transform.position.x, puppetPos.position.y - potentialTarget.transform.position.y, 0);
                 if (oldTarget.magnitude > directionToTarget.magnitude)
                 {
-                    Debug.Log("3");
+                    Debug.Log("Colliding");
                     oldTarget = directionToTarget;
                     distanceFromTarget = directionToTarget;
                     enemyTarget = potentialTarget;
@@ -123,7 +117,6 @@ public class Puppet : NetworkBehaviour
     {
         if (currentTarget != null)
         {
-            Debug.Log("attacking");
             DealDamageServerRPC(Damage, currentTarget, puppet);
         }
         else
@@ -158,7 +151,8 @@ public class Puppet : NetworkBehaviour
                 if (IsServer == true && dead == false)
                 {
                     dead = true;
-                    Father.GetComponent<PuppeteeringPlayerController>().puppetAlive = false;
+                    Father.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value = false;
+                    Father.GetComponent<PuppeteeringPlayerController>().puppetDeathTime.Value = lameManager.matchTimer.Value;
                     puppet.GetComponent<NetworkObject>().Despawn();
                 }
             }

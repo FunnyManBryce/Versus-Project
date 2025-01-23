@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1728252279
+  GlobalObjectIdHash: 3071331536
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -327,7 +327,7 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 0.75
   cooldownTimer: 0
-  XPRange: 0
+  XPRange: 20
   XPGiven: 30
   goldGiven: 20
   spawner: {fileID: 0}
