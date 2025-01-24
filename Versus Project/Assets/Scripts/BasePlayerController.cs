@@ -46,7 +46,7 @@ public class BasePlayerController : NetworkBehaviour
 
     public GameObject projectilePrefab;
     public NetworkVariable<int> teamNumber = new NetworkVariable<int>();
-    [SerializeField] NetworkObject currentTarget; // current attack target
+    public NetworkObject currentTarget; // current attack target
     [SerializeField] bool isAutoAttacking = false;
     public GameObject healthBarPrefab; 
 

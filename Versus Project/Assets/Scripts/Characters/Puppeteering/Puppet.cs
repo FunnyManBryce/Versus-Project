@@ -24,6 +24,7 @@ public class Puppet : NetworkBehaviour
 
     public bool defensiveMode;
     public bool isAttacking = false;
+    public bool isChasing = false;
     public bool cooldown = false;
     public bool dead;
 
@@ -77,7 +78,11 @@ public class Puppet : NetworkBehaviour
             agent.speed = moveSpeed;
             currentTarget = enemyTarget.GetComponent<NetworkObject>();
             agent.SetDestination(currentTarget.transform.position);
-            Debug.Log(agent.destination);
+            isChasing = true;
+        }
+        else
+        {
+            isChasing = false;
         }
         if (enemyTarget != null && distanceFromTarget.magnitude < attackDistance && cooldown == false)
         {
@@ -91,26 +96,34 @@ public class Puppet : NetworkBehaviour
         {
             agent.speed = moveSpeed;
             agent.SetDestination(Father.transform.position);
-            Debug.Log(agent.destination);
-        }
-        oldTarget = new Vector3(1000, 1000, 0);
-        Vector2 pos = new Vector2(Father.transform.position.x, Father.transform.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 10f);
-        foreach (var collider in hitColliders)
+        } else if(distanceFromFather.magnitude < 4 && isChasing == false)
         {
-            if (collider.GetComponent<Health>() != null && collider != puppet.GetComponent<Collider2D>() && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger == false)
+            agent.SetDestination(puppetPos.position);
+        }
+        if (Father.GetComponent<PuppeteeringPlayerController>().currentTarget != null)
+        {
+            enemyTarget = Father.GetComponent<PuppeteeringPlayerController>().currentTarget.gameObject;
+        } else
+        {
+            oldTarget = new Vector3(1000, 1000, 0);
+            Vector2 pos = new Vector2(Father.transform.position.x, Father.transform.position.y);
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 10f);
+            foreach (var collider in hitColliders)
             {
-                GameObject potentialTarget = collider.gameObject;
-                Vector3 directionToTarget = new Vector3(puppetPos.position.x - potentialTarget.transform.position.x, puppetPos.position.y - potentialTarget.transform.position.y, 0);
-                if (oldTarget.magnitude > directionToTarget.magnitude)
+                if (collider.GetComponent<Health>() != null && collider != puppet.GetComponent<Collider2D>() && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger == false)
                 {
-                    Debug.Log("Colliding");
-                    oldTarget = directionToTarget;
-                    distanceFromTarget = directionToTarget;
-                    enemyTarget = potentialTarget;
+                    GameObject potentialTarget = collider.gameObject;
+                    Vector3 directionToTarget = new Vector3(puppetPos.position.x - potentialTarget.transform.position.x, puppetPos.position.y - potentialTarget.transform.position.y, 0);
+                    if (oldTarget.magnitude > directionToTarget.magnitude)
+                    {
+                        Debug.Log("Colliding");
+                        oldTarget = directionToTarget;
+                        distanceFromTarget = directionToTarget;
+                        enemyTarget = potentialTarget;
+                    }
                 }
             }
-        }  
+        }
     }
     public void DealDamage()
     {
