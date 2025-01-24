@@ -67,7 +67,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             currentPuppet.GetComponent<Puppet>().Damage = 1.5f * damage;
             currentPuppet.GetComponent<Puppet>().moveSpeed = 1f * speed;
             var puppetNetworkObject = currentPuppet.GetComponent<NetworkObject>();
-            puppetNetworkObject.SpawnWithOwnership(clientID);
+            puppetNetworkObject.Spawn();
         }
     }
 }

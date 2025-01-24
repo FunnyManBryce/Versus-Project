@@ -73,15 +73,14 @@ public class Puppet : NetworkBehaviour
         }
         if (enemyTarget != null)
         {
-            Debug.Log("Actually moving towards a target!");
             //agent.SetDestination(enemyTarget.transform.position);
             agent.speed = moveSpeed;
             currentTarget = enemyTarget.GetComponent<NetworkObject>();
             agent.SetDestination(currentTarget.transform.position);
+            Debug.Log(agent.destination);
         }
         if (enemyTarget != null && distanceFromTarget.magnitude < attackDistance && cooldown == false)
         {
-            Debug.Log("Actually attacking a target!");
             isAttacking = true;
             //animator.SetBool("Attacking", isAttacking);
             agent.speed = moveSpeed;
@@ -90,9 +89,9 @@ public class Puppet : NetworkBehaviour
         distanceFromFather = new Vector3(puppetPos.position.x - Father.transform.position.x, puppetPos.position.y - Father.transform.position.y, 0);
         if (distanceFromFather.magnitude > followDistance)
         {
-            Debug.Log("Moving towards father");
             agent.speed = moveSpeed;
-            agent.SetDestination(Father.GetComponent<NetworkObject>().transform.position);
+            agent.SetDestination(Father.transform.position);
+            Debug.Log(agent.destination);
         }
         oldTarget = new Vector3(1000, 1000, 0);
         Vector2 pos = new Vector2(Father.transform.position.x, Father.transform.position.y);
