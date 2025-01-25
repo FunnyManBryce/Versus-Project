@@ -295,6 +295,20 @@ public class MeleeMinion : NetworkBehaviour
             IEnumerator coroutine = BuffDuration(buffType, amount, duration);
             StartCoroutine(coroutine);
             moveSpeed += amount;
+            if (moveSpeed <= 0.5f)
+            {
+                amount = -moveSpeed + 0.5f + amount;
+                moveSpeed = 0.5f;
+            }
+        }
+        if (buffType == "Marked")
+        {
+            health.markedValue += amount;
+        }
+        if (buffType == "Immobilized")
+        {
+            amount = moveSpeed;
+            moveSpeed = 0;
         }
     }
 
@@ -310,6 +324,14 @@ public class MeleeMinion : NetworkBehaviour
         if (buffType == "Speed")
         {
             moveSpeed -= amount;
+        }
+        if (buffType == "Marked")
+        {
+            health.markedValue -= amount;
+        }
+        if (buffType == "Immobilized")
+        {
+            moveSpeed += amount;
         }
     }
 

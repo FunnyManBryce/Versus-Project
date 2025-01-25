@@ -335,11 +335,20 @@ MonoBehaviour:
   lameManager: {fileID: 0}
   Puppet: {fileID: 8942386518775928844, guid: f468015df4e8466428a164c5a018448a, type: 3}
   currentPuppet: {fileID: 0}
-  puppetSpawned: 0
   puppetAlive:
     m_InternalValue: 0
   puppetDeathTime:
     m_InternalValue: 0
+  AOneManaCost: 0
+  abilityOneCD: 1
+  stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
+    type: 3}
+  ATwoManaCost: 0
+  abilityTwoCD: 0
+  shockwaveDamage: 0
+  shockwaveProjectile: {fileID: 0}
+  ultManaCost: 0
+  ultCD: 0
 --- !u!114 &2628991981076659366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,6 +537,9 @@ MonoBehaviour:
     m_InternalValue: 0
   maxHealth:
     m_InternalValue: 0
+  Team:
+    m_InternalValue: 0
+  markedValue: 1
   startingMaxHealth: 400
   armor: 10
   initialValuesSynced: 0

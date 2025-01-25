@@ -274,6 +274,8 @@ MonoBehaviour:
     m_InternalValue: 0
   maxHealth:
     m_InternalValue: 0
+  Team:
+    m_InternalValue: 0
   startingMaxHealth: 200
   armor: 0
   initialValuesSynced: 0
@@ -345,12 +347,13 @@ MonoBehaviour:
   distanceFromTarget: {x: 0, y: 0, z: 0}
   defensiveMode: 0
   isAttacking: 0
+  isChasing: 0
   cooldown: 0
   dead: 0
   targetName: 
   Damage: 0
   chaseDistance: 10
-  followDistance: 10
+  followDistance: 8
   stopFollowDistance: 3
   attackDistance: 4
   moveSpeed: 6

@@ -62,7 +62,7 @@ public class Tower : NetworkBehaviour
             {
                 health.invulnerable = true;
             }
-            if (lameManager.teamOneTowersLeft.Value != orderInLane)
+            if (lameManager.teamOneTowersLeft.Value == orderInLane)
             {
                 health.invulnerable = false;
             }
@@ -86,7 +86,7 @@ public class Tower : NetworkBehaviour
             {
                 health.invulnerable = true;
             }
-            if (lameManager.teamTwoTowersLeft.Value != orderInLane)
+            if (lameManager.teamTwoTowersLeft.Value == orderInLane)
             {
                 health.invulnerable = false;
             }

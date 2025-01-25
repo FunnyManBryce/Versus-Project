@@ -30,7 +30,6 @@ public class Puppet : NetworkBehaviour
 
     public string targetName;
     public float Damage;
-    public float chaseDistance = 10;
     public float followDistance = 10;
     public float stopFollowDistance = 5;
 
@@ -72,7 +71,8 @@ public class Puppet : NetworkBehaviour
             cooldown = false;
             cooldownTimer = 0;
         }
-        if (enemyTarget != null)
+        distanceFromFather = new Vector3(puppetPos.position.x - Father.transform.position.x, puppetPos.position.y - Father.transform.position.y, 0);
+        if (enemyTarget != null && distanceFromFather.magnitude < followDistance)
         {
             //agent.SetDestination(enemyTarget.transform.position);
             agent.speed = moveSpeed;
@@ -91,7 +91,6 @@ public class Puppet : NetworkBehaviour
             agent.speed = moveSpeed;
             DealDamage();
         }
-        distanceFromFather = new Vector3(puppetPos.position.x - Father.transform.position.x, puppetPos.position.y - Father.transform.position.y, 0);
         if (distanceFromFather.magnitude > followDistance)
         {
             agent.speed = moveSpeed;
@@ -103,6 +102,7 @@ public class Puppet : NetworkBehaviour
         if (Father.GetComponent<PuppeteeringPlayerController>().currentTarget != null)
         {
             enemyTarget = Father.GetComponent<PuppeteeringPlayerController>().currentTarget.gameObject;
+            distanceFromTarget = new Vector3(puppetPos.position.x - enemyTarget.transform.position.x, puppetPos.position.y - enemyTarget.transform.position.y, 0); ;
         } else
         {
             oldTarget = new Vector3(1000, 1000, 0);
@@ -116,7 +116,6 @@ public class Puppet : NetworkBehaviour
                     Vector3 directionToTarget = new Vector3(puppetPos.position.x - potentialTarget.transform.position.x, puppetPos.position.y - potentialTarget.transform.position.y, 0);
                     if (oldTarget.magnitude > directionToTarget.magnitude)
                     {
-                        Debug.Log("Colliding");
                         oldTarget = directionToTarget;
                         distanceFromTarget = directionToTarget;
                         enemyTarget = potentialTarget;

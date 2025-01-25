@@ -380,6 +380,15 @@ public class BasePlayerController : NetworkBehaviour
                 manaRegen = 0.1f;
             }
         }
+        if (buffType == "Marked")
+        {
+            health.markedValue += amount;
+        }
+        if (buffType == "Immobilized")
+        {
+            amount = maxSpeed;
+            maxSpeed = 0;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
         StatChangeClientRpc(buffType, amount, duration);
@@ -421,6 +430,15 @@ public class BasePlayerController : NetworkBehaviour
         if (buffType == "Mana Regen")
         {
             manaRegen -= amount;
+        }
+        if (buffType == "Marked")
+        {
+            health.markedValue -= amount;
+        }
+        if (buffType == "Immobilized")
+        {
+            maxSpeed += amount;
+            buffType = "Speed";
         }
         StatChangeClientRpc(buffType, -amount, duration);
     }
@@ -484,6 +502,14 @@ public class BasePlayerController : NetworkBehaviour
                 amount = -manaRegen + 0.1f + amount;
                 manaRegen = 0.1f;
             }
+        }
+        if (buffType == "Marked")
+        {
+            health.markedValue += amount;
+        }
+        if (buffType == "Immobilized")
+        {
+            maxSpeed = 0;
         }
     }
 }
