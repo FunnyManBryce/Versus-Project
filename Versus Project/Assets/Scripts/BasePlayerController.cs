@@ -220,6 +220,11 @@ public class BasePlayerController : NetworkBehaviour
             return targetInhibitor.Team != teamNumber.Value;
         }
 
+        if (targetObject.TryGetComponent(out Resevoir targetResevoir))
+        {
+            return false;
+        }
+
         return true; // Default to allowing attack if no team check is possible
     }
 

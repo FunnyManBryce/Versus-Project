@@ -198,6 +198,11 @@ public class Puppet : NetworkBehaviour
             return targetInhibitor.Team != Team;
         }
 
+        if (targetObject.TryGetComponent(out Resevoir targetResevoir))
+        {
+            return false;
+        }
+
         return true; // Default to allowing attack if no team check is possible
     }
 }
