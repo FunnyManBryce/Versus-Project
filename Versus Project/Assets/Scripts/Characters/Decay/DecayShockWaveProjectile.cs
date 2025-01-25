@@ -59,27 +59,21 @@ public class DecayShockWaveProjectile : NetworkBehaviour
 
     private bool CanAttackTarget(NetworkObject targetObject)
     {
-        // Check if target has a team component
-        if (targetObject.TryGetComponent(out BasePlayerController targetPlayer))
+        // Check if target has health component
+        if (targetObject.TryGetComponent(out Health targetHealth))
         {
-            return targetPlayer.teamNumber.Value != team;
+            if (targetHealth.Team.Value == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return targetHealth.Team.Value != sender.GetComponent<Health>().Team.Value;
+            }
         }
-
-        if (targetObject.TryGetComponent(out Tower targetTower))
+        else
         {
-            return targetTower.Team != team;
+            return false;
         }
-
-        if (targetObject.TryGetComponent(out MeleeMinion targetMinion))
-        {
-            return targetMinion.Team != team;
-        }
-
-        if (targetObject.TryGetComponent(out Inhibitor targetInhibitor))
-        {
-            return targetInhibitor.Team != team;
-        }
-
-        return true; // Default to allowing attack if no team check is possible
     }
 }

@@ -77,6 +77,7 @@ public class BasePlayerController : NetworkBehaviour
     public void SetTeamServerRpc(int team)
     {
         teamNumber.Value = team;
+        health.Team.Value = team;
     }
 
     private protected void Start()
@@ -199,38 +200,22 @@ public class BasePlayerController : NetworkBehaviour
 
     public bool CanAttackTarget(NetworkObject targetObject)
     {
-        // Check if target has a team component
-        if (targetObject.TryGetComponent(out BasePlayerController targetPlayer))
+        // Check if target has health component
+        if (targetObject.TryGetComponent(out Health targetHealth))
         {
-            return targetPlayer.teamNumber.Value != teamNumber.Value;
+            if (targetHealth.Team.Value == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return targetHealth.Team.Value != health.Team.Value;
+            }
         }
-
-        if (targetObject.TryGetComponent(out Tower targetTower))
-        {
-            return targetTower.Team != teamNumber.Value;
-        }
-
-        if (targetObject.TryGetComponent(out MeleeMinion targetMinion))
-        {
-            return targetMinion.Team != teamNumber.Value;
-        }
-
-        if (targetObject.TryGetComponent(out Inhibitor targetInhibitor))
-        {
-            return targetInhibitor.Team != teamNumber.Value;
-        }
-
-        if (targetObject.TryGetComponent(out Puppet targetPuppet))
-        {
-            return targetPuppet.Team != teamNumber.Value;
-        }
-
-        if (targetObject.TryGetComponent(out Resevoir targetResevoir))
+        else
         {
             return false;
         }
-
-        return true; // Default to allowing attack if no team check is possible
     }
 
     [ServerRpc]

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1537569267
+  GlobalObjectIdHash: 457505477
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7cbdf6547ba414ab0c622154e21262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team: 0
+  Team: 2
   towerTarget: {fileID: 3319039571354012073}
   enemyMinionTarget: {fileID: 0}
   animator: {fileID: 2518130113755198442}
@@ -140,11 +140,12 @@ MonoBehaviour:
   playerLastHit: 0
   tower: {fileID: 8003257773554308308}
   enemyPlayer: {fileID: 0}
+  puppet: {fileID: 0}
   enemyMinion: {fileID: 0}
   networkTower: {fileID: 0}
   currentTarget: {fileID: 0}
+  goldRange: 0
   goldGiven: 100
-  targetName: 
   Damage: 40
   orderInLane: 0
   aggroTimer: 0
@@ -311,6 +312,8 @@ MonoBehaviour:
   currentHealth:
     m_InternalValue: 0
   maxHealth:
+    m_InternalValue: 0
+  Team:
     m_InternalValue: 0
   startingMaxHealth: 100
   armor: 0

@@ -63,6 +63,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             puppetAlive.Value = true;
             currentPuppet = Instantiate(Puppet, gameObject.transform.position, Quaternion.identity);
             currentPuppet.GetComponent<Puppet>().Team = team;
+            currentPuppet.GetComponent<Puppet>().health.Team.Value = team;
             currentPuppet.GetComponent<Puppet>().Father = gameObject;
             currentPuppet.GetComponent<Puppet>().Damage = 1.5f * damage;
             currentPuppet.GetComponent<Puppet>().moveSpeed = 1f * speed;

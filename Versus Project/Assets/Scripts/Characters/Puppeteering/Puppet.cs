@@ -177,27 +177,22 @@ public class Puppet : NetworkBehaviour
    
     public bool CanAttackTarget(NetworkObject targetObject)
     {
-        // Check if target has a team component
-        if (targetObject.TryGetComponent(out BasePlayerController targetPlayer))
+        // Check if target has health component
+        if (targetObject.TryGetComponent(out Health targetHealth))
         {
-            return targetPlayer.teamNumber.Value != Team;
+            if (targetHealth.Team.Value == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return targetHealth.Team.Value != health.Team.Value;
+            }
         }
-
-        if (targetObject.TryGetComponent(out Tower targetTower))
+        else
         {
-            return targetTower.Team != Team;
+            return false;
         }
-
-        if (targetObject.TryGetComponent(out MeleeMinion targetMinion))
-        {
-            return targetMinion.Team != Team;
-        }
-
-        if (targetObject.TryGetComponent(out Inhibitor targetInhibitor))
-        {
-            return targetInhibitor.Team != Team;
-        }
-
-        return true; // Default to allowing attack if no team check is possible
     }
 }
+

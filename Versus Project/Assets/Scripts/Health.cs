@@ -7,6 +7,7 @@ public class Health : NetworkBehaviour
 {
     public NetworkVariable<float> currentHealth = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<float> maxHealth = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<int> Team = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public float startingMaxHealth; //Changing network variables in the inspector doesn't work, so this is the variable to change in order to change starting health
     public float armor = 0f; //In order for this to sync up to the baseplayercontroller, just do something like armor = baseplayercontroller.armor
     public bool initialValuesSynced;

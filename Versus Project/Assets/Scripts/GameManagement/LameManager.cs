@@ -168,11 +168,14 @@ public class LameManager : NetworkBehaviour
             if(i == 1)
             {
                 tower.GetComponent<Inhibitor>().Team = 1;
+                tower.GetComponent<Inhibitor>().health.Team.Value = 1;
+
                 tower.GetComponent<Inhibitor>().orderInLane = i;
             }
             else
             {
                 tower.GetComponent<Tower>().Team = 1;
+                tower.GetComponent<Tower>().health.Team.Value = 1;
                 tower.GetComponent<Tower>().orderInLane = i;
             }
             teamOneTowers[i] = tower;
@@ -184,12 +187,10 @@ public class LameManager : NetworkBehaviour
             var tower = Instantiate(redTowerSpawnOrder[i], redLaneSP[i], Quaternion.identity);
             if (i == 1)
             {
-                tower.GetComponent<Inhibitor>().Team = 2;
                 tower.GetComponent<Inhibitor>().orderInLane = i;
             }
             else
             {
-                tower.GetComponent<Tower>().Team = 2;
                 tower.GetComponent<Tower>().orderInLane = i;
             }
             teamTwoTowers[i] = tower;
