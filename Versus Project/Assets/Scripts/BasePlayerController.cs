@@ -220,6 +220,11 @@ public class BasePlayerController : NetworkBehaviour
             return targetInhibitor.Team != teamNumber.Value;
         }
 
+        if (targetObject.TryGetComponent(out Puppet targetPuppet))
+        {
+            return targetPuppet.Team != teamNumber.Value;
+        }
+
         if (targetObject.TryGetComponent(out Resevoir targetResevoir))
         {
             return false;
