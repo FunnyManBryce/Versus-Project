@@ -292,8 +292,6 @@ public class MeleeMinion : NetworkBehaviour
     {
         if (buffType == "Speed")
         {
-            IEnumerator coroutine = BuffDuration(buffType, amount, duration);
-            StartCoroutine(coroutine);
             moveSpeed += amount;
             if (moveSpeed <= 0.5f)
             {
@@ -310,6 +308,8 @@ public class MeleeMinion : NetworkBehaviour
             amount = moveSpeed;
             moveSpeed = 0;
         }
+        IEnumerator coroutine = BuffDuration(buffType, amount, duration);
+        StartCoroutine(coroutine);
     }
 
     public IEnumerator BuffDuration(string buffType, float amount, float duration) //Waits a bit before changing stats back to default

@@ -123,11 +123,11 @@ public class NetworkManagerUI : NetworkBehaviour
     public void CharacterNumber(int charNumber)
     {
         characterNumber = charNumber;
-        foreach(GameObject character in characterInfoUI)
+        /*foreach(GameObject character in characterInfoUI)
         {
             character.SetActive(false);
-        }
-        characterInfoUI[charNumber].SetActive(true);
+        }*/
+        //characterInfoUI[charNumber].SetActive(true);
     }
 
     public void ReadyUp() 
@@ -144,10 +144,10 @@ public class NetworkManagerUI : NetworkBehaviour
     {
         charSelectionUI.SetActive(true);
         readyToStartUI.SetActive(false);
-        foreach (GameObject character in characterInfoUI)
+        /*foreach (GameObject character in characterInfoUI)
         {
             character.SetActive(false);
-        }
+        }*/
         UnReadyUpServerRPC();
     }
 

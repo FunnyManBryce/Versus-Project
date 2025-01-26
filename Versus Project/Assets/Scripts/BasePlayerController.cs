@@ -48,9 +48,9 @@ public class BasePlayerController : NetworkBehaviour
     public NetworkVariable<int> teamNumber = new NetworkVariable<int>();
     public NetworkObject currentTarget; // current attack target
     [SerializeField] bool isAutoAttacking = false;
-    public GameObject healthBarPrefab; 
+    public GameObject healthBarPrefab;
 
-    private void Awake()
+    private protected void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }

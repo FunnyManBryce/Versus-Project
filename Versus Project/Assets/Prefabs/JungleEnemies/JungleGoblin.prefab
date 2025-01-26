@@ -130,8 +130,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.76, y: 1.08}
-    newSize: {x: 0.12, y: 0.16}
+    oldSize: {x: 1.6, y: 1.6}
+    newSize: {x: 1.6, y: 1.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3071331536
+  GlobalObjectIdHash: 1728252279
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -267,13 +267,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -2765929901467384572, guid: 53f3ea61b4b68634593edc0947288dba,
-    type: 3}
+  m_Sprite: {fileID: 506931474, guid: 53f3ea61b4b68634593edc0947288dba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.12, y: 0.16}
+  m_Size: {x: 1.6, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -333,6 +332,8 @@ MonoBehaviour:
   spawner: {fileID: 0}
   PlayerOne: {fileID: 0}
   PlayerTwo: {fileID: 0}
+  puppetOne: {fileID: 0}
+  puppetTwo: {fileID: 0}
   jungleEnemy: {fileID: 8942386518775928844}
   networkEnemy: {fileID: 6782888038592277727}
   currentTarget: {fileID: 0}
@@ -355,6 +356,9 @@ MonoBehaviour:
     m_InternalValue: 0
   maxHealth:
     m_InternalValue: 50
+  Team:
+    m_InternalValue: 0
+  markedValue: 1
   startingMaxHealth: 50
   armor: 0
   initialValuesSynced: 0
@@ -397,8 +401,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.76, y: 1.08}
-    newSize: {x: 0.12, y: 0.16}
+    oldSize: {x: 1.6, y: 1.6}
+    newSize: {x: 1.6, y: 1.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

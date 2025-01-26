@@ -19,7 +19,7 @@ public class StringAbility : NetworkBehaviour
         {
             GameObject camera = GameObject.Find("Main Camera");
             Vector3 mousePosition = camera.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
-            transform.position = mousePosition;
+            transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
         }
     }
 
@@ -38,12 +38,18 @@ public class StringAbility : NetworkBehaviour
     void Damage()
     {
         Vector2 pos = new Vector2(Pos.position.x, Pos.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 3);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 4);
         foreach (var collider in hitColliders)
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
+                if(collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Inhibitor")
+                {
+                    return;
+                } else
+                {
+                    collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
+                }
                 if (collider.GetComponent<BasePlayerController>() != null)
                 {
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
@@ -53,6 +59,11 @@ public class StringAbility : NetworkBehaviour
                 {
                     collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
                     collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Marked", markAmount, 5f);
+                }
+                if (collider.GetComponent<JungleEnemy>() != null)
+                {
+                    collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
+                    collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Marked", markAmount, 5f);
                 }
             }
         }

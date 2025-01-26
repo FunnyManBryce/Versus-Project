@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3858709417
+  GlobalObjectIdHash: 652430502
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -315,9 +315,9 @@ MonoBehaviour:
   armorPen: 5
   regen: 0.5
   isMelee: 0
-  maxMana: 200
+  maxMana: 100
   mana: 0
-  manaRegen: 4
+  manaRegen: 2
   resevoirRegen: 0
   health: {fileID: -8253534391822271971}
   XPToNextLevel: 0
@@ -339,16 +339,16 @@ MonoBehaviour:
     m_InternalValue: 0
   puppetDeathTime:
     m_InternalValue: 0
-  AOneManaCost: 0
-  abilityOneCD: 1
+  AOneManaCost: 40
+  abilityOneCD: 20
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
-  ATwoManaCost: 0
-  abilityTwoCD: 0
+  ATwoManaCost: 20
+  abilityTwoCD: 5
   shockwaveDamage: 0
   shockwaveProjectile: {fileID: 0}
-  ultManaCost: 0
-  ultCD: 0
+  ultManaCost: 80
+  ultCD: 60
 --- !u!114 &2628991981076659366
 MonoBehaviour:
   m_ObjectHideFlags: 0

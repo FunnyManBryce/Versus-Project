@@ -30,6 +30,7 @@ public class Puppet : NetworkBehaviour
 
     public string targetName;
     public float Damage;
+    public float armorPen;
     public float followDistance = 10;
     public float stopFollowDistance = 5;
 
@@ -74,7 +75,6 @@ public class Puppet : NetworkBehaviour
         distanceFromFather = new Vector3(puppetPos.position.x - Father.transform.position.x, puppetPos.position.y - Father.transform.position.y, 0);
         if (enemyTarget != null && distanceFromFather.magnitude < followDistance)
         {
-            //agent.SetDestination(enemyTarget.transform.position);
             agent.speed = moveSpeed;
             currentTarget = enemyTarget.GetComponent<NetworkObject>();
             agent.SetDestination(currentTarget.transform.position);
@@ -87,7 +87,6 @@ public class Puppet : NetworkBehaviour
         if (enemyTarget != null && distanceFromTarget.magnitude < attackDistance && cooldown == false)
         {
             isAttacking = true;
-            //animator.SetBool("Attacking", isAttacking);
             agent.speed = moveSpeed;
             DealDamage();
         }
@@ -142,7 +141,11 @@ public class Puppet : NetworkBehaviour
     {
         if (reference.TryGet(out NetworkObject target))
         {
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, 0);
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
+            if(defensiveMode == false) //offensive mode provides lifesteal to player
+            {
+                Father.GetComponent<Health>().HealServerRPC(-(damage/2), sender);
+            }
         }
         else
         {
@@ -193,5 +196,80 @@ public class Puppet : NetworkBehaviour
             return false;
         }
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
+    {
+        if (buffType == "Speed")
+        {
+            moveSpeed += amount;
+            if (moveSpeed <= 0.5f)
+            {
+                amount = -moveSpeed + 0.5f + amount;
+                moveSpeed = 0.5f;
+            }
+        }
+        if (buffType == "Attack Damage")
+        {
+            Damage += amount;
+            if (Damage <= 1f)
+            {
+                amount = -Damage + 1f + amount;
+                Damage = 1f;
+            }
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen += amount;
+            if (armorPen <= 1f)
+            {
+                amount = -armorPen + 1f + amount;
+                armorPen = 1f;
+            }
+        }
+        if (buffType == "Marked")
+        {
+            health.markedValue += amount;
+        }
+        if (buffType == "Immobilized")
+        {
+            amount = moveSpeed;
+            moveSpeed = 0;
+        }
+        IEnumerator coroutine = BuffDuration(buffType, amount, duration);
+        StartCoroutine(coroutine);
+    }
+
+    public IEnumerator BuffDuration(string buffType, float amount, float duration) //Waits a bit before changing stats back to default
+    {
+        yield return new WaitForSeconds(duration);
+        BuffEndServerRpc(buffType, amount, duration);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void BuffEndServerRpc(string buffType, float amount, float duration) //changes stat to what it was before
+    {
+        if (buffType == "Speed")
+        {
+            moveSpeed -= amount;
+        }
+        if (buffType == "Attack Damage")
+        {
+            Damage -= amount;
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen -= amount;
+        }
+        if (buffType == "Marked")
+        {
+            health.markedValue -= amount;
+        }
+        if (buffType == "Immobilized")
+        {
+            moveSpeed += amount;
+        }
+    }
+
 }
 

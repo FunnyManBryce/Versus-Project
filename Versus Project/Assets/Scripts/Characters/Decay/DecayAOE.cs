@@ -46,7 +46,14 @@ public class DecayAOE : NetworkBehaviour
 
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
+                if (collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Inhibitor")
+                {
+                    return;
+                }
+                else
+                {
+                    collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
+                }
                 if(collider.GetComponent<BasePlayerController>() != null)
                 {
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", speedReductionPerTick, 5f);
@@ -54,6 +61,10 @@ public class DecayAOE : NetworkBehaviour
                 if (collider.GetComponent<MeleeMinion>() != null)
                 {
                     collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Speed", speedReductionPerTick/2f, 5f);
+                }
+                if (collider.GetComponent<Puppet>() != null)
+                {
+                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Speed", speedReductionPerTick, 5f);
                 }
             }
         }

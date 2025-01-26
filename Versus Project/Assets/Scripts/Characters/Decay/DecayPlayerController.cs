@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-
 public class DecayPlayerController : BasePlayerController
 {
     public LameManager lameManager;
@@ -12,24 +11,78 @@ public class DecayPlayerController : BasePlayerController
     public NetworkVariable<float> totalStatDecay = new NetworkVariable<float>();
     public GameObject Decay;
 
-    //Ability 1
-    private bool isAOneOnCD;
-    public float AOneManaCost;
-    public float abilityOneCD;
-    public GameObject AOEObject;
-
-    //Ability 2
-    private bool isATwoOnCD;
-    public float ATwoManaCost;
-    public float abilityTwoCD;
+    public GameObject AOEPrefab;
     public float shockwaveDamage;
-    public GameObject shockwaveProjectile;
+    public GameObject shockwavePrefab;
+    BasePlayerController enemyPlayer;
+    public AbilityBase<DecayPlayerController> AOE;
+    public AbilityBase<DecayPlayerController> Shockwave;
+    public AbilityBase<DecayPlayerController> Ultimate;
 
-    //Ultimate Ability
-    private bool isUltOnCD;
-    public float ultManaCost;
-    public float ultCD;
-    private BasePlayerController enemyPlayer;
+
+    new private void Awake()
+    {
+        base.Awake();
+        AOE.activateAbility = AOEServerRpc;
+        Shockwave.activateAbility = ShockwaveServerRpc;
+        Ultimate.activateAbility = UltimateServerRpc;
+    }
+
+    [Rpc(SendTo.Server)]
+    public void AOEServerRpc()
+    {
+        var AOE = Instantiate(AOEPrefab, Decay.transform.position, Quaternion.identity);
+        AOE.GetComponent<DecayAOE>().team = teamNumber.Value;
+        AOE.GetComponent<DecayAOE>().sender = Decay.GetComponent<NetworkObject>();
+        var AOENetworkObject = AOE.GetComponent<NetworkObject>();
+        AOENetworkObject.SpawnWithOwnership(clientID);
+        AOE.transform.SetParent(Decay.transform);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void ShockwaveServerRpc()
+    {
+        Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 2.5f);
+        foreach (var collider in hitColliders)
+        {
+            if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
+            {
+                collider.GetComponent<Health>().TakeDamageServerRPC(shockwaveDamage, new NetworkObjectReference(Decay.GetComponent<NetworkObject>()), armorPen);
+            }
+        }
+        var shockwave = Instantiate(shockwavePrefab, Decay.transform.position, Quaternion.identity);
+        shockwave.GetComponent<DecayShockWaveProjectile>().team = teamNumber.Value;
+        shockwave.GetComponent<DecayShockWaveProjectile>().sender = Decay.GetComponent<NetworkObject>();
+        var shockwaveNetworkObject = shockwave.GetComponent<NetworkObject>();
+        shockwaveNetworkObject.SpawnWithOwnership(clientID);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void UltimateServerRpc()
+    {
+        if (health.Team.Value == 1)
+        {
+            enemyPlayer = lameManager.playerTwoChar.GetComponent<BasePlayerController>();
+        }
+        else if (health.Team.Value == 2)
+        {
+            enemyPlayer =  lameManager.playerOneChar.GetComponent<BasePlayerController>();
+        }
+        enemyPlayer.TriggerBuffServerRpc("Attack Damage", -totalStatDecay.Value, 10f);
+        enemyPlayer.TriggerBuffServerRpc("Armor", -totalStatDecay.Value, 10f);
+        enemyPlayer.TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * totalStatDecay.Value), 10f);
+        enemyPlayer.TriggerBuffServerRpc("Armor Pen", -totalStatDecay.Value, 10f);
+        enemyPlayer.TriggerBuffServerRpc("Regen", -(0.05f * totalStatDecay.Value), 10f);
+        enemyPlayer.TriggerBuffServerRpc("Mana Regen", -(0.05f * totalStatDecay.Value), 10f);
+        TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, 10f);
+        TriggerBuffServerRpc("Armor", totalStatDecay.Value, 10f);
+        TriggerBuffServerRpc("Auto Attack Speed", (0.1f * totalStatDecay.Value), 10f);
+        TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, 10f);
+        TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), 10f);
+        TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), 10f);
+        TriggerBuffServerRpc("Speed", 3f, 10f);
+    }
 
     new private void Start()
     {
@@ -41,30 +94,9 @@ public class DecayPlayerController : BasePlayerController
     {
         base.Update();
         if (!IsOwner) return;
-        if (Input.GetKey(KeyCode.Q) && isAOneOnCD == false && AOneManaCost <= mana)
-        {
-            isAOneOnCD = true;
-            mana -= AOneManaCost;
-            IEnumerator coroutine = CooldownTimer(abilityOneCD / (cDR / 2), 1);
-            StartCoroutine(coroutine);
-            AOESummonServerRpc();
-        }
-        if (Input.GetKey(KeyCode.E) && isATwoOnCD == false && ATwoManaCost <= mana)
-        {
-            isATwoOnCD = true;
-            mana -= ATwoManaCost;
-            IEnumerator coroutine = CooldownTimer(abilityTwoCD / (cDR / 2), 2);
-            StartCoroutine(coroutine);
-            ShockwaveSummonServerRpc();
-        }
-        if (Input.GetKey(KeyCode.R) && isUltOnCD == false && ultManaCost <= mana)
-        {
-            isUltOnCD = true;
-            mana -= ultManaCost;
-            IEnumerator coroutine = CooldownTimer(ultCD / (cDR / 2), 3);
-            StartCoroutine(coroutine);
-            UltimateServerRpc(teamNumber.Value);
-        }
+        AOE.AttemptUse();
+        Shockwave.AttemptUse();
+        Ultimate.AttemptUse();
         float currentTime = lameManager.matchTimer.Value;
         if(currentTime - lastDecayTime >= 30f)
         {
@@ -72,7 +104,7 @@ public class DecayPlayerController : BasePlayerController
             TrackStatDecayServerRpc();
         }
     }
-
+   
     public void StatDecay()
     {
         lastDecayTime = lameManager.matchTimer.Value;
@@ -109,82 +141,21 @@ public class DecayPlayerController : BasePlayerController
     }
 
     [Rpc(SendTo.Server)]
-    private void AOESummonServerRpc()
+    private void SpawnObjectServerRpc(NetworkObjectReference networkObject, ulong clientID)
     {
-        var AOE = Instantiate(AOEObject, Decay.transform.position, Quaternion.identity);
-        AOE.GetComponent<DecayAOE>().team = teamNumber.Value;
-        AOE.GetComponent<DecayAOE>().sender = Decay.GetComponent<NetworkObject>();
-        var AOENetworkObject = AOE.GetComponent<NetworkObject>();
-        AOENetworkObject.SpawnWithOwnership(clientID);
-        AOE.transform.SetParent(Decay.transform);
-    }
-
-    [Rpc(SendTo.Server)]
-    private void ShockwaveSummonServerRpc()
-    {
-        Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 2.5f);
-        foreach (var collider in hitColliders)
+        if (networkObject.TryGet(out NetworkObject Obj))
         {
-            if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
-            {
-                collider.GetComponent<Health>().TakeDamageServerRPC(shockwaveDamage, new NetworkObjectReference(Decay.GetComponent<NetworkObject>()), armorPen);
-            }
+            Obj.SpawnWithOwnership(clientID);
         }
-        var shockwave = Instantiate(shockwaveProjectile, Decay.transform.position, Quaternion.identity);
-        shockwave.GetComponent<DecayShockWaveProjectile>().team = teamNumber.Value;
-        shockwave.GetComponent<DecayShockWaveProjectile>().sender = Decay.GetComponent<NetworkObject>();
-        var shockwaveNetworkObject = shockwave.GetComponent<NetworkObject>();
-        shockwaveNetworkObject.SpawnWithOwnership(clientID);
-    }
-
-    [Rpc(SendTo.Server)]
-    private void UltimateServerRpc(int team)
-    {
-        if(team == 1)
-        {
-            enemyPlayer = lameManager.playerTwoChar.GetComponent<BasePlayerController>();
-        } else if(team == 2)
-        {
-            enemyPlayer = lameManager.playerOneChar.GetComponent<BasePlayerController>();
-        }
-        enemyPlayer.TriggerBuffServerRpc("Attack Damage", -totalStatDecay.Value, 10f);
-        enemyPlayer.TriggerBuffServerRpc("Armor", -totalStatDecay.Value, 10f);
-        enemyPlayer.TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * totalStatDecay.Value), 10f);
-        enemyPlayer.TriggerBuffServerRpc("Armor Pen", -totalStatDecay.Value, 10f);
-        enemyPlayer.TriggerBuffServerRpc("Regen", -(0.05f * totalStatDecay.Value), 10f);
-        enemyPlayer.TriggerBuffServerRpc("Mana Regen", -(0.05f * totalStatDecay.Value), 10f);
-        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, 10f);
-        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor", totalStatDecay.Value, 10f);
-        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Auto Attack Speed", (0.1f * totalStatDecay.Value), 10f);
-        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, 10f);
-        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), 10f);
-        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), 10f);
-        Decay.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", 3f, 10f);
     }
 
     [Rpc(SendTo.Server)]
     private void TrackStatDecayServerRpc()
     {
         totalStatDecay.Value += decayAmount;
-
     }
+}
 
-    public IEnumerator CooldownTimer(float duration, int abilityNumber) 
-    {
-        yield return new WaitForSeconds(duration);
-        if(abilityNumber == 1)
-        {
-            isAOneOnCD = false;
-        }
-        else if (abilityNumber == 2)
-        {
-            isATwoOnCD = false;
-        }
-        else if (abilityNumber == 3)
-        {
-            isUltOnCD = false;
-        }
-        Debug.Log("Ability Off Cooldown");
-    }
-}  
+
+
+

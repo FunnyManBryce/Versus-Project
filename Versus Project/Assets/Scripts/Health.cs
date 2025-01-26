@@ -43,4 +43,13 @@ public class Health : NetworkBehaviour
             }
         }
     }
+
+    [Rpc(SendTo.Server)]
+    public void HealServerRPC(float amount, NetworkObjectReference sender)
+    {
+        if (sender.TryGet(out NetworkObject healer))
+        {
+            currentHealth.Value += Mathf.Min(currentHealth.Value + amount, maxHealth.Value);
+        }
+    }
 }

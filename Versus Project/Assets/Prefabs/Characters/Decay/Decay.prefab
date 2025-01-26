@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8783587471392124360
 Transform:
   m_ObjectHideFlags: 0
@@ -474,6 +474,9 @@ MonoBehaviour:
     m_InternalValue: 0
   maxHealth:
     m_InternalValue: 0
+  Team:
+    m_InternalValue: 0
+  markedValue: 1
   startingMaxHealth: 400
   armor: 30
   initialValuesSynced: 0
@@ -493,6 +496,7 @@ MonoBehaviour:
   animator: {fileID: 3704004338721201214}
   PlayerSprite: {fileID: 2570568061770048435}
   AutoAttackSprite: {fileID: 2570568061770048435}
+  clientID: 0
   maxSpeed: 8
   currentSpeed: 0
   attackDamage: 15
@@ -530,14 +534,26 @@ MonoBehaviour:
   totalStatDecay:
     m_InternalValue: 0
   Decay: {fileID: 7846404579260722031}
-  AOneManaCost: 30
-  abilityOneCD: 20
-  AOEObject: {fileID: 6191041724843646727, guid: c5347d732afcf6d40910e3bbf5f563eb,
+  AOEPrefab: {fileID: 6191041724843646727, guid: c5347d732afcf6d40910e3bbf5f563eb,
     type: 3}
-  ATwoManaCost: 25
-  abilityTwoCD: 10
-  shockwaveDamage: 15
-  shockwaveProjectile: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
+  shockwaveDamage: 10
+  shockwavePrefab: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
     type: 3}
-  ultManaCost: 80
-  ultCD: 60
+  AOE:
+    playerController: {fileID: 2299055155951191650}
+    inputKey: 113
+    cooldown: 25
+    manaCost: 50
+    lastUsed: 0
+  Shockwave:
+    playerController: {fileID: 2299055155951191650}
+    inputKey: 101
+    cooldown: 15
+    manaCost: 30
+    lastUsed: 0
+  Ultimate:
+    playerController: {fileID: 2299055155951191650}
+    inputKey: 114
+    cooldown: 80
+    manaCost: 80
+    lastUsed: 0
