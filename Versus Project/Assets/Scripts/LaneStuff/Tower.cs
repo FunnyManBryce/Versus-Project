@@ -139,9 +139,9 @@ public class Tower : NetworkBehaviour
             distanceFromTarget = distanceFromPlayer;
             currentTarget = enemyPlayer.GetComponent<NetworkObject>();
         }
-        if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
+        if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value < 1)
         {
-            puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+            puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().PuppetList[0];
             Vector3 distanceFromPuppet = new Vector3(towerTarget.position.x - puppet.transform.position.x, towerTarget.position.y - puppet.transform.position.y, 0);
             if (distanceFromPuppet.magnitude < distanceFromPlayer.magnitude && distanceFromPuppet.magnitude < distanceFromMinion.magnitude)
             {

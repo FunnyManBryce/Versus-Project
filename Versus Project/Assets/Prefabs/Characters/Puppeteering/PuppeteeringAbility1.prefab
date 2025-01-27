@@ -223,5 +223,5 @@ MonoBehaviour:
   damage: 10
   markAmount: 0.25
   Pos: {fileID: 5437192985226083262}
-  lifespan: 1
+  lifespan: 1.5
   sender: {fileID: 0}

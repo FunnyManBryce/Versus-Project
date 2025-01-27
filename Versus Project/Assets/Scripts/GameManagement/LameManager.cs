@@ -169,7 +169,6 @@ public class LameManager : NetworkBehaviour
             {
                 tower.GetComponent<Inhibitor>().Team = 1;
                 tower.GetComponent<Inhibitor>().health.Team.Value = 1;
-
                 tower.GetComponent<Inhibitor>().orderInLane = i;
             }
             else
@@ -187,10 +186,14 @@ public class LameManager : NetworkBehaviour
             var tower = Instantiate(redTowerSpawnOrder[i], redLaneSP[i], Quaternion.identity);
             if (i == 1)
             {
+                tower.GetComponent<Inhibitor>().Team = 2;
+                tower.GetComponent<Inhibitor>().health.Team.Value = 2;
                 tower.GetComponent<Inhibitor>().orderInLane = i;
             }
             else
             {
+                tower.GetComponent<Tower>().Team = 2;
+                tower.GetComponent<Tower>().health.Team.Value = 2;
                 tower.GetComponent<Tower>().orderInLane = i;
             }
             teamTwoTowers[i] = tower;
@@ -217,6 +220,7 @@ public class LameManager : NetworkBehaviour
         {
             var minion = Instantiate(teamOneMinionSpawnOrder[i], -MinionSP[i], Quaternion.identity);
             minion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
+            minion.GetComponent<MeleeMinion>().health.Team.Value = 1;
             teamOneMinions.Add(minion);
             var minionNetworkObject = minion.GetComponent<NetworkObject>();
             minionNetworkObject.Spawn();
@@ -225,6 +229,7 @@ public class LameManager : NetworkBehaviour
         {
             var minion = Instantiate(teamTwoMinionSpawnOrder[i], MinionSP[i], Quaternion.identity);
             minion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
+            minion.GetComponent<MeleeMinion>().health.Team.Value = 2;
             teamTwoMinions.Add(minion);
             var minionNetworkObject = minion.GetComponent<NetworkObject>();
             minionNetworkObject.Spawn();
@@ -233,6 +238,7 @@ public class LameManager : NetworkBehaviour
         {
             var superMinion = Instantiate(teamOneMinionSpawnOrder[4], -MinionSP[4], Quaternion.identity);
             superMinion.GetComponent<MeleeMinion>().enemyPlayer = playerTwoChar;
+            superMinion.GetComponent<MeleeMinion>().health.Team.Value = 1;
             teamOneMinions.Add(superMinion);
             var SMinionNetworkObject = superMinion.GetComponent<NetworkObject>();
             SMinionNetworkObject.Spawn();
@@ -241,6 +247,7 @@ public class LameManager : NetworkBehaviour
         {
             var superMinion = Instantiate(teamTwoMinionSpawnOrder[4], MinionSP[4], Quaternion.identity);
             superMinion.GetComponent<MeleeMinion>().enemyPlayer = playerOneChar;
+            superMinion.GetComponent<MeleeMinion>().health.Team.Value = 2;
             teamTwoMinions.Add(superMinion);
             var SMinionNetworkObject = superMinion.GetComponent<NetworkObject>();
             SMinionNetworkObject.Spawn();

@@ -130,9 +130,9 @@ public class MeleeMinion : NetworkBehaviour
         }
         if (aggro == true && aggroTimer < aggroLength)
         {
-            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
+            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value < 0)
             {
-                puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+                puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().PuppetList[0];
                 Vector3 distanceFromPuppet = new Vector3(minionTarget.position.x - puppet.transform.position.x, minionTarget.position.y - puppet.transform.position.y, 0);
                 if (distanceFromPuppet.magnitude < distanceFromPlayer.magnitude)
                 {
@@ -221,9 +221,9 @@ public class MeleeMinion : NetworkBehaviour
         }
         else if (distanceFromPlayer.magnitude < chasePlayerDistance && aggro == false)
         {
-            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
+            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value < 0)
             {
-                puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+                puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().PuppetList[0];
                 Vector3 distanceFromPuppet = new Vector3(minionTarget.position.x - puppet.transform.position.x, minionTarget.position.y - puppet.transform.position.y, 0);
                 if (distanceFromPuppet.magnitude < distanceFromPlayer.magnitude)
                 {

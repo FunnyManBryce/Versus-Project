@@ -137,9 +137,9 @@ public class JungleEnemy : NetworkBehaviour
             aggro = false;
             aggroTimer = 0;
         }
-        if (PlayerOne.GetComponent<PuppeteeringPlayerController>() != null && PlayerOne.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
+        if (PlayerOne.GetComponent<PuppeteeringPlayerController>() != null && PlayerOne.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value < 1)
         {
-            puppetOne = PlayerOne.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+            puppetOne = PlayerOne.GetComponent<PuppeteeringPlayerController>().PuppetList[0];
             Vector3 distanceFromPuppet = new Vector3(jungleTarget.position.x - puppetOne.transform.position.x, jungleTarget.position.y - puppetOne.transform.position.y, 0);
             if (distanceFromPuppet.magnitude < distanceFromPlayerOne.magnitude)
             {
@@ -154,9 +154,9 @@ public class JungleEnemy : NetworkBehaviour
         {
             distanceFromPlayerOne = new Vector3(jungleTarget.position.x - playerOneTarget.position.x, jungleTarget.position.y - playerOneTarget.position.y, 0);
         }
-        if (PlayerTwo.GetComponent<PuppeteeringPlayerController>() != null && PlayerTwo.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value == true)
+        if (PlayerTwo.GetComponent<PuppeteeringPlayerController>() != null && PlayerTwo.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value < 1)
         {
-            puppetTwo = PlayerTwo.GetComponent<PuppeteeringPlayerController>().currentPuppet;
+            puppetTwo = PlayerTwo.GetComponent<PuppeteeringPlayerController>().PuppetList[0];
             Vector3 distanceFromPuppet = new Vector3(jungleTarget.position.x - puppetTwo.transform.position.x, jungleTarget.position.y - puppetTwo.transform.position.y, 0);
             if (distanceFromPuppet.magnitude < distanceFromPlayerTwo.magnitude)
             {

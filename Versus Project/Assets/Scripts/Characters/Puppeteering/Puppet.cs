@@ -165,7 +165,8 @@ public class Puppet : NetworkBehaviour
                 if (IsServer == true && dead == false)
                 {
                     dead = true;
-                    Father.GetComponent<PuppeteeringPlayerController>().puppetAlive.Value = false;
+                    Father.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value--;
+                    Father.GetComponent<PuppeteeringPlayerController>().PuppetList.Remove(gameObject);
                     Father.GetComponent<PuppeteeringPlayerController>().puppetDeathTime.Value = lameManager.matchTimer.Value;
                     puppet.GetComponent<NetworkObject>().Despawn();
                 }

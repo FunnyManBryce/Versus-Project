@@ -7,78 +7,48 @@ using Unity.Netcode;
 public class PuppeteeringPlayerController : BasePlayerController
 {
     public LameManager lameManager;
-    public GameObject Puppet;
-    public GameObject currentPuppet;
-    public NetworkVariable<bool> puppetAlive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public GameObject puppetPrefab;
+    public List<GameObject> PuppetList;
+    public NetworkVariable<int> puppetsAlive = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<int> maxPuppets = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<float> puppetDeathTime = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
-    //Ability 1
-    private bool isAOneOnCD;
-    public float AOneManaCost;
-    public float abilityOneCD;
     public GameObject stringObject;
-
-    //Ability 2
-    private bool isATwoOnCD;
-    public float ATwoManaCost;
-    public float abilityTwoCD;
     public bool defensiveMode;
+    public AbilityBase<PuppeteeringPlayerController> String;
+    public AbilityBase<PuppeteeringPlayerController> ModeSwitch;
+    public AbilityBase<PuppeteeringPlayerController> Ultimate;
 
-    //Ultimate Ability
-    private bool isUltOnCD;
-    public float ultManaCost;
-    public float ultCD;
-    private BasePlayerController enemyPlayer;
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
         lameManager = FindObjectOfType<LameManager>();
+        String.activateAbility = StringSummonServerRpc;
+        ModeSwitch.activateAbility = PuppetModeSwitchServerRpc;
+        Ultimate.activateAbility = UltimateServerRpc;
     }
 
     // Update is called once per frame
     void Update()
     {
         base.Update();
-        if (IsOwner)
+        if (!IsOwner) return;
+        String.AttemptUse();
+        ModeSwitch.AttemptUse();
+        Ultimate.AttemptUse();
+        if (puppetsAlive.Value < maxPuppets.Value)
         {
-            if (Input.GetKey(KeyCode.Q) && isAOneOnCD == false && AOneManaCost <= mana)
+            float currentTime = lameManager.matchTimer.Value;
+            if (currentTime - puppetDeathTime.Value >= 15f)
             {
-                isAOneOnCD = true;
-                mana -= AOneManaCost;
-                IEnumerator coroutine = CooldownTimer(abilityOneCD / (cDR / 2), 1);
-                StartCoroutine(coroutine);
-                StringSummonServerRpc();
+                PuppetSpawnServerRpc(teamNumber.Value, attackDamage, maxSpeed);
             }
-            if (Input.GetKey(KeyCode.E) && isATwoOnCD == false && ATwoManaCost <= mana)
+        } else
+        {
+            if(currentTarget != null)
             {
-                isATwoOnCD = true;
-                mana -= ATwoManaCost;
-                IEnumerator coroutine = CooldownTimer(abilityTwoCD / (cDR / 2), 2);
-                StartCoroutine(coroutine);
-                PuppetModeSwitchServerRpc();
-            }
-            if (Input.GetKey(KeyCode.R) && isUltOnCD == false && ultManaCost <= mana)
-            {
-                isUltOnCD = true;
-                mana -= ultManaCost;
-                IEnumerator coroutine = CooldownTimer(ultCD / (cDR / 2), 3);
-                StartCoroutine(coroutine);
-                UltimateServerRpc();
-            }
-            if (puppetAlive.Value == false)
-            {
-                float currentTime = lameManager.matchTimer.Value;
-                if (currentTime - puppetDeathTime.Value >= 15f)
-                {
-                    PuppetSpawnServerRpc(teamNumber.Value, attackDamage, maxSpeed);
-                }
-            } else
-            {
-                if(currentTarget != null)
-                {
-                    SyncPuppetValuesServerRpc(currentTarget);
-                }
+                SyncPuppetValuesServerRpc(currentTarget);
             }
         }
     }
@@ -105,10 +75,11 @@ public class PuppeteeringPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void PuppetSpawnServerRpc(int team, float damage, float speed)
     {
-        if(puppetAlive.Value == false)
+        if(puppetsAlive.Value < maxPuppets.Value)
         {
-            puppetAlive.Value = true;
-            currentPuppet = Instantiate(Puppet, gameObject.transform.position, Quaternion.identity);
+            puppetsAlive.Value++;
+            GameObject currentPuppet = Instantiate(puppetPrefab, gameObject.transform.position, Quaternion.identity);
+            PuppetList.Add(currentPuppet);
             currentPuppet.GetComponent<Puppet>().Team = team;
             currentPuppet.GetComponent<Puppet>().health.Team.Value = team;
             currentPuppet.GetComponent<Puppet>().Father = gameObject;
@@ -141,10 +112,10 @@ public class PuppeteeringPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void PuppetModeSwitchServerRpc()
     {
-        if(puppetAlive.Value == true)
+        foreach(GameObject puppet in PuppetList)
         {
-            currentPuppet.GetComponent<Puppet>().defensiveMode = !defensiveMode;
-            defensiveMode = currentPuppet.GetComponent<Puppet>().defensiveMode;
+            puppet.GetComponent<Puppet>().defensiveMode = !defensiveMode;
+            defensiveMode = puppet.GetComponent<Puppet>().defensiveMode;
             if (defensiveMode == true) //Switching to defensive mode buffs defense
             {
                 TriggerBuffServerRpc("Armor", 10, 5f);
@@ -156,12 +127,11 @@ public class PuppeteeringPlayerController : BasePlayerController
             {
                 TriggerBuffServerRpc("Attack Damage", 3, 5f);
                 TriggerBuffServerRpc("Armor Pen", 5, 5f);
-                currentPuppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor Pen", 10, 5f);
-                currentPuppet.GetComponent<Puppet>().TriggerBuffServerRpc("Attack Damage", 10, 5f);
+                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor Pen", 10, 5f);
+                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Attack Damage", 10, 5f);
 
             }
         }
-
     }
 
     [Rpc(SendTo.Server)]
@@ -170,21 +140,4 @@ public class PuppeteeringPlayerController : BasePlayerController
 
     }
 
-    public IEnumerator CooldownTimer(float duration, int abilityNumber)
-    {
-        yield return new WaitForSeconds(duration);
-        if (abilityNumber == 1)
-        {
-            isAOneOnCD = false;
-        }
-        else if (abilityNumber == 2)
-        {
-            isATwoOnCD = false;
-        }
-        else if (abilityNumber == 3)
-        {
-            isUltOnCD = false;
-        }
-        Debug.Log("Ability Off Cooldown");
-    }
 }
