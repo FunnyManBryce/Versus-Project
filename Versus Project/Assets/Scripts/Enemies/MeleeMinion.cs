@@ -84,7 +84,6 @@ public class MeleeMinion : NetworkBehaviour
                 {
                     playerLastHit = true;
                 }
-                
             }
             if (health.currentHealth.Value <= 0)
             {

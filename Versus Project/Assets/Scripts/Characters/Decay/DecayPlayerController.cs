@@ -110,6 +110,10 @@ public class DecayPlayerController : BasePlayerController
    
     public void StatDecay()
     {
+        if(IsServer)
+        {
+            totalStatDecay.Value += decayAmount;
+        }
         lastDecayTime = lameManager.matchTimer.Value;
         attackDamage -= decayAmount;
         if (attackDamage <= 1f)
@@ -187,6 +191,7 @@ public class DecayPlayerController : BasePlayerController
             manaRegen = 0.1f;
         }
     }
+
 }
 
 

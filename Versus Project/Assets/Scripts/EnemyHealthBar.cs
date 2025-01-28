@@ -18,6 +18,11 @@ public class EnemyHealthBar : MonoBehaviour
 
     public bool initializedHealth;
 
+    public void Start()
+    {
+        healthBar.transform.position = new Vector3(10000, 10000, 10000);
+    }
+
     public void SyncValues(GameObject gameObject, Transform position)
     {
         Object = gameObject;
