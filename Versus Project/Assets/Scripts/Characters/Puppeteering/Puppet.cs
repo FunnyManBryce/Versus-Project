@@ -27,6 +27,8 @@ public class Puppet : NetworkBehaviour
     public bool isChasing = false;
     public bool cooldown = false;
     public bool dead;
+    public float regen = 5f;
+    private float lastRegenTick = 0f;
 
     public string targetName;
     public float Damage;
@@ -43,6 +45,7 @@ public class Puppet : NetworkBehaviour
     public GameObject jungleEnemy;
     public GameObject enemyTarget;
     public GameObject puppet;
+    public GameObject projectilePrefab;
     public NetworkObject networkPuppet;
     public NetworkObject currentTarget;
 
@@ -63,6 +66,21 @@ public class Puppet : NetworkBehaviour
     void Update()
     {
         if (isAttacking || !IsServer) return;
+        if (defensiveMode == true)
+        {
+            agent.SetDestination(Father.transform.position);
+            attackDistance = 10;
+            float currentTime = Time.time;
+            if (currentTime - lastRegenTick >= 1f) // Check every second
+            {
+                RegenHealthServerRpc(regen);
+                lastRegenTick = currentTime;
+            }
+        }
+        else
+        {
+            attackDistance = 4;
+        }
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
             cooldownTimer += Time.deltaTime;
@@ -77,7 +95,10 @@ public class Puppet : NetworkBehaviour
         {
             agent.speed = moveSpeed;
             currentTarget = enemyTarget.GetComponent<NetworkObject>();
-            agent.SetDestination(currentTarget.transform.position);
+            if(!defensiveMode)
+            {
+                agent.SetDestination(currentTarget.transform.position);
+            }
             isChasing = true;
         }
         else
@@ -94,7 +115,7 @@ public class Puppet : NetworkBehaviour
         {
             agent.speed = moveSpeed;
             agent.SetDestination(Father.transform.position);
-        } else if(distanceFromFather.magnitude < 4 && isChasing == false)
+        } else if(distanceFromFather.magnitude < 4 && isChasing == false && !defensiveMode)
         {
             agent.SetDestination(puppetPos.position);
         }
@@ -127,13 +148,37 @@ public class Puppet : NetworkBehaviour
     {
         if (currentTarget != null)
         {
-            DealDamageServerRPC(Damage, currentTarget, puppet);
+            if(defensiveMode)
+            {
+                SpawnProjectileServerRpc(Damage, new NetworkObjectReference(currentTarget), new NetworkObjectReference(NetworkObject));
+            }
+            else
+            {
+                DealDamageServerRPC(Damage, currentTarget, puppet);
+            }
         }
         else
         {
             isAttacking = false;
             //animator.SetBool("Attacking", isAttacking);
         }
+    }
+
+    [Rpc(SendTo.Server)]
+    private void SpawnProjectileServerRpc(float damage, NetworkObjectReference target, NetworkObjectReference sender)
+    {
+        if (target.TryGet(out NetworkObject targetObj) && sender.TryGet(out NetworkObject senderObj))
+        {
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            NetworkObject netObj = projectile.GetComponent<NetworkObject>();
+            netObj.Spawn();
+
+            ProjectileController controller = projectile.GetComponent<ProjectileController>();
+            controller.Initialize(6, damage/2, targetObj, senderObj);
+        }
+        isAttacking = false;
+        //animator.SetBool("Attacking", isAttacking);
+        cooldown = true;
     }
 
     [Rpc(SendTo.Server)]
@@ -228,6 +273,24 @@ public class Puppet : NetworkBehaviour
                 armorPen = 1f;
             }
         }
+        if (buffType == "Armor")
+        {
+            health.armor += amount;
+            if (health.armor <= 1f)
+            {
+                amount = -health.armor + 1f + amount;
+                health.armor = 1f;
+            }
+        }
+        if (buffType == "Regen")
+        {
+            regen += amount;
+            if (regen <= 0.1f)
+            {
+                amount = -regen + 0.1f + amount;
+                regen = 0.1f;
+            }
+        }
         if (buffType == "Marked")
         {
             health.markedValue += amount;
@@ -270,7 +333,20 @@ public class Puppet : NetworkBehaviour
         {
             moveSpeed += amount;
         }
+        if (buffType == "Armor")
+        {
+            health.armor -= amount;
+        }
+        if (buffType == "Regen")
+        {
+            regen -= amount;
+        }
     }
 
+    [ServerRpc]
+    private void RegenHealthServerRpc(float regenAmount)
+    {
+        health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + regenAmount, health.maxHealth.Value);
+    }
 }
 

@@ -22,13 +22,14 @@ public class Tower : NetworkBehaviour
 
     public GameObject tower;
     public GameObject enemyPlayer;
-    public GameObject puppet;
+    public GameObject enemyPuppet;
     public GameObject enemyMinion;
     public NetworkObject networkTower;
     public NetworkObject currentTarget;
 
     private Vector3 distanceFromTarget;
     private Vector3 distanceFromPlayer;
+    public Vector3 distanceFromPuppet;
     private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
 
@@ -136,17 +137,31 @@ public class Tower : NetworkBehaviour
         }
         else if (distanceFromPlayer.magnitude < distanceFromMinion.magnitude)
         {
-            distanceFromTarget = distanceFromPlayer;
-            currentTarget = enemyPlayer.GetComponent<NetworkObject>();
-        }
-        if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value < 1)
-        {
-            puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().PuppetList[0];
-            Vector3 distanceFromPuppet = new Vector3(towerTarget.position.x - puppet.transform.position.x, towerTarget.position.y - puppet.transform.position.y, 0);
-            if (distanceFromPuppet.magnitude < distanceFromPlayer.magnitude && distanceFromPuppet.magnitude < distanceFromMinion.magnitude)
+            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
             {
-                currentTarget = puppet.GetComponent<NetworkObject>();
-                distanceFromTarget = distanceFromPuppet;
+                oldTarget = new Vector3(1000, 1000, 0);
+                foreach (GameObject puppet in enemyPlayer.GetComponent<PuppeteeringPlayerController>().PuppetList)
+                {
+                    Vector3 directionToPuppet = new Vector3(towerTarget.position.x - puppet.transform.position.x, towerTarget.position.y - puppet.transform.position.y, 0);
+                    if (oldTarget.magnitude > directionToPuppet.magnitude)
+                    {
+                        oldTarget = directionToPuppet;
+                        distanceFromPuppet = directionToPuppet;
+                        enemyPuppet = puppet;
+                    }
+                }
+            }
+            if (distanceFromPlayer.magnitude > distanceFromPuppet.magnitude && enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
+            {
+                distanceFromPlayer = new Vector3(towerTarget.position.x - enemyPuppet.transform.position.x, towerTarget.position.y - enemyPuppet.transform.position.y, 0);
+                distanceFromTarget = distanceFromPlayer;
+                currentTarget = enemyPuppet.GetComponent<NetworkObject>();
+            }
+            else
+            {
+                distanceFromPlayer = new Vector3(towerTarget.position.x - enemyPlayer.transform.position.x, towerTarget.position.y - enemyPlayer.transform.position.y, 0);
+                distanceFromTarget = distanceFromPlayer;
+                currentTarget = enemyPlayer.GetComponent<NetworkObject>();
             }
         }
         if (distanceFromTarget.magnitude < towerRange && cooldown == false && currentTarget != null)

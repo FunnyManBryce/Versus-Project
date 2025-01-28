@@ -21,6 +21,7 @@ public class MeleeMinion : NetworkBehaviour
 
     private Vector3 distanceFromTower;
     public Vector3 distanceFromTarget;
+    public Vector3 distanceFromPuppet;
     public Vector3 distanceFromPlayer;
     private Vector3 distanceFromMinion;
     private Vector3 oldTarget;
@@ -48,7 +49,7 @@ public class MeleeMinion : NetworkBehaviour
     public int goldGiven;
 
     public GameObject enemyPlayer;
-    public GameObject puppet;
+    public GameObject enemyPuppet;
     public GameObject enemyMinion;
     public GameObject enemyTower;
     public GameObject Minion;
@@ -130,35 +131,7 @@ public class MeleeMinion : NetworkBehaviour
         }
         if (aggro == true && aggroTimer < aggroLength)
         {
-            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value < 0)
-            {
-                puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().PuppetList[0];
-                Vector3 distanceFromPuppet = new Vector3(minionTarget.position.x - puppet.transform.position.x, minionTarget.position.y - puppet.transform.position.y, 0);
-                if (distanceFromPuppet.magnitude < distanceFromPlayer.magnitude)
-                {
-                    agent.speed = moveSpeed;
-                    distanceFromPlayer = distanceFromPuppet;
-                    agent.SetDestination(puppet.transform.position);
-                    currentTarget = puppet.GetComponent<NetworkObject>();
-                    distanceFromTarget = distanceFromPuppet;
-                }
-                else
-                {
-                    agent.speed = moveSpeed;
-                    distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
-                    agent.SetDestination(enemyPlayer.transform.position);
-                    distanceFromTarget = distanceFromPlayer;
-                    currentTarget = enemyPlayer.GetComponent<NetworkObject>();
-                }
-            } else
-            {
-                agent.speed = moveSpeed;
-                distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
-                agent.SetDestination(enemyPlayer.transform.position);
-                distanceFromTarget = distanceFromPlayer;
-                currentTarget = enemyPlayer.GetComponent<NetworkObject>();
-                aggroTimer += Time.deltaTime;
-            }
+            aggroTimer += Time.deltaTime;
         }
         else if (aggroTimer >= aggroLength)
         {
@@ -219,36 +192,37 @@ public class MeleeMinion : NetworkBehaviour
             distanceFromTarget = distanceFromMinion;
             currentTarget = enemyMinion.GetComponent<NetworkObject>();
         }
-        else if (distanceFromPlayer.magnitude < chasePlayerDistance && aggro == false)
+        else if (distanceFromPlayer.magnitude < chasePlayerDistance && aggro == false || aggro == true)
         {
-            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value < 0)
+            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0) 
             {
-                puppet = enemyPlayer.GetComponent<PuppeteeringPlayerController>().PuppetList[0];
-                Vector3 distanceFromPuppet = new Vector3(minionTarget.position.x - puppet.transform.position.x, minionTarget.position.y - puppet.transform.position.y, 0);
-                if (distanceFromPuppet.magnitude < distanceFromPlayer.magnitude)
+                oldTarget = new Vector3(1000, 1000, 0);
+                foreach (GameObject puppet in enemyPlayer.GetComponent<PuppeteeringPlayerController>().PuppetList)
                 {
-                    agent.speed = moveSpeed;
-                    distanceFromPlayer = distanceFromPuppet;
-                    agent.SetDestination(puppet.transform.position);
-                    currentTarget = puppet.GetComponent<NetworkObject>();
-                    distanceFromTarget = distanceFromPuppet;
-                } else
-                {
-                    agent.speed = moveSpeed;
-                    distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
-                    agent.SetDestination(enemyPlayer.transform.position);
-                    distanceFromTarget = distanceFromPlayer;
-                    currentTarget = enemyPlayer.GetComponent<NetworkObject>();
+                    Vector3 directionToPuppet = new Vector3(minionTarget.position.x - puppet.transform.position.x, minionTarget.position.y - puppet.transform.position.y, 0);
+                    if (oldTarget.magnitude > directionToPuppet.magnitude)
+                    {
+                        oldTarget = directionToPuppet;
+                        distanceFromPuppet = directionToPuppet;
+                        enemyPuppet = puppet;
+                    }
                 }
             }
-            else
+            if(distanceFromPlayer.magnitude > distanceFromPuppet.magnitude && enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
             {
-                agent.speed = moveSpeed;
+                distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPuppet.transform.position.x, minionTarget.position.y - enemyPuppet.transform.position.y, 0);
+                agent.SetDestination(enemyPuppet.transform.position);
+                distanceFromTarget = distanceFromPlayer;
+                currentTarget = enemyPuppet.GetComponent<NetworkObject>();
+
+            } else
+            {
                 distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
                 agent.SetDestination(enemyPlayer.transform.position);
                 distanceFromTarget = distanceFromPlayer;
                 currentTarget = enemyPlayer.GetComponent<NetworkObject>();
             }
+            agent.speed = moveSpeed;
         }
         if (distanceFromTarget.magnitude < attackDistance && cooldown == false && currentTarget != null)
         {

@@ -101,7 +101,10 @@ public class DecayPlayerController : BasePlayerController
         if(currentTime - lastDecayTime >= 30f)
         {
             StatDecay();
-            TrackStatDecayServerRpc();
+            if(!IsServer)
+            {
+                TrackStatDecayServerRpc();
+            }
         }
     }
    
@@ -153,6 +156,36 @@ public class DecayPlayerController : BasePlayerController
     private void TrackStatDecayServerRpc()
     {
         totalStatDecay.Value += decayAmount;
+        attackDamage -= decayAmount;
+        if (attackDamage <= 1f)
+        {
+            attackDamage = 1f;
+        }
+        autoAttackSpeed -= 0.1f * decayAmount;
+        if (autoAttackSpeed <= 0.1f)
+        {
+            autoAttackSpeed = 0.1f;
+        }
+        health.armor -= decayAmount;
+        if (health.armor <= 1f)
+        {
+            health.armor = 1f;
+        }
+        armorPen -= decayAmount;
+        if (armorPen <= 1f)
+        {
+            armorPen = 1f;
+        }
+        regen -= 0.05f * decayAmount;
+        if (regen <= 0.1f)
+        {
+            regen = 0.1f;
+        }
+        manaRegen -= 0.05f * decayAmount;
+        if (manaRegen <= .1f)
+        {
+            manaRegen = 0.1f;
+        }
     }
 }
 
