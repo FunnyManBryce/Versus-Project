@@ -336,33 +336,35 @@ MonoBehaviour:
   puppetPrefab: {fileID: 8942386518775928844, guid: f468015df4e8466428a164c5a018448a,
     type: 3}
   PuppetList: []
-  puppetTwo: {fileID: 0}
   puppetsAlive:
     m_InternalValue: 0
   maxPuppets:
     m_InternalValue: 1
   puppetDeathTime:
     m_InternalValue: 0
+  lastUltTime:
+    m_InternalValue: 0
+  ultActive:
+    m_InternalValue: 0
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
-  defensiveMode: 0
   String:
     playerController: {fileID: 2414812415466740570}
     inputKey: 113
-    cooldown: 5
-    manaCost: 5
+    cooldown: 25
+    manaCost: 40
     lastUsed: 0
   ModeSwitch:
     playerController: {fileID: 2414812415466740570}
     inputKey: 101
-    cooldown: 5
-    manaCost: 5
+    cooldown: 10
+    manaCost: 25
     lastUsed: 0
   Ultimate:
     playerController: {fileID: 2414812415466740570}
     inputKey: 114
-    cooldown: 5
-    manaCost: 5
+    cooldown: 80
+    manaCost: 70
     lastUsed: 0
 --- !u!114 &2628991981076659366
 MonoBehaviour:

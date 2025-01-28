@@ -15,7 +15,6 @@ public class PuppeteeringPlayerController : BasePlayerController
     public NetworkVariable<float> puppetDeathTime = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<float> lastUltTime = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> ultActive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    public NetworkVariable<bool> defensiveMode = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public GameObject stringObject;
     public AbilityBase<PuppeteeringPlayerController> String;
@@ -53,7 +52,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             float currentTime = lameManager.matchTimer.Value;
             if (currentTime - puppetDeathTime.Value >= 15f)
             {
-                PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, false);
+                PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, ultActive.Value);
             }
         } else if (puppetsAlive.Value == maxPuppets.Value)
         {
@@ -101,12 +100,12 @@ public class PuppeteeringPlayerController : BasePlayerController
             currentPuppet.GetComponent<Puppet>().moveSpeed = 1f * speed;
             var puppetNetworkObject = currentPuppet.GetComponent<NetworkObject>();
             puppetNetworkObject.Spawn();
-            if(ultSpawn)
+            if(ultSpawn && puppetsAlive.Value > 1)
             {
-                currentPuppet.GetComponent<Puppet>().defensiveMode = !defensiveMode.Value;
+                currentPuppet.GetComponent<Puppet>().defensiveMode = !PuppetList[0].GetComponent<Puppet>().defensiveMode;
             } else
             {
-                currentPuppet.GetComponent<Puppet>().defensiveMode = defensiveMode.Value;
+                currentPuppet.GetComponent<Puppet>().defensiveMode = false;
             }
         }
     }
@@ -135,9 +134,8 @@ public class PuppeteeringPlayerController : BasePlayerController
     {
         foreach(GameObject puppet in PuppetList)
         {
-            puppet.GetComponent<Puppet>().defensiveMode = !defensiveMode.Value;
-            defensiveMode.Value = puppet.GetComponent<Puppet>().defensiveMode;
-            if (defensiveMode.Value == true) //Switching to defensive mode buffs defense
+            puppet.GetComponent<Puppet>().defensiveMode = !puppet.GetComponent<Puppet>().defensiveMode;
+            if (puppet.GetComponent<Puppet>().defensiveMode == true) //Switching to defensive mode buffs defense
             {
                 TriggerBuffServerRpc("Armor", 10, 5f);
                 TriggerBuffServerRpc("Regen", 10, 5f);
@@ -181,9 +179,9 @@ public class PuppeteeringPlayerController : BasePlayerController
     {
         if (puppetsAlive.Value > maxPuppets.Value)
         {
+            NetworkObject puppetToDespawn = PuppetList.Last().GetComponent<NetworkObject>();
             GameObject lastPuppet = PuppetList.Last();
             PuppetList.Remove(lastPuppet);
-            NetworkObject puppetToDespawn = PuppetList.Last().GetComponent<NetworkObject>();
             puppetsAlive.Value--;
             puppetToDespawn.Despawn();
         }
