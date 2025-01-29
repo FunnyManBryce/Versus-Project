@@ -1,0 +1,1511 @@
+fileFormatVersion: 2
+guid: 26146efac3fb90a45abaa91bc3d1b219
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4890667960358911778
+    second: Base-Blue(DONE)_0
+  - first:
+      213: -6231682155043058131
+    second: Base-Blue(DONE)_1
+  - first:
+      213: 6110769086478094800
+    second: Base-Blue(DONE)_2
+  - first:
+      213: -6308494736735129125
+    second: Base-Blue(DONE)_3
+  - first:
+      213: -4995442886617860195
+    second: Base-Blue(DONE)_4
+  - first:
+      213: -7322068916923407999
+    second: Base-Blue(DONE)_5
+  - first:
+      213: 7869963672435499671
+    second: Base-Blue(DONE)_6
+  - first:
+      213: -2860003125546030193
+    second: Base-Blue(DONE)_7
+  - first:
+      213: 1538583884150685543
+    second: Base-Blue(DONE)_8
+  - first:
+      213: 4720662370166545122
+    second: Base-Blue(DONE)_9
+  - first:
+      213: -4789536508203917666
+    second: Base-Blue(DONE)_10
+  - first:
+      213: -7230598823699648871
+    second: Base-Blue(DONE)_11
+  - first:
+      213: 3635973380446751150
+    second: Base-Blue(DONE)_12
+  - first:
+      213: 5701795937416146983
+    second: Base-Blue(DONE)_13
+  - first:
+      213: 2849793229775751294
+    second: Base-Blue(DONE)_14
+  - first:
+      213: -3465161532833627437
+    second: Base-Blue(DONE)_15
+  - first:
+      213: -424716858121014367
+    second: Base-Blue(DONE)_16
+  - first:
+      213: 7903238508119096136
+    second: Base-Blue(DONE)_17
+  - first:
+      213: 4612130760077475486
+    second: Base-Blue(DONE)_18
+  - first:
+      213: -1766157912081374538
+    second: Base-Blue(DONE)_19
+  - first:
+      213: -3019110156146362721
+    second: Base-Blue(DONE)_20
+  - first:
+      213: -6439621980954902346
+    second: Base-Blue(DONE)_21
+  - first:
+      213: 1946092275988596058
+    second: Base-Blue(DONE)_22
+  - first:
+      213: 2012100292621419884
+    second: Base-Blue(DONE)_23
+  - first:
+      213: -5573746031554269918
+    second: Base-Blue(DONE)_24
+  - first:
+      213: 902843805077347089
+    second: Base-Blue(DONE)_25
+  - first:
+      213: -2185376601358713465
+    second: Base-Blue(DONE)_26
+  - first:
+      213: -6046350170601070414
+    second: Base-Blue(DONE)_27
+  - first:
+      213: 1892097758486986673
+    second: Base-Blue(DONE)_28
+  - first:
+      213: -497086405661751535
+    second: Base-Blue(DONE)_29
+  - first:
+      213: -1541425119129218141
+    second: Base-Blue(DONE)_30
+  - first:
+      213: -6516730820957854908
+    second: Base-Blue(DONE)_31
+  - first:
+      213: 9218069790420752442
+    second: Base-Blue(DONE)_32
+  - first:
+      213: -2446803235197396813
+    second: Base-Blue(DONE)_33
+  - first:
+      213: -6900405594601942831
+    second: Base-Blue(DONE)_34
+  - first:
+      213: 8383161095007500513
+    second: Base-Blue(DONE)_35
+  - first:
+      213: -7826808888149201732
+    second: Base-Blue(DONE)_36
+  - first:
+      213: -1521903264420361037
+    second: Base-Blue(DONE)_37
+  - first:
+      213: 3426446907958687370
+    second: Base-Blue(DONE)_38
+  - first:
+      213: -3025936399189383151
+    second: Base-Blue(DONE)_39
+  - first:
+      213: -9113743156559729972
+    second: Base-Blue(DONE)_40
+  - first:
+      213: -2089772575815081516
+    second: Base-Blue(DONE)_41
+  - first:
+      213: -6806267720819924643
+    second: Base-Blue(DONE)_42
+  - first:
+      213: -2196040735652851639
+    second: Base-Blue(DONE)_43
+  - first:
+      213: 194130859369044314
+    second: Base-Blue(DONE)_44
+  - first:
+      213: -437146628967709271
+    second: Base-Blue(DONE)_45
+  - first:
+      213: 1224590675909242268
+    second: Base-Blue(DONE)_46
+  - first:
+      213: -603278013039729154
+    second: Base-Blue(DONE)_47
+  - first:
+      213: -5164289641092226681
+    second: Base-Blue(DONE)_48
+  - first:
+      213: -239463200356634178
+    second: Base-Blue(DONE)_49
+  - first:
+      213: 4569486130667471950
+    second: Base-Blue(DONE)_50
+  - first:
+      213: -4575349700760834624
+    second: Base-Blue(DONE)_51
+  - first:
+      213: 5187500466937544595
+    second: Base-Blue(DONE)_52
+  - first:
+      213: -5687073358379997406
+    second: Base-Blue(DONE)_53
+  - first:
+      213: -6534455652762309183
+    second: Base-Blue(DONE)_54
+  - first:
+      213: -7268967224205984779
+    second: Base-Blue(DONE)_55
+  - first:
+      213: -3449259640671120730
+    second: Base-Blue(DONE)_56
+  - first:
+      213: -5746006123624191250
+    second: Base-Blue(DONE)_57
+  - first:
+      213: 1585084885850031907
+    second: Base-Blue(DONE)_58
+  - first:
+      213: 7541257144405244045
+    second: Base-Blue(DONE)_59
+  - first:
+      213: 1659070425343914336
+    second: Base-Blue(DONE)_60
+  - first:
+      213: -8779703786279898548
+    second: Base-Blue(DONE)_61
+  - first:
+      213: 296589908471080428
+    second: Base-Blue(DONE)_62
+  - first:
+      213: 9138013187286231940
+    second: Base-Blue(DONE)_63
+  - first:
+      213: -6010812868155136877
+    second: Base-Blue(DONE)_64
+  - first:
+      213: -6202524523544886366
+    second: Base-Blue(DONE)_65
+  - first:
+      213: 7899899965591407761
+    second: Base-Blue(DONE)_66
+  - first:
+      213: 5666255960441803214
+    second: Base-Blue(DONE)_67
+  - first:
+      213: -5143010283583747563
+    second: Base-Blue(DONE)_68
+  - first:
+      213: -2869782102518504284
+    second: Base-Blue(DONE)_69
+  - first:
+      213: 6726179985172367297
+    second: Base-Blue(DONE)_70
+  - first:
+      213: -8452626506698724317
+    second: Base-Blue(DONE)_71
+  - first:
+      213: -4448909581959511327
+    second: Base-Blue(DONE)_72
+  - first:
+      213: 4822466308261844552
+    second: Base-Blue(DONE)_73
+  - first:
+      213: -4261586131918836513
+    second: Base-Blue(DONE)_74
+  - first:
+      213: -534111169614619522
+    second: Base-Blue(DONE)_75
+  - first:
+      213: 8103635314007376541
+    second: Base-Blue(DONE)_76
+  - first:
+      213: -6929398158779275265
+    second: Base-Blue(DONE)_77
+  - first:
+      213: 4484573731600940329
+    second: Base-Blue(DONE)_78
+  - first:
+      213: 2134301119698534915
+    second: Base-Blue(DONE)_79
+  - first:
+      213: -3436663620327188046
+    second: Base-Blue(DONE)_80
+  - first:
+      213: -3077983332028492625
+    second: Base-Blue(DONE)_81
+  - first:
+      213: 4576319462053539062
+    second: Base-Blue(DONE)_82
+  - first:
+      213: 7421739125011744756
+    second: Base-Blue(DONE)_83
+  - first:
+      213: 3697659881388006367
+    second: Base-Blue(DONE)_84
+  - first:
+      213: 4561163013078562167
+    second: Base-Blue(DONE)_85
+  - first:
+      213: 9143367768059226614
+    second: Base-Blue(DONE)_86
+  - first:
+      213: -2517376568115637921
+    second: Base-Blue(DONE)_87
+  - first:
+      213: -674140216580032399
+    second: Base-Blue(DONE)_88
+  - first:
+      213: 693784554958594061
+    second: Base-Blue(DONE)_89
+  - first:
+      213: -4368606949845338525
+    second: Base-Blue(DONE)_90
+  - first:
+      213: 8540053717052253924
+    second: Base-Blue(DONE)_91
+  - first:
+      213: 7887605980421337436
+    second: Base-Blue(DONE)_92
+  - first:
+      213: -7299110976986563439
+    second: Base-Blue(DONE)_93
+  - first:
+      213: -663700789188679581
+    second: Base-Blue(DONE)_94
+  - first:
+      213: -3116659308964400494
+    second: Base-Blue(DONE)_95
+  - first:
+      213: 3299046786129393217
+    second: Base-Blue(DONE)_96
+  - first:
+      213: -5285582485012531037
+    second: Base-Blue(DONE)_97
+  - first:
+      213: 1115790608418007007
+    second: Base-Blue(DONE)_98
+  - first:
+      213: -3176760749018582928
+    second: Base-Blue(DONE)_99
+  - first:
+      213: -9220901192780321479
+    second: Base-Blue(DONE)_100
+  - first:
+      213: -81050613657242657
+    second: Base-Blue(DONE)_101
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22fb39b19942fd340800000000000000
+      internalID: 4890667960358911778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2e848bc81e9489a0800000000000000
+      internalID: -6231682155043058131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_2
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d117ff9b10ddc450800000000000000
+      internalID: 6110769086478094800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd13b75f579b378a0800000000000000
+      internalID: -6308494736735129125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_4
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d97f36f592f9caab0800000000000000
+      internalID: -4995442886617860195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_5
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 181e9d13d19c26a90800000000000000
+      internalID: -7322068916923407999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_6
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7922fb2634ab73d60800000000000000
+      internalID: 7869963672435499671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_7
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8b625d6f4a3f48d0800000000000000
+      internalID: -2860003125546030193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_8
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76f31ff04e52a5510800000000000000
+      internalID: 1538583884150685543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_9
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ea945e1a69238140800000000000000
+      internalID: 4720662370166545122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_10
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9e9dbdfbe5288db0800000000000000
+      internalID: -4789536508203917666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_11
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99e6600eda0c7ab90800000000000000
+      internalID: -7230598823699648871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_12
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea90e4a7682957230800000000000000
+      internalID: 3635973380446751150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_13
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72074771239d02f40800000000000000
+      internalID: 5701795937416146983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_14
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e78c818f7df7c8720800000000000000
+      internalID: 2849793229775751294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_15
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d28a12f1f549efc0800000000000000
+      internalID: -3465161532833627437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_16
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a3b39d844a1b1af0800000000000000
+      internalID: -424716858121014367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_17
+      rect:
+        serializedVersion: 2
+        x: 1445
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84b70abcc81fdad60800000000000000
+      internalID: 7903238508119096136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_18
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9ef11c7d74910040800000000000000
+      internalID: 4612130760077475486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_19
+      rect:
+        serializedVersion: 2
+        x: 1615
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b2e4298cb85d77e0800000000000000
+      internalID: -1766157912081374538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_20
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f963f151f47f916d0800000000000000
+      internalID: -3019110156146362721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_21
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b0c2694dedd1a6a0800000000000000
+      internalID: -6439621980954902346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_22
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a558e6a3d98e10b10800000000000000
+      internalID: 1946092275988596058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_23
+      rect:
+        serializedVersion: 2
+        x: 1955
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c65c82a3e8a6ceb10800000000000000
+      internalID: 2012100292621419884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_24
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22de6f8e38316a2b0800000000000000
+      internalID: -5573746031554269918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_25
+      rect:
+        serializedVersion: 2
+        x: 2125
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11b1c4148ab878c00800000000000000
+      internalID: 902843805077347089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_26
+      rect:
+        serializedVersion: 2
+        x: 2210
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78d30974f8bfba1e0800000000000000
+      internalID: -2185376601358713465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_27
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b063b50e8c071ca0800000000000000
+      internalID: -6046350170601070414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_28
+      rect:
+        serializedVersion: 2
+        x: 2380
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bffde6f2e4124a10800000000000000
+      internalID: 1892097758486986673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_29
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1170bd73c8ef919f0800000000000000
+      internalID: -497086405661751535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_30
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a3507e5502cb9ae0800000000000000
+      internalID: -1541425119129218141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_31
+      rect:
+        serializedVersion: 2
+        x: 2635
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 443a7ff68dbef85a0800000000000000
+      internalID: -6516730820957854908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_32
+      rect:
+        serializedVersion: 2
+        x: 2720
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a38d9cc82a92def70800000000000000
+      internalID: 9218069790420752442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_33
+      rect:
+        serializedVersion: 2
+        x: 2805
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b858cadb653b0ed0800000000000000
+      internalID: -2446803235197396813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_34
+      rect:
+        serializedVersion: 2
+        x: 2890
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d012afeba5dc30a0800000000000000
+      internalID: -6900405594601942831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_35
+      rect:
+        serializedVersion: 2
+        x: 2975
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8fbca9998f65470800000000000000
+      internalID: 8383161095007500513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_36
+      rect:
+        serializedVersion: 2
+        x: 3060
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbc2ff0d8c6916390800000000000000
+      internalID: -7826808888149201732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_37
+      rect:
+        serializedVersion: 2
+        x: 3145
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bc87bd5b0d11eae0800000000000000
+      internalID: -1521903264420361037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_38
+      rect:
+        serializedVersion: 2
+        x: 3230
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a86fc960f4f2d8f20800000000000000
+      internalID: 3426446907958687370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_39
+      rect:
+        serializedVersion: 2
+        x: 3315
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 118646580e6b106d0800000000000000
+      internalID: -3025936399189383151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_40
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cca2c13c2ea758180800000000000000
+      internalID: -9113743156559729972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_41
+      rect:
+        serializedVersion: 2
+        x: 3485
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d160351ae2aff2e0800000000000000
+      internalID: -2089772575815081516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_42
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d51225ea1974b81a0800000000000000
+      internalID: -6806267720819924643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_43
+      rect:
+        serializedVersion: 2
+        x: 3655
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 940df1706981681e0800000000000000
+      internalID: -2196040735652851639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_44
+      rect:
+        serializedVersion: 2
+        x: 3740
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5912a0fcf0b1b200800000000000000
+      internalID: 194130859369044314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_45
+      rect:
+        serializedVersion: 2
+        x: 3825
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5ce910571fee9f0800000000000000
+      internalID: -437146628967709271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_46
+      rect:
+        serializedVersion: 2
+        x: 3910
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9d63d84bbe9ef010800000000000000
+      internalID: 1224590675909242268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_47
+      rect:
+        serializedVersion: 2
+        x: 3995
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5a6fbe7d9b0a7f0800000000000000
+      internalID: -603278013039729154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Base-Blue(DONE)_48
+      rect:
+        serializedVersion: 2
+        x: 4080
+        y: 0
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 781e779dee1c458b0800000000000000
+      internalID: -5164289641092226681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ce653890ce2ede049b79685b3e306ff5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Base-Blue(DONE)_0: 4890667960358911778
+      Base-Blue(DONE)_1: -6231682155043058131
+      Base-Blue(DONE)_10: -4789536508203917666
+      Base-Blue(DONE)_11: -7230598823699648871
+      Base-Blue(DONE)_12: 3635973380446751150
+      Base-Blue(DONE)_13: 5701795937416146983
+      Base-Blue(DONE)_14: 2849793229775751294
+      Base-Blue(DONE)_15: -3465161532833627437
+      Base-Blue(DONE)_16: -424716858121014367
+      Base-Blue(DONE)_17: 7903238508119096136
+      Base-Blue(DONE)_18: 4612130760077475486
+      Base-Blue(DONE)_19: -1766157912081374538
+      Base-Blue(DONE)_2: 6110769086478094800
+      Base-Blue(DONE)_20: -3019110156146362721
+      Base-Blue(DONE)_21: -6439621980954902346
+      Base-Blue(DONE)_22: 1946092275988596058
+      Base-Blue(DONE)_23: 2012100292621419884
+      Base-Blue(DONE)_24: -5573746031554269918
+      Base-Blue(DONE)_25: 902843805077347089
+      Base-Blue(DONE)_26: -2185376601358713465
+      Base-Blue(DONE)_27: -6046350170601070414
+      Base-Blue(DONE)_28: 1892097758486986673
+      Base-Blue(DONE)_29: -497086405661751535
+      Base-Blue(DONE)_3: -6308494736735129125
+      Base-Blue(DONE)_30: -1541425119129218141
+      Base-Blue(DONE)_31: -6516730820957854908
+      Base-Blue(DONE)_32: 9218069790420752442
+      Base-Blue(DONE)_33: -2446803235197396813
+      Base-Blue(DONE)_34: -6900405594601942831
+      Base-Blue(DONE)_35: 8383161095007500513
+      Base-Blue(DONE)_36: -7826808888149201732
+      Base-Blue(DONE)_37: -1521903264420361037
+      Base-Blue(DONE)_38: 3426446907958687370
+      Base-Blue(DONE)_39: -3025936399189383151
+      Base-Blue(DONE)_4: -4995442886617860195
+      Base-Blue(DONE)_40: -9113743156559729972
+      Base-Blue(DONE)_41: -2089772575815081516
+      Base-Blue(DONE)_42: -6806267720819924643
+      Base-Blue(DONE)_43: -2196040735652851639
+      Base-Blue(DONE)_44: 194130859369044314
+      Base-Blue(DONE)_45: -437146628967709271
+      Base-Blue(DONE)_46: 1224590675909242268
+      Base-Blue(DONE)_47: -603278013039729154
+      Base-Blue(DONE)_48: -5164289641092226681
+      Base-Blue(DONE)_5: -7322068916923407999
+      Base-Blue(DONE)_6: 7869963672435499671
+      Base-Blue(DONE)_7: -2860003125546030193
+      Base-Blue(DONE)_8: 1538583884150685543
+      Base-Blue(DONE)_9: 4720662370166545122
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -31,7 +31,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RedTower
+  m_Name: BluePentagon
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Attacking
@@ -60,7 +60,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RedPentagonIdle
+  m_Name: BluePentagonIdle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -74,7 +74,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4ca32012b1a832b49969f60ec618e0df, type: 2}
+  m_Motion: {fileID: 7400000, guid: 892cfbb4b362f434785c34aa6f079d82, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -137,7 +137,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RedPentagonAttack
+  m_Name: BluePentagonAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -151,7 +151,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4da96fbd4a6f2944a84358ff3a8fc214, type: 2}
+  m_Motion: {fileID: 7400000, guid: 221f39aa34027c242b77358071255a90, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

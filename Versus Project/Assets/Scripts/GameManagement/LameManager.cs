@@ -68,7 +68,7 @@ public class LameManager : NetworkBehaviour
         {
             matchTimer.Value += Time.deltaTime;
             intMatchTimer.Value = (int)matchTimer.Value;
-            if (minionSpawnTimer < spawnTimerEnd)
+            if (minionSpawnTimer < (spawnTimerEnd - (matchTimer.Value * 0.025))) //Makes minions spawn more often as match progresses. 
             {
                 minionSpawnTimer += Time.deltaTime;
             }

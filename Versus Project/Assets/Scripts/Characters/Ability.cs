@@ -5,6 +5,7 @@ using UnityEngine;
 public class AbilityBase<T> where T : BasePlayerController
 {
     public System.Action activateAbility;
+    public System.Action abilityLevelUp;
 
     //public TextMeshProUGUI cooldownTextDisplay;
     //public Image cooldownImageDisplay;
@@ -15,6 +16,7 @@ public class AbilityBase<T> where T : BasePlayerController
     public float cooldown;
     public float manaCost;
     public float lastUsed;
+    public int abilityLevel;
     public bool OffCooldown() => lastUsed + cooldown < Time.time;
     public float NormalizedCooldown() => Mathf.Min((Time.time - lastUsed) / cooldown, 1);
     public string CooldownDurationLeft() => (cooldown - (Time.time - lastUsed)).ToString("0.00");

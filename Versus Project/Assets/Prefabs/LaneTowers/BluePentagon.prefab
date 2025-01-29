@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 6470028386234375860}
   - component: {fileID: 4081588848957086884}
   - component: {fileID: 297634059549490917}
+  - component: {fileID: 3158639553507718339}
+  - component: {fileID: 7324911032016820644}
   m_Layer: 0
   m_Name: BluePentagon
   m_TagString: Tower
@@ -82,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -741922110026584844, guid: 38a583e8795f6ad40bc245debea781d9,
+  m_Sprite: {fileID: 4890667960358911778, guid: 26146efac3fb90a45abaa91bc3d1b219,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -106,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 958113541
+  GlobalObjectIdHash: 1579353524
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -207,17 +209,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0143045, y: -0.34440094}
+  m_Offset: {x: -0.0010230355, y: -0.35046816}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.56, y: 0.84}
+    oldSize: {x: 0.85, y: 0.85}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.10990908, y: 0.09155667}
+  m_Size: {x: 0.11118641, y: 0.08964062}
   m_EdgeRadius: 0
 --- !u!114 &6470028386234375860
 MonoBehaviour:
@@ -234,7 +236,7 @@ MonoBehaviour:
   Team: 1
   towerTarget: {fileID: 3319039571354012073}
   enemyMinionTarget: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 3158639553507718339}
   isAttacking: 0
   cooldown: 0
   aggro: 0
@@ -242,10 +244,11 @@ MonoBehaviour:
   playerLastHit: 0
   tower: {fileID: 8003257773554308308}
   enemyPlayer: {fileID: 0}
-  puppet: {fileID: 0}
+  enemyPuppet: {fileID: 0}
   enemyMinion: {fileID: 0}
   networkTower: {fileID: 0}
   currentTarget: {fileID: 0}
+  distanceFromPuppet: {x: 0, y: 0, z: 0}
   goldRange: 0
   goldGiven: 100
   Damage: 80
@@ -277,6 +280,7 @@ MonoBehaviour:
     m_InternalValue: 0
   Team:
     m_InternalValue: 0
+  markedValue: 1
   startingMaxHealth: 400
   armor: 0
   initialValuesSynced: 0
@@ -315,15 +319,51 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.014846936, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.56, y: 0.84}
+    oldSize: {x: 0.85, y: 0.85}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.56, y: 0.84}
+  m_Size: {x: 0.5438036, y: 0.84}
   m_EdgeRadius: 0
+--- !u!95 &3158639553507718339
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003257773554308308}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 82450b5260c2ef8478b26a81a01ee34c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7324911032016820644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003257773554308308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 3158639553507718339}
