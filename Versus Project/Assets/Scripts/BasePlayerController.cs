@@ -62,27 +62,14 @@ public class BasePlayerController : NetworkBehaviour
             SetTeamServerRpc(team);
             Debug.Log("1");
 
-            teamNumber.OnValueChanged += OnTeamChanged;
-        }
-    }
-    private void OnTeamChanged(int previousTeam, int newTeam)
-    {
-        if (IsOwner)
-        {
-             string canvasName = newTeam == 1 ? "Team1UICanvas" : "Team2UICanvas";
-             GameObject teamCanvas = GameObject.Find(canvasName);
+            string canvasName = NetworkManager.LocalClientId == 0 ? "Player1UICanvas" : "Player2UICanvas";
+            GameObject playerCanvas = GameObject.Find(canvasName);
 
-            if (teamCanvas != null && healthBarPrefab != null)
+            if (playerCanvas != null)
             {
-                GameObject healthBar = Instantiate(healthBarPrefab, teamCanvas.transform);
-                PlayerHealthBar healthBarScript = healthBar.GetComponent<PlayerHealthBar>();
-
-                if (healthBarScript != null)
-                {
-                    healthBarScript.health = this.health;
-                    healthBarScript.InitializeHealthBar();
-                }
-            } 
+                GameObject healthBar = Instantiate(healthBarPrefab, playerCanvas.transform);
+                healthBar.GetComponent<PlayerHealthBar>().enabled = true;
+            }
         }
     }
 
