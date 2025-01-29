@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4203327502
+  GlobalObjectIdHash: 1053785986
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -246,6 +246,8 @@ MonoBehaviour:
   enemyPlayer: {fileID: 0}
   enemyPuppet: {fileID: 0}
   enemyMinion: {fileID: 0}
+  projectilePrefab: {fileID: 315554442559877787, guid: d44f514152d28494b997af17c939dcf2,
+    type: 3}
   networkTower: {fileID: 0}
   currentTarget: {fileID: 0}
   distanceFromPuppet: {x: 0, y: 0, z: 0}

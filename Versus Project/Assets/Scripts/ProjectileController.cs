@@ -33,7 +33,6 @@ public class ProjectileController : NetworkBehaviour
 
         Vector2 direction = ((Vector2)target.transform.position - (Vector2)transform.position).normalized;
         transform.Translate(direction * speed * Time.deltaTime);
-
         float distanceToTarget = Vector2.Distance(transform.position, target.transform.position);
         if (distanceToTarget < 0.5f)
         {

@@ -24,6 +24,7 @@ public class Tower : NetworkBehaviour
     public GameObject enemyPlayer;
     public GameObject enemyPuppet;
     public GameObject enemyMinion;
+    public GameObject projectilePrefab;
     public NetworkObject networkTower;
     public NetworkObject currentTarget;
 
@@ -207,7 +208,7 @@ public class Tower : NetworkBehaviour
     {
         if (currentTarget != null)
         {
-            DealDamageServerRPC(Damage, currentTarget, networkTower);
+            SpawnProjectileServerRpc(Damage, currentTarget, networkTower);
         }
         else
         {
@@ -217,15 +218,16 @@ public class Tower : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void DealDamageServerRPC(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
+    private void SpawnProjectileServerRpc(float damage, NetworkObjectReference target, NetworkObjectReference sender)
     {
-        if (reference.TryGet(out NetworkObject target))
+        if (target.TryGet(out NetworkObject targetObj) && sender.TryGet(out NetworkObject senderObj))
         {
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, 0);
-        }
-        else
-        {
-            Debug.Log("This is bad");
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            NetworkObject netObj = projectile.GetComponent<NetworkObject>();
+            netObj.Spawn();
+
+            ProjectileController controller = projectile.GetComponent<ProjectileController>();
+            controller.Initialize(15, damage, targetObj, senderObj);
         }
         isAttacking = false;
         animator.SetBool("Attacking", isAttacking);

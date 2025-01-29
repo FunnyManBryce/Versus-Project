@@ -189,7 +189,7 @@ public class Puppet : NetworkBehaviour
             target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
             if(defensiveMode == false) //offensive mode provides lifesteal to player
             {
-                Father.GetComponent<Health>().HealServerRPC(-(damage/2), sender);
+                Father.GetComponent<Health>().HealServerRPC(-(damage/4), sender);
             }
         }
         else

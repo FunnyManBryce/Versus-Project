@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 4309010894493914732}
   - component: {fileID: -74645087721382134}
   - component: {fileID: 5408749681070355075}
+  - component: {fileID: 5893246035332165660}
+  - component: {fileID: 7808874932811845222}
   m_Layer: 0
   m_Name: RedInhibitor
   m_TagString: Inhibitor
@@ -83,7 +85,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 859068770634288146, guid: 24d554681dae6e244a12b7869836a2ea, type: 3}
+  m_Sprite: {fileID: -923994315097029292, guid: 2f486a60982b4e64b9587d8158d8f9ff,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1225754387
+  GlobalObjectIdHash: 2304862857
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -138,10 +141,11 @@ MonoBehaviour:
   playerLastHit: 0
   tower: {fileID: 761847280962229105}
   enemyPlayer: {fileID: 0}
-  puppet: {fileID: 0}
+  enemyPuppet: {fileID: 0}
   enemyMinion: {fileID: 0}
   networkTower: {fileID: -3539533397057558113}
   currentTarget: {fileID: 0}
+  distanceFromPuppet: {x: 0, y: 0, z: 0}
   goldRange: 0
   goldGiven: 100
   Damage: 0
@@ -279,6 +283,7 @@ MonoBehaviour:
     m_InternalValue: 0
   Team:
     m_InternalValue: 0
+  markedValue: 1
   startingMaxHealth: 200
   armor: 0
   initialValuesSynced: 0
@@ -319,3 +324,39 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.00041675568, y: 0}
   m_Radius: 0.17626476
+--- !u!95 &5893246035332165660
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761847280962229105}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6969e03f53e545e4ba9ec5e527ff4b5e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7808874932811845222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761847280962229105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 5893246035332165660}

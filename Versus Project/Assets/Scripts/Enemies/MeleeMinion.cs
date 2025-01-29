@@ -53,6 +53,7 @@ public class MeleeMinion : NetworkBehaviour
     public GameObject enemyMinion;
     public GameObject enemyTower;
     public GameObject Minion;
+    public GameObject projectilePrefab;
     public NetworkObject networkMinion;
     public NetworkObject currentTarget;
 
@@ -235,13 +236,38 @@ public class MeleeMinion : NetworkBehaviour
     {
         if (currentTarget != null)
         {
-            DealDamageServerRPC(Damage, currentTarget, networkMinion);
+            if(isRanged)
+            {
+                SpawnProjectileServerRpc(Damage, currentTarget, networkMinion);
+
+            }
+            else
+            {
+                DealDamageServerRPC(Damage, currentTarget, networkMinion);
+            }
         }
         else
         {
             isAttacking = false;
             animator.SetBool("Attacking", isAttacking);
         }
+    }
+
+    [Rpc(SendTo.Server)]
+    private void SpawnProjectileServerRpc(float damage, NetworkObjectReference target, NetworkObjectReference sender)
+    {
+        if (target.TryGet(out NetworkObject targetObj) && sender.TryGet(out NetworkObject senderObj))
+        {
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            NetworkObject netObj = projectile.GetComponent<NetworkObject>();
+            netObj.Spawn();
+
+            ProjectileController controller = projectile.GetComponent<ProjectileController>();
+            controller.Initialize(18, damage, targetObj, senderObj);
+        }
+        isAttacking = false;
+        animator.SetBool("Attacking", isAttacking);
+        cooldown = true;
     }
 
     [Rpc(SendTo.Server)]

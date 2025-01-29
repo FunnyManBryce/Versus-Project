@@ -209,6 +209,7 @@ MonoBehaviour:
   agent: {fileID: 4082273046993157032}
   animator: {fileID: 5958823289627424989}
   distanceFromTarget: {x: 0, y: 0, z: 0}
+  distanceFromPuppet: {x: 0, y: 0, z: 0}
   distanceFromPlayer: {x: 0, y: 0, z: 0}
   isRanged: 1
   isAttacking: 0
@@ -216,7 +217,6 @@ MonoBehaviour:
   aggro: 0
   playerLastHit: 0
   dead: 0
-  targetName: 
   Damage: 7.5
   chasePlayerDistance: 7
   chaseMinionDistance: 10
@@ -231,10 +231,12 @@ MonoBehaviour:
   XPGiven: 20
   goldGiven: 20
   enemyPlayer: {fileID: 0}
-  puppet: {fileID: 0}
+  enemyPuppet: {fileID: 0}
   enemyMinion: {fileID: 0}
   enemyTower: {fileID: 0}
   Minion: {fileID: 8942386518775928844}
+  projectilePrefab: {fileID: 315554442559877787, guid: 8735c87904409a1419309ae447b77b42,
+    type: 3}
   networkMinion: {fileID: 0}
   currentTarget: {fileID: 0}
   healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
@@ -347,6 +349,9 @@ MonoBehaviour:
     m_InternalValue: 0
   maxHealth:
     m_InternalValue: 0
+  Team:
+    m_InternalValue: 0
+  markedValue: 1
   startingMaxHealth: 40
   armor: 0
   initialValuesSynced: 0

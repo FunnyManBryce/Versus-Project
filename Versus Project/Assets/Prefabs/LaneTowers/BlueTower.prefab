@@ -140,10 +140,13 @@ MonoBehaviour:
   playerLastHit: 0
   tower: {fileID: 8003257773554308308}
   enemyPlayer: {fileID: 0}
-  puppet: {fileID: 0}
+  enemyPuppet: {fileID: 0}
   enemyMinion: {fileID: 0}
+  projectilePrefab: {fileID: 315554442559877787, guid: c41a3c8d2e151a4409c24121b16f69b1,
+    type: 3}
   networkTower: {fileID: 0}
   currentTarget: {fileID: 0}
+  distanceFromPuppet: {x: 0, y: 0, z: 0}
   goldRange: 0
   goldGiven: 100
   Damage: 40
@@ -315,6 +318,7 @@ MonoBehaviour:
     m_InternalValue: 0
   Team:
     m_InternalValue: 1
+  markedValue: 1
   startingMaxHealth: 100
   armor: 0
   initialValuesSynced: 0
