@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class PlayerHealthBar : MonoBehaviour
 {
@@ -8,17 +9,18 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private Image fillImage;
     [SerializeField] private TextMeshProUGUI healthText;
 
-    [SerializeField] private Health health;
+    public Health health;
     private float maxHealth;
-
-    public bool initializedHealth;
+    private bool initialized = false;
+    //public bool initializedHealth;
 
     private void OnEnable()
     {
-        var localPlayer = GameObject.FindGameObjectWithTag("Player");
-        if (localPlayer != null)
+        if (health != null)
         {
-            health = localPlayer.GetComponent<Health>();
+            health.currentHealth.OnValueChanged += UpdateHealthBar;
+            maxHealth = health.maxHealth.Value;
+            UpdateHealthBar(0, health.currentHealth.Value);
         }
     }
 
@@ -30,20 +32,19 @@ public class PlayerHealthBar : MonoBehaviour
         }
     }
 
-    private void InitializeHealthBar()
+    public void InitializeHealthBar()
     {
-        if (health != null)
+        if (health != null && !initialized)
         {
             maxHealth = health.maxHealth.Value;
             health.currentHealth.OnValueChanged += UpdateHealthBar;
             UpdateHealthBar(0, health.currentHealth.Value);
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = health.currentHealth.Value;
+            UpdateHealthText(health.currentHealth.Value);
             Debug.Log("Max health is " + health.maxHealth.Value);
             Debug.Log("Current health is " + health.currentHealth.Value);
-        }
-        if (healthSlider != null)
-        {
-            healthSlider.maxValue = maxHealth;
-            healthSlider.value = maxHealth;
+            initialized = true;
         }
 
         UpdateHealthText(maxHealth);
@@ -51,29 +52,12 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void UpdateHealthBar(float previousHealth, float newHealth)
     {
-        if (healthSlider != null)
-        {
-            healthSlider.value = newHealth;
-        }
-
-        float healthPercentage = newHealth / maxHealth;
+        healthSlider.value = newHealth;
         UpdateHealthText(newHealth);
     }
 
     private void UpdateHealthText(float currentHealth)
     {
-        if (healthText != null)
-        {
-            healthText.text = $"{Mathf.Ceil(currentHealth)}/{maxHealth}";
-        }
-    }
-    
-    void Update()
-    {
-        if (initializedHealth == false && health.initialValuesSynced == true)
-        {
-            InitializeHealthBar();
-            initializedHealth = true;
-        }
+        healthText.text = $"{Mathf.Ceil(currentHealth)}/{maxHealth}";
     }
 }
