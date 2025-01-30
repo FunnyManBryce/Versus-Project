@@ -9,6 +9,7 @@ public class BasePlayerController : NetworkBehaviour
 {
     private Rigidbody2D rb2d;
     public Animator animator;
+    public LameManager lameManager;
     [SerializeField] SpriteRenderer PlayerSprite;
     public SpriteRenderer AutoAttackSprite;
     public ulong clientID;
@@ -40,6 +41,7 @@ public class BasePlayerController : NetworkBehaviour
     public bool resevoirRegen = false;
     public Health health;
     public float XPToNextLevel;
+    public NetworkVariable<bool> isDead = new NetworkVariable<bool>();
     public NetworkVariable<float> XP = new NetworkVariable<float>();
     public NetworkVariable<int> Gold = new NetworkVariable<int>();
 
@@ -53,9 +55,31 @@ public class BasePlayerController : NetworkBehaviour
     private protected void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        lameManager = FindFirstObjectByType<LameManager>();
     }
     public override void OnNetworkSpawn()
     {
+        health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
+        {
+            if (health.currentHealth.Value <= 0 && isDead.Value == false && IsServer)
+            {
+                isDead.Value = true;
+            }
+        };
+        isDead.OnValueChanged += (bool previousValue, bool newValue) => //Checking if dead
+        {
+            if (isDead.Value)
+            {
+                transform.position = new Vector3(-420, -69, 0);
+                StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
+            }
+            else
+            {
+                transform.position = lameManager.playerSP[health.Team.Value - 1];
+                health.currentHealth.Value = health.maxHealth.Value;
+                mana = maxMana;
+            }
+        };
         if (IsOwner)
         {
             int team = NetworkManager.LocalClientId == 0 ? 1 : 2;
@@ -89,7 +113,7 @@ public class BasePlayerController : NetworkBehaviour
     private protected void Update()
     {
         if (!IsOwner) return;
-
+        if(isDead.Value) return;
         // Get input and store it in playerInput
         Vector2 moveDir = Vector2.zero;
         if (Input.GetKey(KeyCode.W)) moveDir.y = +1f;
@@ -249,6 +273,8 @@ public class BasePlayerController : NetworkBehaviour
     #endregion
     private void FixedUpdate()
     {
+        if(isDead.Value) return;
+
         if(IsServer)
         {
             if(resevoirRegen == true)

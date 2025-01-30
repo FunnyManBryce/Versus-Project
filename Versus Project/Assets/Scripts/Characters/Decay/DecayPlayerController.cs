@@ -5,7 +5,6 @@ using Unity.Netcode;
 
 public class DecayPlayerController : BasePlayerController
 {
-    public LameManager lameManager;
     public float lastDecayTime;
     public float decayAmount;
     public NetworkVariable<float> totalStatDecay = new NetworkVariable<float>();
@@ -84,16 +83,10 @@ public class DecayPlayerController : BasePlayerController
         TriggerBuffServerRpc("Speed", 3f, 10f);
     }
 
-    new private void Start()
-    {
-        base.Start();
-        lameManager = FindObjectOfType<LameManager>();
-    }
-
     new private void Update()
     {
         base.Update();
-        if (!IsOwner) return;
+        if (!IsOwner || isDead.Value) return;
         AOE.AttemptUse();
         Shockwave.AttemptUse();
         Ultimate.AttemptUse();

@@ -68,6 +68,11 @@ public class MeleeMinion : NetworkBehaviour
         agent.updateUpAxis = false;
         agent.speed = 0;
         lameManager = FindObjectOfType<LameManager>();
+        if (IsServer)
+        {
+            health.maxHealth.Value = health.maxHealth.Value + (health.maxHealth.Value * lameManager.matchTimer.Value * 0.005f);
+            health.currentHealth.Value = health.maxHealth.Value;
+        }
     }
 
     public override void OnNetworkSpawn()

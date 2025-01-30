@@ -14,6 +14,8 @@ public class LameManager : NetworkBehaviour
     public NetworkVariable<int> teamTwoTowersLeft = new NetworkVariable<int>(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<float> matchTimer = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<int> intMatchTimer = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<float> respawnLength = new NetworkVariable<float>(2, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
 
     [SerializeField] private GameObject lameManager;
 
@@ -68,7 +70,8 @@ public class LameManager : NetworkBehaviour
         {
             matchTimer.Value += Time.deltaTime;
             intMatchTimer.Value = (int)matchTimer.Value;
-            if (minionSpawnTimer < (spawnTimerEnd - (matchTimer.Value * 0.025))) //Makes minions spawn more often as match progresses. 
+            respawnLength.Value = 2 + (matchTimer.Value * 0.03f);
+            if (minionSpawnTimer < spawnTimerEnd)
             {
                 minionSpawnTimer += Time.deltaTime;
             }
@@ -111,6 +114,14 @@ public class LameManager : NetworkBehaviour
             LaneSpawnServerRPC();
             JungleSpawnServerRPC();
         }
+    }
+
+    public IEnumerator PlayerDeath(NetworkObject player, float respawnTimer)
+    {
+        Debug.Log("timerstart");
+        yield return new WaitForSeconds(respawnTimer);
+        Debug.Log("timerend");
+        player.GetComponent<BasePlayerController>().isDead.Value = false;
     }
 
     [Rpc(SendTo.Server)] 

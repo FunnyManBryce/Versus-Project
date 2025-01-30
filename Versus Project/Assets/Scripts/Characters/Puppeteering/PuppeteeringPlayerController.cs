@@ -7,7 +7,6 @@ using System.Linq;
 
 public class PuppeteeringPlayerController : BasePlayerController
 {
-    public LameManager lameManager;
     public GameObject puppetPrefab;
     public List<GameObject> PuppetList;
     public bool manaTax;
@@ -26,7 +25,6 @@ public class PuppeteeringPlayerController : BasePlayerController
     void Start()
     {
         base.Start();
-        lameManager = FindObjectOfType<LameManager>();
         String.activateAbility = StringSummonServerRpc;
         ModeSwitch.activateAbility = PuppetModeSwitchServerRpc;
         Ultimate.activateAbility = UltimateServerRpc;
@@ -36,7 +34,7 @@ public class PuppeteeringPlayerController : BasePlayerController
     void Update()
     {
         base.Update();
-        if (!IsOwner) return;
+        if (!IsOwner || isDead.Value) return;
         String.AttemptUse();
         ModeSwitch.AttemptUse();
         Ultimate.AttemptUse();
@@ -69,6 +67,35 @@ public class PuppeteeringPlayerController : BasePlayerController
 
     public override void OnNetworkSpawn()
     {
+        health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
+        {
+            if (health.currentHealth.Value <= 0 && isDead.Value == false && IsServer)
+            {
+                isDead.Value = true;
+            }
+        };
+        isDead.OnValueChanged += (bool previousValue, bool newValue) => //Checking if dead
+        {
+            if (isDead.Value)
+            {
+                transform.position = new Vector3(-420, -69, 0);
+                foreach (var puppet in PuppetList)
+                {
+                    NetworkObject puppetToDespawn = PuppetList.Last().GetComponent<NetworkObject>();
+                    GameObject lastPuppet = PuppetList.Last();
+                    PuppetList.Remove(lastPuppet);
+                    puppetsAlive.Value--;
+                    puppetToDespawn.Despawn();
+                }
+                StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
+            }
+            else
+            {
+                transform.position = lameManager.playerSP[health.Team.Value - 1];
+                health.currentHealth.Value = health.maxHealth.Value;
+                mana = maxMana;
+            }
+        };
         puppetsAlive.OnValueChanged += (int previousValue, int newValue) => //Checking if dead
         {
             if (puppetsAlive.Value <= 0)
