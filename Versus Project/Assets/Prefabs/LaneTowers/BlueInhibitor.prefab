@@ -285,7 +285,7 @@ MonoBehaviour:
   Team:
     m_InternalValue: 0
   markedValue: 1
-  startingMaxHealth: 200
+  startingMaxHealth: 1500
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0

@@ -212,6 +212,7 @@ public class Tower : NetworkBehaviour
         }
         else
         {
+            Debug.Log("erm");
             isAttacking = false;
             animator.SetBool("Attacking", isAttacking);
         }
@@ -220,6 +221,9 @@ public class Tower : NetworkBehaviour
     [Rpc(SendTo.Server)]
     private void SpawnProjectileServerRpc(float damage, NetworkObjectReference target, NetworkObjectReference sender)
     {
+        isAttacking = false;
+        animator.SetBool("Attacking", isAttacking);
+        cooldown = true;
         if (target.TryGet(out NetworkObject targetObj) && sender.TryGet(out NetworkObject senderObj))
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
@@ -229,8 +233,5 @@ public class Tower : NetworkBehaviour
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
             controller.Initialize(15, damage, targetObj, senderObj);
         }
-        isAttacking = false;
-        animator.SetBool("Attacking", isAttacking);
-        cooldown = true;
     }
 }

@@ -66,6 +66,7 @@ public class EnemyHealthBar : MonoBehaviour
             healthSlider.value = newHealth;
         }
 
+        maxHealth = health.maxHealth.Value;
         float healthPercentage = newHealth / maxHealth;
         //UpdateHealthText(newHealth);
     }

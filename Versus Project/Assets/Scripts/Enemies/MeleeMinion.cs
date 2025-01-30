@@ -128,6 +128,10 @@ public class MeleeMinion : NetworkBehaviour
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
             cooldownTimer += Time.deltaTime;
+            if(isRanged)
+            {
+                agent.speed = 0;
+            }
         }
         else if (cooldownTimer >= cooldownLength)
         {

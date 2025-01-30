@@ -143,6 +143,7 @@ MonoBehaviour:
   enemyPlayer: {fileID: 0}
   enemyPuppet: {fileID: 0}
   enemyMinion: {fileID: 0}
+  projectilePrefab: {fileID: 0}
   networkTower: {fileID: -3539533397057558113}
   currentTarget: {fileID: 0}
   distanceFromPuppet: {x: 0, y: 0, z: 0}
@@ -284,7 +285,7 @@ MonoBehaviour:
   Team:
     m_InternalValue: 0
   markedValue: 1
-  startingMaxHealth: 200
+  startingMaxHealth: 1500
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
