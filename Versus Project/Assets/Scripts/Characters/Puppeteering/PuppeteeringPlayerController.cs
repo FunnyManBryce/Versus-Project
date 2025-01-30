@@ -50,7 +50,7 @@ public class PuppeteeringPlayerController : BasePlayerController
         if (puppetsAlive.Value < maxPuppets.Value)
         {
             float currentTime = lameManager.matchTimer.Value;
-            if (currentTime - puppetDeathTime.Value >= 15f)
+            if (currentTime - puppetDeathTime.Value >= 20f)
             {
                 PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, ultActive.Value);
             }

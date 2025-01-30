@@ -44,7 +44,10 @@ public class ProjectileController : NetworkBehaviour
     {
         if (target == null || !target.IsSpawned) return;
 
-        target.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), 0);
+        if(sender != null)
+        {
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), 0);
+        }
         DestroyProjectileServerRpc();
     }
 

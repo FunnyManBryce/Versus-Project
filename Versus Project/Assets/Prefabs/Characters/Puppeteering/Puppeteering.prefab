@@ -354,18 +354,21 @@ MonoBehaviour:
     cooldown: 25
     manaCost: 40
     lastUsed: 0
+    abilityLevel: 1
   ModeSwitch:
     playerController: {fileID: 2414812415466740570}
     inputKey: 101
     cooldown: 10
     manaCost: 25
     lastUsed: 0
+    abilityLevel: 1
   Ultimate:
     playerController: {fileID: 2414812415466740570}
     inputKey: 114
     cooldown: 80
     manaCost: 70
     lastUsed: 0
+    abilityLevel: 1
 --- !u!114 &2628991981076659366
 MonoBehaviour:
   m_ObjectHideFlags: 0
