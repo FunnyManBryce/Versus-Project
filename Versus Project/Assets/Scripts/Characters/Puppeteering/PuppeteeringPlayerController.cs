@@ -10,6 +10,7 @@ public class PuppeteeringPlayerController : BasePlayerController
     public LameManager lameManager;
     public GameObject puppetPrefab;
     public List<GameObject> PuppetList;
+    public bool manaTax;
     public NetworkVariable<int> puppetsAlive = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<int> maxPuppets = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<float> puppetDeathTime = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
@@ -68,6 +69,18 @@ public class PuppeteeringPlayerController : BasePlayerController
 
     public override void OnNetworkSpawn()
     {
+        puppetsAlive.OnValueChanged += (int previousValue, int newValue) => //Checking if dead
+        {
+            if (puppetsAlive.Value <= 0)
+            {
+                manaTax = false;
+                manaRegen++;
+            } else if(puppetsAlive.Value == 1 && manaTax == false)
+            {
+                manaTax = true;
+                manaRegen--;
+            }
+        };
         if (IsOwner)
         {
             int team = NetworkManager.LocalClientId == 0 ? 1 : 2;
@@ -83,6 +96,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             }
             PuppetSpawnServerRpc(team, attackDamage, maxSpeed, false);
         }
+
     }
 
     [Rpc(SendTo.Server)]
