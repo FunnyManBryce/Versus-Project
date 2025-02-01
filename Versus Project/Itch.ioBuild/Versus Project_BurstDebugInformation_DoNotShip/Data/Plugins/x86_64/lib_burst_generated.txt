@@ -106,7 +106,6 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --linker-options=PdbAltPath="Versus Project_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2023.2.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Library\Burst
 --output=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
@@ -221,7 +220,6 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --linker-options=PdbAltPath="Versus Project_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2023.2.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Library\Burst
 --output=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
@@ -334,7 +332,6 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --linker-options=PdbAltPath="Versus Project_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2023.2.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Library\Burst
 --output=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
@@ -449,7 +446,6 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --linker-options=PdbAltPath="Versus Project_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2023.2.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Library\Burst
 --output=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
@@ -564,7 +560,6 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --linker-options=PdbAltPath="Versus Project_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2023.2.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Library\Burst
 --output=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
@@ -775,7 +770,6 @@ Library: C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\
 --linker-options=PdbAltPath="Versus Project_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2023.2.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Library\Burst
 --output=C:\Users\bryce\OneDrive\Documents\GitHub\Versus-Project\Versus Project\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
