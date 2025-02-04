@@ -41,7 +41,9 @@ public class BasePlayerController : NetworkBehaviour
     public bool resevoirRegen = false;
     public Health health;
     public float XPToNextLevel;
+    public NetworkVariable<int> unspentUpgrades = new NetworkVariable<int>();
     public NetworkVariable<bool> isDead = new NetworkVariable<bool>();
+    public NetworkVariable<int> Level = new NetworkVariable<int>();
     public NetworkVariable<float> XP = new NetworkVariable<float>();
     public NetworkVariable<int> Gold = new NetworkVariable<int>();
 
@@ -64,6 +66,13 @@ public class BasePlayerController : NetworkBehaviour
             if (health.currentHealth.Value <= 0 && isDead.Value == false && IsServer)
             {
                 isDead.Value = true;
+            }
+        };
+        XP.OnValueChanged += (float previousValue, float newValue) => //Checking for Level up
+        {
+            if (XP.Value >= XPToNextLevel && IsServer)
+            {
+                LevelUpServerRPC();
             }
         };
         isDead.OnValueChanged += (bool previousValue, bool newValue) => //Checking if dead
@@ -537,5 +546,14 @@ public class BasePlayerController : NetworkBehaviour
         {
             maxSpeed = 0;
         }
+    }
+
+    [ServerRpc()]
+    public void LevelUpServerRPC()
+    {
+        XPToNextLevel = XPToNextLevel + 100;
+        XP.Value = 0;
+        Level.Value++; //Should add some stat growth depending on the character
+        unspentUpgrades.Value++;
     }
 }
