@@ -21,6 +21,7 @@ public class StringAbility : NetworkBehaviour
             Vector3 mousePosition = camera.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
         }
+        //damage = sender.GetComponent<BasePlayerController>().attackDamage * 2;
     }
 
     // Update is called once per frame

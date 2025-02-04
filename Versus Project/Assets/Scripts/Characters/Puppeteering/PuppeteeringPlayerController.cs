@@ -16,7 +16,9 @@ public class PuppeteeringPlayerController : BasePlayerController
     public NetworkVariable<float> lastUltTime = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> ultActive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    public float puppetRespawnLength = 20f;
     public GameObject stringObject;
+    public int passiveLevel;
     public AbilityBase<PuppeteeringPlayerController> String;
     public AbilityBase<PuppeteeringPlayerController> ModeSwitch;
     public AbilityBase<PuppeteeringPlayerController> Ultimate;
@@ -28,6 +30,10 @@ public class PuppeteeringPlayerController : BasePlayerController
         String.activateAbility = StringSummonServerRpc;
         ModeSwitch.activateAbility = PuppetModeSwitchServerRpc;
         Ultimate.activateAbility = UltimateServerRpc;
+        String.abilityLevelUp = StringLevelUp;
+        ModeSwitch.abilityLevelUp = ModeSwitchLevelUp;
+        Ultimate.abilityLevelUp = UltimateLevelUp;
+
     }
 
     // Update is called once per frame
@@ -49,7 +55,7 @@ public class PuppeteeringPlayerController : BasePlayerController
         if (puppetsAlive.Value < maxPuppets.Value)
         {
             float currentTime = lameManager.matchTimer.Value;
-            if (currentTime - puppetDeathTime.Value >= 20f)
+            if (currentTime - puppetDeathTime.Value >= puppetRespawnLength)
             {
                 PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, ultActive.Value);
             }
@@ -228,4 +234,32 @@ public class PuppeteeringPlayerController : BasePlayerController
         }
     }
 
+    public void StringLevelUp()
+    {
+        String.abilityLevel++;
+        if(String.abilityLevel >= 2)
+        {
+            //Upgrade Effect
+        }
+        if(String.abilityLevel >= 3)
+        {
+            //Upgrade Effect
+        }
+        if (String.abilityLevel >= 4)
+        {
+            //Upgrade Effect
+        }
+        if (String.abilityLevel >= 5)
+        {
+            //Upgrade Effect
+        }
+    }
+    public void ModeSwitchLevelUp()
+    {
+        ModeSwitch.abilityLevel++;
+    }
+    public void UltimateLevelUp()
+    {
+        ModeSwitch.abilityLevel++;
+    }
 }

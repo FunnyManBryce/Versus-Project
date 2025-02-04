@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 652430502
+  GlobalObjectIdHash: 3858709417
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  lameManager: {fileID: 0}
   PlayerSprite: {fileID: 2570568061770048435}
   AutoAttackSprite: {fileID: 2570568061770048435}
   clientID: 0
@@ -320,7 +321,13 @@ MonoBehaviour:
   manaRegen: 2.5
   resevoirRegen: 0
   health: {fileID: -8253534391822271971}
-  XPToNextLevel: 0
+  XPToNextLevel: 100
+  unspentUpgrades:
+    m_InternalValue: 0
+  isDead:
+    m_InternalValue: 0
+  Level:
+    m_InternalValue: 0
   XP:
     m_InternalValue: 0
   Gold:
@@ -332,10 +339,10 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   isAutoAttacking: 0
   healthBarPrefab: {fileID: 0}
-  lameManager: {fileID: 0}
   puppetPrefab: {fileID: 8942386518775928844, guid: f468015df4e8466428a164c5a018448a,
     type: 3}
   PuppetList: []
+  manaTax: 0
   puppetsAlive:
     m_InternalValue: 0
   maxPuppets:
