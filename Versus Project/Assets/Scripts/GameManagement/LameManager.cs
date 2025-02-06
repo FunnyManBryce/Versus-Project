@@ -118,7 +118,7 @@ public class LameManager : NetworkBehaviour
 
     public IEnumerator PlayerDeath(NetworkObject player, float respawnTimer)
     {
-        Debug.Log("timerstart");
+        Debug.Log(respawnTimer);
         yield return new WaitForSeconds(respawnTimer);
         Debug.Log("timerend");
         player.GetComponent<BasePlayerController>().isDead.Value = false;

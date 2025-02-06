@@ -85,15 +85,18 @@ public class PuppeteeringPlayerController : BasePlayerController
             if (isDead.Value)
             {
                 transform.position = new Vector3(-420, -69, 0);
-                foreach (var puppet in PuppetList)
-                {
-                    NetworkObject puppetToDespawn = PuppetList.Last().GetComponent<NetworkObject>();
-                    GameObject lastPuppet = PuppetList.Last();
-                    PuppetList.Remove(lastPuppet);
-                    puppetsAlive.Value--;
-                    puppetToDespawn.Despawn();
-                }
                 StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
+                if(puppetsAlive.Value >= 1)
+                {
+                    foreach (var puppet in PuppetList)
+                    {
+                        NetworkObject puppetToDespawn = PuppetList.Last().GetComponent<NetworkObject>();
+                        GameObject lastPuppet = PuppetList.Last();
+                        PuppetList.Remove(lastPuppet);
+                        puppetsAlive.Value--;
+                        puppetToDespawn.Despawn();
+                    }
+                }
             }
             else
             {
