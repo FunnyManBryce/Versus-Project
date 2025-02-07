@@ -322,6 +322,19 @@ MonoBehaviour:
   resevoirRegen: 0
   health: {fileID: -8253534391822271971}
   XPToNextLevel: 100
+  XPPerLevel:
+  - 0
+  - 100
+  - 200
+  - 300
+  - 400
+  - 500
+  - 600
+  - 700
+  - 800
+  - 900
+  - 1000
+  - 1100
   unspentUpgrades:
     m_InternalValue: 0
   isDead:
@@ -353,8 +366,10 @@ MonoBehaviour:
     m_InternalValue: 0
   ultActive:
     m_InternalValue: 0
+  puppetRespawnLength: 20
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
+  passiveLevel: 0
   String:
     playerController: {fileID: 2414812415466740570}
     inputKey: 113

@@ -80,6 +80,13 @@ public class PuppeteeringPlayerController : BasePlayerController
                 isDead.Value = true;
             }
         };
+        XP.OnValueChanged += (float previousValue, float newValue) => //Checking for Level up
+        {
+            if (XP.Value >= XPToNextLevel && IsServer)
+            {
+                LevelUpServerRPC();
+            }
+        };
         isDead.OnValueChanged += (bool previousValue, bool newValue) => //Checking if dead
         {
             if (isDead.Value)

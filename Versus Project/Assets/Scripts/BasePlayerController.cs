@@ -41,6 +41,7 @@ public class BasePlayerController : NetworkBehaviour
     public bool resevoirRegen = false;
     public Health health;
     public float XPToNextLevel;
+    public float[] XPPerLevel;
     public NetworkVariable<int> unspentUpgrades = new NetworkVariable<int>();
     public NetworkVariable<bool> isDead = new NetworkVariable<bool>();
     public NetworkVariable<int> Level = new NetworkVariable<int>();
@@ -117,6 +118,7 @@ public class BasePlayerController : NetworkBehaviour
     {
         playerInput = new Vector2(0, 0);
         lastAttackTime = -autoAttackSpeed;
+        LevelUpServerRPC();
     }
 
     private protected void Update()
@@ -551,9 +553,9 @@ public class BasePlayerController : NetworkBehaviour
     [ServerRpc()]
     public void LevelUpServerRPC()
     {
-        XPToNextLevel = XPToNextLevel + 100;
-        XP.Value = 0;
         Level.Value++; //Should add some stat growth depending on the character
+        XP.Value = XP.Value - XPToNextLevel;
+        XPToNextLevel = XPPerLevel[Level.Value];
         unspentUpgrades.Value++;
     }
 }
