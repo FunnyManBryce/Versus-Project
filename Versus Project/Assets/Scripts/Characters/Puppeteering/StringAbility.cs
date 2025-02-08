@@ -53,8 +53,8 @@ public class StringAbility : NetworkBehaviour
                 }
                 if (collider.GetComponent<BasePlayerController>() != null)
                 {
-                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
-                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Marked", markAmount, 5f);
+                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 1f, true);
+                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Marked", markAmount, 5f, true);
                 }
                 if (collider.GetComponent<MeleeMinion>() != null)
                 {

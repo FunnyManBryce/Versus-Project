@@ -305,6 +305,17 @@ MonoBehaviour:
   clientID: 0
   maxSpeed: 9
   currentSpeed: 0
+  statGrowthRate:
+  - 0
+  - 3
+  - 4
+  - 4
+  - 0.15
+  - 1
+  - 1
+  - 10
+  - 0.15
+  - 75
   attackDamage: 5
   autoAttackSpeed: 1
   autoAttackProjSpeed: 10

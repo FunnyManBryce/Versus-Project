@@ -56,7 +56,7 @@ public class DecayAOE : NetworkBehaviour
                 }
                 if(collider.GetComponent<BasePlayerController>() != null)
                 {
-                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", speedReductionPerTick, 5f);
+                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", speedReductionPerTick, 5f, true);
                 }
                 if (collider.GetComponent<MeleeMinion>() != null)
                 {

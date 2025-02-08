@@ -22,6 +22,7 @@ public class BasePlayerController : NetworkBehaviour
     private Vector2 playerInput;
 
     //Combat variables
+    public float[] statGrowthRate;
     public float attackDamage = 10f;
     public float autoAttackSpeed = 1f;
     public float autoAttackProjSpeed = 5f;
@@ -352,12 +353,12 @@ public class BasePlayerController : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
+    public void TriggerBuffServerRpc(string buffType, float amount, float duration, bool hasDuration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
     {
         if (buffType == "Speed")
         {
             maxSpeed += amount;
-            if(maxSpeed <= 1f)
+            if (maxSpeed <= 1f)
             {
                 amount = -maxSpeed + 1f + amount;
                 maxSpeed = 1f;
@@ -417,6 +418,18 @@ public class BasePlayerController : NetworkBehaviour
                 manaRegen = 0.1f;
             }
         }
+        if (buffType == "Max Mana")
+        {
+            maxMana += amount;
+        }
+        if (buffType == "CDR")
+        {
+            cDR += amount;
+        }
+        if (buffType == "Health")
+        {
+            health.maxHealth.Value += amount;
+        }
         if (buffType == "Marked")
         {
             health.markedValue += amount;
@@ -426,9 +439,12 @@ public class BasePlayerController : NetworkBehaviour
             amount = maxSpeed;
             maxSpeed = 0;
         }
-        IEnumerator coroutine = BuffDuration(buffType, amount, duration);
-        StartCoroutine(coroutine);
-        StatChangeClientRpc(buffType, amount, duration);
+        StatChangeClientRpc(buffType, amount);
+        if (hasDuration)
+        {
+            IEnumerator coroutine = BuffDuration(buffType, amount, duration);
+            StartCoroutine(coroutine);
+        }
     }
 
     public IEnumerator BuffDuration(string buffType, float amount, float duration) //Waits a bit before changing stats back to default
@@ -468,6 +484,18 @@ public class BasePlayerController : NetworkBehaviour
         {
             manaRegen -= amount;
         }
+        if (buffType == "Max Mana")
+        {
+            maxMana -= amount;
+        }
+        if (buffType == "CDR")
+        {
+            cDR -= amount;
+        }
+        if (buffType == "Health")
+        {
+            health.maxHealth.Value -= amount;
+        }
         if (buffType == "Marked")
         {
             health.markedValue -= amount;
@@ -477,11 +505,11 @@ public class BasePlayerController : NetworkBehaviour
             maxSpeed += amount;
             buffType = "Speed";
         }
-        StatChangeClientRpc(buffType, -amount, duration);
+        StatChangeClientRpc(buffType, -amount);
     }
 
     [Rpc(SendTo.NotServer)]
-    public void StatChangeClientRpc(string buffType, float amount, float duration) //This makes sure that stats are synced to client and host
+    public void StatChangeClientRpc(string buffType, float amount) //This makes sure that stats are synced to client and host
     {
         if (buffType == "Speed")
         {
@@ -540,6 +568,18 @@ public class BasePlayerController : NetworkBehaviour
                 manaRegen = 0.1f;
             }
         }
+        if (buffType == "Max Mana")
+        {
+            maxMana += amount;
+        }
+        if (buffType == "CDR")
+        {
+            cDR += amount;
+        }
+        if (buffType == "Health")
+        {
+            health.maxHealth.Value += amount;
+        }
         if (buffType == "Marked")
         {
             health.markedValue += amount;
@@ -553,7 +593,17 @@ public class BasePlayerController : NetworkBehaviour
     [ServerRpc()]
     public void LevelUpServerRPC()
     {
-        Level.Value++; //Should add some stat growth depending on the character
+        Level.Value++;
+        TriggerBuffServerRpc("Speed", statGrowthRate[0], 0, false);
+        TriggerBuffServerRpc("Attack Damage", statGrowthRate[1], 0, false);
+        TriggerBuffServerRpc("Armor", statGrowthRate[2], 0, false);
+        TriggerBuffServerRpc("Armor Pen", statGrowthRate[3], 0, false);
+        TriggerBuffServerRpc("Auto Attack Speed", statGrowthRate[4], 0, false);
+        TriggerBuffServerRpc("Regen", statGrowthRate[5], 0, false);
+        TriggerBuffServerRpc("Mana Regen", statGrowthRate[6], 0, false);
+        TriggerBuffServerRpc("Max Mana", statGrowthRate[7], 0, false);
+        TriggerBuffServerRpc("CDR", statGrowthRate[8], 0, false);
+        TriggerBuffServerRpc("Health", statGrowthRate[9], 0, false);
         XP.Value = XP.Value - XPToNextLevel;
         XPToNextLevel = XPPerLevel[Level.Value];
         unspentUpgrades.Value++;

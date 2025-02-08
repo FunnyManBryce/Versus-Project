@@ -68,19 +68,19 @@ public class DecayPlayerController : BasePlayerController
         {
             enemyPlayer =  lameManager.playerOneChar.GetComponent<BasePlayerController>();
         }
-        enemyPlayer.TriggerBuffServerRpc("Attack Damage", -totalStatDecay.Value, 10f);
-        enemyPlayer.TriggerBuffServerRpc("Armor", -totalStatDecay.Value, 10f);
-        enemyPlayer.TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * totalStatDecay.Value), 10f);
-        enemyPlayer.TriggerBuffServerRpc("Armor Pen", -totalStatDecay.Value, 10f);
-        enemyPlayer.TriggerBuffServerRpc("Regen", -(0.05f * totalStatDecay.Value), 10f);
-        enemyPlayer.TriggerBuffServerRpc("Mana Regen", -(0.05f * totalStatDecay.Value), 10f);
-        TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, 10f);
-        TriggerBuffServerRpc("Armor", totalStatDecay.Value, 10f);
-        TriggerBuffServerRpc("Auto Attack Speed", (0.1f * totalStatDecay.Value), 10f);
-        TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, 10f);
-        TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), 10f);
-        TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), 10f);
-        TriggerBuffServerRpc("Speed", 3f, 10f);
+        enemyPlayer.TriggerBuffServerRpc("Attack Damage", -totalStatDecay.Value, 10f, true);
+        enemyPlayer.TriggerBuffServerRpc("Armor", -totalStatDecay.Value, 10f, true);
+        enemyPlayer.TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * totalStatDecay.Value), 10f, true);
+        enemyPlayer.TriggerBuffServerRpc("Armor Pen", -totalStatDecay.Value, 10f, true);
+        enemyPlayer.TriggerBuffServerRpc("Regen", -(0.05f * totalStatDecay.Value), 10f, true);
+        enemyPlayer.TriggerBuffServerRpc("Mana Regen", -(0.05f * totalStatDecay.Value), 10f, true);
+        TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, 10f, true);
+        TriggerBuffServerRpc("Armor", totalStatDecay.Value, 10f, true);
+        TriggerBuffServerRpc("Auto Attack Speed", (0.1f * totalStatDecay.Value), 10f, true);
+        TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, 10f, true);
+        TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), 10f, true);
+        TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), 10f, true);
+        TriggerBuffServerRpc("Speed", 3f, 10f, true);
     }
 
     new private void Update()
