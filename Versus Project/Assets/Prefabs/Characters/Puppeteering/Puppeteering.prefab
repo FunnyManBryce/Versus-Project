@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3858709417
+  GlobalObjectIdHash: 652430502
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -307,15 +307,15 @@ MonoBehaviour:
   currentSpeed: 0
   statGrowthRate:
   - 0
-  - 3
-  - 4
-  - 4
+  - 2
+  - 2
+  - 2
   - 0.15
-  - 1
-  - 1
+  - 0.5
+  - 0.5
   - 10
   - 0.15
-  - 75
+  - 50
   attackDamage: 5
   autoAttackSpeed: 1
   autoAttackProjSpeed: 10

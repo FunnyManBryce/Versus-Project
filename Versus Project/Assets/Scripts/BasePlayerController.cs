@@ -594,17 +594,24 @@ public class BasePlayerController : NetworkBehaviour
     public void LevelUpServerRPC()
     {
         Level.Value++;
-        TriggerBuffServerRpc("Speed", statGrowthRate[0], 0, false);
-        TriggerBuffServerRpc("Attack Damage", statGrowthRate[1], 0, false);
-        TriggerBuffServerRpc("Armor", statGrowthRate[2], 0, false);
-        TriggerBuffServerRpc("Armor Pen", statGrowthRate[3], 0, false);
-        TriggerBuffServerRpc("Auto Attack Speed", statGrowthRate[4], 0, false);
-        TriggerBuffServerRpc("Regen", statGrowthRate[5], 0, false);
-        TriggerBuffServerRpc("Mana Regen", statGrowthRate[6], 0, false);
-        TriggerBuffServerRpc("Max Mana", statGrowthRate[7], 0, false);
-        TriggerBuffServerRpc("CDR", statGrowthRate[8], 0, false);
-        TriggerBuffServerRpc("Health", statGrowthRate[9], 0, false);
-        XP.Value = XP.Value - XPToNextLevel;
+        if (Level.Value > 1)
+        {
+            TriggerBuffServerRpc("Speed", statGrowthRate[0], 0, false);
+            TriggerBuffServerRpc("Attack Damage", statGrowthRate[1], 0, false);
+            TriggerBuffServerRpc("Armor", statGrowthRate[2], 0, false);
+            TriggerBuffServerRpc("Armor Pen", statGrowthRate[3], 0, false);
+            TriggerBuffServerRpc("Auto Attack Speed", statGrowthRate[4], 0, false);
+            TriggerBuffServerRpc("Regen", statGrowthRate[5], 0, false);
+            TriggerBuffServerRpc("Mana Regen", statGrowthRate[6], 0, false);
+            TriggerBuffServerRpc("Max Mana", statGrowthRate[7], 0, false);
+            TriggerBuffServerRpc("CDR", statGrowthRate[8], 0, false);
+            TriggerBuffServerRpc("Health", statGrowthRate[9], 0, false);
+            XP.Value = XP.Value - XPToNextLevel;
+        }
+        else
+        {
+            XP.Value = 0;
+        }
         XPToNextLevel = XPPerLevel[Level.Value];
         unspentUpgrades.Value++;
     }

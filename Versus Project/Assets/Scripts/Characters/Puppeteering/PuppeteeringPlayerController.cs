@@ -152,6 +152,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             PuppetList.Add(currentPuppet);
             currentPuppet.GetComponent<Puppet>().Team = team;
             currentPuppet.GetComponent<Puppet>().health.Team.Value = team;
+            currentPuppet.GetComponent<Puppet>().health.startingMaxHealth = 175 + (25 * Level.Value);
             currentPuppet.GetComponent<Puppet>().Father = gameObject;
             currentPuppet.GetComponent<Puppet>().Damage = 1.5f * damage;
             currentPuppet.GetComponent<Puppet>().moveSpeed = 1f * speed;
@@ -172,7 +173,7 @@ public class PuppeteeringPlayerController : BasePlayerController
     {
         if (target.TryGet(out NetworkObject targetObj))
         {
-            currentTarget = targetObj;
+            currentTarget = targetObj; //should maybe have stats sync each second???? could go wrong though
         }
     }
 
