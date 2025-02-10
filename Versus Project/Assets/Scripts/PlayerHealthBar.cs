@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Netcode;
 
 public class PlayerHealthBar : MonoBehaviour
 {
@@ -15,10 +16,15 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        var localPlayer = GameObject.FindGameObjectWithTag("Player");
-        if (localPlayer != null)
+        var players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var player in players)
         {
-            health = localPlayer.GetComponent<Health>();
+            var netObj = player.GetComponent<NetworkObject>();
+            if (netObj != null && netObj.IsLocalPlayer)
+            {
+                health = player.GetComponent<Health>();
+                break;
+            }
         }
     }
 
