@@ -17,9 +17,9 @@ public class AbilityBase<T> where T : BasePlayerController
     public float manaCost;
     public float lastUsed;
     public int abilityLevel;
-    public bool OffCooldown() => lastUsed + cooldown < Time.time;
-    public float NormalizedCooldown() => Mathf.Min((Time.time - lastUsed) / cooldown, 1);
-    public string CooldownDurationLeft() => (cooldown - (Time.time - lastUsed)).ToString("0.00");
+    public bool OffCooldown() => lastUsed + (cooldown * ((100 - playerController.cDR) / 100)) < Time.time;
+    public float NormalizedCooldown() => Mathf.Min((Time.time - lastUsed) / (cooldown * ((100 - playerController.cDR) / 100)), 1);
+    public string CooldownDurationLeft() => ((cooldown * ((100 - playerController.cDR)/100)) - (Time.time - lastUsed)).ToString("0.00"); //Need to make cooldown reduction do something
     public bool CanUse() => OffCooldown() && playerController.mana >= manaCost;
     public virtual void OnUse()
     {
