@@ -11,7 +11,8 @@ public class DecayPlayerController : BasePlayerController
     public GameObject Decay;
 
     public GameObject AOEPrefab;
-    public float shockwaveDamage;
+    public float AOEDamageMultiplier;
+    public float shockwaveDamageMultiplier;
     public GameObject shockwavePrefab;
     BasePlayerController enemyPlayer;
     public AbilityBase<DecayPlayerController> AOE;
@@ -31,6 +32,7 @@ public class DecayPlayerController : BasePlayerController
     public void AOEServerRpc()
     {
         var AOE = Instantiate(AOEPrefab, Decay.transform.position, Quaternion.identity);
+        AOE.GetComponent<DecayAOE>().damagePerTick = attackDamage * AOEDamageMultiplier;
         AOE.GetComponent<DecayAOE>().team = teamNumber.Value;
         AOE.GetComponent<DecayAOE>().sender = Decay.GetComponent<NetworkObject>();
         var AOENetworkObject = AOE.GetComponent<NetworkObject>();
@@ -47,10 +49,11 @@ public class DecayPlayerController : BasePlayerController
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                collider.GetComponent<Health>().TakeDamageServerRPC(shockwaveDamage, new NetworkObjectReference(Decay.GetComponent<NetworkObject>()), armorPen);
+                collider.GetComponent<Health>().TakeDamageServerRPC(attackDamage * shockwaveDamageMultiplier, new NetworkObjectReference(Decay.GetComponent<NetworkObject>()), armorPen);
             }
         }
         var shockwave = Instantiate(shockwavePrefab, Decay.transform.position, Quaternion.identity);
+        shockwave.GetComponent<DecayShockWaveProjectile>().damage = (attackDamage * shockwaveDamageMultiplier)/2;
         shockwave.GetComponent<DecayShockWaveProjectile>().team = teamNumber.Value;
         shockwave.GetComponent<DecayShockWaveProjectile>().sender = Decay.GetComponent<NetworkObject>();
         var shockwaveNetworkObject = shockwave.GetComponent<NetworkObject>();
@@ -137,15 +140,6 @@ public class DecayPlayerController : BasePlayerController
         if (manaRegen <= .1f)
         {
             manaRegen = 0.1f;
-        }
-    }
-
-    [Rpc(SendTo.Server)]
-    private void SpawnObjectServerRpc(NetworkObjectReference networkObject, ulong clientID)
-    {
-        if (networkObject.TryGet(out NetworkObject Obj))
-        {
-            Obj.SpawnWithOwnership(clientID);
         }
     }
 

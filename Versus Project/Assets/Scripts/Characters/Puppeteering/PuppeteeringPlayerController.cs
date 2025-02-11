@@ -19,6 +19,8 @@ public class PuppeteeringPlayerController : BasePlayerController
     public float puppetRespawnLength = 20f;
     public GameObject stringObject;
     public int passiveLevel;
+    public float stringDamageMultiplier;
+    public float stringMarkValue;
     public AbilityBase<PuppeteeringPlayerController> String;
     public AbilityBase<PuppeteeringPlayerController> ModeSwitch;
     public AbilityBase<PuppeteeringPlayerController> Ultimate;
@@ -181,6 +183,8 @@ public class PuppeteeringPlayerController : BasePlayerController
     private void StringSummonServerRpc()
     {
         var String = Instantiate(stringObject, gameObject.transform.position, Quaternion.identity);
+        String.GetComponent<StringAbility>().damage = attackDamage * stringDamageMultiplier;
+        String.GetComponent<StringAbility>().markAmount = stringMarkValue;
         String.GetComponent<StringAbility>().team = health.Team.Value;
         String.GetComponent<StringAbility>().sender = gameObject.GetComponent<NetworkObject>();
         var StringNetworkObject = String.GetComponent<NetworkObject>();
@@ -247,20 +251,21 @@ public class PuppeteeringPlayerController : BasePlayerController
 
     public void StringLevelUp()
     {
+        if (unspentUpgrades.Value <= 0) return; //Will need to make a server Rpc that changes unspent upgrades value and ability level for client and server
         String.abilityLevel++;
-        if(String.abilityLevel >= 2)
+        if(String.abilityLevel == 2)
         {
             //Upgrade Effect
         }
-        if(String.abilityLevel >= 3)
+        if (String.abilityLevel == 3)
         {
-            //Upgrade Effect
+            stringMarkValue = 0.33f;
         }
-        if (String.abilityLevel >= 4)
+        if (String.abilityLevel == 4)
         {
-            //Upgrade Effect
+            stringDamageMultiplier = stringDamageMultiplier + 0.667f;
         }
-        if (String.abilityLevel >= 5)
+        if (String.abilityLevel == 5)
         {
             //Upgrade Effect
         }

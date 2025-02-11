@@ -502,10 +502,10 @@ MonoBehaviour:
   currentSpeed: 0
   statGrowthRate:
   - 0
+  - 4
   - 3
   - 3
-  - 3
-  - 0.1
+  - 0
   - 0.1
   - 0.1
   - 5
@@ -566,7 +566,8 @@ MonoBehaviour:
   Decay: {fileID: 7846404579260722031}
   AOEPrefab: {fileID: 6191041724843646727, guid: c5347d732afcf6d40910e3bbf5f563eb,
     type: 3}
-  shockwaveDamage: 10
+  AOEDamageMultiplier: 0.167
+  shockwaveDamageMultiplier: 0.667
   shockwavePrefab: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
     type: 3}
   AOE:
