@@ -384,6 +384,9 @@ MonoBehaviour:
   passiveLevel: 0
   stringDamageMultiplier: 2
   stringMarkValue: 0.25
+  armorBuffMultiplier: 2
+  attackBuffMultiplier: 0.3
+  pierceBuffMultiplier: 2
   String:
     playerController: {fileID: 2414812415466740570}
     inputKey: 113

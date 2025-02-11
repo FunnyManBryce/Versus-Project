@@ -21,6 +21,9 @@ public class PuppeteeringPlayerController : BasePlayerController
     public int passiveLevel;
     public float stringDamageMultiplier;
     public float stringMarkValue;
+    public float armorBuffMultiplier;
+    public float attackBuffMultiplier;
+    public float pierceBuffMultiplier;
     public AbilityBase<PuppeteeringPlayerController> String;
     public AbilityBase<PuppeteeringPlayerController> ModeSwitch;
     public AbilityBase<PuppeteeringPlayerController> Ultimate;
@@ -199,19 +202,19 @@ public class PuppeteeringPlayerController : BasePlayerController
             puppet.GetComponent<Puppet>().defensiveMode = !puppet.GetComponent<Puppet>().defensiveMode;
             if (puppet.GetComponent<Puppet>().defensiveMode == true) //Switching to defensive mode buffs defense
             {
-                TriggerBuffServerRpc("Armor", 10, 5f, true);
+                TriggerBuffServerRpc("Armor", armorBuffMultiplier * health.armor, 5f, true);
                 TriggerBuffServerRpc("Regen", 10, 5f, true);
                 TriggerBuffServerRpc("Speed", 2, 5f, true);
                 puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Speed", 2, 5f);
-                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor", 5, 5f);
+                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor", armorBuffMultiplier * puppet.GetComponent<Puppet>().health.armor, 5f);
 
             }
             else // Switching to offensive mode buffs offense
             {
-                TriggerBuffServerRpc("Attack Damage", 3, 5f, true);
-                TriggerBuffServerRpc("Armor Pen", 5, 5f, true);
-                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor Pen", 10, 5f);
-                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Attack Damage", 4.5f, 5f);
+                TriggerBuffServerRpc("Attack Damage", attackBuffMultiplier * attackDamage, 5f, true);
+                TriggerBuffServerRpc("Armor Pen", pierceBuffMultiplier * armorPen, 5f, true);
+                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor Pen", pierceBuffMultiplier * puppet.GetComponent<Puppet>().armorPen, 5f);
+                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Attack Damage", attackBuffMultiplier * puppet.GetComponent<Puppet>().Damage, 5f);
 
             }
         }
