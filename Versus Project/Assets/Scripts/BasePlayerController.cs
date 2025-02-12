@@ -119,7 +119,10 @@ public class BasePlayerController : NetworkBehaviour
     {
         playerInput = new Vector2(0, 0);
         lastAttackTime = -autoAttackSpeed;
-        LevelUpServerRPC();
+        if(IsServer)
+        {
+            LevelUpServerRPC();
+        }
     }
 
     private protected void Update()
@@ -590,7 +593,7 @@ public class BasePlayerController : NetworkBehaviour
         }
     }
 
-    [ServerRpc()]
+    [ServerRpc(RequireOwnership = false)]
     public void LevelUpServerRPC()
     {
         Level.Value++;

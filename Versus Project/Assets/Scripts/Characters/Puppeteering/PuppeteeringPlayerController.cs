@@ -17,13 +17,23 @@ public class PuppeteeringPlayerController : BasePlayerController
     public NetworkVariable<bool> ultActive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public float puppetRespawnLength = 20f;
+    public float puppetStartingHealth = 175;
+    public float puppetSpeedMultiplier = 1.0f;
+    public float puppetCooldown = 2.0f;
+    public float puppetRegen = 5f;
+
     public GameObject stringObject;
     public int passiveLevel;
     public float stringDamageMultiplier;
     public float stringMarkValue;
+
     public float armorBuffMultiplier;
     public float attackBuffMultiplier;
     public float pierceBuffMultiplier;
+    public float lifestealMultiplier;
+
+    public float ultimateDuration = 20f;
+
     public AbilityBase<PuppeteeringPlayerController> String;
     public AbilityBase<PuppeteeringPlayerController> ModeSwitch;
     public AbilityBase<PuppeteeringPlayerController> Ultimate;
@@ -52,7 +62,7 @@ public class PuppeteeringPlayerController : BasePlayerController
         if(ultActive.Value == true)
         {
             float currentTime = lameManager.matchTimer.Value;
-            if (currentTime - lastUltTime.Value >= 20f)
+            if (currentTime - lastUltTime.Value >= ultimateDuration)
             {
                 UltEndServerRpc();
             }
@@ -155,20 +165,26 @@ public class PuppeteeringPlayerController : BasePlayerController
             puppetsAlive.Value++;
             GameObject currentPuppet = Instantiate(puppetPrefab, gameObject.transform.position, Quaternion.identity);
             PuppetList.Add(currentPuppet);
-            currentPuppet.GetComponent<Puppet>().Team = team;
-            currentPuppet.GetComponent<Puppet>().health.Team.Value = team;
-            currentPuppet.GetComponent<Puppet>().health.startingMaxHealth = 175 + (25 * Level.Value);
-            currentPuppet.GetComponent<Puppet>().Father = gameObject;
-            currentPuppet.GetComponent<Puppet>().Damage = 1.5f * damage;
-            currentPuppet.GetComponent<Puppet>().moveSpeed = 1f * speed;
+            Puppet puppet = currentPuppet.GetComponent<Puppet>();
+            puppet.Team = team;
+            puppet.health.Team.Value = team;
+            puppet.Father = gameObject;
+            puppet.Damage = 1.5f * damage;
+            puppet.moveSpeed = puppetSpeedMultiplier * speed;
+            puppet.cooldownLength = puppetCooldown;
+            puppet.lifestealMultiplier = lifestealMultiplier;
+            puppet.regen = puppetRegen;
+            puppet.health.healthSetManual = true;
+            puppet.health.maxHealth.Value = puppetStartingHealth + (25 * Level.Value);
+            puppet.health.currentHealth.Value = puppet.health.maxHealth.Value;
             var puppetNetworkObject = currentPuppet.GetComponent<NetworkObject>();
             puppetNetworkObject.Spawn();
             if(ultSpawn && puppetsAlive.Value > 1)
             {
-                currentPuppet.GetComponent<Puppet>().defensiveMode = !PuppetList[0].GetComponent<Puppet>().defensiveMode;
+                puppet.defensiveMode = !PuppetList[0].GetComponent<Puppet>().defensiveMode;
             } else
             {
-                currentPuppet.GetComponent<Puppet>().defensiveMode = false;
+                puppet.defensiveMode = false;
             }
         }
     }
@@ -252,6 +268,28 @@ public class PuppeteeringPlayerController : BasePlayerController
         }
     }
 
+    public void PassiveLevelUp()
+    {
+        if (unspentUpgrades.Value <= 0) return;
+        passiveLevel++;
+        if (passiveLevel == 2)
+        {
+            puppetStartingHealth += 50;
+        }
+        if (passiveLevel == 3)
+        {
+            puppetRespawnLength = puppetRespawnLength - 5;
+        }
+        if (passiveLevel == 4)
+        {
+            puppetSpeedMultiplier += 0.3f;
+        }
+        if (passiveLevel == 5)
+        {
+            puppetCooldown -= 0.5f;
+        }
+    }
+
     public void StringLevelUp()
     {
         if (unspentUpgrades.Value <= 0) return; //Will need to make a server Rpc that changes unspent upgrades value and ability level for client and server
@@ -275,10 +313,48 @@ public class PuppeteeringPlayerController : BasePlayerController
     }
     public void ModeSwitchLevelUp()
     {
+        if (unspentUpgrades.Value <= 0) return; //Will need to make a server Rpc that changes unspent upgrades value and ability level for client and server
         ModeSwitch.abilityLevel++;
+        if (ModeSwitch.abilityLevel == 2)
+        {
+            lifestealMultiplier += 0.2f;
+            puppetRegen += 5f;
+        }
+        if (ModeSwitch.abilityLevel == 3)
+        {
+            //Upgrade Effect
+        }
+        if (ModeSwitch.abilityLevel == 4)
+        {
+            lifestealMultiplier += 0.2f;
+            puppetRegen += 10f;
+        }
+        if (ModeSwitch.abilityLevel == 5)
+        {
+            ModeSwitch.manaCost -= 10;
+        }
     }
+
     public void UltimateLevelUp()
     {
-        ModeSwitch.abilityLevel++;
+        if (unspentUpgrades.Value <= 0) return; //Will need to make a server Rpc that changes unspent upgrades value and ability level for client and server
+        Ultimate.abilityLevel++;
+        if (Ultimate.abilityLevel == 2)
+        {
+            ultimateDuration += 5;
+        }
+        if (Ultimate.abilityLevel == 3)
+        {
+            //Upgrade Effect
+        }
+        if (Ultimate.abilityLevel == 4)
+        {
+            Ultimate.cooldown -= 10;
+            Ultimate.manaCost -= 10;
+        }
+        if (Ultimate.abilityLevel == 5)
+        {
+            //Upgrade Effect
+        }
     }
 }

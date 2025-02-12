@@ -13,12 +13,17 @@ public class Health : NetworkBehaviour
     public float armor = 0f; //In order for this to sync up to the baseplayercontroller, just do something like armor = baseplayercontroller.armor
     public bool initialValuesSynced;
     public bool invulnerable;
+    public bool healthSetManual;
+
 
     public NetworkObjectReference lastAttacker;
     public override void OnNetworkSpawn()
     {
-        maxHealth.Value = startingMaxHealth;
-        currentHealth.Value = startingMaxHealth;
+        if(IsServer && healthSetManual == false)
+        {
+            maxHealth.Value = startingMaxHealth;
+            currentHealth.Value = startingMaxHealth;
+        }
         initialValuesSynced = true;
     }
 

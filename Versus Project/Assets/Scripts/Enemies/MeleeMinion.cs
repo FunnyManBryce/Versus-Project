@@ -33,6 +33,7 @@ public class MeleeMinion : NetworkBehaviour
     public bool playerLastHit = false;
     public bool dead;
 
+    public float baseHP;
     public float Damage;
     public float chasePlayerDistance = 10;
     public float chaseMinionDistance = 10;
@@ -68,11 +69,6 @@ public class MeleeMinion : NetworkBehaviour
         agent.updateUpAxis = false;
         agent.speed = 0;
         lameManager = FindObjectOfType<LameManager>();
-        if (IsServer)
-        {
-            health.maxHealth.Value = health.maxHealth.Value + (health.maxHealth.Value * lameManager.matchTimer.Value * 0.005f);
-            health.currentHealth.Value = health.maxHealth.Value;
-        }
     }
 
     public override void OnNetworkSpawn()
@@ -120,6 +116,13 @@ public class MeleeMinion : NetworkBehaviour
         HealthBar = healthBar;
         healthBar.GetComponent<EnemyHealthBar>().enabled = true;
         healthBar.GetComponent<EnemyHealthBar>().SyncValues(Minion, minionTarget);
+        if (IsServer)
+        {
+            lameManager = FindObjectOfType<LameManager>();
+            health.healthSetManual = true;
+            health.maxHealth.Value = baseHP + (baseHP * lameManager.matchTimer.Value * 0.005f);
+            health.currentHealth.Value = health.maxHealth.Value;
+        }
     }
 
     void Update()

@@ -209,6 +209,7 @@ MonoBehaviour:
   agent: {fileID: 4082273046993157032}
   animator: {fileID: 5958823289627424989}
   distanceFromTarget: {x: 0, y: 0, z: 0}
+  distanceFromPuppet: {x: 0, y: 0, z: 0}
   distanceFromPlayer: {x: 0, y: 0, z: 0}
   isRanged: 0
   isAttacking: 0
@@ -216,14 +217,12 @@ MonoBehaviour:
   aggro: 0
   playerLastHit: 0
   dead: 0
-  targetName: 
+  baseHP: 150
   Damage: 30
   chasePlayerDistance: 7
   chaseMinionDistance: 10
   chaseTowerDistance: 6
-  minionAttackDistance: 4
-  towerAttackDistance: 4
-  playerAttackDistance: 4
+  attackDistance: 3
   moveSpeed: 3
   aggroTimer: 0
   aggroLength: 5
@@ -233,9 +232,11 @@ MonoBehaviour:
   XPGiven: 20
   goldGiven: 20
   enemyPlayer: {fileID: 0}
+  enemyPuppet: {fileID: 0}
   enemyMinion: {fileID: 0}
   enemyTower: {fileID: 0}
   Minion: {fileID: 8942386518775928844}
+  projectilePrefab: {fileID: 0}
   networkMinion: {fileID: 0}
   currentTarget: {fileID: 0}
   healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
@@ -348,10 +349,14 @@ MonoBehaviour:
     m_InternalValue: 0
   maxHealth:
     m_InternalValue: 0
+  Team:
+    m_InternalValue: 0
+  markedValue: 1
   startingMaxHealth: 125
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
+  healthSetManual: 0
 --- !u!61 &2824147659481601537
 BoxCollider2D:
   m_ObjectHideFlags: 0

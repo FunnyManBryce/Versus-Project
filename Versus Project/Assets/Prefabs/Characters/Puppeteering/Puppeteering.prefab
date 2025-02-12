@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3858709417
+  GlobalObjectIdHash: 652430502
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -379,6 +379,10 @@ MonoBehaviour:
   ultActive:
     m_InternalValue: 0
   puppetRespawnLength: 20
+  puppetStartingHealth: 175
+  puppetSpeedMultiplier: 1
+  puppetCooldown: 2
+  puppetRegen: 5
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
   passiveLevel: 0
@@ -387,6 +391,8 @@ MonoBehaviour:
   armorBuffMultiplier: 2
   attackBuffMultiplier: 0.3
   pierceBuffMultiplier: 2
+  lifestealMultiplier: 0
+  ultimateDuration: 20
   String:
     playerController: {fileID: 2414812415466740570}
     inputKey: 113
@@ -603,3 +609,4 @@ MonoBehaviour:
   armor: 10
   initialValuesSynced: 0
   invulnerable: 0
+  healthSetManual: 0

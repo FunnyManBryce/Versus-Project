@@ -55,16 +55,32 @@ public class StringAbility : NetworkBehaviour
                 {
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 1f, true);
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Marked", markAmount, 5f, true);
+                    if(sender.GetComponent<PuppeteeringPlayerController>().String.abilityLevel >= 2)
+                    {
+                        collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -3, 5f, true);
+                    }
                 }
                 if (collider.GetComponent<MeleeMinion>() != null)
                 {
                     collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
                     collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Marked", markAmount, 5f);
+                    if (sender.GetComponent<PuppeteeringPlayerController>().String.abilityLevel >= 2)
+                    {
+                        collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -1, 5f, true);
+                    }
                 }
                 if (collider.GetComponent<JungleEnemy>() != null)
                 {
                     collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
                     collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Marked", markAmount, 5f);
+                    if (sender.GetComponent<PuppeteeringPlayerController>().String.abilityLevel >= 2)
+                    {
+                        collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -1, 5f, true);
+                    }
+                }
+                if (sender.GetComponent<PuppeteeringPlayerController>().String.abilityLevel >= 5 && collider.GetComponent<Tower>() != null)
+                {
+                    //collider.GetComponent<Tower>().TriggerBuffServerRpc("Marked", markAmount, 5f);
                 }
             }
         }

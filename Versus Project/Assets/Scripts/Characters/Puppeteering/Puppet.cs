@@ -33,6 +33,7 @@ public class Puppet : NetworkBehaviour
     public string targetName;
     public float Damage;
     public float armorPen;
+    public float lifestealMultiplier = 0f;
     public float followDistance = 10;
     public float stopFollowDistance = 5;
 
@@ -189,7 +190,7 @@ public class Puppet : NetworkBehaviour
             target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
             if(defensiveMode == false) //offensive mode provides lifesteal to player
             {
-                //Father.GetComponent<Health>().HealServerRPC(-(damage/4), sender);
+                //Father.GetComponent<Health>().HealServerRPC((damage * lifestealMultiplier), sender); Lifesteal lifesteal WAY too much
             }
         }
         else
