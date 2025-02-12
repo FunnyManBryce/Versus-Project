@@ -14,6 +14,39 @@ public class PlayerHealthBar : MonoBehaviour
 
     public bool initializedHealth;
 
+    [SerializeField] private bool isPlayer1UI;
+
+
+    private void Start()
+    {
+        isPlayer1UI = transform.root.name.Contains("1");
+        FindAndSetPlayerHealth();
+    }
+
+    private void FindAndSetPlayerHealth()
+    {
+        var players = Object.FindObjectsOfType<BasePlayerController>();
+
+        foreach (var player in players)
+        {
+            if (player.NetworkObject.IsSpawned)
+            {
+                bool isPlayer1 = player.NetworkObject.OwnerClientId == 0;
+
+                // Only set the health reference if this UI matches the player number
+                if (isPlayer1 == isPlayer1UI)
+                {
+                    health = player.GetComponent<Health>();
+                    if (health != null)
+                    {
+                        InitializeHealthBar();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
     private void OnEnable()
     {
         var players = GameObject.FindGameObjectsWithTag("Player");
@@ -53,6 +86,7 @@ public class PlayerHealthBar : MonoBehaviour
         }
 
         UpdateHealthText(maxHealth);
+        initializedHealth = true;
     }
 
     private void UpdateHealthBar(float previousHealth, float newHealth)
@@ -76,6 +110,10 @@ public class PlayerHealthBar : MonoBehaviour
     
     void Update()
     {
+        if (health == null || !initializedHealth)
+        {
+            FindAndSetPlayerHealth();
+        }
         if (initializedHealth == false && health.initialValuesSynced == true)
         {
             InitializeHealthBar();
