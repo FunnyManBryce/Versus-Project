@@ -8,10 +8,8 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Image fillImage;
     [SerializeField] private TextMeshProUGUI healthText;
-
     [SerializeField] private Health health;
     private float maxHealth;
-
     public bool initializedHealth;
 
     [SerializeField] private bool isPlayer1UI;
@@ -73,9 +71,10 @@ public class PlayerHealthBar : MonoBehaviour
     {
         if (health != null)
         {
-            maxHealth = health.maxHealth.Value;
+            health.maxHealth.OnValueChanged += UpdateMaxHealth;
             health.currentHealth.OnValueChanged += UpdateHealthBar;
-            UpdateHealthBar(0, health.currentHealth.Value);
+            maxHealth = health.maxHealth.Value;
+ 
             Debug.Log("Max health is " + health.maxHealth.Value);
             Debug.Log("Current health is " + health.currentHealth.Value);
         }
@@ -85,8 +84,17 @@ public class PlayerHealthBar : MonoBehaviour
             healthSlider.value = maxHealth;
         }
 
-        UpdateHealthText(maxHealth);
+        UpdateHealthText(health.currentHealth.Value);
         initializedHealth = true;
+    }
+    private void UpdateMaxHealth(float previousMaxHealth, float newMaxHealth)
+    {
+        maxHealth = newMaxHealth;
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = newMaxHealth;
+        }
+        UpdateHealthText(health.currentHealth.Value);
     }
 
     private void UpdateHealthBar(float previousHealth, float newHealth)
