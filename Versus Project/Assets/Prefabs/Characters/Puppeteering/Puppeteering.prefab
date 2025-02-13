@@ -388,6 +388,8 @@ MonoBehaviour:
   passiveLevel: 0
   stringDamageMultiplier: 2
   stringMarkValue: 0.25
+  stringMoveReduction: 0
+  stringTargetsAll: 0
   armorBuffMultiplier: 2
   attackBuffMultiplier: 0.3
   pierceBuffMultiplier: 2

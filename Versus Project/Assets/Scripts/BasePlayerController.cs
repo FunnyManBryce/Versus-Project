@@ -579,10 +579,6 @@ public class BasePlayerController : NetworkBehaviour
         {
             cDR += amount;
         }
-        if (buffType == "Health")
-        {
-            health.maxHealth.Value += amount;
-        }
         if (buffType == "Marked")
         {
             health.markedValue += amount;

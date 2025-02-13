@@ -140,6 +140,7 @@ public class DecayPlayerController : BasePlayerController
         float currentTime = lameManager.matchTimer.Value;
         if(currentTime - lastDecayTime >= timeToDecay)
         {
+            lastDecayTime = currentTime;
             TrackStatDecayServerRpc();
         }
     }
@@ -148,12 +149,12 @@ public class DecayPlayerController : BasePlayerController
     private void TrackStatDecayServerRpc()
     {
         totalStatDecay.Value += 1;
-        TriggerBuffServerRpc("Attack Damage", decayAmount, 0, false);
-        TriggerBuffServerRpc("Armor", decayAmount, 0, false);
-        TriggerBuffServerRpc("Auto Attack Speed", (0.1f * decayAmount), 0, false);
-        TriggerBuffServerRpc("Armor Pen", decayAmount, 0, false);
-        TriggerBuffServerRpc("Regen", (0.05f * decayAmount), 0, false);
-        TriggerBuffServerRpc("Mana Regen", (0.05f * decayAmount), 0, false);
+        TriggerBuffServerRpc("Attack Damage", -decayAmount, 0, false);
+        TriggerBuffServerRpc("Armor", -decayAmount, 0, false);
+        TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * decayAmount), 0, false);
+        TriggerBuffServerRpc("Armor Pen", -decayAmount, 0, false);
+        TriggerBuffServerRpc("Regen", (0.05f * -decayAmount), 0, false);
+        TriggerBuffServerRpc("Mana Regen", (0.05f * -decayAmount), 0, false);
         if (statLossIsAOE)
         {
             Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
@@ -162,12 +163,12 @@ public class DecayPlayerController : BasePlayerController
             {
                 if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
                 {
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", decayAmount, 30, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", decayAmount, 30, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Auto Attack Speed", (0.1f * decayAmount), 30, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", decayAmount, 30, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", (0.05f * decayAmount), 30, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", (0.05f * decayAmount), 30, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -decayAmount, 30, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -decayAmount, 30, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Auto Attack Speed", (0.1f * -decayAmount), 30, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -decayAmount, 30, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", (0.05f * -decayAmount), 30, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", (0.05f * -decayAmount), 30, true);
                 }
             }
         }
