@@ -62,11 +62,11 @@ public class Tower : NetworkBehaviour
         {
             if (lameManager.teamOneTowersLeft.Value != orderInLane)
             {
-                health.invulnerable = true;
+                //health.invulnerable = true;
             }
             if (lameManager.teamOneTowersLeft.Value == orderInLane)
             {
-                health.invulnerable = false;
+                //health.invulnerable = false;
             }
             enemyPlayer = lameManager.playerTwoChar;
             oldTarget = new Vector3(1000, 1000, 0);
@@ -86,11 +86,11 @@ public class Tower : NetworkBehaviour
         {
             if (lameManager.teamTwoTowersLeft.Value != orderInLane)
             {
-                health.invulnerable = true;
+                //health.invulnerable = true;
             }
             if (lameManager.teamTwoTowersLeft.Value == orderInLane)
             {
-                health.invulnerable = false;
+                //health.invulnerable = false;
             }
             enemyPlayer = lameManager.playerOneChar;
             oldTarget = new Vector3(1000, 1000, 0);
