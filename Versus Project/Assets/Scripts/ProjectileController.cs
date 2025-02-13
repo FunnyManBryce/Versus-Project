@@ -21,7 +21,7 @@ public class ProjectileController : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        if (target == null || !target.IsSpawned)
+        if (target == null || !target.IsSpawned || target.GetComponent<BasePlayerController>() != null && target.GetComponent<BasePlayerController>().isDead.Value)
         {
             if (!isTargetDestroyed)
             {
