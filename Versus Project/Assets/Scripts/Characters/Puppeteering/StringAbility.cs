@@ -44,7 +44,7 @@ public class StringAbility : NetworkBehaviour
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                if(collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Inhibitor")
+                if(collider.gameObject.tag == "Tower" && !sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll || collider.gameObject.tag == "Inhibitor" && !sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll)
                 {
                     return;
                 } else
@@ -55,7 +55,7 @@ public class StringAbility : NetworkBehaviour
                 {
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 1f, true);
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Marked", markAmount, 5f, true);
-                    if(sender.GetComponent<PuppeteeringPlayerController>().String.abilityLevel >= 2)
+                    if(sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
                         collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -3, 5f, true);
                     }
@@ -64,7 +64,7 @@ public class StringAbility : NetworkBehaviour
                 {
                     collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
                     collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Marked", markAmount, 5f);
-                    if (sender.GetComponent<PuppeteeringPlayerController>().String.abilityLevel >= 2)
+                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
                         collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -1, 5f, true);
                     }
@@ -73,14 +73,14 @@ public class StringAbility : NetworkBehaviour
                 {
                     collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
                     collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Marked", markAmount, 5f);
-                    if (sender.GetComponent<PuppeteeringPlayerController>().String.abilityLevel >= 2)
+                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
                         collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -1, 5f, true);
                     }
                 }
-                if (sender.GetComponent<PuppeteeringPlayerController>().String.abilityLevel >= 5 && collider.GetComponent<Tower>() != null)
+                if (!sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll && collider.GetComponent<Tower>() != null)
                 {
-                    //collider.GetComponent<Tower>().TriggerBuffServerRpc("Marked", markAmount, 5f);
+                    collider.GetComponent<Tower>().TriggerBuffServerRpc("Marked", markAmount, 5f); 
                 }
             }
         }

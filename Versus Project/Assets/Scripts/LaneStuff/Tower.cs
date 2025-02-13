@@ -234,4 +234,30 @@ public class Tower : NetworkBehaviour
             controller.Initialize(15, damage, targetObj, senderObj);
         }
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
+    {
+        if (buffType == "Marked")
+        {
+            health.markedValue += amount;
+        }
+        IEnumerator coroutine = BuffDuration(buffType, amount, duration);
+        StartCoroutine(coroutine);
+    }
+
+    public IEnumerator BuffDuration(string buffType, float amount, float duration) //Waits a bit before changing stats back to default
+    {
+        yield return new WaitForSeconds(duration);
+        BuffEndServerRpc(buffType, amount, duration);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void BuffEndServerRpc(string buffType, float amount, float duration) //changes stat to what it was before
+    {
+        if (buffType == "Marked")
+        {
+            health.markedValue -= amount;
+        }
+    }
 }

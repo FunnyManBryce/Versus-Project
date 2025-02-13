@@ -190,7 +190,8 @@ public class Puppet : NetworkBehaviour
             target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
             if(defensiveMode == false) //offensive mode provides lifesteal to player
             {
-                //Father.GetComponent<Health>().HealServerRPC((damage * lifestealMultiplier), sender); Lifesteal lifesteal WAY too much
+                Debug.Log("Lifesteal");
+                Father.GetComponent<Health>().currentHealth.Value = Mathf.Min(Father.GetComponent<Health>().currentHealth.Value + damage * lifestealMultiplier, Father.GetComponent<Health>().maxHealth.Value);
             }
         }
         else
@@ -301,6 +302,10 @@ public class Puppet : NetworkBehaviour
             amount = moveSpeed;
             moveSpeed = 0;
         }
+        if (buffType == "Invulnerable")
+        {
+            health.invulnerable = true;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
     }
@@ -341,6 +346,10 @@ public class Puppet : NetworkBehaviour
         if (buffType == "Regen")
         {
             regen -= amount;
+        }
+        if (buffType == "Invulnerable")
+        {
+            health.invulnerable = false;
         }
     }
 

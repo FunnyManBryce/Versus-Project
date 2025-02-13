@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3048931788
+  GlobalObjectIdHash: 769142589
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -281,6 +281,7 @@ MonoBehaviour:
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
+  healthSetManual: 0
 --- !u!61 &5975008587194333854
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -351,9 +352,11 @@ MonoBehaviour:
   isChasing: 0
   cooldown: 0
   dead: 0
+  regen: 0
   targetName: 
   Damage: 0
   armorPen: 0
+  lifestealMultiplier: 0
   followDistance: 8
   stopFollowDistance: 3
   attackDistance: 4

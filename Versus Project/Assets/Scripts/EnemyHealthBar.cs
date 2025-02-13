@@ -47,8 +47,6 @@ public class EnemyHealthBar : MonoBehaviour
             if (health != null)
             {
                 maxHealth = health.maxHealth.Value;
-                health.currentHealth.OnValueChanged += UpdateHealthBar;
-                UpdateHealthBar(0, health.currentHealth.Value);
             }
         }
         if (healthSlider != null)
@@ -86,6 +84,9 @@ public class EnemyHealthBar : MonoBehaviour
         {
             InitializeHealthBar();
             initializedHealth = true;
+        } else if(initializedHealth)
+        {
+            UpdateHealthBar(0, health.currentHealth.Value);
         }
         if(Object == null)
         {

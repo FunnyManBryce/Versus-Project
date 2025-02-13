@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using static UnityEngine.GraphicsBuffer;
 using System.Linq;
+using System;
 
 public class PuppeteeringPlayerController : BasePlayerController
 {
@@ -26,6 +27,8 @@ public class PuppeteeringPlayerController : BasePlayerController
     public int passiveLevel;
     public float stringDamageMultiplier;
     public float stringMarkValue;
+    public bool stringMoveReduction = false;
+    public bool stringTargetsAll = false;
 
     public float armorBuffMultiplier;
     public float attackBuffMultiplier;
@@ -33,6 +36,8 @@ public class PuppeteeringPlayerController : BasePlayerController
     public float lifestealMultiplier;
 
     public float ultimateDuration = 20f;
+    private bool doubleUltSpawn = false;
+    private bool ultInvuln = false;
 
     public AbilityBase<PuppeteeringPlayerController> String;
     public AbilityBase<PuppeteeringPlayerController> ModeSwitch;
@@ -67,14 +72,14 @@ public class PuppeteeringPlayerController : BasePlayerController
                 UltEndServerRpc();
             }
         }
-        if (puppetsAlive.Value < maxPuppets.Value)
+        if (puppetsAlive.Value < maxPuppets.Value && !isDead.Value)
         {
             float currentTime = lameManager.matchTimer.Value;
             if (currentTime - puppetDeathTime.Value >= puppetRespawnLength)
             {
-                PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, ultActive.Value);
+                PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
             }
-        } else if (puppetsAlive.Value == maxPuppets.Value)
+        } else if (puppetsAlive.Value > 0)
         {
             if(currentTarget != null)
             {
@@ -152,13 +157,13 @@ public class PuppeteeringPlayerController : BasePlayerController
                 GameObject healthBar = Instantiate(healthBarPrefab, playerCanvas.transform);
                 healthBar.GetComponent<PlayerHealthBar>().enabled = true;
             }
-            PuppetSpawnServerRpc(team, attackDamage, maxSpeed, false);
+            PuppetSpawnServerRpc(team, attackDamage, maxSpeed, "Normal");
         }
 
     }
 
     [Rpc(SendTo.Server)]
-    private void PuppetSpawnServerRpc(int team, float damage, float speed, bool ultSpawn)
+    private void PuppetSpawnServerRpc(int team, float damage, float speed, string spawnType)
     {
         if(puppetsAlive.Value < maxPuppets.Value)
         {
@@ -176,13 +181,24 @@ public class PuppeteeringPlayerController : BasePlayerController
             puppet.regen = puppetRegen;
             puppet.health.healthSetManual = true;
             puppet.health.maxHealth.Value = puppetStartingHealth + (25 * Level.Value);
-            puppet.health.currentHealth.Value = puppet.health.maxHealth.Value;
+            if (spawnType == "ModeSwitch")
+            {
+                puppet.health.currentHealth.Value = puppet.health.maxHealth.Value * ((lameManager.matchTimer.Value - puppetDeathTime.Value)/puppetRespawnLength);
+            }
+            else
+            {
+                puppet.health.currentHealth.Value = puppet.health.maxHealth.Value;
+            }
             var puppetNetworkObject = currentPuppet.GetComponent<NetworkObject>();
             puppetNetworkObject.Spawn();
-            if(ultSpawn && puppetsAlive.Value > 1)
+            if(spawnType == "ultSpawn" && puppetsAlive.Value > 1)
             {
                 puppet.defensiveMode = !PuppetList[0].GetComponent<Puppet>().defensiveMode;
-            } else
+                if(ultInvuln)
+                {
+                    puppet.TriggerBuffServerRpc("Invulnerability", 0, 3);
+                }
+            } else 
             {
                 puppet.defensiveMode = false;
             }
@@ -234,13 +250,21 @@ public class PuppeteeringPlayerController : BasePlayerController
 
             }
         }
+        if(puppetsAlive.Value == 0)
+        {
+            PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ModeSwitch");
+        }
     }
 
     [Rpc(SendTo.Server)]
     private void UltimateServerRpc()
     {
         maxPuppets.Value++;
-        PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, true);
+        PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ultSpawn");
+        if(doubleUltSpawn && puppetsAlive.Value == 0)
+        {
+            PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ultSpawn");
+        }
         lastUltTime.Value = lameManager.matchTimer.Value;
         ultActive.Value = true;
     }
@@ -268,10 +292,62 @@ public class PuppeteeringPlayerController : BasePlayerController
         }
     }
 
+    //Ability Level Up Effects
+    #region
+    [ServerRpc(RequireOwnership = false)]
+    public void SyncAbilityLevelServerRpc(int abilityNumber)
+    {
+        unspentUpgrades.Value--;
+        if (abilityNumber == 0)
+        {
+            passiveLevel++;
+        }
+        if (abilityNumber == 1)
+        {
+            String.abilityLevel++;
+        }
+        if (abilityNumber == 2)
+        {
+            ModeSwitch.abilityLevel++;
+        }
+        if (abilityNumber == 3)
+        {
+            Ultimate.abilityLevel++;
+        }
+    }
+    [ClientRpc(RequireOwnership = false)]
+    public void SyncAbilityLevelClientRpc(int abilityNumber)
+    {
+        if (abilityNumber == 0)
+        {
+            passiveLevel++;
+        }
+        if (abilityNumber == 1)
+        {
+            String.abilityLevel++;
+        }
+        if (abilityNumber == 2)
+        {
+            ModeSwitch.abilityLevel++;
+        }
+        if (abilityNumber == 3)
+        {
+            Ultimate.abilityLevel++;
+        }
+    }
     public void PassiveLevelUp()
     {
         if (unspentUpgrades.Value <= 0) return;
-        passiveLevel++;
+        if(IsServer)
+        {
+            unspentUpgrades.Value--;
+            passiveLevel++;
+            SyncAbilityLevelClientRpc(0);
+        } else
+        {
+            passiveLevel++;
+            SyncAbilityLevelServerRpc(0);
+        }
         if (passiveLevel == 2)
         {
             puppetStartingHealth += 50;
@@ -292,11 +368,21 @@ public class PuppeteeringPlayerController : BasePlayerController
 
     public void StringLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return; //Will need to make a server Rpc that changes unspent upgrades value and ability level for client and server
-        String.abilityLevel++;
-        if(String.abilityLevel == 2)
+        if (unspentUpgrades.Value <= 0) return;
+        if (IsServer)
         {
-            //Upgrade Effect
+            unspentUpgrades.Value--;
+            String.abilityLevel++;
+            SyncAbilityLevelClientRpc(1);
+        }
+        else
+        {
+            String.abilityLevel++;
+            SyncAbilityLevelServerRpc(1);
+        }
+        if (String.abilityLevel == 2)
+        {
+            stringMoveReduction = true;
         }
         if (String.abilityLevel == 3)
         {
@@ -308,13 +394,23 @@ public class PuppeteeringPlayerController : BasePlayerController
         }
         if (String.abilityLevel == 5)
         {
-            //Upgrade Effect
+            stringTargetsAll = true;
         }
     }
     public void ModeSwitchLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return; //Will need to make a server Rpc that changes unspent upgrades value and ability level for client and server
-        ModeSwitch.abilityLevel++;
+        if (unspentUpgrades.Value <= 0) return;
+        if (IsServer)
+        {
+            unspentUpgrades.Value--;
+            ModeSwitch.abilityLevel++;
+            SyncAbilityLevelClientRpc(2);
+        }
+        else
+        {
+            ModeSwitch.abilityLevel++;
+            SyncAbilityLevelServerRpc(2);
+        }
         if (ModeSwitch.abilityLevel == 2)
         {
             lifestealMultiplier += 0.2f;
@@ -322,11 +418,11 @@ public class PuppeteeringPlayerController : BasePlayerController
         }
         if (ModeSwitch.abilityLevel == 3)
         {
-            //Upgrade Effect
+            ModeSwitch.cooldown -= 5;
         }
         if (ModeSwitch.abilityLevel == 4)
         {
-            lifestealMultiplier += 0.2f;
+            lifestealMultiplier += 0.3f;
             puppetRegen += 10f;
         }
         if (ModeSwitch.abilityLevel == 5)
@@ -337,15 +433,25 @@ public class PuppeteeringPlayerController : BasePlayerController
 
     public void UltimateLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return; //Will need to make a server Rpc that changes unspent upgrades value and ability level for client and server
-        Ultimate.abilityLevel++;
+        if (unspentUpgrades.Value <= 0) return;
+        if (IsServer)
+        {
+            unspentUpgrades.Value--;
+            Ultimate.abilityLevel++;
+            SyncAbilityLevelClientRpc(3);
+        }
+        else
+        {
+            Ultimate.abilityLevel++;
+            SyncAbilityLevelServerRpc(3);
+        }
         if (Ultimate.abilityLevel == 2)
         {
             ultimateDuration += 5;
         }
         if (Ultimate.abilityLevel == 3)
         {
-            //Upgrade Effect
+            doubleUltSpawn = true;
         }
         if (Ultimate.abilityLevel == 4)
         {
@@ -354,7 +460,8 @@ public class PuppeteeringPlayerController : BasePlayerController
         }
         if (Ultimate.abilityLevel == 5)
         {
-            //Upgrade Effect
+            ultInvuln = true;
         }
     }
+    #endregion 
 }
