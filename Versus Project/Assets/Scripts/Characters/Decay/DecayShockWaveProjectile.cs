@@ -47,7 +47,25 @@ public class DecayShockWaveProjectile : NetworkBehaviour
         if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
         {
             collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
-            //gameObject.GetComponent<NetworkObject>().Despawn();
+            if(sender.GetComponent<DecayPlayerController>().immobilizeShockwave)
+            {
+                if (collider.GetComponent<BasePlayerController>() != null)
+                {
+                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f, true);
+                }
+                if (collider.GetComponent<MeleeMinion>() != null)
+                {
+                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
+                }
+                if (collider.GetComponent<JungleEnemy>() != null)
+                {
+                    collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
+                }
+                if (collider.GetComponent<Puppet>() != null)
+                {
+                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
+                }
+            }
         }
     }
 

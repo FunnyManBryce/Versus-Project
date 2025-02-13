@@ -10,6 +10,7 @@ public class DecayAOE : NetworkBehaviour
     public float lastTick;  
     public float damagePerTick;
     public float speedReductionPerTick;
+    public float reductionDuration = 5f;
     public Transform AOEPos;
     public float lifespan = 5f;
     public NetworkObject sender;
@@ -56,15 +57,19 @@ public class DecayAOE : NetworkBehaviour
                 }
                 if(collider.GetComponent<BasePlayerController>() != null)
                 {
-                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", speedReductionPerTick, 5f, true);
+                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", speedReductionPerTick, reductionDuration, true);
                 }
                 if (collider.GetComponent<MeleeMinion>() != null)
                 {
-                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Speed", speedReductionPerTick/2f, 5f);
+                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Speed", speedReductionPerTick/2f, reductionDuration);
                 }
                 if (collider.GetComponent<Puppet>() != null)
                 {
-                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Speed", speedReductionPerTick, 5f);
+                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Speed", speedReductionPerTick, reductionDuration);
+                }
+                if(sender.GetComponent<DecayPlayerController>().AOESpeedSteal) //Decay gains some speed for every hit enemy if the ability is level 3
+                {
+                    sender.GetComponent<DecayPlayerController>().TriggerBuffServerRpc("Speed", -(speedReductionPerTick * 0.1f), reductionDuration, true);
                 }
             }
         }

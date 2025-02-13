@@ -66,7 +66,7 @@ public class StringAbility : NetworkBehaviour
                     collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Marked", markAmount, 5f);
                     if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
-                        collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -1, 5f, true);
+                        collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Speed", -1, 5f);
                     }
                 }
                 if (collider.GetComponent<JungleEnemy>() != null)
@@ -75,7 +75,16 @@ public class StringAbility : NetworkBehaviour
                     collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Marked", markAmount, 5f);
                     if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
-                        collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -1, 5f, true);
+                        collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Speed", -1, 5f);
+                    }
+                }
+                if (collider.GetComponent<Puppet>() != null)
+                {
+                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
+                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Marked", markAmount, 5f);
+                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
+                    {
+                        collider.GetComponent<Puppet>().TriggerBuffServerRpc("Speed", -1, 5f);
                     }
                 }
                 if (!sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll && collider.GetComponent<Tower>() != null)
