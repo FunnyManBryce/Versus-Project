@@ -15,27 +15,25 @@ public class Inhibitor : Tower
     {
         if(Team == 1)
         {
-            if (lameManager.teamOneTowersLeft.Value != orderInLane)
+            if (lameManager.teamOneTowersLeft.Value == orderInLane)
             {
-                //health.invulnerable = true;
+                health.invulnerable = false;
             }
-            else
+            if (lameManager.playerTwoChar != null)
             {
-                //health.invulnerable = false;
+                enemyPlayer = lameManager.playerTwoChar;
             }
-            enemyPlayer = lameManager.playerTwoChar;
         }
         else if(Team == 2)
         {
-            if (lameManager.teamTwoTowersLeft.Value != orderInLane)
+            if (lameManager.teamTwoTowersLeft.Value == orderInLane)
             {
-                //health.invulnerable = true;
+                health.invulnerable = false;
             }
-            else
+            if (lameManager.playerOneChar != null)
             {
-                //health.invulnerable = false;
+                enemyPlayer = lameManager.playerOneChar;
             }
-            enemyPlayer = lameManager.playerOneChar;
         }
     }
 

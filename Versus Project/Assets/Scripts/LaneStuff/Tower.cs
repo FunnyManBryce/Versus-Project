@@ -58,17 +58,16 @@ public class Tower : NetworkBehaviour
     protected virtual void Update()
     {
         if (!IsServer || isAttacking) return;
-        if (Team == 1 && lameManager.playerTwoChar != null)
+        if (Team == 1)
         {
-            if (lameManager.teamOneTowersLeft.Value != orderInLane)
-            {
-                //health.invulnerable = true;
-            }
             if (lameManager.teamOneTowersLeft.Value == orderInLane)
             {
-                //health.invulnerable = false;
+                health.invulnerable = false;
             }
-            enemyPlayer = lameManager.playerTwoChar;
+            if (lameManager.playerTwoChar != null)
+            {
+                enemyPlayer = lameManager.playerTwoChar;
+            }
             oldTarget = new Vector3(1000, 1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamTwoMinions)
             {
@@ -82,17 +81,16 @@ public class Tower : NetworkBehaviour
                 }
             }
         }
-        else if (Team == 2 && lameManager.playerOneChar != null)
+        else if (Team == 2)
         {
-            if (lameManager.teamTwoTowersLeft.Value != orderInLane)
-            {
-                //health.invulnerable = true;
-            }
             if (lameManager.teamTwoTowersLeft.Value == orderInLane)
             {
-                //health.invulnerable = false;
+                health.invulnerable = false;
             }
-            enemyPlayer = lameManager.playerOneChar;
+            if(lameManager.playerOneChar != null)
+            {
+                enemyPlayer = lameManager.playerOneChar;
+            }
             oldTarget = new Vector3(1000, 1000, 0);
             foreach (GameObject potentialTarget in lameManager.teamOneMinions)
             {
@@ -198,6 +196,7 @@ public class Tower : NetworkBehaviour
                 tower.GetComponent<NetworkObject>().Despawn();
             }
         };
+        health.invulnerable = true;
         GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
         HealthBar = healthBar;
         healthBar.GetComponent<EnemyHealthBar>().enabled = true;

@@ -151,7 +151,7 @@ public class DecayPlayerController : BasePlayerController
         totalStatDecay.Value += 1;
         TriggerBuffServerRpc("Attack Damage", -decayAmount, 0, false);
         TriggerBuffServerRpc("Armor", -decayAmount, 0, false);
-        TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * decayAmount), 0, false);
+        TriggerBuffServerRpc("Auto Attack Speed", -(0.05f * decayAmount), 0, false);
         TriggerBuffServerRpc("Armor Pen", -decayAmount, 0, false);
         TriggerBuffServerRpc("Regen", (0.05f * -decayAmount), 0, false);
         TriggerBuffServerRpc("Mana Regen", (0.05f * -decayAmount), 0, false);
@@ -267,7 +267,7 @@ public class DecayPlayerController : BasePlayerController
         }
         if (AOE.abilityLevel == 2)
         {
-            AOEDamageMultiplier += 0.033f;
+            AOEDamageMultiplier += 0.5f;
         }
         if (AOE.abilityLevel == 3)
         {
@@ -307,7 +307,7 @@ public class DecayPlayerController : BasePlayerController
         }
         if (Shockwave.abilityLevel == 4)
         {
-            shockwaveDamageMultiplier += 0.15f;
+            shockwaveDamageMultiplier += 0.25f;
         }
         if (Shockwave.abilityLevel == 5)
         {

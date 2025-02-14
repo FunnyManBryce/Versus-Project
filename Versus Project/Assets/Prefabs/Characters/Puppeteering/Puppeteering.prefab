@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8783587471392124360
 Transform:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
   - 10
   - 0.15
   - 50
-  attackDamage: 5
+  attackDamage: 7
   autoAttackSpeed: 1
   autoAttackProjSpeed: 10
   attackRange: 8

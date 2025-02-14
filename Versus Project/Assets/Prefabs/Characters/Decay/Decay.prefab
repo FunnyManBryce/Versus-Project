@@ -481,6 +481,7 @@ MonoBehaviour:
   armor: 30
   initialValuesSynced: 0
   invulnerable: 0
+  healthSetManual: 0
 --- !u!114 &2299055155951191650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,13 +506,13 @@ MonoBehaviour:
   - 4
   - 3
   - 3
-  - 0
+  - 0.1
   - 0.1
   - 0.1
   - 5
   - 0.2
   - 100
-  attackDamage: 15
+  attackDamage: 20
   autoAttackSpeed: 1.5
   autoAttackProjSpeed: 5
   attackRange: 4
@@ -564,12 +565,22 @@ MonoBehaviour:
   totalStatDecay:
     m_InternalValue: 0
   Decay: {fileID: 7846404579260722031}
+  passiveLevel: 0
+  timeToDecay: 30
+  statLossIsAOE: 0
   AOEPrefab: {fileID: 6191041724843646727, guid: c5347d732afcf6d40910e3bbf5f563eb,
     type: 3}
-  AOEDamageMultiplier: 0.167
-  shockwaveDamageMultiplier: 0.667
+  AOEDamageMultiplier: 0.25
+  speedReductionDuration: 5
+  AOESpeedSteal: 0
+  shockwaveDamageMultiplier: 1
   shockwavePrefab: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
     type: 3}
+  slamArea: 2.5
+  shockWaveDuration: 2
+  immobilizeShockwave: 0
+  ultimateDuration: 10
+  ultSpeedIncrease: 0
   AOE:
     playerController: {fileID: 2299055155951191650}
     inputKey: 113

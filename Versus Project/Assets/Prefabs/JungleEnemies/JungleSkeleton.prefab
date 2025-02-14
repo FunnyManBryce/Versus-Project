@@ -311,6 +311,8 @@ MonoBehaviour:
   playerOneTarget: {fileID: 0}
   playerTwoTarget: {fileID: 0}
   animator: {fileID: 5958823289627424989}
+  distanceFromPuppetOne: {x: 0, y: 0, z: 0}
+  distanceFromPuppetTwo: {x: 0, y: 0, z: 0}
   Moves: 0
   isRanged: 1
   isAttacking: 0
@@ -333,6 +335,8 @@ MonoBehaviour:
   spawner: {fileID: 0}
   PlayerOne: {fileID: 0}
   PlayerTwo: {fileID: 0}
+  puppetOne: {fileID: 0}
+  puppetTwo: {fileID: 0}
   jungleEnemy: {fileID: 8942386518775928844}
   networkEnemy: {fileID: 6782888038592277727}
   currentTarget: {fileID: 0}
@@ -355,10 +359,14 @@ MonoBehaviour:
     m_InternalValue: 0
   maxHealth:
     m_InternalValue: 50
-  startingMaxHealth: 50
+  Team:
+    m_InternalValue: 0
+  markedValue: 1
+  startingMaxHealth: 100
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
+  healthSetManual: 0
 --- !u!61 &4178726544735896045
 BoxCollider2D:
   m_ObjectHideFlags: 0

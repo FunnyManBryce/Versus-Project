@@ -111,8 +111,13 @@ public class PuppeteeringPlayerController : BasePlayerController
         {
             if (isDead.Value)
             {
+                currentTarget = null;
                 transform.position = new Vector3(-420, -69, 0);
                 StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
+                if(IsServer)
+                {
+                    maxPuppets.Value = 1;
+                }
                 if(puppetsAlive.Value >= 1)
                 {
                     foreach (var puppet in PuppetList)
@@ -128,6 +133,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             else
             {
                 transform.position = lameManager.playerSP[health.Team.Value - 1];
+                PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
                 health.currentHealth.Value = health.maxHealth.Value;
                 mana = maxMana;
             }
@@ -165,7 +171,7 @@ public class PuppeteeringPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void PuppetSpawnServerRpc(int team, float damage, float speed, string spawnType)
     {
-        if(puppetsAlive.Value < maxPuppets.Value)
+        if(puppetsAlive.Value < maxPuppets.Value && !isDead.Value)
         {
             puppetsAlive.Value++;
             GameObject currentPuppet = Instantiate(puppetPrefab, gameObject.transform.position, Quaternion.identity);
@@ -259,7 +265,7 @@ public class PuppeteeringPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void UltimateServerRpc()
     {
-        maxPuppets.Value++;
+        maxPuppets.Value = 2;
         PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ultSpawn");
         if(doubleUltSpawn && puppetsAlive.Value == 0)
         {
@@ -275,7 +281,7 @@ public class PuppeteeringPlayerController : BasePlayerController
         if(ultActive.Value == true)
         {
             ultActive.Value = false;
-            maxPuppets.Value--;
+            maxPuppets.Value = 1;
         }
     }
 
