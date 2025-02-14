@@ -35,6 +35,7 @@ public class JungleEnemy : NetworkBehaviour
 
     public string targetName;
     public float Damage;
+    public float armorPen = 1;
     public float chasePlayerDistance = 10;
     public float range;
     public float moveSpeed = 3;
@@ -227,7 +228,7 @@ public class JungleEnemy : NetworkBehaviour
     {
         if (reference.TryGet(out NetworkObject target))
         {
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, 0);
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
         }
         else
         {
@@ -241,6 +242,42 @@ public class JungleEnemy : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
     {
+        if (buffType == "Attack Damage")
+        {
+            Damage += amount;
+            if (Damage <= 1f)
+            {
+                amount = -Damage + 1f + amount;
+                Damage = 1f;
+            }
+        }
+        if (buffType == "Armor")
+        {
+            health.armor += amount;
+            if (health.armor <= 1f)
+            {
+                amount = -health.armor + 1f + amount;
+                health.armor = 1f;
+            }
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen += amount;
+            if (armorPen <= 1f)
+            {
+                amount = -armorPen + 1f + amount;
+                armorPen = 1f;
+            }
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            cooldownLength -= amount;
+            if (cooldownLength <= 0.1f)
+            {
+                amount = -cooldownLength + 0.1f + amount;
+                cooldownLength = 0.1f;
+            }
+        }
         if (buffType == "Speed")
         {
             moveSpeed += amount;
@@ -272,6 +309,22 @@ public class JungleEnemy : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void BuffEndServerRpc(string buffType, float amount, float duration) //changes stat to what it was before
     {
+        if (buffType == "Attack Damage")
+        {
+            Damage -= amount;
+        }
+        if (buffType == "Armor")
+        {
+            health.armor -= amount;
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen -= amount;
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            cooldownLength += amount;
+        }
         if (buffType == "Speed")
         {
             moveSpeed -= amount;

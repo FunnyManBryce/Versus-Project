@@ -175,7 +175,7 @@ public class Puppet : NetworkBehaviour
             netObj.Spawn();
 
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
-            controller.Initialize(10, damage/2, targetObj, senderObj);
+            controller.Initialize(10, damage/2, targetObj, senderObj, armorPen);
         }
         isAttacking = false;
         //animator.SetBool("Attacking", isAttacking);

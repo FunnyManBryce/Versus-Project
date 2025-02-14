@@ -44,6 +44,7 @@ public class MeleeMinion : NetworkBehaviour
     public float aggroLength = 10f;
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
+    public float armorPen = 1;
 
     public float XPRange;
     public float XPGiven;
@@ -275,7 +276,7 @@ public class MeleeMinion : NetworkBehaviour
             netObj.Spawn();
 
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
-            controller.Initialize(18, damage, targetObj, senderObj);
+            controller.Initialize(18, damage, targetObj, senderObj, armorPen);
         }
         isAttacking = false;
         animator.SetBool("Attacking", isAttacking);
@@ -287,7 +288,7 @@ public class MeleeMinion : NetworkBehaviour
     {
         if (reference.TryGet(out NetworkObject target))
         {
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, 0);
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
         }
         else
         {
@@ -301,6 +302,42 @@ public class MeleeMinion : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
     {
+        if (buffType == "Attack Damage")
+        {
+            Damage += amount;
+            if (Damage <= 1f)
+            {
+                amount = -Damage + 1f + amount;
+                Damage = 1f;
+            }
+        }
+        if (buffType == "Armor")
+        {
+            health.armor += amount;
+            if (health.armor <= 1f)
+            {
+                amount = -health.armor + 1f + amount;
+                health.armor = 1f;
+            }
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen += amount;
+            if (armorPen <= 1f)
+            {
+                amount = -armorPen + 1f + amount;
+                armorPen = 1f;
+            }
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            cooldownLength -= amount;
+            if (cooldownLength <= 0.1f)
+            {
+                amount = -cooldownLength + 0.1f + amount;
+                cooldownLength = 0.1f;
+            }
+        }
         if (buffType == "Speed")
         {
             moveSpeed += amount;
@@ -343,6 +380,22 @@ public class MeleeMinion : NetworkBehaviour
         if (buffType == "Immobilized")
         {
             moveSpeed += amount;
+        }
+        if (buffType == "Attack Damage")
+        {
+            Damage -= amount;
+        }
+        if (buffType == "Armor")
+        {
+            health.armor -= amount;
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen -= amount;
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            cooldownLength += amount;
         }
     }
 

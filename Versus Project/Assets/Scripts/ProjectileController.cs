@@ -5,16 +5,18 @@ public class ProjectileController : NetworkBehaviour
 {
     public float speed;
     public float damage;
+    public float armorPen;
     private NetworkObject target;
     private NetworkObject sender;
     private bool isTargetDestroyed = false;
 
-    public void Initialize(float projSpeed, float projDamage, NetworkObject targetObj, NetworkObject senderObj)
+    public void Initialize(float projSpeed, float projDamage, NetworkObject targetObj, NetworkObject senderObj, float AP)
     {
         speed = projSpeed;
         damage = projDamage;
         target = targetObj;
         sender = senderObj;
+        armorPen = AP;
     }
 
     private void Update()
@@ -32,7 +34,10 @@ public class ProjectileController : NetworkBehaviour
         }
 
         Vector2 direction = ((Vector2)target.transform.position - (Vector2)transform.position).normalized;
-        transform.Translate(direction * speed * Time.deltaTime);
+        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
+        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        //transform.Translate(direction * speed * Time.deltaTime);
         float distanceToTarget = Vector2.Distance(transform.position, target.transform.position);
         if (distanceToTarget < 0.5f)
         {
@@ -46,7 +51,7 @@ public class ProjectileController : NetworkBehaviour
 
         if(sender != null)
         {
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), 0);
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), armorPen);
         }
         DestroyProjectileServerRpc();
     }

@@ -38,6 +38,7 @@ public class Tower : NetworkBehaviour
     public int goldGiven;
 
     public float Damage;
+    public float armorPen = 1;
     public int orderInLane;
     public float aggroTimer = 0f;
     public float aggroLength = 10f;
@@ -230,13 +231,49 @@ public class Tower : NetworkBehaviour
             netObj.Spawn();
 
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
-            controller.Initialize(15, damage, targetObj, senderObj);
+            controller.Initialize(15, damage, targetObj, senderObj, armorPen);
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
     {
+        if (buffType == "Attack Damage")
+        {
+            Damage += amount;
+            if (Damage <= 1f)
+            {
+                amount = -Damage + 1f + amount;
+                Damage = 1f;
+            }
+        }
+        if (buffType == "Armor")
+        {
+            health.armor += amount;
+            if (health.armor <= 1f)
+            {
+                amount = -health.armor + 1f + amount;
+                health.armor = 1f;
+            }
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen += amount;
+            if (armorPen <= 1f)
+            {
+                amount = -armorPen + 1f + amount;
+                armorPen = 1f;
+            }
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            cooldownLength -= amount;
+            if (cooldownLength <= 0.1f)
+            {
+                amount = -cooldownLength + 0.1f + amount;
+                cooldownLength = 0.1f;
+            }
+        }
         if (buffType == "Marked")
         {
             health.markedValue += amount;
@@ -254,6 +291,22 @@ public class Tower : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void BuffEndServerRpc(string buffType, float amount, float duration) //changes stat to what it was before
     {
+        if (buffType == "Attack Damage")
+        {
+            Damage -= amount;
+        }
+        if (buffType == "Armor")
+        {
+            health.armor -= amount;
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen -= amount;
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            cooldownLength += amount;
+        }
         if (buffType == "Marked")
         {
             health.markedValue -= amount;

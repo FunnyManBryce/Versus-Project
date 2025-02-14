@@ -267,7 +267,7 @@ public class BasePlayerController : NetworkBehaviour
             netObj.Spawn();
 
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
-            controller.Initialize(autoAttackProjSpeed, attackDamage, targetObj, senderObj);
+            controller.Initialize(autoAttackProjSpeed, attackDamage, targetObj, senderObj, armorPen);
         }
     }
     //region deal damage server rpc
