@@ -17,9 +17,10 @@ public class AbilityBase<T> where T : BasePlayerController
     public float manaCost;
     public float lastUsed;
     public int abilityLevel;
+    public bool manualUse;
     public bool OffCooldown() => lastUsed + (cooldown * ((100 - playerController.cDR) / 100)) < Time.time;
     public float NormalizedCooldown() => Mathf.Min((Time.time - lastUsed) / (cooldown * ((100 - playerController.cDR) / 100)), 1);
-    public string CooldownDurationLeft() => ((cooldown * ((100 - playerController.cDR)/100)) - (Time.time - lastUsed)).ToString("0.00"); //Need to make cooldown reduction do something
+    public string CooldownDurationLeft() => ((cooldown * ((100 - playerController.cDR)/100)) - (Time.time - lastUsed)).ToString("0.00");
     public bool CanUse() => OffCooldown() && playerController.mana >= manaCost;
     public virtual void OnUse()
     {
@@ -29,8 +30,9 @@ public class AbilityBase<T> where T : BasePlayerController
     public void AttemptUse()
     {
         if (!Input.GetKeyDown(inputKey) || !CanUse()) return;
-        OnUse();
         activateAbility();
+        if (manualUse) return;
+        OnUse();
     }
 
     /*public void UpdateCooldownDisplay()

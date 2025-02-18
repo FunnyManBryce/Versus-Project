@@ -303,53 +303,32 @@ public class PuppeteeringPlayerController : BasePlayerController
     [ServerRpc(RequireOwnership = false)]
     public void SyncAbilityLevelServerRpc(int abilityNumber)
     {
-        unspentUpgrades.Value--;
         if (abilityNumber == 0)
         {
-            passiveLevel++;
+            PassiveLevelUp();
         }
         if (abilityNumber == 1)
         {
-            String.abilityLevel++;
+            StringLevelUp();
         }
         if (abilityNumber == 2)
         {
-            ModeSwitch.abilityLevel++;
+            ModeSwitchLevelUp();
         }
         if (abilityNumber == 3)
         {
-            Ultimate.abilityLevel++;
-        }
-    }
-    [ClientRpc(RequireOwnership = false)]
-    public void SyncAbilityLevelClientRpc(int abilityNumber)
-    {
-        if (abilityNumber == 0)
-        {
-            passiveLevel++;
-        }
-        if (abilityNumber == 1)
-        {
-            String.abilityLevel++;
-        }
-        if (abilityNumber == 2)
-        {
-            ModeSwitch.abilityLevel++;
-        }
-        if (abilityNumber == 3)
-        {
-            Ultimate.abilityLevel++;
+            UltimateLevelUp();
         }
     }
     public void PassiveLevelUp()
     {
         if (unspentUpgrades.Value <= 0) return;
-        if(IsServer)
+        if (IsServer)
         {
             unspentUpgrades.Value--;
             passiveLevel++;
-            SyncAbilityLevelClientRpc(0);
-        } else
+        }
+        else
         {
             passiveLevel++;
             SyncAbilityLevelServerRpc(0);
@@ -379,7 +358,6 @@ public class PuppeteeringPlayerController : BasePlayerController
         {
             unspentUpgrades.Value--;
             String.abilityLevel++;
-            SyncAbilityLevelClientRpc(1);
         }
         else
         {
@@ -410,7 +388,6 @@ public class PuppeteeringPlayerController : BasePlayerController
         {
             unspentUpgrades.Value--;
             ModeSwitch.abilityLevel++;
-            SyncAbilityLevelClientRpc(2);
         }
         else
         {
@@ -444,7 +421,6 @@ public class PuppeteeringPlayerController : BasePlayerController
         {
             unspentUpgrades.Value--;
             Ultimate.abilityLevel++;
-            SyncAbilityLevelClientRpc(3);
         }
         else
         {

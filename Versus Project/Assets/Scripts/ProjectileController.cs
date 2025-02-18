@@ -9,6 +9,7 @@ public class ProjectileController : NetworkBehaviour
     private NetworkObject target;
     private NetworkObject sender;
     private bool isTargetDestroyed = false;
+    private BasePlayerController player;
 
     public void Initialize(float projSpeed, float projDamage, NetworkObject targetObj, NetworkObject senderObj, float AP)
     {
@@ -17,13 +18,17 @@ public class ProjectileController : NetworkBehaviour
         target = targetObj;
         sender = senderObj;
         armorPen = AP;
+        if(target.CompareTag("Player"))
+        {
+            player = target.GetComponent<BasePlayerController>();
+        }
     }
 
     private void Update()
     {
         if (!IsServer) return;
 
-        if (target == null || !target.IsSpawned || target.GetComponent<BasePlayerController>() != null && target.GetComponent<BasePlayerController>().isDead.Value)
+        if (target == null || !target.IsSpawned || target.CompareTag("Player") && player.isDead.Value)
         {
             if (!isTargetDestroyed)
             {
@@ -37,7 +42,6 @@ public class ProjectileController : NetworkBehaviour
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
         transform.Translate(Vector2.up * speed * Time.deltaTime);
-        //transform.Translate(direction * speed * Time.deltaTime);
         float distanceToTarget = Vector2.Distance(transform.position, target.transform.position);
         if (distanceToTarget < 0.5f)
         {

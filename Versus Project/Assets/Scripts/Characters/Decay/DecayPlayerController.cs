@@ -28,9 +28,10 @@ public class DecayPlayerController : BasePlayerController
     private bool immobilizeSlam = false;
     public bool immobilizeShockwave = false;
 
-    BasePlayerController enemyPlayer;
     public float ultimateDuration = 10;
     public bool ultSpeedIncrease = false;
+    private NetworkObject ultTarget;
+    public bool ultTargetingActive;
 
     public AbilityBase<DecayPlayerController> AOE;
     public AbilityBase<DecayPlayerController> Shockwave;
@@ -42,7 +43,7 @@ public class DecayPlayerController : BasePlayerController
         base.Awake();
         AOE.activateAbility = AOEServerRpc;
         Shockwave.activateAbility = ShockwaveServerRpc;
-        Ultimate.activateAbility = UltimateServerRpc;
+        Ultimate.activateAbility = DecayUlt;
         AOE.abilityLevelUp = AOELevelUp;
         Shockwave.abilityLevelUp = ShockwaveLevelUp;
         Ultimate.abilityLevelUp = UltimateLevelUp;
@@ -101,32 +102,37 @@ public class DecayPlayerController : BasePlayerController
         shockwaveNetworkObject.SpawnWithOwnership(clientID);
     }
 
-    [Rpc(SendTo.Server)]
-    public void UltimateServerRpc()
+    public void DecayUlt()
     {
-        if (health.Team.Value == 1)
+        ultTargetingActive = true;
+    }
+
+    [Rpc(SendTo.Server)]
+    public void UltimateServerRpc(NetworkObjectReference reference)
+    {
+        if (reference.TryGet(out NetworkObject target))
         {
-            enemyPlayer = lameManager.playerTwoChar.GetComponent<BasePlayerController>();
+            Debug.Log("Ult is happening!");
+            InflictBuffServerRpc(target, "Attack Damage", -totalStatDecay.Value, ultimateDuration, true);
+            InflictBuffServerRpc(target, "Armor", -totalStatDecay.Value, ultimateDuration, true);
+            InflictBuffServerRpc(target, "Auto Attack Speed", -(0.1f * totalStatDecay.Value), ultimateDuration, true);
+            InflictBuffServerRpc(target, "Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
+            InflictBuffServerRpc(target, "Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
+            InflictBuffServerRpc(target, "Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
+            TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, ultimateDuration, true);
+            TriggerBuffServerRpc("Armor", totalStatDecay.Value, ultimateDuration, true);
+            TriggerBuffServerRpc("Auto Attack Speed", (0.1f * totalStatDecay.Value), ultimateDuration, true);
+            TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, ultimateDuration, true);
+            TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
+            TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
+            if (ultSpeedIncrease)
+            {
+                TriggerBuffServerRpc("Speed", 3f, ultimateDuration, true);
+            }
         }
-        else if (health.Team.Value == 2)
+        else
         {
-            enemyPlayer =  lameManager.playerOneChar.GetComponent<BasePlayerController>();
-        }
-        enemyPlayer.TriggerBuffServerRpc("Attack Damage", -totalStatDecay.Value, ultimateDuration, true);
-        enemyPlayer.TriggerBuffServerRpc("Armor", -totalStatDecay.Value, ultimateDuration, true);
-        enemyPlayer.TriggerBuffServerRpc("Auto Attack Speed", -(0.1f * totalStatDecay.Value), ultimateDuration, true);
-        enemyPlayer.TriggerBuffServerRpc("Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
-        enemyPlayer.TriggerBuffServerRpc("Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
-        enemyPlayer.TriggerBuffServerRpc("Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
-        TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, ultimateDuration, true);
-        TriggerBuffServerRpc("Armor", totalStatDecay.Value, ultimateDuration, true);
-        TriggerBuffServerRpc("Auto Attack Speed", (0.1f * totalStatDecay.Value), ultimateDuration, true);
-        TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, ultimateDuration, true);
-        TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
-        TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
-        if(ultSpeedIncrease)
-        {
-            TriggerBuffServerRpc("Speed", 3f, ultimateDuration, true);
+            Debug.Log("Decay Ult Failed");
         }
     }
 
@@ -134,15 +140,36 @@ public class DecayPlayerController : BasePlayerController
     {
         base.Update();
         if (!IsOwner || isDead.Value) return;
-        AOE.AttemptUse();
-        Shockwave.AttemptUse();
-        Ultimate.AttemptUse();
         float currentTime = lameManager.matchTimer.Value;
         if(currentTime - lastDecayTime >= timeToDecay)
         {
             lastDecayTime = currentTime;
             TrackStatDecayServerRpc();
         }
+        if (ultTargetingActive) //Need to add an indicator that the ult is being used and you need to click on an enemy
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                ultTargetingActive = false;
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = 0;
+                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+                if (hit.collider != null)
+                {
+                    NetworkObject targetObject = hit.collider.GetComponent<NetworkObject>();
+                    if (targetObject != null && CanAttackTarget(targetObject))
+                    {
+                        ultTarget = targetObject;
+                        Ultimate.OnUse();
+                        UltimateServerRpc(ultTarget);
+                    }
+                }
+            }
+        }
+        if (ultTargetingActive) return;
+        AOE.AttemptUse();
+        Shockwave.AttemptUse();
+        Ultimate.AttemptUse();
     }
 
     [Rpc(SendTo.Server)]
@@ -179,42 +206,21 @@ public class DecayPlayerController : BasePlayerController
     [ServerRpc(RequireOwnership = false)]
     public void SyncAbilityLevelServerRpc(int abilityNumber)
     {
-        unspentUpgrades.Value--;
         if (abilityNumber == 0)
         {
-            passiveLevel++;
+            PassiveLevelUp();
         }
         if (abilityNumber == 1)
         {
-            AOE.abilityLevel++;
+            AOELevelUp();
         }
         if (abilityNumber == 2)
         {
-            Shockwave.abilityLevel++;
+            ShockwaveLevelUp();
         }
         if (abilityNumber == 3)
         {
-            Ultimate.abilityLevel++;
-        }
-    }
-    [ClientRpc(RequireOwnership = false)]
-    public void SyncAbilityLevelClientRpc(int abilityNumber)
-    {
-        if (abilityNumber == 0)
-        {
-            passiveLevel++;
-        }
-        if (abilityNumber == 1)
-        {
-            AOE.abilityLevel++;
-        }
-        if (abilityNumber == 2)
-        {
-            Shockwave.abilityLevel++;
-        }
-        if (abilityNumber == 3)
-        {
-            Ultimate.abilityLevel++;
+            UltimateLevelUp();
         }
     }
     public void PassiveLevelUp()
@@ -224,7 +230,6 @@ public class DecayPlayerController : BasePlayerController
         {
             unspentUpgrades.Value--;
             passiveLevel++;
-            SyncAbilityLevelClientRpc(0);
         }
         else
         {
@@ -258,7 +263,6 @@ public class DecayPlayerController : BasePlayerController
         {
             unspentUpgrades.Value--;
             AOE.abilityLevel++;
-            SyncAbilityLevelClientRpc(1);
         }
         else
         {
@@ -289,7 +293,6 @@ public class DecayPlayerController : BasePlayerController
         {
             unspentUpgrades.Value--;
             Shockwave.abilityLevel++;
-            SyncAbilityLevelClientRpc(2);
         }
         else
         {
@@ -322,7 +325,6 @@ public class DecayPlayerController : BasePlayerController
         {
             unspentUpgrades.Value--;
             Ultimate.abilityLevel++;
-            SyncAbilityLevelClientRpc(3);
         }
         else
         {

@@ -581,6 +581,7 @@ MonoBehaviour:
   immobilizeShockwave: 0
   ultimateDuration: 10
   ultSpeedIncrease: 0
+  ultTargetingActive: 0
   AOE:
     playerController: {fileID: 2299055155951191650}
     inputKey: 113
@@ -588,6 +589,7 @@ MonoBehaviour:
     manaCost: 50
     lastUsed: 0
     abilityLevel: 1
+    manualUse: 0
   Shockwave:
     playerController: {fileID: 2299055155951191650}
     inputKey: 101
@@ -595,6 +597,7 @@ MonoBehaviour:
     manaCost: 30
     lastUsed: 0
     abilityLevel: 1
+    manualUse: 0
   Ultimate:
     playerController: {fileID: 2299055155951191650}
     inputKey: 114
@@ -602,3 +605,4 @@ MonoBehaviour:
     manaCost: 80
     lastUsed: 0
     abilityLevel: 1
+    manualUse: 1

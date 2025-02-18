@@ -253,7 +253,8 @@ MonoBehaviour:
   distanceFromPuppet: {x: 0, y: 0, z: 0}
   goldRange: 0
   goldGiven: 100
-  Damage: 80
+  Damage: 150
+  armorPen: 1
   orderInLane: 0
   aggroTimer: 0
   aggroLength: 10
@@ -287,6 +288,7 @@ MonoBehaviour:
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
+  healthSetManual: 0
 --- !u!61 &297634059549490917
 BoxCollider2D:
   m_ObjectHideFlags: 0

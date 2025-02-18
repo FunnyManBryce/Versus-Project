@@ -17,7 +17,7 @@ public class BasePlayerController : NetworkBehaviour
     //Movement variables
     public float maxSpeed = 2;
     [SerializeField]
-    private float currentSpeed = 0;
+    public float currentSpeed = 0;
     private Vector2 movementInput;
     private Vector2 playerInput;
 
