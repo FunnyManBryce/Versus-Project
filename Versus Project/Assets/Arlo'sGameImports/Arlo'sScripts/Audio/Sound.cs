@@ -10,6 +10,10 @@ public class Sound
 
     public bool loop;
 
+    public Vector3 spawnLocation;
+
+    public float spatialBlend;
+    [Range(0.0f, 1.0f)]
     public float initialVolume;
     [Range(0f, 3f)]
     public float volume;

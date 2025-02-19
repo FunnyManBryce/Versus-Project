@@ -19,13 +19,16 @@ public class BryceAudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
             s.initialVolume = s.volume;
+            s.source.spatialBlend = 1.0f;
         }
     }
 
-    public void Play (string name)
+    public void Play (string name, Vector3 spawnLocation)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Play();
+        AudioClip audio = s.clip;
+        AudioSource.PlayClipAtPoint(audio, spawnLocation);
+        //s.source.Play();
     }
 
     public void Stop (string name) 
