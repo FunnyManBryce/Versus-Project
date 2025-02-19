@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class BasePlayerController : NetworkBehaviour
 {
+    public BryceAudioManager bAM;
     private Rigidbody2D rb2d;
     public Animator animator;
     public LameManager lameManager;
@@ -60,6 +61,7 @@ public class BasePlayerController : NetworkBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         lameManager = FindFirstObjectByType<LameManager>();
+        bAM = FindFirstObjectByType<BryceAudioManager>();
     }
     public override void OnNetworkSpawn()
     {

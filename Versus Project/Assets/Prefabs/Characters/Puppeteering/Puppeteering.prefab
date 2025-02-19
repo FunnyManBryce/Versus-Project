@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8783587471392124360}
   - component: {fileID: 5749006381697563475}
-  - component: {fileID: 7866585358238958004}
   - component: {fileID: 6506090802264603876}
   m_Layer: 0
   m_Name: Main Camera
@@ -85,14 +84,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7866585358238958004
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1980232460696549028}
-  m_Enabled: 1
 --- !u!114 &6506090802264603876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 652430502
+  GlobalObjectIdHash: 3858709417
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -298,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fff7458896e65479ceebb30a49234e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bAM: {fileID: 0}
   animator: {fileID: 0}
   lameManager: {fileID: 0}
   PlayerSprite: {fileID: 2570568061770048435}
@@ -402,6 +394,7 @@ MonoBehaviour:
     manaCost: 40
     lastUsed: 0
     abilityLevel: 1
+    manualUse: 0
   ModeSwitch:
     playerController: {fileID: 2414812415466740570}
     inputKey: 101
@@ -409,6 +402,7 @@ MonoBehaviour:
     manaCost: 25
     lastUsed: 0
     abilityLevel: 1
+    manualUse: 0
   Ultimate:
     playerController: {fileID: 2414812415466740570}
     inputKey: 114
@@ -416,6 +410,7 @@ MonoBehaviour:
     manaCost: 70
     lastUsed: 0
     abilityLevel: 1
+    manualUse: 0
 --- !u!114 &2628991981076659366
 MonoBehaviour:
   m_ObjectHideFlags: 0

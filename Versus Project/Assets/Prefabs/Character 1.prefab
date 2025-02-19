@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8783587471392124360}
   - component: {fileID: 5749006381697563475}
-  - component: {fileID: 7866585358238958004}
   - component: {fileID: 6506090802264603876}
   m_Layer: 0
   m_Name: Main Camera
@@ -85,14 +84,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7866585358238958004
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1980232460696549028}
-  m_Enabled: 1
 --- !u!114 &6506090802264603876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,11 +289,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe63041a8c1e04a4eafee78db7a4015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bAM: {fileID: 0}
   animator: {fileID: 3704004338721201214}
+  lameManager: {fileID: 0}
   PlayerSprite: {fileID: 2570568061770048435}
   AutoAttackSprite: {fileID: 0}
+  clientID: 0
   maxSpeed: 8
   currentSpeed: 0
+  statGrowthRate: []
   attackDamage: 10
   autoAttackSpeed: 0.7
   autoAttackProjSpeed: 8
@@ -320,6 +315,13 @@ MonoBehaviour:
   resevoirRegen: 0
   health: {fileID: -8253534391822271971}
   XPToNextLevel: 0
+  XPPerLevel: []
+  unspentUpgrades:
+    m_InternalValue: 0
+  isDead:
+    m_InternalValue: 0
+  Level:
+    m_InternalValue: 0
   XP:
     m_InternalValue: 0
   Gold:
@@ -520,7 +522,11 @@ MonoBehaviour:
     m_InternalValue: 0
   maxHealth:
     m_InternalValue: 0
+  Team:
+    m_InternalValue: 0
+  markedValue: 1
   startingMaxHealth: 600
   armor: 20
   initialValuesSynced: 0
   invulnerable: 0
+  healthSetManual: 0

@@ -52,6 +52,8 @@ public class DecayPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     public void AOEServerRpc()
     {
+        bAM.PlayServerRpc("Decay AOE", Decay.transform.position);
+        bAM.PlayClientRpc("Decay AOE", Decay.transform.position);
         var AOE = Instantiate(AOEPrefab, Decay.transform.position, Quaternion.identity);
         AOE.GetComponent<DecayAOE>().damagePerTick = attackDamage * AOEDamageMultiplier;
         AOE.GetComponent<DecayAOE>().reductionDuration = speedReductionDuration;

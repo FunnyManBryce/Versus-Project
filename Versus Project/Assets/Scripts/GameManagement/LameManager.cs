@@ -58,7 +58,7 @@ public class LameManager : NetworkBehaviour
         gameStarted = false;
         foreach (var character in characterList)
         {
-            Camera = character.transform.Find("Main Camera").gameObject;
+            Camera = character.transform.Find("Main Camera").gameObject;;
             Camera.SetActive(false);
         }
     }
@@ -140,6 +140,7 @@ public class LameManager : NetworkBehaviour
         {
             Camera = character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
+            Camera.AddComponent<AudioListener>();
             gameStarted = true;
         } else
         {
@@ -157,6 +158,7 @@ public class LameManager : NetworkBehaviour
         {
             Camera = Character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
+            Camera.AddComponent<AudioListener>();
         }
     }
 
