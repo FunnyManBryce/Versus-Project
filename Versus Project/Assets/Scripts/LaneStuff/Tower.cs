@@ -8,6 +8,7 @@ public class Tower : NetworkBehaviour
 {
     public int Team;
     protected private LameManager lameManager;
+    public BryceAudioManager bAM;
 
     public Transform towerTarget;
     public Transform enemyMinionTarget;
@@ -54,6 +55,7 @@ public class Tower : NetworkBehaviour
     {
         networkTower = tower.GetComponent<NetworkObject>();
         lameManager = FindObjectOfType<LameManager>();
+        bAM = FindFirstObjectByType<BryceAudioManager>();
     }
 
     protected virtual void Update()
@@ -168,6 +170,8 @@ public class Tower : NetworkBehaviour
         {
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
+            bAM.PlayServerRpc("Tower Alert", tower.transform.position);
+            bAM.PlayClientRpc("Tower Alert", tower.transform.position);
         }
     }
 

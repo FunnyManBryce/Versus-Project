@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class VolumeControl : MonoBehaviour
 {
-    public Slider volumeSlider;
+    /*public Slider volumeSlider;
     public List<AudioSource> audioSource;
     public BryceAudioManager BAM;
     int currentSoundEffect = 0;
@@ -37,5 +37,5 @@ public class VolumeControl : MonoBehaviour
         currentSoundEffect = 0;
         PlayerPrefs.SetFloat(VolumeKey, newVolume);
         PlayerPrefs.Save();
-    }
+    }*/
 }

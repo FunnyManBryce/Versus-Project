@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.AI;
+using Unity.Services.Relay;
 
 public class MeleeMinion : NetworkBehaviour
 {
     public int Team;
 
+    public BryceAudioManager bAM;
     public Health health;
     private LameManager lameManager;
 
@@ -70,6 +72,7 @@ public class MeleeMinion : NetworkBehaviour
         agent.updateUpAxis = false;
         agent.speed = 0;
         lameManager = FindObjectOfType<LameManager>();
+        bAM = FindFirstObjectByType<BryceAudioManager>();
     }
 
     public override void OnNetworkSpawn()
@@ -242,6 +245,12 @@ public class MeleeMinion : NetworkBehaviour
             agent.speed = 0;
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
+            if(!isRanged)
+            {
+                //Melee sound effect
+                bAM.PlayServerRpc("Melee Minion Slash", Minion.transform.position);
+                bAM.PlayClientRpc("Melee Minion Slash", Minion.transform.position);
+            }
         }
     }
 
@@ -252,7 +261,9 @@ public class MeleeMinion : NetworkBehaviour
             if(isRanged)
             {
                 SpawnProjectileServerRpc(Damage, currentTarget, networkMinion);
-
+                //Ranged sound effect
+                bAM.PlayServerRpc("Ranged Minion Fire", Minion.transform.position);
+                bAM.PlayClientRpc("Ranged Minion Fire", Minion.transform.position);
             }
             else
             {

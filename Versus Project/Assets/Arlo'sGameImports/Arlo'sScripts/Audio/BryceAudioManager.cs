@@ -23,7 +23,6 @@ public class BryceAudioManager : NetworkBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
-            s.initialVolume = s.volume;
             s.source.spatialBlend = s.spatialBlend;
             s.source.minDistance = 20;
         }
@@ -52,7 +51,6 @@ public class BryceAudioManager : NetworkBehaviour
         audioSource.volume = s.volume;
         audioSource.pitch = s.pitch;
         audioSource.loop = s.loop;
-        audioSource.volume = s.volume;
         audioSource.spatialBlend = s.spatialBlend;
         audioSource.minDistance = 20;
         audioSource.Play();
@@ -71,7 +69,6 @@ public class BryceAudioManager : NetworkBehaviour
         audioSource.volume = s.volume;
         audioSource.pitch = s.pitch;
         audioSource.loop = s.loop;
-        audioSource.volume = s.volume;
         audioSource.spatialBlend = s.spatialBlend;
         audioSource.minDistance = 20;
         audioSource.Play();
@@ -88,7 +85,6 @@ public class BryceAudioManager : NetworkBehaviour
         audioSource.volume = s.volume;
         audioSource.pitch = s.pitch;
         audioSource.loop = s.loop;
-        audioSource.volume = s.volume;
         audioSource.spatialBlend = s.spatialBlend;
         audioSource.minDistance = 20;
         audioSource.Play();

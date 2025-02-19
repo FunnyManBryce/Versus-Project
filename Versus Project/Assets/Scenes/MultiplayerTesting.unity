@@ -4202,14 +4202,38 @@ MonoBehaviour:
   volumeControl: {fileID: 0}
   sounds:
   - name: Decay AOE
-    clip: {fileID: 8300000, guid: 77ad218b15eb86443847bc718e06c28b, type: 3}
+    clip: {fileID: 8300000, guid: 11e5801d26bc2fb4e974ba4b1fe090b1, type: 3}
     loop: 0
     spatialBlend: 1
-    initialVolume: 1
     volume: 3
     pitch: 1
     spread: 0
     source: {fileID: 0}
+  - name: Melee Minion Slash
+    clip: {fileID: 8300000, guid: 946089eac0d1a3c4fa0c96594dc1f0f9, type: 3}
+    loop: 0
+    spatialBlend: 1
+    volume: 1.5
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Tower Alert
+    clip: {fileID: 8300000, guid: 9f60fc0dd4aa8e74592aa9da9eb8263c, type: 3}
+    loop: 0
+    spatialBlend: 1
+    volume: 0.5
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Ranged Minion Fire
+    clip: {fileID: 8300000, guid: 6e27933e1932f454aa5b6ab5a17ded0f, type: 3}
+    loop: 0
+    spatialBlend: 1
+    volume: 1.5
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  sourcesPlaying: []
 --- !u!4 &1148271694
 Transform:
   m_ObjectHideFlags: 0
