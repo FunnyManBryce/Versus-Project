@@ -8,6 +8,7 @@ public class PlayerUIManager : NetworkBehaviour
     [SerializeField] private GameObject player1UICanvas;
     [SerializeField] private GameObject player2UICanvas;
     [SerializeField] private GameObject healthBarPrefab;
+    [SerializeField] private GameObject manaBarPrefab;
 
     public static PlayerUIManager Instance { get; private set; }
 

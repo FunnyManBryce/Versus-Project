@@ -56,6 +56,7 @@ public class BasePlayerController : NetworkBehaviour
     public NetworkObject currentTarget; // current attack target
     [SerializeField] bool isAutoAttacking = false;
     public GameObject healthBarPrefab;
+    public GameObject manaBarPrefab;
 
     private protected void Awake()
     {
@@ -106,6 +107,9 @@ public class BasePlayerController : NetworkBehaviour
             {
                 GameObject healthBar = Instantiate(healthBarPrefab, playerCanvas.transform);
                 healthBar.GetComponent<PlayerHealthBar>().enabled = true;
+
+                GameObject manaBar = Instantiate(manaBarPrefab, playerCanvas.transform);
+                manaBar.GetComponent<PlayerManaBar>().enabled = true;
             }
         }
     }
