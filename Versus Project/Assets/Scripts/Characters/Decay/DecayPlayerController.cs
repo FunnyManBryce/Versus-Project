@@ -31,7 +31,6 @@ public class DecayPlayerController : BasePlayerController
     public float ultimateDuration = 10;
     public bool ultSpeedIncrease = false;
     private NetworkObject ultTarget;
-    public bool ultTargetingActive;
 
     public AbilityBase<DecayPlayerController> AOE;
     public AbilityBase<DecayPlayerController> Shockwave;
@@ -43,7 +42,6 @@ public class DecayPlayerController : BasePlayerController
         base.Awake();
         AOE.activateAbility = AOEServerRpc;
         Shockwave.activateAbility = ShockwaveServerRpc;
-        Ultimate.activateAbility = DecayUlt;
         AOE.abilityLevelUp = AOELevelUp;
         Shockwave.abilityLevelUp = ShockwaveLevelUp;
         Ultimate.abilityLevelUp = UltimateLevelUp;
@@ -104,11 +102,6 @@ public class DecayPlayerController : BasePlayerController
         shockwaveNetworkObject.SpawnWithOwnership(clientID);
     }
 
-    public void DecayUlt()
-    {
-        ultTargetingActive = true;
-    }
-
     [Rpc(SendTo.Server)]
     public void UltimateServerRpc(NetworkObjectReference reference)
     {
@@ -148,11 +141,11 @@ public class DecayPlayerController : BasePlayerController
             lastDecayTime = currentTime;
             TrackStatDecayServerRpc();
         }
-        if (ultTargetingActive) //Need to add an indicator that the ult is being used and you need to click on an enemy
+        if (Ultimate.waitingForClick) 
         {
             if (Input.GetMouseButtonDown(0))
             {
-                ultTargetingActive = false;
+                Ultimate.waitingForClick = false;
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = 0;
                 RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
@@ -168,10 +161,10 @@ public class DecayPlayerController : BasePlayerController
                 }
             }
         }
-        if (ultTargetingActive) return;
+        Ultimate.PointAndClickUse();
+        if (Ultimate.waitingForClick) return;
         AOE.AttemptUse();
         Shockwave.AttemptUse();
-        Ultimate.AttemptUse();
     }
 
     [Rpc(SendTo.Server)]

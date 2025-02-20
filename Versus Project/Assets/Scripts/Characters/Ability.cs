@@ -16,12 +16,14 @@ public class AbilityBase<T> where T : BasePlayerController
     public float cooldown;
     public float manaCost;
     public float lastUsed;
+    public float pointClickTimeUsed;
     public int abilityLevel;
-    public bool manualUse;
+    public bool waitingForClick = false;
     public bool OffCooldown() => lastUsed + (cooldown * ((100 - playerController.cDR) / 100)) < Time.time;
     public float NormalizedCooldown() => Mathf.Min((Time.time - lastUsed) / (cooldown * ((100 - playerController.cDR) / 100)), 1);
     public string CooldownDurationLeft() => ((cooldown * ((100 - playerController.cDR)/100)) - (Time.time - lastUsed)).ToString("0.00");
     public bool CanUse() => OffCooldown() && playerController.mana >= manaCost;
+    public bool PointAndClickDelay() => pointClickTimeUsed + 0.5f > Time.time;
     public virtual void OnUse()
     {
         playerController.mana -= manaCost;
@@ -31,9 +33,15 @@ public class AbilityBase<T> where T : BasePlayerController
     {
         if (!Input.GetKeyDown(inputKey) || !CanUse()) return;
         activateAbility();
-        if (manualUse) return;
         OnUse();
     }
+    public void PointAndClickUse()
+    {
+        if (!Input.GetKeyDown(inputKey) || !CanUse() || PointAndClickDelay()) return;
+        pointClickTimeUsed = Time.time;
+        waitingForClick = !waitingForClick;
+    }
+
 
     /*public void UpdateCooldownDisplay()
     {
