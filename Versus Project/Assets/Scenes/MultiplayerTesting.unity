@@ -4235,6 +4235,22 @@ MonoBehaviour:
     pitch: 1
     spread: 0
     source: {fileID: 0}
+  - name: Decay Auto
+    clip: {fileID: 8300000, guid: 16281bc530db80944a939c4cb5f63fef, type: 3}
+    loop: 0
+    spatialBlend: 1
+    volume: 1.5
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Puppeteering Auto
+    clip: {fileID: 8300000, guid: a5c4a3a72ebb0044e9283ea9d401e099, type: 3}
+    loop: 0
+    spatialBlend: 1
+    volume: 1.5
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
   sourcesPlaying: []
 --- !u!4 &1148271694
 Transform:
