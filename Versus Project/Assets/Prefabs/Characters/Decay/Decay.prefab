@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2062833195
+  GlobalObjectIdHash: 3800055814
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -553,6 +553,20 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 2114343820725859254, guid: 753f07b7fe461ec4cb29d8192d34b102,
     type: 3}
   manaBarPrefab: {fileID: 2114343820725859254, guid: 75d84f3c1f8f9ca4085165eaef63f178,
+    type: 3}
+  attackSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: ce33ba5ce3d771a46ada95ebda640cd1,
+    type: 3}
+  attackRangeDisplayPrefab: {fileID: 2114343820725859254, guid: 88d565695519f874cb903757d61700f1,
+    type: 3}
+  armorDisplayPrefab: {fileID: 2114343820725859254, guid: c5e01f7ad1aa4f64681a752ffcb8f685,
+    type: 3}
+  cDRDisplayPrefab: {fileID: 2114343820725859254, guid: 74cc74eeb9a66534eae5d814423aeb2e,
+    type: 3}
+  armorPenDisplayPrefab: {fileID: 2114343820725859254, guid: 6e92c9de323add145afb927bb16ce057,
+    type: 3}
+  regenDisplayPrefab: {fileID: 2114343820725859254, guid: e50ac21fc97b40649945f31cb7911be0,
+    type: 3}
+  manaRegenDisplayPrefab: {fileID: 2114343820725859254, guid: 3b6cb034afe0709459b3446ac02d6019,
     type: 3}
   lastDecayTime: 0
   decayAmount: 1
