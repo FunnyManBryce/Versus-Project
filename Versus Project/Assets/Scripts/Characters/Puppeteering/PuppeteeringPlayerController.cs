@@ -85,7 +85,8 @@ public class PuppeteeringPlayerController : BasePlayerController
             {
                 SyncPuppetValuesServerRpc(currentTarget);
             }
-        } else if(puppetsAlive.Value > maxPuppets.Value)
+        } 
+        if(puppetsAlive.Value > maxPuppets.Value)
         {
             PuppetDespawnServerRpc();
         }

@@ -24,18 +24,19 @@ public class BryceAudioManager : NetworkBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
             s.source.spatialBlend = s.spatialBlend;
-            s.source.minDistance = 20;
+            s.source.minDistance = 10;
         }
     }
 
     public void Update()
     {
-        foreach(AudioSource source in sourcesPlaying)
+        if (sourcesPlaying.Count <= 0) return;
+        for(int i = 0; i < sourcesPlaying.Count; i++)
         {
-            if(!source.isPlaying)
+            if (!sourcesPlaying[i].isPlaying)
             {
-                Destroy(source.gameObject);
-                sourcesPlaying.Remove(source);
+                sourcesPlaying.Remove(sourcesPlaying[i]);
+                Destroy(sourcesPlaying[i].gameObject);
             }
         }
     }
