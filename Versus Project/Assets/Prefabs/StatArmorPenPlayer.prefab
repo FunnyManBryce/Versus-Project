@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 499071658822526999}
   - component: {fileID: 3253642432431796508}
-  - component: {fileID: 5190589476757796536}
+  - component: {fileID: -7745703826509024932}
   m_Layer: 5
   m_Name: StatArmorPenPlayer
   m_TagString: Untagged
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5190589476757796536
+--- !u!114 &-7745703826509024932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,10 +175,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2114343820725859254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24ff31dc37b2ccd48bcefb75684c26f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 419d9c0b71c398941a19ebf075d4d9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armorText: {fileID: 3908532290970464336}
+  armorPenText: {fileID: 3908532290970464336}
   playerController: {fileID: 0}
   initialized: 0
   isPlayer1UI: 0

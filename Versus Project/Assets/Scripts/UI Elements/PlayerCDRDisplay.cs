@@ -51,7 +51,7 @@ public class PlayerCDRDisplay : MonoBehaviour
     {
         if (cDRText != null)
         {
-            cDRText.text = $"Cool Down Reducation: {playerController.cDR:F2}";
+            cDRText.text = $"Cool Down Reduction: {playerController.cDR:F2}";
         }
     }
 }

@@ -138,6 +138,7 @@ public class BasePlayerController : NetworkBehaviour
 
                 GameObject manaRegenDisplay = Instantiate(manaRegenDisplayPrefab, playerCanvas.transform);
                 manaRegenDisplay.GetComponent<PlayerManaRegenDisplay>().enabled = true;
+
             }
         }
     }
