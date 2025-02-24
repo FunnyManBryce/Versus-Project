@@ -32,6 +32,8 @@ public class MidBoss : NetworkBehaviour
         
     }
 
+
+
     public override void OnNetworkSpawn()
     {
         health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
