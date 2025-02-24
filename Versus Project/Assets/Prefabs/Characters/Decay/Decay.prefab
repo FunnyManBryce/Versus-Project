@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 8783587471392124360}
   - component: {fileID: 5749006381697563475}
   - component: {fileID: 6506090802264603876}
+  - component: {fileID: -8360920836598357906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8783587471392124360
 Transform:
   m_ObjectHideFlags: 0
@@ -128,6 +129,14 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!81 &-8360920836598357906
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980232460696549028}
+  m_Enabled: 1
 --- !u!1 &4254310818616574636
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2062833195
+  GlobalObjectIdHash: 3800055814
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

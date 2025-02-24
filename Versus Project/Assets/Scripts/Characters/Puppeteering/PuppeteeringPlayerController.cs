@@ -166,7 +166,46 @@ public class PuppeteeringPlayerController : BasePlayerController
             }
             PuppetSpawnServerRpc(team, attackDamage, maxSpeed, "Normal");
         }
+        if (IsOwner)
+        {
+            int team = NetworkManager.LocalClientId == 0 ? 1 : 2;
+            SetTeamServerRpc(team);
+            Debug.Log("1");
 
+            string canvasName = NetworkManager.LocalClientId == 0 ? "Player1UICanvas" : "Player2UICanvas";
+            GameObject playerCanvas = GameObject.Find(canvasName);
+
+            if (playerCanvas != null)
+            {
+                GameObject healthBar = Instantiate(healthBarPrefab, playerCanvas.transform);
+                healthBar.GetComponent<PlayerHealthBar>().enabled = true;
+
+                GameObject manaBar = Instantiate(manaBarPrefab, playerCanvas.transform);
+                manaBar.GetComponent<PlayerManaBar>().enabled = true;
+
+                GameObject attackSpeedDisplay = Instantiate(attackSpeedDisplayPrefab, playerCanvas.transform);
+                attackSpeedDisplay.GetComponent<PlayerAttackSpeedDisplay>().enabled = true;
+
+                GameObject attackRangeDisplay = Instantiate(attackRangeDisplayPrefab, playerCanvas.transform);
+                attackRangeDisplay.GetComponent<PlayerAttackRangeDisplay>().enabled = true;
+
+                GameObject armorDisplay = Instantiate(armorDisplayPrefab, playerCanvas.transform);
+                armorDisplay.GetComponent<PlayerArmorDisplay>().enabled = true;
+
+                GameObject cDRDisplay = Instantiate(cDRDisplayPrefab, playerCanvas.transform);
+                cDRDisplay.GetComponent<PlayerCDRDisplay>().enabled = true;
+
+                GameObject armorPenDisplay = Instantiate(armorPenDisplayPrefab, playerCanvas.transform);
+                armorPenDisplay.GetComponent<PlayerArmorPenDisplay>().enabled = true;
+
+                GameObject regenDisplay = Instantiate(regenDisplayPrefab, playerCanvas.transform);
+                regenDisplay.GetComponent<PlayerRegenDisplay>().enabled = true;
+
+                GameObject manaRegenDisplay = Instantiate(manaRegenDisplayPrefab, playerCanvas.transform);
+                manaRegenDisplay.GetComponent<PlayerManaRegenDisplay>().enabled = true;
+
+            }
+        }   
     }
 
     [Rpc(SendTo.Server)]
