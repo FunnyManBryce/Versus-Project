@@ -203,253 +203,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skeleton-Enemy_15
+      name: Skeleton-Enemy_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 3
-        width: 15
-        height: 18
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 73397252aafeeac80800000000000000
-      internalID: -8309440748405157065
+      spriteID: 91bf86d4f63f2ab4fa3c8d3103e8238a
+      internalID: 809985567002170039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_17
+      name: Skeleton-Enemy_1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 3
-        width: 20
-        height: 18
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 66b29d678c624c800800000000000000
-      internalID: 631672490167970662
+      spriteID: 1c58542016bf050449ff62985ed8fda2
+      internalID: 1577513114199590631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_19
+      name: Skeleton-Enemy_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 4
-        width: 20
-        height: 25
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ec40edff8b61dd1c0800000000000000
-      internalID: -4477397470713871154
+      spriteID: 447badb4ef873634a8b9a843ce6d64a0
+      internalID: -6934174934299511006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_20
+      name: Skeleton-Enemy_3
       rect:
         serializedVersion: 2
-        x: 107
-        y: 3
-        width: 21
-        height: 28
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 09815c56336d2e6b0800000000000000
-      internalID: -5268413097830967152
+      spriteID: 0d8413c123ac4544db992665d8db4dd1
+      internalID: 8492718380740746749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_21
+      name: Skeleton-Enemy_4
       rect:
         serializedVersion: 2
-        x: 139
-        y: 3
-        width: 13
-        height: 18
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 46261646382759dd0800000000000000
-      internalID: -2479950111147203996
+      spriteID: 29afa20ea9a3be8439d6d869cedf3034
+      internalID: -987664625415836728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_23
+      name: Skeleton-Enemy_5
       rect:
         serializedVersion: 2
-        x: 171
-        y: 3
-        width: 11
-        height: 18
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1b0730a7dac382410800000000000000
-      internalID: 1452477595601039537
+      spriteID: 957588c17b275d040951123415274260
+      internalID: -4884675540373402659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_24
+      name: Skeleton-Enemy_6
       rect:
         serializedVersion: 2
-        x: 203
-        y: 3
-        width: 9
-        height: 18
+        x: 192
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 23b0782b702597270800000000000000
-      internalID: 8248714385519217458
+      spriteID: 49b54671303f53d4bbacee9acc221d07
+      internalID: -7989888718461200736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_25
+      name: Skeleton-Enemy_7
       rect:
         serializedVersion: 2
-        x: 235
-        y: 3
-        width: 9
-        height: 18
+        x: 224
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 623e30a8629ff8c00800000000000000
-      internalID: 905215994044343078
+      spriteID: ef8806e9bfd0a3d4cb2ccff3d7a4e200
+      internalID: 3829156337767862616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_26
+      name: Skeleton-Enemy_8
       rect:
         serializedVersion: 2
-        x: 267
-        y: 3
-        width: 9
-        height: 18
+        x: 256
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0af22380d6d25a610800000000000000
-      internalID: 1631760386303864736
+      spriteID: e0a950938742d4a4ebc86ab7bb2317d2
+      internalID: 2115370723829508338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_27
+      name: Skeleton-Enemy_9
       rect:
         serializedVersion: 2
-        x: 299
-        y: 3
-        width: 9
-        height: 18
+        x: 288
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e27f53a6f93465a40800000000000000
-      internalID: 5356543158764566318
+      spriteID: 176b2e47c6fe8e9448376cdf8dd01da9
+      internalID: -5138991184135624401
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_28
+      name: Skeleton-Enemy_10
       rect:
         serializedVersion: 2
-        x: 331
-        y: 3
-        width: 20
-        height: 18
+        x: 320
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dbafe7b76ce82d100800000000000000
-      internalID: 131324322273753789
+      spriteID: 4cd8712436385264285c9ba0aea73d49
+      internalID: -4063912852394216979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton-Enemy_30
+      name: Skeleton-Enemy_11
       rect:
         serializedVersion: 2
-        x: 363
-        y: 3
-        width: 15
-        height: 24
+        x: 352
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eb732aaadb191e9b0800000000000000
-      internalID: -5052597063135381570
+      spriteID: 9794dd312d53c0342b4defb2439003f7
+      internalID: -5913429830109148292
       vertices: []
       indices: 
       edges: []
@@ -469,27 +469,8 @@ TextureImporter:
       Skeleton-Enemy_1: 1577513114199590631
       Skeleton-Enemy_10: -4063912852394216979
       Skeleton-Enemy_11: -5913429830109148292
-      Skeleton-Enemy_12: -6708443188187834796
-      Skeleton-Enemy_13: 8937532984988006331
-      Skeleton-Enemy_14: 2219563978629316935
-      Skeleton-Enemy_15: -8309440748405157065
-      Skeleton-Enemy_16: 2578238318304528035
-      Skeleton-Enemy_17: 631672490167970662
-      Skeleton-Enemy_18: -2614354685632096438
-      Skeleton-Enemy_19: -4477397470713871154
       Skeleton-Enemy_2: -6934174934299511006
-      Skeleton-Enemy_20: -5268413097830967152
-      Skeleton-Enemy_21: -2479950111147203996
-      Skeleton-Enemy_22: -7609729854797413706
-      Skeleton-Enemy_23: 1452477595601039537
-      Skeleton-Enemy_24: 8248714385519217458
-      Skeleton-Enemy_25: 905215994044343078
-      Skeleton-Enemy_26: 1631760386303864736
-      Skeleton-Enemy_27: 5356543158764566318
-      Skeleton-Enemy_28: 131324322273753789
-      Skeleton-Enemy_29: 7336213936310186031
       Skeleton-Enemy_3: 8492718380740746749
-      Skeleton-Enemy_30: -5052597063135381570
       Skeleton-Enemy_4: -987664625415836728
       Skeleton-Enemy_5: -4884675540373402659
       Skeleton-Enemy_6: -7989888718461200736

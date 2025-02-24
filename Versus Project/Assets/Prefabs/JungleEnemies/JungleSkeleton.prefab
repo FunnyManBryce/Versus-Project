@@ -62,7 +62,7 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 0.2
-  m_BaseOffset: 0.1
+  m_BaseOffset: 0.14
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
 --- !u!50 &937868224023570168
@@ -126,17 +126,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.030095283, y: -0.04011888}
+  m_Offset: {x: -0.005123648, y: -0.075028226}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.15, y: 0.18}
-    newSize: {x: 0.12, y: 0.16}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.07113514, y: 0.08146846}
+  m_Size: {x: 0.0517694, y: 0.07382408}
   m_EdgeRadius: 0
 --- !u!114 &6782888038592277727
 MonoBehaviour:
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4088190194
+  GlobalObjectIdHash: 4008936018
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -267,13 +267,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -8309440748405157065, guid: 80e190d9f9d604942bea65b24639f4a1,
-    type: 3}
+  m_Sprite: {fileID: 809985567002170039, guid: 80e190d9f9d604942bea65b24639f4a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.12, y: 0.16}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -322,6 +321,7 @@ MonoBehaviour:
   dead: 0
   targetName: 
   Damage: 7
+  armorPen: 1
   chasePlayerDistance: 10
   range: 7
   moveSpeed: 0
@@ -401,15 +401,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0135050565, y: -0.039750777}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.15, y: 0.18}
-    newSize: {x: 0.12, y: 0.16}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.15, y: 0.18}
+  m_Size: {x: 0.17701012, y: 0.18509625}
   m_EdgeRadius: 0
