@@ -57,6 +57,8 @@ public class BasePlayerController : NetworkBehaviour
     [SerializeField] bool isAutoAttacking = false;
     public GameObject healthBarPrefab;
     public GameObject manaBarPrefab;
+    public GameObject xpBarPrefab;
+    public GameObject attackDamagePrefab;
     public GameObject attackSpeedDisplayPrefab;
     public GameObject attackRangeDisplayPrefab;
     public GameObject armorDisplayPrefab;
@@ -117,6 +119,12 @@ public class BasePlayerController : NetworkBehaviour
 
                 GameObject manaBar = Instantiate(manaBarPrefab, playerCanvas.transform);
                 manaBar.GetComponent<PlayerManaBar>().enabled = true;
+
+                GameObject xpBar = Instantiate(xpBarPrefab, playerCanvas.transform);
+                xpBar.GetComponent<PlayerXPBar>().enabled = true;
+
+                GameObject AttackDisplay = Instantiate(attackDamagePrefab, playerCanvas.transform);
+                AttackDisplay.GetComponent<PlayerDamageDisplay>().enabled = true;
 
                 GameObject attackSpeedDisplay = Instantiate(attackSpeedDisplayPrefab, playerCanvas.transform);
                 attackSpeedDisplay.GetComponent<PlayerAttackSpeedDisplay>().enabled = true;

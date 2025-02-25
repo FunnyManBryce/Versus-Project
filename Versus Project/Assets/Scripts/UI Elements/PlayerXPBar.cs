@@ -104,7 +104,7 @@ public class PlayerXPBar : MonoBehaviour
     {
         if (levelText != null)
         {
-            levelText.text = $"Level: {level}";
+            levelText.text = $"LVL: {level}";
         }
     }
 }
