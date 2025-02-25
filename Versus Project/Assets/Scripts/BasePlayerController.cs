@@ -30,7 +30,6 @@ public class BasePlayerController : NetworkBehaviour
     public float attackRange = 10f;
     public float lastAttackTime;
     public bool isAttacking = false;
-    public float armor = 0f;
     public float cDR = 0f;
     public float armorPen = 0f;
     public float regen = 0f;

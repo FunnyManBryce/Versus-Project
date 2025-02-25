@@ -51,7 +51,7 @@ public class PlayerArmorDisplay : MonoBehaviour
     {
         if (armorText != null)
         {
-            armorText.text = $"Armor: {playerController.armor:F2}";
+            armorText.text = $"Armor: {playerController.health.armor:F2}";
         }
     }
 }
