@@ -66,6 +66,7 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject armorPenDisplayPrefab;
     public GameObject regenDisplayPrefab;
     public GameObject manaRegenDisplayPrefab;
+    public GameObject goldDisplayPrefab;
 
     private protected void Awake()
     {
@@ -147,6 +148,8 @@ public class BasePlayerController : NetworkBehaviour
                 GameObject manaRegenDisplay = Instantiate(manaRegenDisplayPrefab, playerCanvas.transform);
                 manaRegenDisplay.GetComponent<PlayerManaRegenDisplay>().enabled = true;
 
+                GameObject goldDisplay = Instantiate(goldDisplayPrefab, playerCanvas.transform);
+                goldDisplay.GetComponent<PlayerGoldDisplay>().enabled = true;
             }
         }
     }

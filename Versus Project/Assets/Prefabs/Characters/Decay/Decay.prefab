@@ -495,6 +495,8 @@ MonoBehaviour:
     type: 3}
   manaRegenDisplayPrefab: {fileID: 2114343820725859254, guid: 3b6cb034afe0709459b3446ac02d6019,
     type: 3}
+  goldDisplayPrefab: {fileID: 2114343820725859254, guid: a4ec6120fbb465b49a740b2b6cc6a51d,
+    type: 3}
   lastDecayTime: 0
   decayAmount: 1
   totalStatDecay:
