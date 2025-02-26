@@ -2,9 +2,9 @@ using UnityEngine;
 using TMPro;
 using Unity.Netcode;
 
-public class PlayerCDRDisplay : MonoBehaviour
+public class PlayerMoveSpeedDisplay : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI cDRText;
+    [SerializeField] private TextMeshProUGUI moveSpeedText;
     [SerializeField] private BasePlayerController playerController;
     public bool initialized;
     [SerializeField] private bool isPlayer1UI;
@@ -44,14 +44,14 @@ public class PlayerCDRDisplay : MonoBehaviour
         }
         else
         {
-            UpdateCDRText();
+            UpdateMoveSpeedText();
         }
     }
-    private void UpdateCDRText()
+    private void UpdateMoveSpeedText()
     {
-        if (cDRText != null)
+        if (moveSpeedText != null)
         {
-            cDRText.text = $"Cool Down Reduction: {playerController.cDR:F0}";
+            moveSpeedText.text = $"MS: {playerController.maxSpeed:F0}";
         }
     }
 }

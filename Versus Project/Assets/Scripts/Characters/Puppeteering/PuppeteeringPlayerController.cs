@@ -194,6 +194,9 @@ public class PuppeteeringPlayerController : BasePlayerController
                 GameObject armorPenDisplay = Instantiate(armorPenDisplayPrefab, playerCanvas.transform);
                 armorPenDisplay.GetComponent<PlayerArmorPenDisplay>().enabled = true;
 
+                GameObject moveSpeedDisplay = Instantiate(moveSpeedDisplayPrefab, playerCanvas.transform);
+                moveSpeedDisplay.GetComponent<PlayerMoveSpeedDisplay>().enabled = true;
+
                 GameObject regenDisplay = Instantiate(regenDisplayPrefab, playerCanvas.transform);
                 regenDisplay.GetComponent<PlayerRegenDisplay>().enabled = true;
 

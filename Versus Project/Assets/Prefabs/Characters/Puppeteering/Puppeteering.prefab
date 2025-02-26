@@ -323,7 +323,6 @@ MonoBehaviour:
   attackRange: 8
   lastAttackTime: 0
   isAttacking: 0
-  armor: 10
   cDR: 2
   armorPen: 5
   regen: 0.5
@@ -386,6 +385,8 @@ MonoBehaviour:
   manaRegenDisplayPrefab: {fileID: 2114343820725859254, guid: e50ac21fc97b40649945f31cb7911be0,
     type: 3}
   goldDisplayPrefab: {fileID: 2114343820725859254, guid: a4ec6120fbb465b49a740b2b6cc6a51d,
+    type: 3}
+  moveSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: de99e14a79e2418449adef0612bf0764,
     type: 3}
   puppetPrefab: {fileID: 8942386518775928844, guid: f468015df4e8466428a164c5a018448a,
     type: 3}
