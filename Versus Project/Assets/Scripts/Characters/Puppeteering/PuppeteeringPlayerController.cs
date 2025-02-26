@@ -173,6 +173,9 @@ public class PuppeteeringPlayerController : BasePlayerController
                 GameObject xpBar = Instantiate(xpBarPrefab, playerCanvas.transform);
                 xpBar.GetComponent<PlayerXPBar>().enabled = true;
 
+                GameObject goldDisplay = Instantiate(goldDisplayPrefab, playerCanvas.transform);
+                goldDisplay.GetComponent<PlayerGoldDisplay>().enabled = true;
+
                 GameObject AttackDisplay = Instantiate(attackDamagePrefab, playerCanvas.transform);
                 AttackDisplay.GetComponent<PlayerDamageDisplay>().enabled = true;
 
