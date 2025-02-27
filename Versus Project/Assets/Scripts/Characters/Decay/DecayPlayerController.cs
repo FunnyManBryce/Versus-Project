@@ -42,6 +42,7 @@ public class DecayPlayerController : BasePlayerController
         base.Awake();
         AOE.activateAbility = AOEServerRpc;
         Shockwave.activateAbility = ShockwaveServerRpc;
+        Ultimate.activateAbility = UltimateServerRpc;
         AOE.abilityLevelUp = AOELevelUp;
         Shockwave.abilityLevelUp = ShockwaveLevelUp;
         Ultimate.abilityLevelUp = UltimateLevelUp;
@@ -103,16 +104,22 @@ public class DecayPlayerController : BasePlayerController
     }
 
     [Rpc(SendTo.Server)]
-    public void UltimateServerRpc(NetworkObjectReference reference)
+    public void UltimateServerRpc()
     {
-        if (reference.TryGet(out NetworkObject target))
-        {
             Debug.Log("Ult is happening!");
-            InflictBuffServerRpc(target, "Attack Damage", -totalStatDecay.Value, ultimateDuration, true);
-            InflictBuffServerRpc(target, "Armor", -totalStatDecay.Value, ultimateDuration, true);
-            InflictBuffServerRpc(target, "Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
-            InflictBuffServerRpc(target, "Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
-            InflictBuffServerRpc(target, "Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
+            Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 6);
+            foreach (var collider in hitColliders)
+            {
+                if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
+                {
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -totalStatDecay.Value, ultimateDuration, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -totalStatDecay.Value, ultimateDuration, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
+                }
+            }
             TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, ultimateDuration, true);
             TriggerBuffServerRpc("Armor", totalStatDecay.Value, ultimateDuration, true);
             TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, ultimateDuration, true);
@@ -122,11 +129,6 @@ public class DecayPlayerController : BasePlayerController
             {
                 TriggerBuffServerRpc("Speed", 3f, ultimateDuration, true);
             }
-        }
-        else
-        {
-            Debug.Log("Decay Ult Failed");
-        }
     }
 
     new private void Update()
@@ -139,28 +141,7 @@ public class DecayPlayerController : BasePlayerController
             lastDecayTime = currentTime;
             TrackStatDecayServerRpc();
         }
-        if (Ultimate.waitingForClick) 
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ultimate.waitingForClick = false;
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePosition.z = 0;
-                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-                if (hit.collider != null)
-                {
-                    NetworkObject targetObject = hit.collider.GetComponent<NetworkObject>();
-                    if (targetObject != null && CanAttackTarget(targetObject))
-                    {
-                        ultTarget = targetObject;
-                        Ultimate.OnUse();
-                        UltimateServerRpc(ultTarget);
-                    }
-                }
-            }
-        }
-        Ultimate.PointAndClickUse();
-        if (Ultimate.waitingForClick) return;
+        Ultimate.AttemptUse();
         AOE.AttemptUse();
         Shockwave.AttemptUse();
     }
