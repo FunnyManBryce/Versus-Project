@@ -114,7 +114,7 @@ public class JungleEnemy : NetworkBehaviour
         GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
         HealthBar = healthBar;
         healthBar.GetComponent<EnemyHealthBar>().enabled = true;
-        healthBar.GetComponent<EnemyHealthBar>().SyncValues(jungleEnemy, jungleTarget);
+        healthBar.GetComponent<EnemyHealthBar>().SyncValues(jungleEnemy, jungleTarget, 1.5f);
     }
 
     // Update is called once per frame

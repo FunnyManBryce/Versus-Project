@@ -221,7 +221,7 @@ public class Puppet : NetworkBehaviour
         GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
         HealthBar = healthBar;
         healthBar.GetComponent<EnemyHealthBar>().enabled = true;
-        healthBar.GetComponent<EnemyHealthBar>().SyncValues(puppet, puppetPos);
+        healthBar.GetComponent<EnemyHealthBar>().SyncValues(puppet, puppetPos, 1.5f);
     }
    
     public bool CanAttackTarget(NetworkObject targetObject)

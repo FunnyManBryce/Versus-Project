@@ -16,6 +16,7 @@ public class EnemyHealthBar : MonoBehaviour
     public Transform objPosition;
     public Health health;
     public float maxHealth;
+    public float offset = 1.5f;
 
     public bool initializedHealth;
 
@@ -24,10 +25,11 @@ public class EnemyHealthBar : MonoBehaviour
         healthBar.transform.position = new Vector3(10000, 10000, 10000);
     }
 
-    public void SyncValues(GameObject gameObject, Transform position)
+    public void SyncValues(GameObject gameObject, Transform position, float offsetFromObject)
     {
         Object = gameObject;
         objPosition = position;
+        offset = offsetFromObject;
         health = Object.GetComponent<Health>();
     }
 
@@ -94,7 +96,7 @@ public class EnemyHealthBar : MonoBehaviour
         } 
         if(objPosition != null)
         {
-            healthBar.transform.position = new Vector3(objPosition.position.x, objPosition.position.y + 1.5f, objPosition.position.z);
+            healthBar.transform.position = new Vector3(objPosition.position.x, objPosition.position.y + offset, objPosition.position.z);
         }
     }
 }

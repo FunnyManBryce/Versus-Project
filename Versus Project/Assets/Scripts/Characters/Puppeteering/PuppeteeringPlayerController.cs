@@ -210,7 +210,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             GameObject healthBar = Instantiate(enemyHealthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
             HealthBar = healthBar;
             healthBar.GetComponent<EnemyHealthBar>().enabled = true;
-            healthBar.GetComponent<EnemyHealthBar>().SyncValues(gameObject, gameObject.transform);
+            healthBar.GetComponent<EnemyHealthBar>().SyncValues(gameObject, gameObject.transform, 1.5f);
         }
     }
 

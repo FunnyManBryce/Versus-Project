@@ -58,7 +58,7 @@ public class MidBoss : NetworkBehaviour
         GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
         HealthBar = healthBar;
         healthBar.GetComponent<EnemyHealthBar>().enabled = true;
-        healthBar.GetComponent<EnemyHealthBar>().SyncValues(gameObject, gameObject.transform);
+        healthBar.GetComponent<EnemyHealthBar>().SyncValues(gameObject, gameObject.transform, 5f);
     }
 
 

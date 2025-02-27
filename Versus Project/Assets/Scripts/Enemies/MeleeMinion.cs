@@ -119,7 +119,7 @@ public class MeleeMinion : NetworkBehaviour
         GameObject healthBar = Instantiate(healthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
         HealthBar = healthBar;
         healthBar.GetComponent<EnemyHealthBar>().enabled = true;
-        healthBar.GetComponent<EnemyHealthBar>().SyncValues(Minion, minionTarget);
+        healthBar.GetComponent<EnemyHealthBar>().SyncValues(Minion, minionTarget, 1.5f);
         if (IsServer)
         {
             lameManager = FindObjectOfType<LameManager>();
