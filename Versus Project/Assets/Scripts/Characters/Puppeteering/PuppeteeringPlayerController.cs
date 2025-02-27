@@ -204,7 +204,14 @@ public class PuppeteeringPlayerController : BasePlayerController
                 manaRegenDisplay.GetComponent<PlayerManaRegenDisplay>().enabled = true;
 
             }
-        }   
+        }
+        if (!IsOwner)
+        {
+            GameObject healthBar = Instantiate(enemyHealthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
+            HealthBar = healthBar;
+            healthBar.GetComponent<EnemyHealthBar>().enabled = true;
+            healthBar.GetComponent<EnemyHealthBar>().SyncValues(gameObject, gameObject.transform);
+        }
     }
 
     [Rpc(SendTo.Server)]

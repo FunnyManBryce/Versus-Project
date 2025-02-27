@@ -68,6 +68,9 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject goldDisplayPrefab;
     public GameObject moveSpeedDisplayPrefab;
 
+    public GameObject enemyHealthBarPrefab;
+    public GameObject HealthBar;
+
     private protected void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -154,6 +157,13 @@ public class BasePlayerController : NetworkBehaviour
                 GameObject goldDisplay = Instantiate(goldDisplayPrefab, playerCanvas.transform);
                 goldDisplay.GetComponent<PlayerGoldDisplay>().enabled = true;
             }
+        }
+        if(!IsOwner)
+        {
+            GameObject healthBar = Instantiate(enemyHealthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
+            HealthBar = healthBar;
+            healthBar.GetComponent<EnemyHealthBar>().enabled = true;
+            healthBar.GetComponent<EnemyHealthBar>().SyncValues(gameObject, gameObject.transform);
         }
     }
 

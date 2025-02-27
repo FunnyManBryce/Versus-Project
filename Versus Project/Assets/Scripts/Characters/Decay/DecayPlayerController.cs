@@ -23,9 +23,7 @@ public class DecayPlayerController : BasePlayerController
 
     public float shockwaveDamageMultiplier;
     public GameObject shockwavePrefab;
-    public float slamArea = 2.5f;
     public float shockWaveDuration = 2f;
-    private bool immobilizeSlam = false;
     public bool immobilizeShockwave = false;
 
     public float ultimateDuration = 10;
@@ -66,34 +64,6 @@ public class DecayPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     public void ShockwaveServerRpc()
     {
-        Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, slamArea);
-        foreach (var collider in hitColliders)
-        {
-            if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
-            {
-                collider.GetComponent<Health>().TakeDamageServerRPC(attackDamage * shockwaveDamageMultiplier, new NetworkObjectReference(Decay.GetComponent<NetworkObject>()), armorPen);
-                if(immobilizeSlam)
-                {
-                    if (collider.GetComponent<BasePlayerController>() != null)
-                    {
-                        collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f, true);
-                    }
-                    if (collider.GetComponent<MeleeMinion>() != null)
-                    {
-                        collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
-                    }
-                    if (collider.GetComponent<JungleEnemy>() != null)
-                    {
-                        collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
-                    }
-                    if (collider.GetComponent<Puppet>() != null)
-                    {
-                        collider.GetComponent<Puppet>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
-                    }
-                }
-            }
-        }
         var shockwave = Instantiate(shockwavePrefab, Decay.transform.position, Quaternion.identity);
         shockwave.GetComponent<DecayShockWaveProjectile>().lifespan = shockWaveDuration;
         shockwave.GetComponent<DecayShockWaveProjectile>().damage = (attackDamage * shockwaveDamageMultiplier)/2;
@@ -106,29 +76,29 @@ public class DecayPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     public void UltimateServerRpc()
     {
-            Debug.Log("Ult is happening!");
-            Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 6);
-            foreach (var collider in hitColliders)
+        Debug.Log("Ult is happening!");
+        Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 6);
+        foreach (var collider in hitColliders)
+        {
+            if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
-                {
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -totalStatDecay.Value, ultimateDuration, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -totalStatDecay.Value, ultimateDuration, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
-                }
+                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -totalStatDecay.Value, ultimateDuration, true);
+                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -totalStatDecay.Value, ultimateDuration, true);
+                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
+                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
+                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
             }
-            TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, ultimateDuration, true);
-            TriggerBuffServerRpc("Armor", totalStatDecay.Value, ultimateDuration, true);
-            TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, ultimateDuration, true);
-            TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
-            TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
-            if (ultSpeedIncrease)
-            {
-                TriggerBuffServerRpc("Speed", 3f, ultimateDuration, true);
-            }
+        }
+        TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, ultimateDuration, true);
+        TriggerBuffServerRpc("Armor", totalStatDecay.Value, ultimateDuration, true);
+        TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, ultimateDuration, true);
+        TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
+        TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
+        if (ultSpeedIncrease)
+        {
+            TriggerBuffServerRpc("Speed", 3f, ultimateDuration, true);
+        }
     }
 
     new private void Update()
@@ -273,20 +243,19 @@ public class DecayPlayerController : BasePlayerController
         }
         if (Shockwave.abilityLevel == 2)
         {
-            slamArea += 5;
             shockWaveDuration += 0.5f;
         }
         if (Shockwave.abilityLevel == 3)
         {
-            immobilizeSlam = true;
+            immobilizeShockwave = true;
         }
         if (Shockwave.abilityLevel == 4)
         {
-            shockwaveDamageMultiplier += 0.25f;
+            shockwaveDamageMultiplier += 0.5f;
         }
         if (Shockwave.abilityLevel == 5)
         {
-            immobilizeShockwave = true;
+            Shockwave.manaCost -= 15;
         }
     }
 
