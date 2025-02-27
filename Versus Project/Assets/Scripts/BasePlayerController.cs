@@ -343,7 +343,7 @@ public class BasePlayerController : NetworkBehaviour
         {
             if(resevoirRegen == true)
             {
-                health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + 1, health.maxHealth.Value);
+                health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + (health.maxHealth.Value * 0.01f), health.maxHealth.Value);
             }
         }
 

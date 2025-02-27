@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1579353524
+  GlobalObjectIdHash: 958113541
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 1
+  bAM: {fileID: 0}
   towerTarget: {fileID: 3319039571354012073}
   enemyMinionTarget: {fileID: 0}
   animator: {fileID: 3158639553507718339}
@@ -284,7 +285,7 @@ MonoBehaviour:
   Team:
     m_InternalValue: 0
   markedValue: 1
-  startingMaxHealth: 2500
+  startingMaxHealth: 1250
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
