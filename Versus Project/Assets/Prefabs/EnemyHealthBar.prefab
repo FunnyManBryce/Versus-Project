@@ -260,6 +260,7 @@ MonoBehaviour:
   objPosition: {fileID: 0}
   health: {fileID: 0}
   maxHealth: 0
+  offset: 1.5
   initializedHealth: 0
 --- !u!114 &7370470316000004515
 MonoBehaviour:

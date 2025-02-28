@@ -41,7 +41,7 @@ public class BasePlayerController : NetworkBehaviour
     private float lastRegenTick = 0f;
     public bool resevoirRegen = false;
     public Health health;
-    public float XPToNextLevel;
+    public NetworkVariable<float> XPToNextLevel = new NetworkVariable<float>();
     public float[] XPPerLevel;
     public NetworkVariable<int> unspentUpgrades = new NetworkVariable<int>();
     public NetworkVariable<bool> isDead = new NetworkVariable<bool>();
@@ -88,7 +88,7 @@ public class BasePlayerController : NetworkBehaviour
         };
         XP.OnValueChanged += (float previousValue, float newValue) => //Checking for Level up
         {
-            if (XP.Value >= XPToNextLevel && IsServer)
+            if (XP.Value >= XPToNextLevel.Value && IsServer)
             {
                 LevelUpServerRPC();
             }
@@ -664,13 +664,13 @@ public class BasePlayerController : NetworkBehaviour
             TriggerBuffServerRpc("Max Mana", statGrowthRate[7], 0, false);
             TriggerBuffServerRpc("CDR", statGrowthRate[8], 0, false);
             TriggerBuffServerRpc("Health", statGrowthRate[9], 0, false);
-            XP.Value = XP.Value - XPToNextLevel;
+            XP.Value = XP.Value - XPToNextLevel.Value;
         }
         else
         {
             XP.Value = 0;
         }
-        XPToNextLevel = XPPerLevel[Level.Value];
+        XPToNextLevel.Value = XPPerLevel[Level.Value];
         unspentUpgrades.Value++;
     }
 }

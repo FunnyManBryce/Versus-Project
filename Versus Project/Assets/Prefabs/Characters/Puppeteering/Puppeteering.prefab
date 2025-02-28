@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3858709417
+  GlobalObjectIdHash: 652430502
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -332,7 +332,8 @@ MonoBehaviour:
   manaRegen: 2.5
   resevoirRegen: 0
   health: {fileID: -8253534391822271971}
-  XPToNextLevel: 100
+  XPToNextLevel:
+    m_InternalValue: 0
   XPPerLevel:
   - 0
   - 100
@@ -412,7 +413,7 @@ MonoBehaviour:
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
   passiveLevel: 0
-  stringDamageMultiplier: 3
+  stringDamageMultiplier: 2.5
   stringMarkValue: 0.25
   stringMoveReduction: 0
   stringTargetsAll: 0

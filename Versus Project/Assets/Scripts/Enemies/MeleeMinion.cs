@@ -124,7 +124,7 @@ public class MeleeMinion : NetworkBehaviour
         {
             lameManager = FindObjectOfType<LameManager>();
             health.healthSetManual = true;
-            health.maxHealth.Value = baseHP + (baseHP * lameManager.matchTimer.Value * 0.003f);
+            health.maxHealth.Value = baseHP + (baseHP * lameManager.matchTimer.Value * 0.004f);
             health.currentHealth.Value = health.maxHealth.Value;
         }
     }

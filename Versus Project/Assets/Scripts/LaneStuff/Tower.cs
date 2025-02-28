@@ -170,8 +170,11 @@ public class Tower : NetworkBehaviour
         {
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
-            bAM.PlayServerRpc("Tower Alert", tower.transform.position);
-            bAM.PlayClientRpc("Tower Alert", tower.transform.position);
+            if(currentTarget.tag == "Player")
+            {
+                bAM.PlayServerRpc("Tower Alert", tower.transform.position);
+                bAM.PlayClientRpc("Tower Alert", tower.transform.position);
+            }
         }
     }
 

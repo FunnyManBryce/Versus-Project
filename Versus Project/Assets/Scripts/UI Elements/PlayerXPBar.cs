@@ -64,7 +64,7 @@ public class PlayerXPBar : MonoBehaviour
         {
             if (xpSlider != null)
             {
-                xpSlider.maxValue = playerController.XPToNextLevel;
+                xpSlider.maxValue = playerController.XPToNextLevel.Value;
                 xpSlider.value = playerController.XP.Value;
             }
             UpdateXPText(playerController.XP.Value);
@@ -86,7 +86,7 @@ public class PlayerXPBar : MonoBehaviour
     {
         if (xpSlider != null)
         {
-            xpSlider.maxValue = playerController.XPToNextLevel;
+            xpSlider.maxValue = playerController.XPToNextLevel.Value;
             xpSlider.value = newXP;
         }
         UpdateXPText(newXP);
@@ -96,7 +96,7 @@ public class PlayerXPBar : MonoBehaviour
     {
         if (xpText != null)
         {
-            xpText.text = $"{Mathf.Floor(currentXP)}/{playerController.XPToNextLevel}";
+            xpText.text = $"{Mathf.Floor(currentXP)}/{playerController.XPToNextLevel.Value}";
         }
     }
 

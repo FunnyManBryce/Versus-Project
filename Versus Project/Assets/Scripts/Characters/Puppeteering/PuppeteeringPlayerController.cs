@@ -102,7 +102,7 @@ public class PuppeteeringPlayerController : BasePlayerController
         };
         XP.OnValueChanged += (float previousValue, float newValue) => //Checking for Level up
         {
-            if (XP.Value >= XPToNextLevel && IsServer)
+            if (XP.Value >= XPToNextLevel.Value && IsServer)
             {
                 LevelUpServerRPC();
             }
