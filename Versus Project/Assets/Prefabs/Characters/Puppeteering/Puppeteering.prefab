@@ -317,7 +317,7 @@ MonoBehaviour:
   - 10
   - 0.15
   - 50
-  attackDamage: 7
+  attackDamage: 9
   autoAttackSpeed: 1
   autoAttackProjSpeed: 10
   attackRange: 8
@@ -381,15 +381,15 @@ MonoBehaviour:
     type: 3}
   armorPenDisplayPrefab: {fileID: 2114343820725859254, guid: 6e92c9de323add145afb927bb16ce057,
     type: 3}
-  regenDisplayPrefab: {fileID: 2114343820725859254, guid: 3b6cb034afe0709459b3446ac02d6019,
+  regenDisplayPrefab: {fileID: 2114343820725859254, guid: e50ac21fc97b40649945f31cb7911be0,
     type: 3}
-  manaRegenDisplayPrefab: {fileID: 2114343820725859254, guid: e50ac21fc97b40649945f31cb7911be0,
+  manaRegenDisplayPrefab: {fileID: 2114343820725859254, guid: 3b6cb034afe0709459b3446ac02d6019,
     type: 3}
   goldDisplayPrefab: {fileID: 2114343820725859254, guid: a4ec6120fbb465b49a740b2b6cc6a51d,
     type: 3}
   moveSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: de99e14a79e2418449adef0612bf0764,
     type: 3}
-  enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
+  enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: f9329fa1a6869f84caca61dc8635e238,
     type: 3}
   HealthBar: {fileID: 0}
   puppetPrefab: {fileID: 8942386518775928844, guid: f468015df4e8466428a164c5a018448a,
@@ -413,7 +413,7 @@ MonoBehaviour:
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
   passiveLevel: 0
-  stringDamageMultiplier: 2.5
+  stringDamageMultiplier: 2
   stringMarkValue: 0.25
   stringMoveReduction: 0
   stringTargetsAll: 0
@@ -425,8 +425,8 @@ MonoBehaviour:
   String:
     playerController: {fileID: 2414812415466740570}
     inputKey: 113
-    cooldown: 25
-    manaCost: 40
+    cooldown: 20
+    manaCost: 50
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
@@ -435,7 +435,7 @@ MonoBehaviour:
     playerController: {fileID: 2414812415466740570}
     inputKey: 101
     cooldown: 10
-    manaCost: 25
+    manaCost: 20
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
@@ -443,7 +443,7 @@ MonoBehaviour:
   Ultimate:
     playerController: {fileID: 2414812415466740570}
     inputKey: 114
-    cooldown: 80
+    cooldown: 60
     manaCost: 70
     lastUsed: 0
     pointClickTimeUsed: 0

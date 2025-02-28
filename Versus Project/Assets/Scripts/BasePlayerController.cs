@@ -217,6 +217,11 @@ public class BasePlayerController : NetworkBehaviour
             currentTarget = null;
             isAutoAttacking = false;
         }
+        if(currentTarget != null && currentTarget.GetComponent<BasePlayerController>() != null && currentTarget.GetComponent<BasePlayerController>().isDead.Value)
+        {
+            currentTarget = null;
+            isAutoAttacking = false;
+        }
 
         // Handle clicking on targets
         if (Input.GetMouseButtonDown(0))

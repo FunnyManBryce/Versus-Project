@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2062833195
+  GlobalObjectIdHash: 3800055814
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -411,7 +411,7 @@ MonoBehaviour:
   bAM: {fileID: 0}
   animator: {fileID: 3704004338721201214}
   lameManager: {fileID: 0}
-  PlayerSprite: {fileID: 0}
+  PlayerSprite: {fileID: 176950742428784287}
   AutoAttackSprite: {fileID: 0}
   clientID: 0
   maxSpeed: 8
@@ -442,7 +442,8 @@ MonoBehaviour:
   manaRegen: 5
   resevoirRegen: 0
   health: {fileID: -8253534391822271971}
-  XPToNextLevel: 0
+  XPToNextLevel:
+    m_InternalValue: 0
   XPPerLevel:
   - 0
   - 100
@@ -498,7 +499,7 @@ MonoBehaviour:
     type: 3}
   moveSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: de99e14a79e2418449adef0612bf0764,
     type: 3}
-  enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
+  enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: f9329fa1a6869f84caca61dc8635e238,
     type: 3}
   HealthBar: {fileID: 0}
   lastDecayTime: 0
@@ -514,7 +515,7 @@ MonoBehaviour:
   AOEDamageMultiplier: 0.25
   speedReductionDuration: 5
   AOESpeedSteal: 0
-  shockwaveDamageMultiplier: 2.5
+  shockwaveDamageMultiplier: 1.5
   shockwavePrefab: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
     type: 3}
   shockWaveDuration: 2
@@ -525,7 +526,7 @@ MonoBehaviour:
     playerController: {fileID: 2299055155951191650}
     inputKey: 113
     cooldown: 25
-    manaCost: 75
+    manaCost: 60
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
@@ -533,8 +534,8 @@ MonoBehaviour:
   Shockwave:
     playerController: {fileID: 2299055155951191650}
     inputKey: 101
-    cooldown: 15
-    manaCost: 50
+    cooldown: 5
+    manaCost: 30
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
@@ -542,7 +543,7 @@ MonoBehaviour:
   Ultimate:
     playerController: {fileID: 2299055155951191650}
     inputKey: 114
-    cooldown: 80
+    cooldown: 60
     manaCost: 80
     lastUsed: 0
     pointClickTimeUsed: 0
