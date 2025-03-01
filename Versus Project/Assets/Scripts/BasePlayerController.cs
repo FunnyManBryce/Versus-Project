@@ -217,7 +217,7 @@ public class BasePlayerController : NetworkBehaviour
             currentTarget = null;
             isAutoAttacking = false;
         }
-        if(currentTarget != null && currentTarget.GetComponent<BasePlayerController>() != null && currentTarget.GetComponent<BasePlayerController>().isDead.Value)
+        if(currentTarget != null && currentTarget.GetComponent<BasePlayerController>() != null && currentTarget.GetComponent<BasePlayerController>().isDead.Value || currentTarget != null && isDead.Value)
         {
             currentTarget = null;
             isAutoAttacking = false;

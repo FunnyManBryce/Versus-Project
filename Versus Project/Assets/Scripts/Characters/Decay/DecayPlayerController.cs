@@ -66,7 +66,7 @@ public class DecayPlayerController : BasePlayerController
     {
         var shockwave = Instantiate(shockwavePrefab, Decay.transform.position, Quaternion.identity);
         shockwave.GetComponent<DecayShockWaveProjectile>().lifespan = shockWaveDuration;
-        shockwave.GetComponent<DecayShockWaveProjectile>().damage = (attackDamage * shockwaveDamageMultiplier)/2;
+        shockwave.GetComponent<DecayShockWaveProjectile>().damage = attackDamage * shockwaveDamageMultiplier;
         shockwave.GetComponent<DecayShockWaveProjectile>().team = teamNumber.Value;
         shockwave.GetComponent<DecayShockWaveProjectile>().sender = Decay.GetComponent<NetworkObject>();
         var shockwaveNetworkObject = shockwave.GetComponent<NetworkObject>();

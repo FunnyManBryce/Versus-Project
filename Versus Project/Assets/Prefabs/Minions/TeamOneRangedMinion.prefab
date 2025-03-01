@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2877106500
+  GlobalObjectIdHash: 767557504
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 1
+  bAM: {fileID: 0}
   health: {fileID: -2313241330200202607}
   towerTarget: {fileID: 0}
   minionTarget: {fileID: 5134948185573290296}
@@ -228,6 +229,7 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 0.75
   cooldownTimer: 0
+  armorPen: 1
   XPRange: 20
   XPGiven: 20
   goldGiven: 20

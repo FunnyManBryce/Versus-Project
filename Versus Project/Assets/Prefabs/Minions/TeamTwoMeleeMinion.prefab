@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 2
+  bAM: {fileID: 0}
   health: {fileID: -6220663238615873784}
   towerTarget: {fileID: 0}
   minionTarget: {fileID: 5134948185573290296}
@@ -228,6 +229,7 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 0.5
   cooldownTimer: 0
+  armorPen: 1
   XPRange: 20
   XPGiven: 20
   goldGiven: 20

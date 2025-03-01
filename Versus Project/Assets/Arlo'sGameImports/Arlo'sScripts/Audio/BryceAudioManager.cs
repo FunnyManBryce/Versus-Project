@@ -35,8 +35,8 @@ public class BryceAudioManager : NetworkBehaviour
         {
             if (!sourcesPlaying[i].isPlaying)
             {
-                sourcesPlaying.Remove(sourcesPlaying[i]);
                 Destroy(sourcesPlaying[i].gameObject);
+                sourcesPlaying.Remove(sourcesPlaying[i]);
             }
         }
     }

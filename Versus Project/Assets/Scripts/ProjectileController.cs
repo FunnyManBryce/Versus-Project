@@ -6,6 +6,7 @@ public class ProjectileController : NetworkBehaviour
     public float speed;
     public float damage;
     public float armorPen;
+    public float acceleration = 1;
     private NetworkObject target;
     private NetworkObject sender;
     private bool isTargetDestroyed = false;
@@ -38,6 +39,7 @@ public class ProjectileController : NetworkBehaviour
             return;
         }
 
+        speed += Time.deltaTime * acceleration;
         Vector2 direction = ((Vector2)target.transform.position - (Vector2)transform.position).normalized;
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
