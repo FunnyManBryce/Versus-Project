@@ -317,7 +317,7 @@ MonoBehaviour:
   - 10
   - 0.15
   - 50
-  attackDamage: 9
+  attackDamage: 16
   autoAttackSpeed: 1
   autoAttackProjSpeed: 10
   attackRange: 8
@@ -413,7 +413,7 @@ MonoBehaviour:
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
   passiveLevel: 0
-  stringDamageMultiplier: 2
+  stringDamageMultiplier: 3
   stringMarkValue: 0.25
   stringMoveReduction: 0
   stringTargetsAll: 0

@@ -253,8 +253,8 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   distanceFromPuppet: {x: 0, y: 0, z: 0}
   goldRange: 0
-  goldGiven: 100
-  Damage: 150
+  goldGiven: 0
+  Damage: 250
   armorPen: 1
   orderInLane: 0
   aggroTimer: 0

@@ -49,6 +49,8 @@ public class EnemyHealthBar : MonoBehaviour
             if (health != null)
             {
                 maxHealth = health.maxHealth.Value;
+                health.maxHealth.OnValueChanged += UpdateMaxHealth;
+                health.currentHealth.OnValueChanged += UpdateHealthBar;
             }
         }
         if (healthSlider != null)
@@ -60,6 +62,16 @@ public class EnemyHealthBar : MonoBehaviour
         //UpdateHealthText(maxHealth);
     }
 
+    private void UpdateMaxHealth(float previousMaxHealth, float newMaxHealth)
+    {
+        maxHealth = newMaxHealth;
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = newMaxHealth;
+        }
+        UpdateHealthBar(0,health.currentHealth.Value);
+    }
+
     private void UpdateHealthBar(float previousHealth, float newHealth)
     {
         if (healthSlider != null)
@@ -67,18 +79,8 @@ public class EnemyHealthBar : MonoBehaviour
             healthSlider.value = newHealth;
         }
 
-        maxHealth = health.maxHealth.Value;
         float healthPercentage = newHealth / maxHealth;
-        //UpdateHealthText(newHealth);
     }
-
-    /*private void UpdateHealthText(float currentHealth)
-    {
-        if (healthText != null)
-        {
-            healthText.text = $"{Mathf.Ceil(currentHealth)}/{maxHealth}";
-        }
-    }*/
 
     void Update()
     {
@@ -86,9 +88,6 @@ public class EnemyHealthBar : MonoBehaviour
         {
             InitializeHealthBar();
             initializedHealth = true;
-        } else if(initializedHealth)
-        {
-            UpdateHealthBar(0, health.currentHealth.Value);
         }
         if(Object == null)
         {

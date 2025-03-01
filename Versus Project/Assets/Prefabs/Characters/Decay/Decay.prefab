@@ -392,7 +392,7 @@ MonoBehaviour:
     m_InternalValue: 0
   markedValue: 1
   startingMaxHealth: 400
-  armor: 30
+  armor: 20
   initialValuesSynced: 0
   invulnerable: 0
   healthSetManual: 0
@@ -427,7 +427,7 @@ MonoBehaviour:
   - 5
   - 0.2
   - 100
-  attackDamage: 20
+  attackDamage: 30
   autoAttackSpeed: 1
   autoAttackProjSpeed: 5
   attackRange: 4

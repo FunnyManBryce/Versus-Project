@@ -219,7 +219,7 @@ MonoBehaviour:
   playerLastHit: 0
   dead: 0
   baseHP: 70
-  Damage: 10
+  Damage: 15
   chasePlayerDistance: 7
   chaseMinionDistance: 10
   chaseTowerDistance: 6

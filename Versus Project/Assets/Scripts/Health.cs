@@ -44,7 +44,6 @@ public class Health : NetworkBehaviour
                 float reducedDamage = damage * (1f - (damageReduction / 100f));
 
                 currentHealth.Value -= reducedDamage;
-                currentHealth.Value = currentHealth.Value - damage;
             }
         }
     }

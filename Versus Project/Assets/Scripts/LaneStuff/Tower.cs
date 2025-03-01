@@ -217,7 +217,7 @@ public class Tower : NetworkBehaviour
         {
             if(currentTarget.GetComponent<MeleeMinion>() != null)
             {
-                float minionDamage = currentTarget.GetComponent<MeleeMinion>().health.maxHealth.Value * 0.4f;
+                float minionDamage = currentTarget.GetComponent<MeleeMinion>().health.maxHealth.Value * 0.75f;
                 Debug.Log(minionDamage);
                 SpawnProjectileServerRpc(minionDamage, currentTarget, networkTower);
 
