@@ -121,8 +121,14 @@ public class JungleEnemy : NetworkBehaviour
     void Update()
     {
         if (isAttacking || !IsServer) return;
-        playerOneTarget = PlayerOne.transform;
-        playerTwoTarget = PlayerTwo.transform;
+        if(PlayerOne != null)
+        {
+            playerOneTarget = PlayerOne.transform;
+        }
+        if (PlayerTwo != null)
+        {
+            playerTwoTarget = PlayerTwo.transform;
+        }
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
             cooldownTimer += Time.deltaTime;
@@ -143,54 +149,66 @@ public class JungleEnemy : NetworkBehaviour
         }
         if(aggro)
         {
-            if (PlayerOne.GetComponent<PuppeteeringPlayerController>() != null && PlayerOne.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
+            if (PlayerOne != null)
             {
-                oldTarget = new Vector3(1000, 1000, 0);
-                foreach (GameObject puppet in PlayerOne.GetComponent<PuppeteeringPlayerController>().PuppetList)
+                if (PlayerOne.GetComponent<PuppeteeringPlayerController>() != null && PlayerOne.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
                 {
-                    Vector3 directionToPuppet = new Vector3(jungleTarget.position.x - puppet.transform.position.x, jungleTarget.position.y - puppet.transform.position.y, 0);
-                    if (oldTarget.magnitude > directionToPuppet.magnitude)
+                    oldTarget = new Vector3(1000, 1000, 0);
+                    foreach (GameObject puppet in PlayerOne.GetComponent<PuppeteeringPlayerController>().PuppetList)
                     {
-                        oldTarget = directionToPuppet;
-                        distanceFromPuppetOne = directionToPuppet;
-                        puppetOne = puppet;
+                        Vector3 directionToPuppet = new Vector3(jungleTarget.position.x - puppet.transform.position.x, jungleTarget.position.y - puppet.transform.position.y, 0);
+                        if (oldTarget.magnitude > directionToPuppet.magnitude)
+                        {
+                            oldTarget = directionToPuppet;
+                            distanceFromPuppetOne = directionToPuppet;
+                            puppetOne = puppet;
+                        }
                     }
                 }
-            }
-            if (distanceFromPlayerOne.magnitude > distanceFromPuppetOne.magnitude && PlayerOne.GetComponent<PuppeteeringPlayerController>() != null && PlayerOne.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
-            {
-                distanceFromPlayerOne = new Vector3(jungleTarget.position.x - puppetOne.transform.position.x, jungleTarget.position.y - puppetOne.transform.position.y, 0);
-                playerOneTarget = puppetOne.GetComponent<Transform>();
+                if (distanceFromPlayerOne.magnitude > distanceFromPuppetOne.magnitude && PlayerOne.GetComponent<PuppeteeringPlayerController>() != null && PlayerOne.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
+                {
+                    distanceFromPlayerOne = new Vector3(jungleTarget.position.x - puppetOne.transform.position.x, jungleTarget.position.y - puppetOne.transform.position.y, 0);
+                    playerOneTarget = puppetOne.GetComponent<Transform>();
+                }
+                else
+                {
+                    distanceFromPlayerOne = new Vector3(jungleTarget.position.x - PlayerOne.transform.position.x, jungleTarget.position.y - PlayerOne.transform.position.y, 0);
+                    playerOneTarget = PlayerOne.GetComponent<Transform>();
+                }
             }
             else
             {
-                distanceFromPlayerOne = new Vector3(jungleTarget.position.x - PlayerOne.transform.position.x, jungleTarget.position.y - PlayerOne.transform.position.y, 0);
-                playerOneTarget = PlayerOne.GetComponent<Transform>();
+                distanceFromPlayerOne = new Vector3(1000, 1000, 1000);
             }
-
-            if (PlayerTwo.GetComponent<PuppeteeringPlayerController>() != null && PlayerTwo.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
+            if (PlayerTwo != null)
             {
-                oldTarget = new Vector3(1000, 1000, 0);
-                foreach (GameObject puppet in PlayerTwo.GetComponent<PuppeteeringPlayerController>().PuppetList)
+                if (PlayerTwo.GetComponent<PuppeteeringPlayerController>() != null && PlayerTwo.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
                 {
-                    Vector3 directionToPuppet = new Vector3(jungleTarget.position.x - puppet.transform.position.x, jungleTarget.position.y - puppet.transform.position.y, 0);
-                    if (oldTarget.magnitude > directionToPuppet.magnitude)
+                    oldTarget = new Vector3(1000, 1000, 0);
+                    foreach (GameObject puppet in PlayerTwo.GetComponent<PuppeteeringPlayerController>().PuppetList)
                     {
-                        oldTarget = directionToPuppet;
-                        distanceFromPuppetTwo = directionToPuppet;
-                        puppetTwo = puppet;
+                        Vector3 directionToPuppet = new Vector3(jungleTarget.position.x - puppet.transform.position.x, jungleTarget.position.y - puppet.transform.position.y, 0);
+                        if (oldTarget.magnitude > directionToPuppet.magnitude)
+                        {
+                            oldTarget = directionToPuppet;
+                            distanceFromPuppetTwo = directionToPuppet;
+                            puppetTwo = puppet;
+                        }
                     }
                 }
-            }
-            if (distanceFromPlayerTwo.magnitude > distanceFromPuppetTwo.magnitude && PlayerTwo.GetComponent<PuppeteeringPlayerController>() != null && PlayerTwo.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
+                if (distanceFromPlayerTwo.magnitude > distanceFromPuppetTwo.magnitude && PlayerTwo.GetComponent<PuppeteeringPlayerController>() != null && PlayerTwo.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
+                {
+                    distanceFromPlayerTwo = new Vector3(jungleTarget.position.x - puppetTwo.transform.position.x, jungleTarget.position.y - puppetTwo.transform.position.y, 0);
+                    playerTwoTarget = puppetTwo.GetComponent<Transform>();
+                }
+                else
+                {
+                    distanceFromPlayerTwo = new Vector3(jungleTarget.position.x - PlayerTwo.transform.position.x, jungleTarget.position.y - PlayerTwo.transform.position.y, 0);
+                    playerTwoTarget = PlayerTwo.GetComponent<Transform>();
+                }
+            } else
             {
-                distanceFromPlayerTwo = new Vector3(jungleTarget.position.x - puppetTwo.transform.position.x, jungleTarget.position.y - puppetTwo.transform.position.y, 0);
-                playerTwoTarget = puppetTwo.GetComponent<Transform>();
-            }
-            else
-            {
-                distanceFromPlayerTwo = new Vector3(jungleTarget.position.x - PlayerTwo.transform.position.x, jungleTarget.position.y - PlayerTwo.transform.position.y, 0);
-                playerTwoTarget = PlayerTwo.GetComponent<Transform>();
+                distanceFromPlayerTwo = new Vector3(1000, 1000, 1000);
             }
         }
         if (distanceFromPlayerOne.magnitude < distanceFromPlayerTwo.magnitude && distanceFromPlayerOne.magnitude < range && aggro == true && cooldown == false)

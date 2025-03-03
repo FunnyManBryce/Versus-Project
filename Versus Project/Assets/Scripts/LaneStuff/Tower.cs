@@ -108,8 +108,13 @@ public class Tower : NetworkBehaviour
             }
         }
         //animator.SetBool("Attacking", isAttacking);
-        if (enemyPlayer == null) return;
-        distanceFromPlayer = new Vector3(towerTarget.position.x - enemyPlayer.transform.position.x, towerTarget.position.y - enemyPlayer.transform.position.y, 0);
+        if(enemyPlayer != null)
+        {
+            distanceFromPlayer = new Vector3(towerTarget.position.x - enemyPlayer.transform.position.x, towerTarget.position.y - enemyPlayer.transform.position.y, 0);
+        } else
+        {
+            distanceFromPlayer = new Vector3(1000, 1000, 1000);
+        }
         if (cooldown == true && cooldownTimer <= cooldownLength)
         {
             cooldownTimer += Time.deltaTime;
@@ -130,7 +135,7 @@ public class Tower : NetworkBehaviour
         }
         if (enemyMinion == null)
         {
-            distanceFromMinion = new Vector3(100, 100, 0);
+            distanceFromMinion = new Vector3(1000, 1000, 0);
         }
         if ((distanceFromMinion.magnitude < distanceFromPlayer.magnitude && aggro == false && enemyMinion != null) || (distanceFromMinion.magnitude < towerRange && aggro == false && enemyMinion != null))
         {

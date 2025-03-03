@@ -189,7 +189,14 @@ public class MeleeMinion : NetworkBehaviour
             }
         }
         distanceFromTower = new Vector3(minionTarget.position.x - towerTarget.position.x, minionTarget.position.y - towerTarget.position.y, 0);
-        distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+        if (enemyPlayer != null)
+        {
+            distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
+        }
+        else
+        {
+            distanceFromPlayer = new Vector3(1000, 1000, 1000);
+        }
         if (enemyMinion == null)
         {
             distanceFromMinion = new Vector3(1000, 1000, 0);
