@@ -189,28 +189,32 @@ public class BasePlayerController : NetworkBehaviour
         if (!IsOwner) return;
         if(isDead.Value) return;
         // Get input and store it in playerInput
-        Vector2 moveDir = Vector2.zero;
-        if (Input.GetKey(KeyCode.W)) moveDir.y = +1f;
-        if (Input.GetKey(KeyCode.S)) moveDir.y = -1f;
-        if (Input.GetKey(KeyCode.A))
+        if (!isAttacking)
         {
-            moveDir.x = -1f;
-            if (PlayerSprite != null)
+            Vector2 moveDir = Vector2.zero;
+            if (Input.GetKey(KeyCode.W)) moveDir.y = +1f;
+            if (Input.GetKey(KeyCode.S)) moveDir.y = -1f;
+            if (Input.GetKey(KeyCode.A))
             {
-                PlayerSprite.flipX = true;
+                moveDir.x = -1f;
+                if (PlayerSprite != null)
+                {
+                    PlayerSprite.flipX = true;
+                }
             }
-        }
-        if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
+            {
+                moveDir.x = +1f;
+                if (PlayerSprite != null)
+                {
+                    PlayerSprite.flipX = false;
+                }
+            }
+            playerInput = moveDir.normalized;
+        } else if (isAttacking)
         {
-            moveDir.x = +1f;
-            if (PlayerSprite != null)
-            {
-                PlayerSprite.flipX = false;
-            }
+            animator.SetBool("AutoAttack", true);
         }
-
-        playerInput = moveDir.normalized;
-
         // Only cancel auto-attacking if player initiates movement with WASD
         if (playerInput.magnitude > 0)
         {
@@ -231,14 +235,14 @@ public class BasePlayerController : NetworkBehaviour
         }
 
         // Update attack state
-        if (isAttacking)
+        /*if (isAttacking)
         {
             float timeSinceLastAttack = Time.time - lastAttackTime;
             if (timeSinceLastAttack >= 1f / autoAttackSpeed)
             {
                 isAttacking = false;
             }
-        }
+        } */
 
         // Handle auto-attacking
         if (currentTarget != null && !isAttacking)
@@ -249,7 +253,9 @@ public class BasePlayerController : NetworkBehaviour
                 float distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
                 if (distanceToTarget <= attackRange)
                 {
-                    PerformAutoAttack(currentTarget);
+                    //animator.SetBool("AutoAttack", true);
+                    isAttacking = true;
+                    //PerformAutoAttack(currentTarget);
                 }
             }
         }
@@ -278,26 +284,33 @@ public class BasePlayerController : NetworkBehaviour
             }
         }
     }
-    private void PerformAutoAttack(NetworkObject targetObject)
+    private void PerformAutoAttack()
     {
-        if (targetObject == null || isAttacking) return;
+        if (currentTarget == null || !isAttacking) return;
 
-        float distanceToTarget = Vector2.Distance(transform.position, targetObject.transform.position);
+        float distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
         if (distanceToTarget <= attackRange)
         {
             if (isMelee)
             {
                 // melee damage
-                DealDamageServerRpc(attackDamage, new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+                DealDamageServerRpc(attackDamage, new NetworkObjectReference(currentTarget), new NetworkObjectReference(NetworkObject));
             }
             else
             {
                 // Ranged attack with projectile
-                SpawnProjectileServerRpc(new NetworkObjectReference(targetObject), new NetworkObjectReference(NetworkObject));
+                SpawnProjectileServerRpc(new NetworkObjectReference(currentTarget), new NetworkObjectReference(NetworkObject));
             }
-            isAttacking = true;
+            isAttacking = false;
             lastAttackTime = Time.time;
         }
+    }
+
+    private void AutoAttackEnd()
+    {
+        Debug.Log("huh");
+        isAttacking = false;
+        animator.SetBool("AutoAttack", false);
     }
 
 
@@ -364,10 +377,8 @@ public class BasePlayerController : NetworkBehaviour
 
         if (!IsOwner) return;
 
-        if (animator != null)
-        {
-            animator.SetFloat("Speed", currentSpeed);
-        }
+        animator.SetFloat("Speed", currentSpeed);
+
 
         if (currentTarget != null && playerInput.magnitude == 0)
         {
