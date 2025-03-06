@@ -313,6 +313,44 @@ public class BasePlayerController : NetworkBehaviour
         animator.SetBool("AutoAttack", false);
     }
 
+    public void AbilityOneAnimation()
+    {
+        isAttacking = false;
+        animator.SetBool("AutoAttack", false);
+        currentTarget = null;
+        animator.SetBool("AbilityOne", true);
+    }
+    public void AbilityOneAnimationEnd()
+    {
+        animator.SetBool("AbilityOne", false);
+    }
+
+    public void AbilityTwoAnimation()
+    {
+        isAttacking = false;
+        animator.SetBool("AutoAttack", false);
+        currentTarget = null;
+        animator.SetBool("AbilityTwo", true);
+    }
+    public void AbilityTwoAnimationEnd()
+    {
+        isAttacking = false;
+        animator.SetBool("AutoAttack", false);
+        currentTarget = null;
+        animator.SetBool("AbilityTwo", false);
+    }
+
+    public void UltimateAnimation()
+    {
+        isAttacking = false;
+        animator.SetBool("AutoAttack", false);
+        currentTarget = null;
+        animator.SetBool("Ult", true);
+    }
+    public void UltimateAnimationEnd()
+    {
+        animator.SetBool("Ult", false);
+    }
 
     public bool CanAttackTarget(NetworkObject targetObject)
     {

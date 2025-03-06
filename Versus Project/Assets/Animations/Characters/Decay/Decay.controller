@@ -144,13 +144,16 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: AbilityTwo
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: AbilityOne
     m_EventTreshold: 0
   - m_ConditionMode: 2
+    m_ConditionEvent: AbilityTwo
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
     m_ConditionEvent: Ult
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: AutoAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7291795612010395806}
@@ -345,13 +348,16 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: AbilityOne
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: AbilityTwo
     m_EventTreshold: 0
   - m_ConditionMode: 2
+    m_ConditionEvent: AbilityOne
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
     m_ConditionEvent: Ult
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: AutoAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4552224289250296807}

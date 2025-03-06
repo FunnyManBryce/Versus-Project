@@ -18,6 +18,7 @@ public class AbilityBase<T> where T : BasePlayerController
     public float lastUsed;
     public float pointClickTimeUsed;
     public int abilityLevel;
+    public bool abilityBeingUsed;
     public bool waitingForClick = false;
     public bool OffCooldown() => lastUsed + (cooldown * ((100 - playerController.cDR) / 100)) < Time.time;
     public float NormalizedCooldown() => Mathf.Min((Time.time - lastUsed) / (cooldown * ((100 - playerController.cDR) / 100)), 1);

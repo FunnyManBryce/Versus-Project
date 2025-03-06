@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 3297089066167603808}
   - component: {fileID: 4824983665588721915}
   - component: {fileID: -8253534391822271971}
+  - component: {fileID: 9124016138854936558}
   m_Layer: 0
   m_Name: Puppeteering
   m_TagString: Player
@@ -430,6 +431,7 @@ MonoBehaviour:
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
+    abilityBeingUsed: 0
     waitingForClick: 0
   ModeSwitch:
     playerController: {fileID: 2414812415466740570}
@@ -439,6 +441,7 @@ MonoBehaviour:
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
+    abilityBeingUsed: 0
     waitingForClick: 0
   Ultimate:
     playerController: {fileID: 2414812415466740570}
@@ -448,6 +451,7 @@ MonoBehaviour:
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
+    abilityBeingUsed: 0
     waitingForClick: 0
 --- !u!114 &2628991981076659366
 MonoBehaviour:
@@ -645,3 +649,17 @@ MonoBehaviour:
   initialValuesSynced: 0
   invulnerable: 0
   healthSetManual: 0
+--- !u!114 &9124016138854936558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846404579260722031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482e99c85ff5e3a4594d99a61cb908e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 3704004338721201214}

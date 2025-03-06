@@ -38,6 +38,7 @@ public class StringAbility : NetworkBehaviour
 
     void Damage()
     {
+        Debug.Log("string do thing");
         Vector2 pos = new Vector2(Pos.position.x, Pos.position.y);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 4);
         foreach (var collider in hitColliders)
@@ -49,6 +50,7 @@ public class StringAbility : NetworkBehaviour
                     return;
                 } else
                 {
+                    Debug.Log("Damage Triggering");
                     collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
                 }
                 if (collider.GetComponent<BasePlayerController>() != null)
@@ -71,6 +73,7 @@ public class StringAbility : NetworkBehaviour
                 }
                 if (collider.GetComponent<JungleEnemy>() != null)
                 {
+                    Debug.Log("Effect Triggering");
                     collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
                     collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Marked", markAmount, 5f);
                     if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)

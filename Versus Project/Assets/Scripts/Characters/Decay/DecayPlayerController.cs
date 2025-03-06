@@ -39,7 +39,7 @@ public class DecayPlayerController : BasePlayerController
     {
         base.Awake();
         AOE.activateAbility = AOEServerRpc;
-        Shockwave.activateAbility = ShockwaveServerRpc;
+        Shockwave.activateAbility = AbilityTwoAnimation;
         Ultimate.activateAbility = UltimateServerRpc;
         AOE.abilityLevelUp = AOELevelUp;
         Shockwave.abilityLevelUp = ShockwaveLevelUp;
@@ -59,6 +59,12 @@ public class DecayPlayerController : BasePlayerController
         var AOENetworkObject = AOE.GetComponent<NetworkObject>();
         AOENetworkObject.SpawnWithOwnership(clientID);
         AOE.transform.SetParent(Decay.transform);
+    }
+
+    public void ShockwaveHostCheck()
+    {
+        if (!IsOwner) return;
+        ShockwaveServerRpc();
     }
 
     [Rpc(SendTo.Server)]

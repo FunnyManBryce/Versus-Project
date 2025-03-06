@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: -8253534391822271971}
   - component: {fileID: 2299055155951191650}
   - component: {fileID: 176950742428784287}
-  - component: {fileID: 4666170449101539264}
+  - component: {fileID: 6074079616988557854}
   m_Layer: 0
   m_Name: Decay
   m_TagString: Player
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3800055814
+  GlobalObjectIdHash: 2062833195
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -530,6 +530,7 @@ MonoBehaviour:
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
+    abilityBeingUsed: 0
     waitingForClick: 0
   Shockwave:
     playerController: {fileID: 2299055155951191650}
@@ -539,6 +540,7 @@ MonoBehaviour:
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
+    abilityBeingUsed: 0
     waitingForClick: 0
   Ultimate:
     playerController: {fileID: 2299055155951191650}
@@ -548,6 +550,7 @@ MonoBehaviour:
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
+    abilityBeingUsed: 0
     waitingForClick: 0
 --- !u!212 &176950742428784287
 SpriteRenderer:
@@ -603,7 +606,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4666170449101539264
+--- !u!114 &6074079616988557854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -612,7 +615,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7846404579260722031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Script: {fileID: 11500000, guid: 482e99c85ff5e3a4594d99a61cb908e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
