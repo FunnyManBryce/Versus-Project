@@ -218,7 +218,7 @@ MonoBehaviour:
   aggro: 0
   playerLastHit: 0
   dead: 0
-  baseHP: 40
+  baseHP: 60
   Damage: 10
   chasePlayerDistance: 7
   chaseMinionDistance: 10
@@ -359,6 +359,7 @@ MonoBehaviour:
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
+  isNPC: 1
   healthSetManual: 0
 --- !u!61 &548495607460400228
 BoxCollider2D:

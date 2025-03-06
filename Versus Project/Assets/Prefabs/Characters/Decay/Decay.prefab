@@ -395,6 +395,7 @@ MonoBehaviour:
   armor: 20
   initialValuesSynced: 0
   invulnerable: 0
+  isNPC: 0
   healthSetManual: 0
 --- !u!114 &2299055155951191650
 MonoBehaviour:
@@ -515,7 +516,7 @@ MonoBehaviour:
   AOEDamageMultiplier: 0.25
   speedReductionDuration: 5
   AOESpeedSteal: 0
-  shockwaveDamageMultiplier: 1.5
+  shockwaveDamageMultiplier: 3
   shockwavePrefab: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
     type: 3}
   shockWaveDuration: 2

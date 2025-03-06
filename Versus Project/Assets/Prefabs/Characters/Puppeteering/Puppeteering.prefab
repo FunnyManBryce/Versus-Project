@@ -414,7 +414,7 @@ MonoBehaviour:
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
   passiveLevel: 0
-  stringDamageMultiplier: 3
+  stringDamageMultiplier: 4
   stringMarkValue: 0.25
   stringMoveReduction: 0
   stringTargetsAll: 0
@@ -648,6 +648,7 @@ MonoBehaviour:
   armor: 10
   initialValuesSynced: 0
   invulnerable: 0
+  isNPC: 0
   healthSetManual: 0
 --- !u!114 &9124016138854936558
 MonoBehaviour:

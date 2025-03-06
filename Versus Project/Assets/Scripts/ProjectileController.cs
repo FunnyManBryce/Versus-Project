@@ -57,7 +57,7 @@ public class ProjectileController : NetworkBehaviour
 
         if(sender != null)
         {
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), armorPen);
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), armorPen, false);
         }
         DestroyProjectileServerRpc();
     }

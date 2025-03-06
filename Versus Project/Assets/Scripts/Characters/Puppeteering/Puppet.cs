@@ -187,7 +187,7 @@ public class Puppet : NetworkBehaviour
     {
         if (reference.TryGet(out NetworkObject target))
         {
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
             if(defensiveMode == false) //offensive mode provides lifesteal to player
             {
                 Father.GetComponent<Health>().currentHealth.Value = Mathf.Min(Father.GetComponent<Health>().currentHealth.Value + (damage * lifestealMultiplier), Father.GetComponent<Health>().maxHealth.Value);

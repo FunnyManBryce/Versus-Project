@@ -51,11 +51,11 @@ public class StringAbility : NetworkBehaviour
                 } else
                 {
                     Debug.Log("Damage Triggering");
-                    collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
+                    collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
                 }
                 if (collider.GetComponent<BasePlayerController>() != null)
                 {
-                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 1f, true);
+                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f, true);
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Marked", markAmount, 5f, true);
                     if(sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
@@ -64,7 +64,7 @@ public class StringAbility : NetworkBehaviour
                 }
                 if (collider.GetComponent<MeleeMinion>() != null)
                 {
-                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
+                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
                     collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Marked", markAmount, 5f);
                     if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
@@ -74,7 +74,7 @@ public class StringAbility : NetworkBehaviour
                 if (collider.GetComponent<JungleEnemy>() != null)
                 {
                     Debug.Log("Effect Triggering");
-                    collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
+                    collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
                     collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Marked", markAmount, 5f);
                     if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
@@ -83,7 +83,7 @@ public class StringAbility : NetworkBehaviour
                 }
                 if (collider.GetComponent<Puppet>() != null)
                 {
-                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Immobilized", 0f, 1f);
+                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
                     collider.GetComponent<Puppet>().TriggerBuffServerRpc("Marked", markAmount, 5f);
                     if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {

@@ -53,7 +53,7 @@ public class DecayAOE : NetworkBehaviour
                 }
                 else
                 {
-                    collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen);
+                    collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, false);
                 }
                 if(collider.GetComponent<BasePlayerController>() != null)
                 {

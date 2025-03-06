@@ -306,7 +306,7 @@ public class MeleeMinion : NetworkBehaviour
     {
         if (reference.TryGet(out NetworkObject target))
         {
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
         }
         else
         {

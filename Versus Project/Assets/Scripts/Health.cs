@@ -13,6 +13,7 @@ public class Health : NetworkBehaviour
     public float armor = 0f; //In order for this to sync up to the baseplayercontroller, just do something like armor = baseplayercontroller.armor
     public bool initialValuesSynced;
     public bool invulnerable;
+    public bool isNPC;
     public bool healthSetManual;
 
 
@@ -28,7 +29,7 @@ public class Health : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender, float armorPen) 
+    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender, float armorPen, bool reducedNPCDamage) 
     {
         lastAttacker = sender;
         if(invulnerable == false)
@@ -43,7 +44,13 @@ public class Health : NetworkBehaviour
                 float damageReduction = 100f - (10000f / (100f + effectiveArmor));
                 float reducedDamage = damage * (1f - (damageReduction / 100f));
 
-                currentHealth.Value -= reducedDamage;
+                if(isNPC && reducedNPCDamage)
+                {
+                    currentHealth.Value -= reducedDamage/4;
+                } else
+                {
+                    currentHealth.Value -= reducedDamage;
+                }
             }
         }
     }

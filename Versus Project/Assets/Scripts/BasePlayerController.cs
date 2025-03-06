@@ -393,7 +393,7 @@ public class BasePlayerController : NetworkBehaviour
         if (reference.TryGet(out NetworkObject target))
         {
             Debug.Log("9");
-            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen);
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
         }
         else
         {
