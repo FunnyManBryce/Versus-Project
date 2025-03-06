@@ -22,7 +22,7 @@ public class DecayShockWaveProjectile : NetworkBehaviour
             Vector3 mousePosition = camera.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
             Vector3 rotation = mousePosition - transform.position;
             float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
+            transform.rotation = Quaternion.Euler(0, 0, rotZ);
             //ChangeRotationServerRpc(rotZ);
         }
     }
@@ -31,7 +31,7 @@ public class DecayShockWaveProjectile : NetworkBehaviour
     {
         if (IsOwner)
         {
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
         if (!IsServer) return;
         lifespan -= Time.deltaTime;

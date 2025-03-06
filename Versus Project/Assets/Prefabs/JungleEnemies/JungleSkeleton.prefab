@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4088190194
+  GlobalObjectIdHash: 4008936018
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -323,7 +323,7 @@ MonoBehaviour:
   Damage: 7
   armorPen: 1
   chasePlayerDistance: 10
-  range: 7
+  range: 10
   moveSpeed: 0
   aggroTimer: 0
   aggroLength: 5
