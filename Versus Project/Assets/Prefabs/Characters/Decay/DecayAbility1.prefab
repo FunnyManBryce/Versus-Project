@@ -129,6 +129,7 @@ MonoBehaviour:
   lastTick: 0
   damagePerTick: 2.5
   speedReductionPerTick: -0.5
+  reductionDuration: 5
   AOEPos: {fileID: 5437192985226083262}
   lifespan: 5
   sender: {fileID: 0}

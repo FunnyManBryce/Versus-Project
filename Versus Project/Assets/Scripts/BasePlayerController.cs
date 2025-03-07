@@ -200,6 +200,14 @@ public class BasePlayerController : NetworkBehaviour
                 if (PlayerSprite != null)
                 {
                     PlayerSprite.flipX = true;
+                    if(IsServer)
+                    {
+                        FlipSpriteClientRpc(true);
+                    }
+                    else
+                    {
+                        FlipSpriteServerRpc(true);
+                    }
                 }
             }
             if (Input.GetKey(KeyCode.D))
@@ -208,6 +216,14 @@ public class BasePlayerController : NetworkBehaviour
                 if (PlayerSprite != null)
                 {
                     PlayerSprite.flipX = false;
+                    if (IsServer)
+                    {
+                        FlipSpriteClientRpc(false);
+                    }
+                    else
+                    {
+                        FlipSpriteServerRpc(false);
+                    }
                 }
             }
             playerInput = moveDir.normalized;
@@ -431,7 +447,16 @@ public class BasePlayerController : NetworkBehaviour
                 // Update sprite direction
                 if (PlayerSprite != null)
                 {
+
                     PlayerSprite.flipX = currentTarget.transform.position.x < transform.position.x;
+                    if (IsServer)
+                    {
+                        FlipSpriteClientRpc(currentTarget.transform.position.x < transform.position.x);
+                    }
+                    else
+                    {
+                        FlipSpriteServerRpc(currentTarget.transform.position.x < transform.position.x);
+                    }
                 }
             }
             else
@@ -466,6 +491,31 @@ public class BasePlayerController : NetworkBehaviour
     private void RegenMana(float regenAmount)
     {
         mana = Mathf.Min(mana + regenAmount, maxMana);
+    }
+
+    [ServerRpc]
+    public void FlipSpriteServerRpc(bool flip)
+    {
+        if(flip)
+        {
+            PlayerSprite.flipX = true;
+        } else
+        {
+            PlayerSprite.flipX = false;
+        }
+    }
+
+    [ClientRpc]
+    public void FlipSpriteClientRpc(bool flip)
+    {
+        if (flip)
+        {
+            PlayerSprite.flipX = true;
+        }
+        else
+        {
+            PlayerSprite.flipX = false;
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
