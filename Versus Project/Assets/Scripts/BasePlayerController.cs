@@ -22,8 +22,31 @@ public class BasePlayerController : NetworkBehaviour
     private Vector2 movementInput;
     private Vector2 playerInput;
 
-    //Combat variables
+
+    //Base Stats
     public float[] statGrowthRate;
+    public NetworkVariable<float> BaseDamage = new NetworkVariable<float>();
+    public NetworkVariable<float> BaseAttackSpeed = new NetworkVariable<float>();
+    public NetworkVariable<float> BaseRange = new NetworkVariable<float>();
+    public NetworkVariable<float> BaseCDR = new NetworkVariable<float>();
+    public NetworkVariable<float> BaseArmor = new NetworkVariable<float>();
+    public NetworkVariable<float> BaseArmorPen = new NetworkVariable<float>();
+    public NetworkVariable<float> BaseRegen = new NetworkVariable<float>();
+    public NetworkVariable<float> BaseManaRegen = new NetworkVariable<float>();
+    public NetworkVariable<float> BaseSpeed = new NetworkVariable<float>();
+
+    //Current buff quantity of stats
+    public NetworkVariable<float> DamageBuff = new NetworkVariable<float>();
+    public NetworkVariable<float> AttackSpeedBuff = new NetworkVariable<float>();
+    public NetworkVariable<float> RangeBuff = new NetworkVariable<float>();
+    public NetworkVariable<float> CDRBuff = new NetworkVariable<float>();
+    public NetworkVariable<float> ArmorBuff = new NetworkVariable<float>();
+    public NetworkVariable<float> ArmorPenBuff = new NetworkVariable<float>();
+    public NetworkVariable<float> RegenBuff = new NetworkVariable<float>();
+    public NetworkVariable<float> ManaRegenBuff = new NetworkVariable<float>();
+    public NetworkVariable<float> SpeedBuff = new NetworkVariable<float>();
+
+    //Combat variables
     public float attackDamage = 10f;
     public float autoAttackSpeed = 1f;
     public float autoAttackProjSpeed = 5f;
@@ -79,6 +102,18 @@ public class BasePlayerController : NetworkBehaviour
     }
     public override void OnNetworkSpawn()
     {
+        if (IsServer)
+        {
+            BaseDamage.Value = attackDamage;
+            BaseAttackSpeed.Value = autoAttackSpeed;
+            BaseRange.Value = attackRange;
+            BaseCDR.Value = cDR;
+            BaseArmor.Value = health.armor;
+            BaseArmorPen.Value = armorPen;
+            BaseRegen.Value = regen;
+            BaseManaRegen.Value = manaRegen;
+            BaseSpeed.Value = maxSpeed;
+        }
         health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
             if (health.currentHealth.Value <= 0 && isDead.Value == false && IsServer)
@@ -188,6 +223,7 @@ public class BasePlayerController : NetworkBehaviour
     {
         if (!IsOwner) return;
         if(isDead.Value) return;
+        SyncStats(); //Takes the base value of each stat, and adds whatever the current buff/debuff is
         // Get input and store it in playerInput
         if (!isAttacking)
         {
@@ -518,71 +554,50 @@ public class BasePlayerController : NetworkBehaviour
         }
     }
 
+    public void SyncStats()
+    {
+        attackDamage = BaseDamage.Value + DamageBuff.Value;
+        autoAttackSpeed = BaseAttackSpeed.Value + AttackSpeedBuff.Value;
+        attackRange = BaseRange.Value + RangeBuff.Value;
+        cDR = BaseCDR.Value + CDRBuff.Value;
+        health.armor = BaseArmor.Value + ArmorBuff.Value;
+        armorPen = BaseArmorPen.Value + ArmorPenBuff.Value;
+        regen = BaseRegen.Value + RegenBuff.Value;
+        manaRegen = BaseManaRegen.Value + ManaRegenBuff.Value;
+        maxSpeed = BaseSpeed.Value + SpeedBuff.Value;
+    }
+
+
     [ServerRpc(RequireOwnership = false)]
     public void TriggerBuffServerRpc(string buffType, float amount, float duration, bool hasDuration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
     {
         if (buffType == "Speed")
         {
-            maxSpeed += amount;
-            if (maxSpeed <= 1f)
-            {
-                amount = -maxSpeed + 1f + amount;
-                maxSpeed = 1f;
-            }
+            SpeedBuff.Value += amount;
         }
         if (buffType == "Attack Damage")
         {
-            attackDamage += amount;
-            if (attackDamage <= 1f)
-            {
-                amount = -attackDamage + 1f + amount;
-                attackDamage = 1f;
-            }
+            DamageBuff.Value += amount;
         }
         if (buffType == "Armor")
         {
-            health.armor += amount;
-            if (health.armor <= 1f)
-            {
-                amount = -health.armor + 1f + amount;
-                health.armor = 1f;
-            }
+            ArmorBuff.Value += amount;
         }
         if (buffType == "Armor Pen")
         {
-            armorPen += amount;
-            if (armorPen <= 1f)
-            {
-                amount = -armorPen + 1f + amount;
-                armorPen = 1f;
-            }
+            ArmorPenBuff.Value += amount;
         }
         if (buffType == "Auto Attack Speed")
         {
-            autoAttackSpeed += amount;
-            if (autoAttackSpeed <= 0.1f)
-            {
-                amount = -autoAttackSpeed + 0.1f + amount;
-                autoAttackSpeed = 0.1f;
-            }
+            AttackSpeedBuff.Value += amount;
         }
         if (buffType == "Regen")
         {
-            regen += amount;
-            if (regen <= 0.1f)
-            {
-                amount = -regen + 0.1f + amount;
-                regen = 0.1f;
-            }
+            RegenBuff.Value += amount;
         }
         if (buffType == "Mana Regen")
         {
-            manaRegen += amount;
-            if (manaRegen <= 0.1f)
-            {
-                amount = -manaRegen + 0.1f + amount;
-                manaRegen = 0.1f;
-            }
+            ManaRegenBuff.Value += amount;
         }
         if (buffType == "Max Mana")
         {
@@ -590,7 +605,7 @@ public class BasePlayerController : NetworkBehaviour
         }
         if (buffType == "CDR")
         {
-            cDR += amount;
+            CDRBuff.Value += amount;
         }
         if (buffType == "Health")
         {
@@ -602,8 +617,7 @@ public class BasePlayerController : NetworkBehaviour
         }
         if (buffType == "Immobilized")
         {
-            amount = maxSpeed;
-            maxSpeed = 0;
+            SpeedBuff.Value -= BaseSpeed.Value;
         }
         StatChangeClientRpc(buffType, amount);
         if (hasDuration)
@@ -624,31 +638,31 @@ public class BasePlayerController : NetworkBehaviour
     {
         if (buffType == "Speed")
         {
-            maxSpeed -= amount;
+            SpeedBuff.Value -= amount;
         }
         if (buffType == "Attack Damage")
         {
-            attackDamage -= amount;
+            DamageBuff.Value -= amount;
         }
         if (buffType == "Armor")
         {
-            health.armor -= amount;
+            ArmorBuff.Value -= amount;
         }
         if (buffType == "Armor Pen")
         {
-            armorPen -= amount;
+            ArmorPenBuff.Value -= amount;
         }
         if (buffType == "Auto Attack Speed")
         {
-            autoAttackSpeed -= amount;
+            AttackSpeedBuff.Value -= amount;
         }
         if (buffType == "Regen")
         {
-            regen -= amount;
+            RegenBuff.Value -= amount;
         }
         if (buffType == "Mana Regen")
         {
-            manaRegen -= amount;
+            ManaRegenBuff.Value -= amount;
         }
         if (buffType == "Max Mana")
         {
@@ -656,7 +670,7 @@ public class BasePlayerController : NetworkBehaviour
         }
         if (buffType == "CDR")
         {
-            cDR -= amount;
+            CDRBuff.Value -= amount;
         }
         if (buffType == "Health")
         {
@@ -668,8 +682,7 @@ public class BasePlayerController : NetworkBehaviour
         }
         if (buffType == "Immobilized")
         {
-            maxSpeed += amount;
-            buffType = "Speed";
+            SpeedBuff.Value += BaseSpeed.Value;
         }
         StatChangeClientRpc(buffType, -amount);
     }
@@ -679,60 +692,31 @@ public class BasePlayerController : NetworkBehaviour
     {
         if (buffType == "Speed")
         {
-            maxSpeed += amount;
-            if (maxSpeed <= 1f)
-            {
-                maxSpeed = 1f;
-            }
+            SpeedBuff.Value += amount;
         }
         if (buffType == "Attack Damage")
         {
-            attackDamage += amount;
-            if (attackDamage <= 1f)
-            {
-                attackDamage = 1f;
-            }
+            DamageBuff.Value += amount;
         }
         if (buffType == "Armor")
         {
-            health.armor += amount;
-            if (health.armor <= 1f)
-            {
-                health.armor = 1f;
-            }
+            ArmorBuff.Value += amount;
         }
         if (buffType == "Armor Pen")
         {
-            armorPen += amount;
-            if (armorPen <= 1f)
-            {
-                armorPen = 1f;
-            }
+            ArmorPenBuff.Value += amount;
         }
         if (buffType == "Auto Attack Speed")
         {
-            autoAttackSpeed += amount;
-            if (autoAttackSpeed <= 0.1f)
-            {
-                autoAttackSpeed = 0.1f;
-            }
+            AttackSpeedBuff.Value += amount;
         }
         if (buffType == "Regen")
         {
-            regen += amount;
-            if (regen <= 0.1f)
-            {
-                regen = 0.1f;
-            }
+            RegenBuff.Value += amount;
         }
         if (buffType == "Mana Regen")
         {
-            manaRegen += amount;
-            if (manaRegen <= 0.1f)
-            {
-                amount = -manaRegen + 0.1f + amount;
-                manaRegen = 0.1f;
-            }
+            ManaRegenBuff.Value += amount;
         }
         if (buffType == "Max Mana")
         {
@@ -740,7 +724,11 @@ public class BasePlayerController : NetworkBehaviour
         }
         if (buffType == "CDR")
         {
-            cDR += amount;
+            CDRBuff.Value += amount;
+        }
+        if (buffType == "Health")
+        {
+            health.maxHealth.Value += amount;
         }
         if (buffType == "Marked")
         {
@@ -748,7 +736,7 @@ public class BasePlayerController : NetworkBehaviour
         }
         if (buffType == "Immobilized")
         {
-            maxSpeed = 0;
+            SpeedBuff.Value -= maxSpeed;
         }
     }
 
@@ -758,6 +746,7 @@ public class BasePlayerController : NetworkBehaviour
         Level.Value++;
         if (Level.Value > 1)
         {
+
             TriggerBuffServerRpc("Speed", statGrowthRate[0], 0, false);
             TriggerBuffServerRpc("Attack Damage", statGrowthRate[1], 0, false);
             TriggerBuffServerRpc("Armor", statGrowthRate[2], 0, false);
