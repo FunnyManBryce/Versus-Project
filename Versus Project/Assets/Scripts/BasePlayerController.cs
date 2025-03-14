@@ -45,6 +45,7 @@ public class BasePlayerController : NetworkBehaviour
     public NetworkVariable<float> RegenBuff = new NetworkVariable<float>();
     public NetworkVariable<float> ManaRegenBuff = new NetworkVariable<float>();
     public NetworkVariable<float> SpeedBuff = new NetworkVariable<float>();
+    public List<IEnumerator> Buffs = new List<IEnumerator>();
 
     //Combat variables
     public float attackDamage = 10f;
@@ -132,6 +133,32 @@ public class BasePlayerController : NetworkBehaviour
         {
             if (isDead.Value)
             {
+                attackDamage = BaseDamage.Value;
+                autoAttackSpeed = BaseAttackSpeed.Value;
+                attackRange = BaseRange.Value;
+                cDR = BaseCDR.Value;
+                health.armor = BaseArmor.Value;
+                armorPen = BaseArmorPen.Value;
+                regen = BaseRegen.Value;
+                manaRegen = BaseManaRegen.Value;
+                maxSpeed = BaseSpeed.Value;
+
+                DamageBuff.Value = 0;
+                AttackSpeedBuff.Value = 0;
+                RangeBuff.Value = 0;
+                CDRBuff.Value = 0;
+                ArmorBuff.Value = 0;
+                ArmorPenBuff.Value = 0;
+                RegenBuff.Value = 0;
+                ManaRegenBuff.Value = 0;
+                SpeedBuff.Value = 0;
+                for(int i = 0; i < Buffs.Count; i++)
+                {
+                    if( Buffs[i] != null )
+                    {
+                        StopCoroutine(Buffs[i]);
+                    }
+                }
                 transform.position = new Vector3(-420, -69, 0);
                 StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
             }
@@ -622,15 +649,24 @@ public class BasePlayerController : NetworkBehaviour
         StatChangeClientRpc(buffType, amount);
         if (hasDuration)
         {
-            IEnumerator coroutine = BuffDuration(buffType, amount, duration);
+            IEnumerator coroutine = BuffDuration(buffType, amount, duration, Buffs.Count);
             StartCoroutine(coroutine);
+            Buffs.Add(coroutine);
         }
     }
 
-    public IEnumerator BuffDuration(string buffType, float amount, float duration) //Waits a bit before changing stats back to default
+    public IEnumerator BuffDuration(string buffType, float amount, float duration, int buffNumber) //Waits a bit before changing stats back to default
     {
         yield return new WaitForSeconds(duration);
         BuffEndServerRpc(buffType, amount, duration);
+        for (int i = 0; i < Buffs.Count; i++)
+        {
+            if (i == buffNumber)
+            {
+                Buffs.Remove(Buffs[i]);
+            }
+        }
+        //Buffs.Remove(BuffDuration(buffType, amount, duration));
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -747,15 +783,15 @@ public class BasePlayerController : NetworkBehaviour
         if (Level.Value > 1)
         {
 
-            TriggerBuffServerRpc("Speed", statGrowthRate[0], 0, false);
-            TriggerBuffServerRpc("Attack Damage", statGrowthRate[1], 0, false);
-            TriggerBuffServerRpc("Armor", statGrowthRate[2], 0, false);
-            TriggerBuffServerRpc("Armor Pen", statGrowthRate[3], 0, false);
-            TriggerBuffServerRpc("Auto Attack Speed", statGrowthRate[4], 0, false);
-            TriggerBuffServerRpc("Regen", statGrowthRate[5], 0, false);
-            TriggerBuffServerRpc("Mana Regen", statGrowthRate[6], 0, false);
+            BaseSpeed.Value += statGrowthRate[0];
+            BaseDamage.Value += statGrowthRate[1];
+            BaseArmor.Value += statGrowthRate[2];
+            BaseArmorPen.Value += statGrowthRate[3];
+            BaseAttackSpeed.Value += statGrowthRate[4];
+            BaseRegen.Value += statGrowthRate[5];
+            BaseManaRegen.Value += statGrowthRate[6];
             TriggerBuffServerRpc("Max Mana", statGrowthRate[7], 0, false);
-            TriggerBuffServerRpc("CDR", statGrowthRate[8], 0, false);
+            BaseCDR.Value += statGrowthRate[8];
             TriggerBuffServerRpc("Health", statGrowthRate[9], 0, false);
             XP.Value = XP.Value - XPToNextLevel.Value;
         }

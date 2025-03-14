@@ -46,7 +46,7 @@ public class Health : NetworkBehaviour
 
                 if(isNPC && reducedNPCDamage)
                 {
-                    currentHealth.Value -= reducedDamage/4;
+                    currentHealth.Value -= reducedDamage/2;
                 } else
                 {
                     currentHealth.Value -= reducedDamage;

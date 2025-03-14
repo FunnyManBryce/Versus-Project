@@ -126,11 +126,11 @@ public class DecayPlayerController : BasePlayerController
     private void TrackStatDecayServerRpc()
     {
         totalStatDecay.Value += 1;
-        TriggerBuffServerRpc("Attack Damage", -decayAmount, 0, false);
-        TriggerBuffServerRpc("Armor", -decayAmount, 0, false);
-        TriggerBuffServerRpc("Armor Pen", -decayAmount, 0, false);
-        TriggerBuffServerRpc("Regen", (0.05f * -decayAmount), 0, false);
-        TriggerBuffServerRpc("Mana Regen", (0.05f * -decayAmount), 0, false);
+        BaseDamage.Value -= decayAmount;
+        BaseArmor.Value -= decayAmount;
+        BaseArmorPen.Value -= decayAmount;
+        BaseRegen.Value -= (0.05f * decayAmount);
+        BaseManaRegen.Value -= (0.05f * decayAmount);
         if (statLossIsAOE)
         {
             Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
