@@ -120,6 +120,15 @@ public class BasePlayerController : NetworkBehaviour
             if (health.currentHealth.Value <= 0 && isDead.Value == false && IsServer)
             {
                 isDead.Value = true;
+                if (health.lastAttacker.TryGet(out NetworkObject attacker))
+                {
+                    if(attacker.GetComponent<BasePlayerController>() != null)
+                    {
+                        var enemyPlayer = attacker.GetComponent<BasePlayerController>();
+                        enemyPlayer.XP.Value += Level.Value * 50; //Can change the amount given later
+                        enemyPlayer.Gold.Value += Level.Value * 50; //Can change the amount given later
+                    }
+                }
             }
         };
         XP.OnValueChanged += (float previousValue, float newValue) => //Checking for Level up

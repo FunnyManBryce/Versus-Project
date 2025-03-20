@@ -94,16 +94,20 @@ public class DecayPlayerController : BasePlayerController
                 InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
                 InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
                 InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
+                if (ultSpeedIncrease)
+                {
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Speed", -2f, ultimateDuration, true);
+                }
             }
         }
         TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, ultimateDuration, true);
         TriggerBuffServerRpc("Armor", totalStatDecay.Value, ultimateDuration, true);
         TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, ultimateDuration, true);
-        TriggerBuffServerRpc("Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
-        TriggerBuffServerRpc("Mana Regen", (0.05f * totalStatDecay.Value), ultimateDuration, true);
+        TriggerBuffServerRpc("Regen", (totalStatDecay.Value), ultimateDuration, true);
+        TriggerBuffServerRpc("Mana Regen", (totalStatDecay.Value), ultimateDuration, true);
         if (ultSpeedIncrease)
         {
-            TriggerBuffServerRpc("Speed", 3f, ultimateDuration, true);
+            TriggerBuffServerRpc("Speed", 2f, ultimateDuration, true);
         }
     }
 

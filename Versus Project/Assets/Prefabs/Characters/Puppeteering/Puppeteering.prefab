@@ -305,7 +305,7 @@ MonoBehaviour:
   PlayerSprite: {fileID: 2570568061770048435}
   AutoAttackSprite: {fileID: 2570568061770048435}
   clientID: 0
-  maxSpeed: 9
+  maxSpeed: 8
   currentSpeed: 0
   statGrowthRate:
   - 0
@@ -318,6 +318,42 @@ MonoBehaviour:
   - 10
   - 0.15
   - 50
+  BaseDamage:
+    m_InternalValue: 0
+  BaseAttackSpeed:
+    m_InternalValue: 0
+  BaseRange:
+    m_InternalValue: 0
+  BaseCDR:
+    m_InternalValue: 0
+  BaseArmor:
+    m_InternalValue: 0
+  BaseArmorPen:
+    m_InternalValue: 0
+  BaseRegen:
+    m_InternalValue: 0
+  BaseManaRegen:
+    m_InternalValue: 0
+  BaseSpeed:
+    m_InternalValue: 0
+  DamageBuff:
+    m_InternalValue: 0
+  AttackSpeedBuff:
+    m_InternalValue: 0
+  RangeBuff:
+    m_InternalValue: 0
+  CDRBuff:
+    m_InternalValue: 0
+  ArmorBuff:
+    m_InternalValue: 0
+  ArmorPenBuff:
+    m_InternalValue: 0
+  RegenBuff:
+    m_InternalValue: 0
+  ManaRegenBuff:
+    m_InternalValue: 0
+  SpeedBuff:
+    m_InternalValue: 0
   attackDamage: 16
   autoAttackSpeed: 1
   autoAttackProjSpeed: 10
