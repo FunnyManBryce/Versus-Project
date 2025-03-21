@@ -31,6 +31,7 @@ public class JungleEnemy : NetworkBehaviour
     public bool cooldown = false;
     public bool aggro = false;
     public bool playerLastHit = false;
+    public bool midBossSpawn = false;
     public bool dead;
 
     public string targetName;
@@ -138,7 +139,7 @@ public class JungleEnemy : NetworkBehaviour
             cooldown = false;
             cooldownTimer = 0;
         }
-        if (aggro == true && aggroTimer < aggroLength)
+        if (aggro == true && aggroTimer < aggroLength && midBossSpawn == false)
         {
             aggroTimer += Time.deltaTime;
         }
@@ -146,6 +147,9 @@ public class JungleEnemy : NetworkBehaviour
         {
             aggro = false;
             aggroTimer = 0;
+        } else if(midBossSpawn == true)
+        {
+            aggro = true;
         }
         if(aggro)
         {
