@@ -7,6 +7,7 @@ public class JungleSpawner : NetworkBehaviour
 {
     private float spawnTimer = 0f;
     [SerializeField] private float spawnTimerEnd;
+    public bool onlySpawnedOnce = false;
 
     public bool isSpawnedEnemyAlive = false;
     public GameObject enemyToSpawn;
@@ -19,7 +20,7 @@ public class JungleSpawner : NetworkBehaviour
         if(!isSpawnedEnemyAlive && spawnTimer < spawnTimerEnd)
         {
             spawnTimer += Time.deltaTime;
-        } else if(spawnTimer >= spawnTimerEnd)
+        } else if(spawnTimer >= spawnTimerEnd && !isSpawnedEnemyAlive)
         {
             isSpawnedEnemyAlive = true;
             SpawnEnemyServerRPC();
@@ -31,8 +32,11 @@ public class JungleSpawner : NetworkBehaviour
     public void SpawnEnemyServerRPC()
     {
         var enemy = Instantiate(enemyToSpawn, jungleSpawner.transform.position, Quaternion.identity);
-        enemy.GetComponent<JungleEnemy>().spawner = jungleSpawner;
         var enemyNetworkObject = enemy.GetComponent<NetworkObject>();
         enemyNetworkObject.Spawn();
+        if (!onlySpawnedOnce)
+        {
+            enemy.GetComponent<JungleEnemy>().spawner = jungleSpawner;
+        }
     }
 }

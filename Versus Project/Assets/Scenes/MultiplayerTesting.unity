@@ -8835,7 +8835,7 @@ PrefabInstance:
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: JungleSP.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -9086,6 +9086,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: JungleSP.Array.data[11].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: JungleSP.Array.data[11].y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: redLaneSP.Array.data[0].x
       value: 75
       objectReference: {fileID: 0}
@@ -9190,7 +9200,7 @@ PrefabInstance:
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: jungleSpawnOrder.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -9291,6 +9301,12 @@ PrefabInstance:
       propertyPath: 'jungleSpawnOrder.Array.data[10]'
       value: 
       objectReference: {fileID: 7786157875108222184, guid: 72f25ed476339774bbc189404faf337d,
+        type: 3}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
+      propertyPath: 'jungleSpawnOrder.Array.data[11]'
+      value: 
+      objectReference: {fileID: 7786157875108222184, guid: 33fada593dc59024aa1f59213efaa12d,
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}

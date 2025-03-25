@@ -107,8 +107,13 @@ public class JungleEnemy : NetworkBehaviour
                     playerToGetGold.Gold.Value += goldGiven;
                     playerToGetGold.XP.Value += XPGiven;
                 }
-
-                spawner.GetComponent<JungleSpawner>().isSpawnedEnemyAlive = false;
+                if (spawner.GetComponent<JungleSpawner>() != null)
+                {
+                    spawner.GetComponent<JungleSpawner>().isSpawnedEnemyAlive = false;
+                } else if(midBossSpawn)
+                {
+                    spawner.GetComponent<MidBoss>().minionsAlive--;
+                }
                 jungleEnemy.GetComponent<NetworkObject>().Despawn();
             }
         };
@@ -143,7 +148,7 @@ public class JungleEnemy : NetworkBehaviour
         {
             aggroTimer += Time.deltaTime;
         }
-        else if (aggroTimer >= aggroLength)
+        else if (aggroTimer >= aggroLength && midBossSpawn == false)
         {
             aggro = false;
             aggroTimer = 0;
