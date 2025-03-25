@@ -23,7 +23,7 @@ public class DecayAOE : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition = new Vector3(0, 0, 0);
+        transform.localPosition = new Vector3(0.01f, -0.075f, 0);
         if (!IsServer) return;
         lifespan -= Time.deltaTime;
         if(lifespan < 0)
