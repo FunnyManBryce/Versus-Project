@@ -107,10 +107,10 @@ public class JungleEnemy : NetworkBehaviour
                     playerToGetGold.Gold.Value += goldGiven;
                     playerToGetGold.XP.Value += XPGiven;
                 }
-                if (spawner.GetComponent<JungleSpawner>() != null)
+                if (spawner != null && spawner.GetComponent<JungleSpawner>() != null)
                 {
                     spawner.GetComponent<JungleSpawner>().isSpawnedEnemyAlive = false;
-                } else if(midBossSpawn)
+                } else if(midBossSpawn && spawner != null)
                 {
                     spawner.GetComponent<MidBoss>().minionsAlive--;
                 }

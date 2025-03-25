@@ -65,7 +65,7 @@ public class MidBoss : NetworkBehaviour
         {
             distanceFromPTwo = new Vector3(1000,1000, 1000);
         }
-        if (distanceFromPOne.magnitude <= 20 || distanceFromPTwo.magnitude <= 20)
+        if (distanceFromPOne.magnitude <= 15 || distanceFromPTwo.magnitude <= 15)
         {
             playerInRange = true;
         } else

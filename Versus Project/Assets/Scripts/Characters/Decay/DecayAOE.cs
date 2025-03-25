@@ -14,6 +14,7 @@ public class DecayAOE : NetworkBehaviour
     public Transform AOEPos;
     public float lifespan = 5f;
     public NetworkObject sender;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +24,12 @@ public class DecayAOE : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition = new Vector3(0.01f, -0.075f, 0);
+        transform.localPosition = new Vector3(0.01f, -0.1f, 0);
         if (!IsServer) return;
         lifespan -= Time.deltaTime;
         if(lifespan < 0)
         {
-            gameObject.GetComponent<NetworkObject>().Despawn();
+            animator.SetTrigger("AbilityOver");
         }
         float currentTime = Time.time;
         if (currentTime - lastTick >= 0.5f)
@@ -40,6 +41,7 @@ public class DecayAOE : NetworkBehaviour
 
     void AOEDamage()
     {
+        if (lifespan < 0) return;
         Vector2 pos = new Vector2(AOEPos.position.x, AOEPos.position.y);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 8);
         foreach (var collider in hitColliders)
@@ -93,6 +95,11 @@ public class DecayAOE : NetworkBehaviour
         {
             return false;
         }
+    }
+
+    public void AOEDespawn()
+    {
+        gameObject.GetComponent<NetworkObject>().Despawn();
     }
 }
 
