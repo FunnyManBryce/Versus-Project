@@ -33,7 +33,9 @@ public class JungleSpawner : NetworkBehaviour
     {
         var enemy = Instantiate(enemyToSpawn, jungleSpawner.transform.position, Quaternion.identity);
         var enemyNetworkObject = enemy.GetComponent<NetworkObject>();
+        Debug.Log("huh");
         enemyNetworkObject.Spawn();
+        Debug.Log("huhX2");
         if (!onlySpawnedOnce)
         {
             enemy.GetComponent<JungleEnemy>().spawner = jungleSpawner;

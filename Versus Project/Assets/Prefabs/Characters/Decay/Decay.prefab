@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8783587471392124360
 Transform:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2062833195
+  GlobalObjectIdHash: 3800055814
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -428,6 +428,42 @@ MonoBehaviour:
   - 5
   - 0.2
   - 100
+  BaseDamage:
+    m_InternalValue: 0
+  BaseAttackSpeed:
+    m_InternalValue: 0
+  BaseRange:
+    m_InternalValue: 0
+  BaseCDR:
+    m_InternalValue: 0
+  BaseArmor:
+    m_InternalValue: 0
+  BaseArmorPen:
+    m_InternalValue: 0
+  BaseRegen:
+    m_InternalValue: 0
+  BaseManaRegen:
+    m_InternalValue: 0
+  BaseSpeed:
+    m_InternalValue: 0
+  DamageBuff:
+    m_InternalValue: 0
+  AttackSpeedBuff:
+    m_InternalValue: 0
+  RangeBuff:
+    m_InternalValue: 0
+  CDRBuff:
+    m_InternalValue: 0
+  ArmorBuff:
+    m_InternalValue: 0
+  ArmorPenBuff:
+    m_InternalValue: 0
+  RegenBuff:
+    m_InternalValue: 0
+  ManaRegenBuff:
+    m_InternalValue: 0
+  SpeedBuff:
+    m_InternalValue: 0
   attackDamage: 30
   autoAttackSpeed: 1
   autoAttackProjSpeed: 5

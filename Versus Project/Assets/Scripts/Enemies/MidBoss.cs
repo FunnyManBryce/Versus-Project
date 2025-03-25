@@ -181,12 +181,22 @@ public class MidBoss : NetworkBehaviour
     }
     public void ProjectileAttack()
     {
+        if(distanceFromPTwo.magnitude < distanceFromPOne.magnitude)
+        {
+            GameObject projectile = Instantiate(Projectile, transform.position, Quaternion.identity);
+            NetworkObject netObj = projectile.GetComponent<NetworkObject>();
+            netObj.Spawn();
+            ProjectileController controller = projectile.GetComponent<ProjectileController>();
+            controller.Initialize(18, projDamage, lameManager.playerTwoChar.GetComponent<NetworkObject>(), networkBoss, 5);
+        } else if(distanceFromPTwo.magnitude > distanceFromPOne.magnitude)
+        {
+            GameObject projectile = Instantiate(Projectile, transform.position, Quaternion.identity);
+            NetworkObject netObj = projectile.GetComponent<NetworkObject>();
+            netObj.Spawn();
+            ProjectileController controller = projectile.GetComponent<ProjectileController>();
+            controller.Initialize(18, projDamage, lameManager.playerOneChar.GetComponent<NetworkObject>(), networkBoss, 5);
+        }
         //Make target closest player probably through circle thingy
-        GameObject projectile = Instantiate(Projectile, transform.position, Quaternion.identity);
-        NetworkObject netObj = projectile.GetComponent<NetworkObject>();
-        netObj.Spawn();
-        ProjectileController controller = projectile.GetComponent<ProjectileController>();
-        controller.Initialize(18, projDamage, lameManager.playerOneChar.GetComponent<NetworkObject>(), networkBoss, 5);
         onCooldown = true;
     }
 
