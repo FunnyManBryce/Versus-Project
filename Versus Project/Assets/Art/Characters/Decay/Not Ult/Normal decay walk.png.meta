@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -83,7 +83,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -112,10 +112,10 @@ TextureImporter:
       name: Normal decay walk_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 0
         y: 0
-        width: 25
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,10 +133,10 @@ TextureImporter:
       name: Normal decay walk_1
       rect:
         serializedVersion: 2
-        x: 59
+        x: 48
         y: 0
-        width: 24
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,10 +154,10 @@ TextureImporter:
       name: Normal decay walk_2
       rect:
         serializedVersion: 2
-        x: 106
+        x: 96
         y: 0
-        width: 25
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +175,10 @@ TextureImporter:
       name: Normal decay walk_3
       rect:
         serializedVersion: 2
-        x: 153
+        x: 144
         y: 0
-        width: 26
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,14 +195,18 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d2056c64f019402419f5580adb5c2031
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Normal decay walk_0: -5234914083946009854
+      Normal decay walk_1: -3234372424294966851
+      Normal decay walk_2: -8359078161275625377
+      Normal decay walk_3: 6785249136588835870
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

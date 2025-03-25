@@ -94,7 +94,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -131,7 +131,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -160,10 +160,10 @@ TextureImporter:
       name: DecayUlt_0
       rect:
         serializedVersion: 2
-        x: 12
+        x: 0
         y: 0
-        width: 24
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,10 +181,10 @@ TextureImporter:
       name: DecayUlt_1
       rect:
         serializedVersion: 2
-        x: 60
+        x: 48
         y: 0
-        width: 25
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,10 +202,10 @@ TextureImporter:
       name: DecayUlt_2
       rect:
         serializedVersion: 2
-        x: 106
+        x: 96
         y: 0
-        width: 29
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,10 +223,10 @@ TextureImporter:
       name: DecayUlt_3
       rect:
         serializedVersion: 2
-        x: 156
+        x: 144
         y: 0
-        width: 25
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,9 +244,9 @@ TextureImporter:
       name: DecayUlt_4
       rect:
         serializedVersion: 2
-        x: 204
+        x: 192
         y: 0
-        width: 28
+        width: 48
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -265,10 +265,10 @@ TextureImporter:
       name: DecayUlt_5
       rect:
         serializedVersion: 2
-        x: 252
+        x: 240
         y: 0
-        width: 24
-        height: 47
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,10 +286,10 @@ TextureImporter:
       name: DecayUlt_6
       rect:
         serializedVersion: 2
-        x: 300
+        x: 288
         y: 0
-        width: 24
-        height: 46
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,10 +307,10 @@ TextureImporter:
       name: DecayUlt_7
       rect:
         serializedVersion: 2
-        x: 348
+        x: 336
         y: 0
-        width: 24
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,10 +328,10 @@ TextureImporter:
       name: DecayUlt_8
       rect:
         serializedVersion: 2
-        x: 396
+        x: 384
         y: 0
-        width: 24
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,10 +349,10 @@ TextureImporter:
       name: DecayUlt_9
       rect:
         serializedVersion: 2
-        x: 444
+        x: 432
         y: 0
-        width: 24
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -370,10 +370,10 @@ TextureImporter:
       name: DecayUlt_10
       rect:
         serializedVersion: 2
-        x: 492
+        x: 480
         y: 0
-        width: 24
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,10 +391,10 @@ TextureImporter:
       name: DecayUlt_11
       rect:
         serializedVersion: 2
-        x: 540
+        x: 528
         y: 0
-        width: 24
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,10 +412,10 @@ TextureImporter:
       name: DecayUlt_12
       rect:
         serializedVersion: 2
-        x: 588
+        x: 576
         y: 0
-        width: 24
-        height: 45
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,10 +433,10 @@ TextureImporter:
       name: DecayUlt_13
       rect:
         serializedVersion: 2
-        x: 636
+        x: 624
         y: 0
-        width: 24
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -454,9 +454,9 @@ TextureImporter:
       name: DecayUlt_14
       rect:
         serializedVersion: 2
-        x: 676
+        x: 672
         y: 0
-        width: 38
+        width: 48
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -475,9 +475,9 @@ TextureImporter:
       name: DecayUlt_15
       rect:
         serializedVersion: 2
-        x: 732
+        x: 720
         y: 0
-        width: 24
+        width: 48
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -496,9 +496,9 @@ TextureImporter:
       name: DecayUlt_16
       rect:
         serializedVersion: 2
-        x: 780
+        x: 768
         y: 0
-        width: 24
+        width: 48
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -517,9 +517,9 @@ TextureImporter:
       name: DecayUlt_17
       rect:
         serializedVersion: 2
-        x: 828
+        x: 816
         y: 0
-        width: 24
+        width: 48
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -538,9 +538,9 @@ TextureImporter:
       name: DecayUlt_18
       rect:
         serializedVersion: 2
-        x: 876
+        x: 864
         y: 0
-        width: 24
+        width: 48
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -559,10 +559,10 @@ TextureImporter:
       name: DecayUlt_19
       rect:
         serializedVersion: 2
-        x: 924
+        x: 912
         y: 0
-        width: 24
-        height: 47
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -579,14 +579,34 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 12e5cf71b97e4d34c9d6d729543d0d32
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DecayUlt_0: -4222447958247592823
+      DecayUlt_1: 4411525410423615349
+      DecayUlt_10: 5503955391285139511
+      DecayUlt_11: 8311767658685955551
+      DecayUlt_12: 5568944560609508135
+      DecayUlt_13: 1746945588235928173
+      DecayUlt_14: -8127945856510073306
+      DecayUlt_15: -3278151216091236432
+      DecayUlt_16: -4203194902381521214
+      DecayUlt_17: 92522953843836486
+      DecayUlt_18: 7391989338814591089
+      DecayUlt_19: -7036066350017199774
+      DecayUlt_2: 7087902608680111683
+      DecayUlt_3: 2602520060605764983
+      DecayUlt_4: 8959957008156380852
+      DecayUlt_5: 7293618969717509182
+      DecayUlt_6: -3049292385230130635
+      DecayUlt_7: 4152660022857607531
+      DecayUlt_8: -5391397589158351561
+      DecayUlt_9: -5227008322829045542
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

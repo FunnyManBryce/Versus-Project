@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -98,7 +98,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -127,10 +127,10 @@ TextureImporter:
       name: Normal Decay Punch_0
       rect:
         serializedVersion: 2
-        x: 20
+        x: 0
         y: 0
-        width: 24
-        height: 45
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,10 +148,10 @@ TextureImporter:
       name: Normal Decay Punch_1
       rect:
         serializedVersion: 2
-        x: 81
+        x: 64
         y: 0
-        width: 27
-        height: 45
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: Normal Decay Punch_2
       rect:
         serializedVersion: 2
-        x: 145
+        x: 128
         y: 0
-        width: 27
-        height: 45
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,10 +190,10 @@ TextureImporter:
       name: Normal Decay Punch_3
       rect:
         serializedVersion: 2
-        x: 214
+        x: 192
         y: 0
-        width: 25
-        height: 45
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,10 +211,10 @@ TextureImporter:
       name: Normal Decay Punch_4
       rect:
         serializedVersion: 2
-        x: 278
+        x: 256
         y: 0
-        width: 32
-        height: 45
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,10 +232,10 @@ TextureImporter:
       name: Normal Decay Punch_5
       rect:
         serializedVersion: 2
-        x: 342
+        x: 320
         y: 0
-        width: 40
-        height: 45
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,10 +253,10 @@ TextureImporter:
       name: Normal Decay Punch_6
       rect:
         serializedVersion: 2
-        x: 406
+        x: 384
         y: 0
-        width: 24
-        height: 45
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,10 +274,10 @@ TextureImporter:
       name: Normal Decay Punch_7
       rect:
         serializedVersion: 2
-        x: 430
-        y: 11
-        width: 17
-        height: 33
+        x: 448
+        y: 0
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -291,38 +291,25 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Normal Decay Punch_8
-      rect:
-        serializedVersion: 2
-        x: 470
-        y: 0
-        width: 42
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a9a62553adb7dd10800000000000000
-      internalID: 2150395856298617254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4a02fb5c77cc4a84bb6d514805f26a03
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Normal Decay Punch_0: -2733882908572376262
+      Normal Decay Punch_1: -7218222654588932561
+      Normal Decay Punch_2: -7278211209443365642
+      Normal Decay Punch_3: 7558063936140104763
+      Normal Decay Punch_4: -6555510730302902687
+      Normal Decay Punch_5: 8630922523694826572
+      Normal Decay Punch_6: -6622411382229286458
+      Normal Decay Punch_7: -3698427424030880661
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
