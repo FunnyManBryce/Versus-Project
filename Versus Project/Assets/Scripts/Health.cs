@@ -13,9 +13,21 @@ public class Health : NetworkBehaviour
     public bool invulnerable;
     public bool isNPC;
     public bool healthSetManual;
-
-
+    public bool darknessEffect;
+    private float darknessTick = 0.5f;
     public NetworkObjectReference lastAttacker;
+
+    public void Update()
+    {
+        if(darknessEffect && darknessTick > 0)
+        {
+            darknessTick -= Time.deltaTime;
+        } else if(darknessEffect && darknessTick <= 0)
+        {
+            currentHealth.Value -= 10;
+            darknessTick = 0.5f;
+        }
+    }
     public override void OnNetworkSpawn()
     {
         if (IsServer && healthSetManual == false)
@@ -60,6 +72,38 @@ public class Health : NetworkBehaviour
         if (sender.TryGet(out NetworkObject healer))
         {
             currentHealth.Value += Mathf.Min(currentHealth.Value + amount, maxHealth.Value);
+        }
+    }
+
+    [ServerRpc]
+    public void InflictBuffServerRpc(NetworkObjectReference Target, string buffType, float amount, float duration, bool hasDuration)
+    {
+        if (Target.TryGet(out NetworkObject targetObj))
+        {
+            if (targetObj.GetComponent<BasePlayerController>() != null)
+            {
+                targetObj.GetComponent<BasePlayerController>().TriggerBuffServerRpc(buffType, amount, duration, hasDuration);
+            }
+            if (targetObj.GetComponent<MeleeMinion>() != null)
+            {
+                targetObj.GetComponent<MeleeMinion>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<Puppet>() != null)
+            {
+                targetObj.GetComponent<Puppet>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<JungleEnemy>() != null)
+            {
+                targetObj.GetComponent<JungleEnemy>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<Tower>() != null)
+            {
+                targetObj.GetComponent<Tower>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<MidBoss>() != null)
+            {
+                targetObj.GetComponent<MidBoss>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
         }
     }
 }

@@ -28,7 +28,7 @@ public class MidbossCircles : NetworkBehaviour
             if (collider.GetComponent<Health>() != null && collider.isTrigger && collider.tag != "JungleEnemy")
             {
                 Debug.Log("Damage Triggering");
-                collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), 5, false);
+                collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<MidBoss>().armorPen, false);
             }
         }
     }

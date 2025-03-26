@@ -47,22 +47,7 @@ public class DecayShockWaveProjectile : NetworkBehaviour
             collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
             if (sender.GetComponent<DecayPlayerController>().immobilizeShockwave)
             {
-                if (collider.GetComponent<BasePlayerController>() != null)
-                {
-                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f, true);
-                }
-                if (collider.GetComponent<MeleeMinion>() != null)
-                {
-                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
-                }
-                if (collider.GetComponent<JungleEnemy>() != null)
-                {
-                    collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
-                }
-                if (collider.GetComponent<Puppet>() != null)
-                {
-                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
-                }
+                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Immobilized", 0f, 0.5f, true);
             }
         }
     }
@@ -90,6 +75,37 @@ public class DecayShockWaveProjectile : NetworkBehaviour
         else
         {
             return false;
+        }
+    }
+    [ServerRpc]
+    public void InflictBuffServerRpc(NetworkObjectReference Target, string buffType, float amount, float duration, bool hasDuration)
+    {
+        if (Target.TryGet(out NetworkObject targetObj))
+        {
+            if (targetObj.GetComponent<BasePlayerController>() != null)
+            {
+                targetObj.GetComponent<BasePlayerController>().TriggerBuffServerRpc(buffType, amount, duration, hasDuration);
+            }
+            if (targetObj.GetComponent<MeleeMinion>() != null)
+            {
+                targetObj.GetComponent<MeleeMinion>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<Puppet>() != null)
+            {
+                targetObj.GetComponent<Puppet>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<JungleEnemy>() != null)
+            {
+                targetObj.GetComponent<JungleEnemy>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<Tower>() != null)
+            {
+                targetObj.GetComponent<Tower>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<MidBoss>() != null)
+            {
+                targetObj.GetComponent<MidBoss>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
         }
     }
 }

@@ -325,6 +325,11 @@ public class JungleEnemy : NetworkBehaviour
             amount = moveSpeed;
             moveSpeed = 0;
         }
+        if (buffType == "Darkness")
+        {
+            moveSpeed += amount;
+            health.darknessEffect = true;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
     }
@@ -365,6 +370,11 @@ public class JungleEnemy : NetworkBehaviour
         if (buffType == "Immobilized")
         {
             moveSpeed += amount;
+        }
+        if (buffType == "Darkness")
+        {
+            moveSpeed -= amount;
+            health.darknessEffect = false;
         }
     }
 }

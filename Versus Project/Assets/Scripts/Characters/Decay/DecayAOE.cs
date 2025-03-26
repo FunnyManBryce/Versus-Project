@@ -55,18 +55,7 @@ public class DecayAOE : NetworkBehaviour
                 {
                     collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, false);
                 }
-                if (collider.GetComponent<BasePlayerController>() != null)
-                {
-                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", speedReductionPerTick, reductionDuration, true);
-                }
-                if (collider.GetComponent<MeleeMinion>() != null)
-                {
-                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Speed", speedReductionPerTick / 2f, reductionDuration);
-                }
-                if (collider.GetComponent<Puppet>() != null)
-                {
-                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Speed", speedReductionPerTick, reductionDuration);
-                }
+                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Speed", speedReductionPerTick, reductionDuration, true);
                 if (sender.GetComponent<DecayPlayerController>().AOESpeedSteal) //Decay gains some speed for every hit enemy if the ability is level 3
                 {
                     sender.GetComponent<DecayPlayerController>().TriggerBuffServerRpc("Speed", -(speedReductionPerTick * 0.1f), reductionDuration, true);
@@ -98,6 +87,38 @@ public class DecayAOE : NetworkBehaviour
     public void AOEDespawn()
     {
         gameObject.GetComponent<NetworkObject>().Despawn();
+    }
+    
+    [ServerRpc]
+    public void InflictBuffServerRpc(NetworkObjectReference Target, string buffType, float amount, float duration, bool hasDuration)
+    {
+        if (Target.TryGet(out NetworkObject targetObj))
+        {
+            if (targetObj.GetComponent<BasePlayerController>() != null)
+            {
+                targetObj.GetComponent<BasePlayerController>().TriggerBuffServerRpc(buffType, amount, duration, hasDuration);
+            }
+            if (targetObj.GetComponent<MeleeMinion>() != null)
+            {
+                targetObj.GetComponent<MeleeMinion>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<Puppet>() != null)
+            {
+                targetObj.GetComponent<Puppet>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<JungleEnemy>() != null)
+            {
+                targetObj.GetComponent<JungleEnemy>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<Tower>() != null)
+            {
+                targetObj.GetComponent<Tower>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<MidBoss>() != null)
+            {
+                targetObj.GetComponent<MidBoss>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+        }
     }
 }
 

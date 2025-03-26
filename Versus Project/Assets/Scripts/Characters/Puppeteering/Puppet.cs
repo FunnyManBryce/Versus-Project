@@ -306,6 +306,11 @@ public class Puppet : NetworkBehaviour
         {
             health.invulnerable = true;
         }
+        if(buffType == "Darkness")
+        {
+            moveSpeed += amount;
+            health.darknessEffect = true;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
     }
@@ -350,6 +355,11 @@ public class Puppet : NetworkBehaviour
         if (buffType == "Invulnerable")
         {
             health.invulnerable = false;
+        }
+        if (buffType == "Darkness")
+        {
+            moveSpeed -= amount;
+            health.darknessEffect = false;
         }
     }
 

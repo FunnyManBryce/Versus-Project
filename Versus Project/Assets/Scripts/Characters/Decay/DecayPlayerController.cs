@@ -107,14 +107,14 @@ public class DecayPlayerController : BasePlayerController
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -totalStatDecay.Value, ultimateDuration, true);
-                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -totalStatDecay.Value, ultimateDuration, true);
-                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
-                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
-                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
+                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -totalStatDecay.Value, ultimateDuration, true);
+                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -totalStatDecay.Value, ultimateDuration, true);
+                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
+                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
+                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
                 if (ultSpeedIncrease)
                 {
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Speed", -2f, ultimateDuration, true);
+                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Speed", -2f, ultimateDuration, true);
                 }
             }
         }
@@ -207,11 +207,11 @@ public class DecayPlayerController : BasePlayerController
             {
                 if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
                 {
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -decayAmount, 30, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -decayAmount, 30, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -decayAmount, 30, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", (0.05f * -decayAmount), 30, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", (0.05f * -decayAmount), 30, true);
+                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -decayAmount, 30, true);
+                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -decayAmount, 30, true);
+                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -decayAmount, 30, true);
+                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", (0.05f * -decayAmount), 30, true);
+                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", (0.05f * -decayAmount), 30, true);
                 }
             }
         }
@@ -365,33 +365,6 @@ public class DecayPlayerController : BasePlayerController
     }
     #endregion
 
-    [ServerRpc]
-    public void InflictBuffServerRpc(NetworkObjectReference Target, string buffType, float amount, float duration, bool hasDuration)
-    {
-        if (Target.TryGet(out NetworkObject targetObj))
-        {
-            if(targetObj.GetComponent<BasePlayerController>() != null)
-            {
-                targetObj.GetComponent<BasePlayerController>().TriggerBuffServerRpc(buffType, amount, duration, hasDuration);
-            }
-            if (targetObj.GetComponent<MeleeMinion>() != null)
-            {
-                targetObj.GetComponent<MeleeMinion>().TriggerBuffServerRpc(buffType, amount, duration);
-            }
-            if (targetObj.GetComponent<Puppet>() != null)
-            {
-                targetObj.GetComponent<Puppet>().TriggerBuffServerRpc(buffType, amount, duration);
-            }
-            if (targetObj.GetComponent<JungleEnemy>() != null)
-            {
-                targetObj.GetComponent<JungleEnemy>().TriggerBuffServerRpc(buffType, amount, duration);
-            }
-            if (targetObj.GetComponent<Tower>() != null)
-            {
-                targetObj.GetComponent<Tower>().TriggerBuffServerRpc(buffType, amount, duration);
-            }
-        }
-    }
 }
 
 

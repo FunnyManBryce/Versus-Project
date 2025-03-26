@@ -52,6 +52,8 @@ public class BasePlayerController : NetworkBehaviour
     public float attackRange = 10f;
     public float lastAttackTime;
     public bool isAttacking = false;
+    public bool appliesDarkness;
+    private float darknessDuration = 120;
     public float cDR = 0f;
     public float armorPen = 0f;
     public float regen = 0f;
@@ -269,6 +271,14 @@ public class BasePlayerController : NetworkBehaviour
     private protected void Update()
     {
         if (!IsOwner) return;
+        if(appliesDarkness && darknessDuration > 0)
+        {
+            darknessDuration -= Time.deltaTime;
+        } else if(appliesDarkness && darknessDuration <= 0)
+        {
+            appliesDarkness = false;
+            darknessDuration = 120;
+        }
         if (isDead.Value) return;
         SyncStats(); //Takes the base value of each stat, and adds whatever the current buff/debuff is
         // Get input and store it in playerInput
@@ -494,6 +504,10 @@ public class BasePlayerController : NetworkBehaviour
         {
             Debug.Log("9");
             target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
+            if(appliesDarkness && target.GetComponent<Health>().darknessEffect == false)
+            {
+                health.InflictBuffServerRpc(target, "Darkness", -1, 5, true);
+            }
         }
         else
         {
@@ -668,6 +682,11 @@ public class BasePlayerController : NetworkBehaviour
         {
             SpeedBuff.Value -= BaseSpeed.Value;
         }
+        if (buffType == "Darkness")
+        {
+            SpeedBuff.Value += amount;
+            health.darknessEffect = true;
+        }
         StatChangeClientRpc(buffType, amount);
         if (hasDuration)
         {
@@ -741,6 +760,11 @@ public class BasePlayerController : NetworkBehaviour
         if (buffType == "Immobilized")
         {
             SpeedBuff.Value += BaseSpeed.Value;
+        }
+        if (buffType == "Darkness")
+        {
+            SpeedBuff.Value -= amount;
+            health.darknessEffect = false;
         }
         StatChangeClientRpc(buffType, -amount);
     }

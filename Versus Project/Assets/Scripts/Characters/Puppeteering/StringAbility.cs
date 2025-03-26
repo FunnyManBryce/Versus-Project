@@ -51,8 +51,14 @@ public class StringAbility : NetworkBehaviour
                 {
                     Debug.Log("Damage Triggering");
                     collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Immobilized", 0f, 0.5f, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Marked", markAmount, 5f, true);
+                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
+                    {
+                        collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -2, 5f, true);
+                    }
                 }
-                if (collider.GetComponent<BasePlayerController>() != null)
+                /*if (collider.GetComponent<BasePlayerController>() != null)
                 {
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f, true);
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Marked", markAmount, 5f, true);
@@ -92,7 +98,7 @@ public class StringAbility : NetworkBehaviour
                 if (!sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll && collider.GetComponent<Tower>() != null)
                 {
                     collider.GetComponent<Tower>().TriggerBuffServerRpc("Marked", markAmount, 5f);
-                }
+                }*/
             }
         }
     }
@@ -114,6 +120,38 @@ public class StringAbility : NetworkBehaviour
         else
         {
             return false;
+        }
+    }
+
+    [ServerRpc]
+    public void InflictBuffServerRpc(NetworkObjectReference Target, string buffType, float amount, float duration, bool hasDuration)
+    {
+        if (Target.TryGet(out NetworkObject targetObj))
+        {
+            if (targetObj.GetComponent<BasePlayerController>() != null)
+            {
+                targetObj.GetComponent<BasePlayerController>().TriggerBuffServerRpc(buffType, amount, duration, hasDuration);
+            }
+            if (targetObj.GetComponent<MeleeMinion>() != null)
+            {
+                targetObj.GetComponent<MeleeMinion>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<Puppet>() != null)
+            {
+                targetObj.GetComponent<Puppet>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<JungleEnemy>() != null)
+            {
+                targetObj.GetComponent<JungleEnemy>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<Tower>() != null)
+            {
+                targetObj.GetComponent<Tower>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
+            if (targetObj.GetComponent<MidBoss>() != null)
+            {
+                targetObj.GetComponent<MidBoss>().TriggerBuffServerRpc(buffType, amount, duration);
+            }
         }
     }
 }

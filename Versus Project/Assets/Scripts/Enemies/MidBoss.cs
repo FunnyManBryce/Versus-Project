@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class MidBoss : NetworkBehaviour
     public float cooldownDuration;
     private float currentCooldown;
 
+
+    public float armorPen = 5;
     public float projDamage;
     public float slamDamage;
     public float AOEDamage;
@@ -129,10 +132,16 @@ public class MidBoss : NetworkBehaviour
                     {
                         if (attacker.tag == "Player" || attacker.tag == "Puppet")
                         {
-
                             attacker.GetComponent<BasePlayerController>().XP.Value += XPGiven;
                             attacker.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
-                            //Special effect for killing midboss
+                            attacker.GetComponent<BasePlayerController>().appliesDarkness = true;
+                        }
+                        else if(attacker.tag == "Puppet")
+                        {
+                            attacker = attacker.GetComponent<Puppet>().Father.GetComponent<NetworkObject>();
+                            attacker.GetComponent<BasePlayerController>().XP.Value += XPGiven;
+                            attacker.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
+                            attacker.GetComponent<BasePlayerController>().appliesDarkness = true;
                         }
                     }
                     gameObject.GetComponent<NetworkObject>().Despawn();
@@ -177,7 +186,7 @@ public class MidBoss : NetworkBehaviour
         {
             if (collider.GetComponent<Health>() != null && collider.tag != "JungleEnemy" && collider.isTrigger)
             {
-                collider.GetComponent<Health>().TakeDamageServerRPC(slamDamage, networkBoss, 10, false);
+                collider.GetComponent<Health>().TakeDamageServerRPC(slamDamage, networkBoss, armorPen + 5, false);
             }
         }
         onCooldown = true;
@@ -190,7 +199,7 @@ public class MidBoss : NetworkBehaviour
             NetworkObject netObj = projectile.GetComponent<NetworkObject>();
             netObj.Spawn();
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
-            controller.Initialize(18, projDamage, lameManager.playerTwoChar.GetComponent<NetworkObject>(), networkBoss, 5);
+            controller.Initialize(18, projDamage, lameManager.playerTwoChar.GetComponent<NetworkObject>(), networkBoss, armorPen);
         }
         else if (distanceFromPTwo.magnitude > distanceFromPOne.magnitude)
         {
@@ -198,7 +207,7 @@ public class MidBoss : NetworkBehaviour
             NetworkObject netObj = projectile.GetComponent<NetworkObject>();
             netObj.Spawn();
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
-            controller.Initialize(18, projDamage, lameManager.playerOneChar.GetComponent<NetworkObject>(), networkBoss, 5);
+            controller.Initialize(18, projDamage, lameManager.playerOneChar.GetComponent<NetworkObject>(), networkBoss, armorPen);
         }
         //Make target closest player probably through circle thingy
         onCooldown = true;
@@ -237,6 +246,83 @@ public class MidBoss : NetworkBehaviour
             minionsAlive++;
         }
         onCooldown = true;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void TriggerBuffServerRpc(string buffType, float amount, float duration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
+    {
+        if (buffType == "Attack Damage")
+        {
+            AOEDamage += amount;
+            projDamage += amount;
+            slamDamage += amount;
+        }
+        if (buffType == "Armor")
+        {
+            health.armor += amount;
+            if (health.armor <= 1f)
+            {
+                amount = -health.armor + 1f + amount;
+                health.armor = 1f;
+            }
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen += amount;
+            if (armorPen <= 1f)
+            {
+                amount = -armorPen + 1f + amount;
+                armorPen = 1f;
+            }
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            cooldownDuration -= amount;
+            if (cooldownDuration <= 0.1f)
+            {
+                amount = -cooldownDuration + 0.1f + amount;
+                cooldownDuration = 0.1f;
+            }
+        }
+        if (buffType == "Marked")
+        {
+            health.markedValue += amount;
+        }
+        IEnumerator coroutine = BuffDuration(buffType, amount, duration);
+        StartCoroutine(coroutine);
+    }
+
+    public IEnumerator BuffDuration(string buffType, float amount, float duration) //Waits a bit before changing stats back to default
+    {
+        yield return new WaitForSeconds(duration);
+        BuffEndServerRpc(buffType, amount, duration);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void BuffEndServerRpc(string buffType, float amount, float duration) //changes stat to what it was before
+    {
+        if (buffType == "Marked")
+        {
+            health.markedValue -= amount;
+        }
+        if (buffType == "Attack Damage")
+        {
+            AOEDamage -= amount;
+            projDamage -= amount;
+            slamDamage -= amount;
+        }
+        if (buffType == "Armor")
+        {
+            health.armor -= amount;
+        }
+        if (buffType == "Armor Pen")
+        {
+            armorPen -= amount;
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            cooldownDuration += amount;
+        }
     }
 
 }

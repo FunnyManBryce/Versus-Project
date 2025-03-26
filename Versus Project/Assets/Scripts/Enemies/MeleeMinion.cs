@@ -374,6 +374,11 @@ public class MeleeMinion : NetworkBehaviour
             amount = moveSpeed;
             moveSpeed = 0;
         }
+        if (buffType == "Darkness")
+        {
+            moveSpeed += amount;
+            health.darknessEffect = true;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
     }
@@ -414,6 +419,11 @@ public class MeleeMinion : NetworkBehaviour
         if (buffType == "Auto Attack Speed")
         {
             cooldownLength += amount;
+        }
+        if (buffType == "Darkness")
+        {
+            moveSpeed -= amount;
+            health.darknessEffect = false;
         }
     }
 
