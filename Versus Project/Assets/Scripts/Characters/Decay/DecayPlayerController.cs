@@ -26,6 +26,8 @@ public class DecayPlayerController : BasePlayerController
     public float shockWaveDuration = 2f;
     public bool immobilizeShockwave = false;
 
+    public RuntimeAnimatorController UltAnimator;
+    public RuntimeAnimatorController NormalAnimator;
     public float ultimateDuration = 10;
     public bool ultSpeedIncrease = false;
     private NetworkObject ultTarget;
@@ -40,7 +42,7 @@ public class DecayPlayerController : BasePlayerController
         base.Awake();
         AOE.activateAbility = AbilityOneAnimation;
         Shockwave.activateAbility = AbilityTwoAnimation;
-        Ultimate.activateAbility = UltimateServerRpc;
+        Ultimate.activateAbility = UltimateAnimation;
         AOE.abilityLevelUp = AOELevelUp;
         Shockwave.abilityLevelUp = ShockwaveLevelUp;
         Ultimate.abilityLevelUp = UltimateLevelUp;
@@ -73,6 +75,12 @@ public class DecayPlayerController : BasePlayerController
         AOEServerRpc();
     }
 
+    public void UltimateHostCheck()
+    {
+        if (!IsOwner) return;
+        UltimateServerRpc();
+    }
+
     [Rpc(SendTo.Server)]
     public void ShockwaveServerRpc()
     {
@@ -89,8 +97,11 @@ public class DecayPlayerController : BasePlayerController
     public void UltimateServerRpc()
     {
         Debug.Log("Ult is happening!");
+        animator.runtimeAnimatorController = UltAnimator;
+        IEnumerator coroutine = UltimateDuration();
+        StartCoroutine(coroutine);
         Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 6);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 10);
         foreach (var collider in hitColliders)
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
@@ -115,6 +126,12 @@ public class DecayPlayerController : BasePlayerController
         {
             TriggerBuffServerRpc("Speed", 2f, ultimateDuration, true);
         }
+    }
+
+    public IEnumerator UltimateDuration() 
+    {
+        yield return new WaitForSeconds(ultimateDuration);
+        animator.runtimeAnimatorController = NormalAnimator;
     }
 
     new private void Update()
@@ -325,7 +342,7 @@ public class DecayPlayerController : BasePlayerController
         }
         if (Ultimate.abilityLevel == 4)
         {
-            ultimateDuration += 2.5f;
+            ultimateDuration += 5;
         }
         if (Ultimate.abilityLevel == 5)
         {

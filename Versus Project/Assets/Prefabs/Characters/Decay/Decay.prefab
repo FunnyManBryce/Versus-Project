@@ -557,7 +557,9 @@ MonoBehaviour:
     type: 3}
   shockWaveDuration: 2
   immobilizeShockwave: 0
-  ultimateDuration: 10
+  UltAnimator: {fileID: 9100000, guid: d4e09627fa2266043a4273bc4bf46d04, type: 2}
+  NormalAnimator: {fileID: 9100000, guid: 255bf4f12ce881843b7a629ec6bc1d55, type: 2}
+  ultimateDuration: 15
   ultSpeedIncrease: 0
   AOE:
     playerController: {fileID: 2299055155951191650}
@@ -569,6 +571,7 @@ MonoBehaviour:
     abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
+    preventAbilityUse: 0
   Shockwave:
     playerController: {fileID: 2299055155951191650}
     inputKey: 101
@@ -579,6 +582,7 @@ MonoBehaviour:
     abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
+    preventAbilityUse: 0
   Ultimate:
     playerController: {fileID: 2299055155951191650}
     inputKey: 114
@@ -589,6 +593,7 @@ MonoBehaviour:
     abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
+    preventAbilityUse: 0
 --- !u!212 &176950742428784287
 SpriteRenderer:
   m_ObjectHideFlags: 0
