@@ -1,0 +1,678 @@
+fileFormatVersion: 2
+guid: 4c408497a270bf84ebe8def69c98004f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5813487302437019223
+    second: Enemy-02_0
+  - first:
+      213: -2542187572787109016
+    second: Enemy-02_1
+  - first:
+      213: -2596352581190433879
+    second: Enemy-02_2
+  - first:
+      213: 6140730153351387050
+    second: Enemy-02_3
+  - first:
+      213: -5777513928219052305
+    second: Enemy-02_4
+  - first:
+      213: 1394861239657731815
+    second: Enemy-02_5
+  - first:
+      213: -2160535399637304726
+    second: Enemy-02_6
+  - first:
+      213: 6582793816671966158
+    second: Enemy-02_7
+  - first:
+      213: -5390737982718000312
+    second: Enemy-02_8
+  - first:
+      213: 7021516224976056336
+    second: Enemy-02_9
+  - first:
+      213: 5846315126626787011
+    second: Enemy-02_10
+  - first:
+      213: 1304512128043958938
+    second: Enemy-02_11
+  - first:
+      213: 1827100971159215531
+    second: Enemy-02_12
+  - first:
+      213: 8030152912889910852
+    second: Enemy-02_13
+  - first:
+      213: 6304079462029418819
+    second: Enemy-02_14
+  - first:
+      213: 7937930977868123104
+    second: Enemy-02_15
+  - first:
+      213: -6302437191834412045
+    second: Enemy-02_16
+  - first:
+      213: -3744352611610830718
+    second: Enemy-02_17
+  - first:
+      213: -4793654406067631382
+    second: Enemy-02_18
+  - first:
+      213: -8248710779478959511
+    second: Enemy-02_19
+  - first:
+      213: -4468480622115209244
+    second: Enemy-02_20
+  - first:
+      213: 1523550716271576967
+    second: Enemy-02_21
+  - first:
+      213: 2023438895195317710
+    second: Enemy-02_22
+  - first:
+      213: -809348130034250422
+    second: Enemy-02_23
+  - first:
+      213: 1738052451319740828
+    second: Enemy-02_24
+  - first:
+      213: 1302537068268991644
+    second: Enemy-02_25
+  - first:
+      213: 8509494685323974152
+    second: Enemy-02_26
+  - first:
+      213: 2470044631482769321
+    second: Enemy-02_27
+  - first:
+      213: -1596298643985199631
+    second: Enemy-02_28
+  - first:
+      213: -5347903785697424687
+    second: Enemy-02_29
+  - first:
+      213: 7790922885984422724
+    second: Enemy-02_30
+  - first:
+      213: 8588450205844926684
+    second: Enemy-02_31
+  - first:
+      213: -6922180615499763378
+    second: Enemy-02_32
+  - first:
+      213: 187577692639597358
+    second: Enemy-02_33
+  - first:
+      213: 6186916780734290560
+    second: Enemy-02_34
+  - first:
+      213: 1955551009607506905
+    second: Enemy-02_35
+  - first:
+      213: 3092998218595913874
+    second: Enemy-02_36
+  - first:
+      213: 1116118497484289238
+    second: Enemy-02_37
+  - first:
+      213: 3628524805689007747
+    second: Enemy-02_38
+  - first:
+      213: 7679500721434817984
+    second: Enemy-02_39
+  - first:
+      213: 8164132518655177983
+    second: Enemy-02_40
+  - first:
+      213: -5072115808447429377
+    second: Enemy-02_41
+  - first:
+      213: 2539387146413626710
+    second: Enemy-02_42
+  - first:
+      213: 5277108646549785741
+    second: Enemy-02_43
+  - first:
+      213: 5624505744287026732
+    second: Enemy-02_44
+  - first:
+      213: 2625041125949325650
+    second: Enemy-02_45
+  - first:
+      213: -8632488338719704442
+    second: Enemy-02_46
+  - first:
+      213: -7435223826777784378
+    second: Enemy-02_47
+  - first:
+      213: 1133034973355184227
+    second: Enemy-02_48
+  - first:
+      213: 7778622217727062186
+    second: Enemy-02_49
+  - first:
+      213: -5002727815254128137
+    second: Enemy-02_50
+  - first:
+      213: -8221087793836228346
+    second: Enemy-02_51
+  - first:
+      213: -4445893027357674133
+    second: Enemy-02_52
+  - first:
+      213: 3601015148393101401
+    second: Enemy-02_53
+  - first:
+      213: -1366295700522966388
+    second: Enemy-02_54
+  - first:
+      213: 5726828556884958774
+    second: Enemy-02_55
+  - first:
+      213: -3827514551121774348
+    second: Enemy-02_56
+  - first:
+      213: -5599315999334134294
+    second: Enemy-02_57
+  - first:
+      213: 3335421046688000041
+    second: Enemy-02_58
+  - first:
+      213: -4441845874841081512
+    second: Enemy-02_59
+  - first:
+      213: -8094850333471187933
+    second: Enemy-02_60
+  - first:
+      213: 3664296360539115697
+    second: Enemy-02_61
+  - first:
+      213: -4886720836979935443
+    second: Enemy-02_62
+  - first:
+      213: 1619139284057286241
+    second: Enemy-02_63
+  - first:
+      213: -7541502754797432376
+    second: Enemy-02_64
+  - first:
+      213: -5382653575367899191
+    second: Enemy-02_65
+  - first:
+      213: 2602556047938929346
+    second: Enemy-02_66
+  - first:
+      213: 6110344813273803228
+    second: Enemy-02_67
+  - first:
+      213: -2507721973218532711
+    second: Enemy-02_68
+  - first:
+      213: 992100309482445918
+    second: Enemy-02_69
+  - first:
+      213: -8564912270624152325
+    second: Enemy-02_70
+  - first:
+      213: 3539330936902393547
+    second: Enemy-02_71
+  - first:
+      213: 8123339117128798446
+    second: Enemy-02_72
+  - first:
+      213: 8453537730247206006
+    second: Enemy-02_73
+  - first:
+      213: 928831280171354563
+    second: Enemy-02_74
+  - first:
+      213: 2884949211464182388
+    second: Enemy-02_75
+  - first:
+      213: 824270479590974499
+    second: Enemy-02_76
+  - first:
+      213: 7460612170324534398
+    second: Enemy-02_77
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Enemy-02_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a16fff7918525fa0800000000000000
+      internalID: -5813487302437019223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 863ac932fd558bcd0800000000000000
+      internalID: -2542187572787109016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a3c97e5517e7fbd0800000000000000
+      internalID: -2596352581190433879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa71a0c1a81483550800000000000000
+      internalID: 6140730153351387050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe6b1af51b522dfa0800000000000000
+      internalID: -5777513928219052305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e692cc38ea8b5310800000000000000
+      internalID: 1394861239657731815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_6
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6a36f3408c3402e0800000000000000
+      internalID: -2160535399637304726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_7
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec3de506918ca5b50800000000000000
+      internalID: 6582793816671966158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_8
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84343e6bd504035b0800000000000000
+      internalID: -5390737982718000312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_9
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 010f6561ecf617160800000000000000
+      internalID: 7021516224976056336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_10
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ce159fe1a8422150800000000000000
+      internalID: 5846315126626787011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_11
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a92cf3d6ede8a1210800000000000000
+      internalID: 1304512128043958938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_12
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bad57b227aa2b5910800000000000000
+      internalID: 1827100971159215531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_13
+      rect:
+        serializedVersion: 2
+        x: 2080
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4461fd85785d07f60800000000000000
+      internalID: 8030152912889910852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-02_14
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 341691aced69c7750800000000000000
+      internalID: 6304079462029418819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 4dc3e256dd373b541978d60e4e92923c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Enemy-02_0: -5813487302437019223
+      Enemy-02_1: -2542187572787109016
+      Enemy-02_10: 5846315126626787011
+      Enemy-02_11: 1304512128043958938
+      Enemy-02_12: 1827100971159215531
+      Enemy-02_13: 8030152912889910852
+      Enemy-02_14: 6304079462029418819
+      Enemy-02_2: -2596352581190433879
+      Enemy-02_3: 6140730153351387050
+      Enemy-02_4: -5777513928219052305
+      Enemy-02_5: 1394861239657731815
+      Enemy-02_6: -2160535399637304726
+      Enemy-02_7: 6582793816671966158
+      Enemy-02_8: -5390737982718000312
+      Enemy-02_9: 7021516224976056336
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

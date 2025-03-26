@@ -132,6 +132,7 @@ public class DecayPlayerController : BasePlayerController
     public IEnumerator UltimateDuration() 
     {
         yield return new WaitForSeconds(ultimateDuration);
+        yield return new WaitUntil(() => (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false));
         animator.runtimeAnimatorController = NormalAnimator;
         UltEndAnimChangeClientRpc();
     }
