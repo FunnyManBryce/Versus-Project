@@ -6,7 +6,7 @@ using UnityEngine.AI;
 //***********************************************************************************
 namespace NavMeshPlus.Extensions
 {
-    public class RotateAgentInstantly: IAgentOverride
+    public class RotateAgentInstantly : IAgentOverride
     {
 
         public RotateAgentInstantly(NavMeshAgent agent, AgentOverride2d owner)

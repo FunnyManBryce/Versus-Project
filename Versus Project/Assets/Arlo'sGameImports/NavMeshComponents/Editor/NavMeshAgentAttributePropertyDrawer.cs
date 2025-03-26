@@ -1,7 +1,7 @@
+using NavMeshPlus.Editors.Components;
+using NavMeshPlus.Extensions;
 using UnityEditor;
 using UnityEngine;
-using NavMeshPlus.Extensions;
-using NavMeshPlus.Editors.Components;
 
 //***********************************************************************************
 // Contributed by author jl-randazzo github.com/jl-randazzo

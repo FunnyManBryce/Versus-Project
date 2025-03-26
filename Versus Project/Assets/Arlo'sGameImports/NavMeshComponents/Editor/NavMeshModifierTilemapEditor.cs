@@ -1,12 +1,7 @@
 using NavMeshPlus.Components;
-using NavMeshPlus.Extensions;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 using UnityEditor;
-using UnityEditor.UIElements;
-using UnityEditor.AI;
-using UnityEngine.AI;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 //***********************************************************************************

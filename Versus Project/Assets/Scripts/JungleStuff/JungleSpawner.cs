@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class JungleSpawner : NetworkBehaviour
 {
@@ -17,10 +15,11 @@ public class JungleSpawner : NetworkBehaviour
     void Update()
     {
         if (!IsServer) return;
-        if(!isSpawnedEnemyAlive && spawnTimer < spawnTimerEnd)
+        if (!isSpawnedEnemyAlive && spawnTimer < spawnTimerEnd)
         {
             spawnTimer += Time.deltaTime;
-        } else if(spawnTimer >= spawnTimerEnd && !isSpawnedEnemyAlive)
+        }
+        else if (spawnTimer >= spawnTimerEnd && !isSpawnedEnemyAlive)
         {
             isSpawnedEnemyAlive = true;
             SpawnEnemyServerRPC();

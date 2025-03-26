@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.AI;
-using Unity.Services.Relay;
 
 public class MeleeMinion : NetworkBehaviour
 {
@@ -86,7 +84,8 @@ public class MeleeMinion : NetworkBehaviour
                     aggro = true;
                     aggroTimer = 0;
                     playerLastHit = true;
-                } else
+                }
+                else
                 {
                     playerLastHit = false;
                 }
@@ -104,11 +103,11 @@ public class MeleeMinion : NetworkBehaviour
                     {
                         lameManager.teamTwoMinions.Remove(Minion);
                     }
-                    if(playerLastHit)
+                    if (playerLastHit)
                     {
                         enemyPlayer.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
                     }
-                    if(distanceFromPlayer.magnitude < XPRange)
+                    if (distanceFromPlayer.magnitude < XPRange)
                     {
                         enemyPlayer.GetComponent<BasePlayerController>().XP.Value += XPGiven;
                     }
@@ -135,7 +134,7 @@ public class MeleeMinion : NetworkBehaviour
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
             cooldownTimer += Time.deltaTime;
-            if(isRanged)
+            if (isRanged)
             {
                 agent.speed = 0;
             }
@@ -154,7 +153,7 @@ public class MeleeMinion : NetworkBehaviour
             aggro = false;
             aggroTimer = 0;
         }
-        if (Team == 1) 
+        if (Team == 1)
         {
             enemyTower = lameManager.teamTwoTowers[lameManager.teamTwoTowersLeft.Value];
             towerTarget = lameManager.teamTwoTowers[lameManager.teamTwoTowersLeft.Value].transform;
@@ -217,7 +216,7 @@ public class MeleeMinion : NetworkBehaviour
         }
         else if (distanceFromPlayer.magnitude < chasePlayerDistance && aggro == false || aggro == true)
         {
-            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0) 
+            if (enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
             {
                 oldTarget = new Vector3(1000, 1000, 0);
                 foreach (GameObject puppet in enemyPlayer.GetComponent<PuppeteeringPlayerController>().PuppetList)
@@ -231,14 +230,15 @@ public class MeleeMinion : NetworkBehaviour
                     }
                 }
             }
-            if(distanceFromPlayer.magnitude > distanceFromPuppet.magnitude && enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
+            if (distanceFromPlayer.magnitude > distanceFromPuppet.magnitude && enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
             {
                 distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPuppet.transform.position.x, minionTarget.position.y - enemyPuppet.transform.position.y, 0);
                 agent.SetDestination(enemyPuppet.transform.position);
                 distanceFromTarget = distanceFromPlayer;
                 currentTarget = enemyPuppet.GetComponent<NetworkObject>();
 
-            } else
+            }
+            else
             {
                 distanceFromPlayer = new Vector3(minionTarget.position.x - enemyPlayer.transform.position.x, minionTarget.position.y - enemyPlayer.transform.position.y, 0);
                 agent.SetDestination(enemyPlayer.transform.position);
@@ -252,7 +252,7 @@ public class MeleeMinion : NetworkBehaviour
             agent.speed = 0;
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
-            if(!isRanged)
+            if (!isRanged)
             {
                 //Melee sound effect
                 bAM.PlayServerRpc("Melee Minion Slash", Minion.transform.position);
@@ -265,7 +265,7 @@ public class MeleeMinion : NetworkBehaviour
     {
         if (currentTarget != null)
         {
-            if(isRanged)
+            if (isRanged)
             {
                 SpawnProjectileServerRpc(Damage, currentTarget, networkMinion);
                 //Ranged sound effect

@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Unity.Netcode;
-using static UnityEngine.GraphicsBuffer;
 using System.Linq;
-using System;
+using Unity.Netcode;
+using UnityEngine;
 
 public class PuppeteeringPlayerController : BasePlayerController
 {
@@ -63,7 +60,7 @@ public class PuppeteeringPlayerController : BasePlayerController
         String.AttemptUse();
         ModeSwitch.AttemptUse();
         Ultimate.AttemptUse();
-        if(ultActive.Value == true)
+        if (ultActive.Value == true)
         {
             float currentTime = lameManager.matchTimer.Value;
             if (currentTime - lastUltTime.Value >= ultimateDuration)
@@ -78,14 +75,15 @@ public class PuppeteeringPlayerController : BasePlayerController
             {
                 PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
             }
-        } else if (puppetsAlive.Value > 0)
+        }
+        else if (puppetsAlive.Value > 0)
         {
-            if(currentTarget != null)
+            if (currentTarget != null)
             {
                 SyncPuppetValuesServerRpc(currentTarget);
             }
-        } 
-        if(puppetsAlive.Value > maxPuppets.Value)
+        }
+        if (puppetsAlive.Value > maxPuppets.Value)
         {
             PuppetDespawnServerRpc();
         }
@@ -114,11 +112,11 @@ public class PuppeteeringPlayerController : BasePlayerController
                 currentTarget = null;
                 transform.position = new Vector3(-420, -69, 0);
                 StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
-                if(IsServer)
+                if (IsServer)
                 {
                     maxPuppets.Value = 1;
                 }
-                if(puppetsAlive.Value >= 1)
+                if (puppetsAlive.Value >= 1)
                 {
                     foreach (var puppet in PuppetList)
                     {
@@ -217,7 +215,7 @@ public class PuppeteeringPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void PuppetSpawnServerRpc(int team, float damage, float speed, string spawnType)
     {
-        if(puppetsAlive.Value < maxPuppets.Value && !isDead.Value)
+        if (puppetsAlive.Value < maxPuppets.Value && !isDead.Value)
         {
             puppetsAlive.Value++;
             GameObject currentPuppet = Instantiate(puppetPrefab, gameObject.transform.position, Quaternion.identity);
@@ -235,7 +233,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             puppet.health.maxHealth.Value = puppetStartingHealth + (25 * Level.Value);
             if (spawnType == "ModeSwitch")
             {
-                puppet.health.currentHealth.Value = puppet.health.maxHealth.Value * ((lameManager.matchTimer.Value - puppetDeathTime.Value)/puppetRespawnLength);
+                puppet.health.currentHealth.Value = puppet.health.maxHealth.Value * ((lameManager.matchTimer.Value - puppetDeathTime.Value) / puppetRespawnLength);
             }
             else
             {
@@ -243,14 +241,15 @@ public class PuppeteeringPlayerController : BasePlayerController
             }
             var puppetNetworkObject = currentPuppet.GetComponent<NetworkObject>();
             puppetNetworkObject.Spawn();
-            if(spawnType == "ultSpawn" && puppetsAlive.Value > 1)
+            if (spawnType == "ultSpawn" && puppetsAlive.Value > 1)
             {
                 puppet.defensiveMode = !PuppetList[0].GetComponent<Puppet>().defensiveMode;
-                if(ultInvuln)
+                if (ultInvuln)
                 {
                     puppet.TriggerBuffServerRpc("Invulnerability", 0, 3);
                 }
-            } else 
+            }
+            else
             {
                 puppet.defensiveMode = false;
             }
@@ -281,7 +280,7 @@ public class PuppeteeringPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void PuppetModeSwitchServerRpc()
     {
-        foreach(GameObject puppet in PuppetList)
+        foreach (GameObject puppet in PuppetList)
         {
             puppet.GetComponent<Puppet>().defensiveMode = !puppet.GetComponent<Puppet>().defensiveMode;
             if (puppet.GetComponent<Puppet>().defensiveMode == true) //Switching to defensive mode buffs defense
@@ -302,7 +301,7 @@ public class PuppeteeringPlayerController : BasePlayerController
 
             }
         }
-        if(puppetsAlive.Value == 0)
+        if (puppetsAlive.Value == 0)
         {
             PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ModeSwitch");
         }
@@ -313,7 +312,7 @@ public class PuppeteeringPlayerController : BasePlayerController
     {
         maxPuppets.Value = 2;
         PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ultSpawn");
-        if(doubleUltSpawn && puppetsAlive.Value == 0)
+        if (doubleUltSpawn && puppetsAlive.Value == 0)
         {
             PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ultSpawn");
         }
@@ -324,7 +323,7 @@ public class PuppeteeringPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void UltEndServerRpc()
     {
-        if(ultActive.Value == true)
+        if (ultActive.Value == true)
         {
             ultActive.Value = false;
             maxPuppets.Value = 1;

@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 
 public class Tower : NetworkBehaviour
@@ -90,7 +89,7 @@ public class Tower : NetworkBehaviour
             {
                 health.invulnerable = false;
             }
-            if(lameManager.playerOneChar != null)
+            if (lameManager.playerOneChar != null)
             {
                 enemyPlayer = lameManager.playerOneChar;
             }
@@ -108,10 +107,11 @@ public class Tower : NetworkBehaviour
             }
         }
         //animator.SetBool("Attacking", isAttacking);
-        if(enemyPlayer != null)
+        if (enemyPlayer != null)
         {
             distanceFromPlayer = new Vector3(towerTarget.position.x - enemyPlayer.transform.position.x, towerTarget.position.y - enemyPlayer.transform.position.y, 0);
-        } else
+        }
+        else
         {
             distanceFromPlayer = new Vector3(1000, 1000, 1000);
         }
@@ -175,7 +175,7 @@ public class Tower : NetworkBehaviour
         {
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
-            if(currentTarget.tag == "Player" || currentTarget.tag == "Puppet")
+            if (currentTarget.tag == "Player" || currentTarget.tag == "Puppet")
             {
                 bAM.PlayServerRpc("Tower Alert", tower.transform.position);
                 bAM.PlayClientRpc("Tower Alert", tower.transform.position);
@@ -220,7 +220,7 @@ public class Tower : NetworkBehaviour
     {
         if (currentTarget != null)
         {
-            if(currentTarget.GetComponent<MeleeMinion>() != null)
+            if (currentTarget.GetComponent<MeleeMinion>() != null)
             {
                 float minionDamage = currentTarget.GetComponent<MeleeMinion>().health.maxHealth.Value * 0.75f;
                 Debug.Log(minionDamage);

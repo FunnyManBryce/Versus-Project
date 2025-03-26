@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using Unity.Netcode;
 using UnityEngine;
-using Unity.Netcode;
 
 public class MidbossCircles : NetworkBehaviour
 {
@@ -37,5 +33,5 @@ public class MidbossCircles : NetworkBehaviour
         }
     }
 
-    
+
 }

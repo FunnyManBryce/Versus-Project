@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class KnockbackFeedback : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb2d;
-    
+
     [SerializeField] float strength = 16, delay = 0.15f;
     public UnityEvent OnBegin, OnDone;
 

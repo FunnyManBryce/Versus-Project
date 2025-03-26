@@ -1,9 +1,5 @@
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class EnemyHealthBar : MonoBehaviour
 {
@@ -69,7 +65,7 @@ public class EnemyHealthBar : MonoBehaviour
         {
             healthSlider.maxValue = newMaxHealth;
         }
-        UpdateHealthBar(0,health.currentHealth.Value);
+        UpdateHealthBar(0, health.currentHealth.Value);
     }
 
     private void UpdateHealthBar(float previousHealth, float newHealth)
@@ -84,16 +80,16 @@ public class EnemyHealthBar : MonoBehaviour
 
     void Update()
     {
-        if(initializedHealth == false && health.initialValuesSynced == true)
+        if (initializedHealth == false && health.initialValuesSynced == true)
         {
             InitializeHealthBar();
             initializedHealth = true;
         }
-        if(Object == null)
+        if (Object == null)
         {
             Destroy(healthBar);
-        } 
-        if(objPosition != null)
+        }
+        if (objPosition != null)
         {
             healthBar.transform.position = new Vector3(objPosition.position.x, objPosition.position.y + offset, objPosition.position.z);
         }

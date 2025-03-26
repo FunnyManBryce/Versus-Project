@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class Health : NetworkBehaviour
 {
@@ -20,7 +18,7 @@ public class Health : NetworkBehaviour
     public NetworkObjectReference lastAttacker;
     public override void OnNetworkSpawn()
     {
-        if(IsServer && healthSetManual == false)
+        if (IsServer && healthSetManual == false)
         {
             maxHealth.Value = startingMaxHealth;
             currentHealth.Value = startingMaxHealth;
@@ -29,25 +27,26 @@ public class Health : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender, float armorPen, bool reducedNPCDamage) 
+    public void TakeDamageServerRPC(float damage, NetworkObjectReference sender, float armorPen, bool reducedNPCDamage)
     {
         lastAttacker = sender;
-        if(invulnerable == false)
+        if (invulnerable == false)
         {
             if (sender.TryGet(out NetworkObject attacker))
             {
-                if(markedValue != 1f)
+                if (markedValue != 1f)
                 {
                     damage = damage * markedValue;
-                } 
+                }
                 float effectiveArmor = armor * (1 - (attacker != null ? armorPen / 100f : 0f));
                 float damageReduction = 100f - (10000f / (100f + effectiveArmor));
                 float reducedDamage = damage * (1f - (damageReduction / 100f));
 
-                if(isNPC && reducedNPCDamage)
+                if (isNPC && reducedNPCDamage)
                 {
-                    currentHealth.Value -= reducedDamage/2;
-                } else
+                    currentHealth.Value -= reducedDamage / 2;
+                }
+                else
                 {
                     currentHealth.Value -= reducedDamage;
                 }

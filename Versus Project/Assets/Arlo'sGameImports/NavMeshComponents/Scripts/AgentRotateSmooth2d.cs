@@ -2,7 +2,7 @@
 
 namespace NavMeshPlus.Extensions
 {
-    class AgentRotateSmooth2d: MonoBehaviour
+    class AgentRotateSmooth2d : MonoBehaviour
     {
         public float angularSpeed;
         private AgentOverride2d override2D;

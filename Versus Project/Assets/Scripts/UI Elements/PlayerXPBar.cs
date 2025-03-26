@@ -1,7 +1,6 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Unity.Netcode;
 
 public class PlayerXPBar : MonoBehaviour
 {

@@ -1,12 +1,11 @@
 ﻿using NavMeshPlus.Components;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace NavMeshPlus.Extensions
 {
-    public abstract class NavMeshExtension: MonoBehaviour
+    public abstract class NavMeshExtension : MonoBehaviour
     {
         public int Order { get; protected set; }
         public virtual void CollectSources(NavMeshSurface surface, List<NavMeshBuildSource> sources, NavMeshBuilderState navNeshState) { }

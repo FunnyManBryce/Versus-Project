@@ -1,7 +1,7 @@
+using NavMeshPlus.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using NavMeshPlus.Extensions;
 using UnityEngine.Tilemaps;
 
 //***********************************************************************************

@@ -7,7 +7,7 @@ using UnityEngine.AI;
 //***********************************************************************************
 namespace NavMeshPlus.Extensions
 {
-    public class RotateAgentSmoothly: IAgentOverride
+    public class RotateAgentSmoothly : IAgentOverride
     {
         public RotateAgentSmoothly(NavMeshAgent agent, AgentOverride2d owner, float rotateSpeed)
         {

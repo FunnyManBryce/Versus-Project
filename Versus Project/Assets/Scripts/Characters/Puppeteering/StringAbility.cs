@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 
 public class StringAbility : NetworkBehaviour
@@ -45,10 +43,11 @@ public class StringAbility : NetworkBehaviour
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                if(collider.gameObject.tag == "Tower" && !sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll || collider.gameObject.tag == "Inhibitor" && !sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll)
+                if (collider.gameObject.tag == "Tower" && !sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll || collider.gameObject.tag == "Inhibitor" && !sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll)
                 {
                     return;
-                } else
+                }
+                else
                 {
                     Debug.Log("Damage Triggering");
                     collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
@@ -57,7 +56,7 @@ public class StringAbility : NetworkBehaviour
                 {
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f, true);
                     collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Marked", markAmount, 5f, true);
-                    if(sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
+                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
                         collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -3, 5f, true);
                     }
@@ -92,7 +91,7 @@ public class StringAbility : NetworkBehaviour
                 }
                 if (!sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll && collider.GetComponent<Tower>() != null)
                 {
-                    collider.GetComponent<Tower>().TriggerBuffServerRpc("Marked", markAmount, 5f); 
+                    collider.GetComponent<Tower>().TriggerBuffServerRpc("Marked", markAmount, 5f);
                 }
             }
         }

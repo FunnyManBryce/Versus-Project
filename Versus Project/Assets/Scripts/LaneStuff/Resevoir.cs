@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class Resevoir : NetworkBehaviour
 {
@@ -19,7 +17,7 @@ public class Resevoir : NetworkBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(IsServer && other.tag == "Player" && other.GetComponent<BasePlayerController>().teamNumber.Value == Team)
+        if (IsServer && other.tag == "Player" && other.GetComponent<BasePlayerController>().teamNumber.Value == Team)
         {
             other.GetComponent<BasePlayerController>().resevoirRegen = true;
         }

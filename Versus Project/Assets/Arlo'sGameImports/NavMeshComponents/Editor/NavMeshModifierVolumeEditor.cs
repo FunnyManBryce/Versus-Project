@@ -1,11 +1,9 @@
-using UnityEditor.IMGUI.Controls;
-using UnityEditorInternal;
-using UnityEngine.AI;
-using UnityEngine;
-using NavMeshPlus.Extensions;
+using NavMeshPlus.Components;
 using UnityEditor;
 using UnityEditor.AI;
-using NavMeshPlus.Components;
+using UnityEditor.IMGUI.Controls;
+using UnityEditorInternal;
+using UnityEngine;
 
 namespace NavMeshPlus.Editors.Components
 {

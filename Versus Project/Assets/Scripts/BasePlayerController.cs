@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BasePlayerController : NetworkBehaviour
@@ -81,6 +79,10 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject healthBarPrefab;
     public GameObject manaBarPrefab;
     public GameObject xpBarPrefab;
+    public GameObject passiveCooldownBarPrefab;
+    public GameObject abilty1CooldownBarPrefab;
+    public GameObject abilty2CooldownBarPrefab;
+    public GameObject UltimateCooldownBarPrefab;
     public GameObject attackDamagePrefab;
     public GameObject attackSpeedDisplayPrefab;
     public GameObject attackRangeDisplayPrefab;
@@ -122,7 +124,7 @@ public class BasePlayerController : NetworkBehaviour
                 isDead.Value = true;
                 if (health.lastAttacker.TryGet(out NetworkObject attacker))
                 {
-                    if(attacker.GetComponent<BasePlayerController>() != null)
+                    if (attacker.GetComponent<BasePlayerController>() != null)
                     {
                         var enemyPlayer = attacker.GetComponent<BasePlayerController>();
                         enemyPlayer.XP.Value += Level.Value * 50; //Can change the amount given later
@@ -161,9 +163,9 @@ public class BasePlayerController : NetworkBehaviour
                 RegenBuff.Value = 0;
                 ManaRegenBuff.Value = 0;
                 SpeedBuff.Value = 0;
-                for(int i = 0; i < Buffs.Count; i++)
+                for (int i = 0; i < Buffs.Count; i++)
                 {
-                    if( Buffs[i] != null )
+                    if (Buffs[i] != null)
                     {
                         StopCoroutine(Buffs[i]);
                     }
@@ -198,6 +200,15 @@ public class BasePlayerController : NetworkBehaviour
                 GameObject xpBar = Instantiate(xpBarPrefab, playerCanvas.transform);
                 xpBar.GetComponent<PlayerXPBar>().enabled = true;
 
+                /*GameObject abilty1CooldownBar = Instantiate(abilty1CooldownBarPrefab, playerCanvas.transform);
+                abilty1CooldownBar.GetComponent<PlayerCooldownBars>().enabled = true;
+
+                GameObject abilty2CooldownBar = Instantiate(abilty2CooldownBarPrefab, playerCanvas.transform);
+                abilty2CooldownBar.GetComponent<PlayerCooldownBars>().enabled = true;
+
+                GameObject ultimateCooldownBar = Instantiate(UltimateCooldownBarPrefab, playerCanvas.transform);
+                ultimateCooldownBar.GetComponent<PlayerCooldownBars>().enabled = true;*/
+
                 GameObject AttackDisplay = Instantiate(attackDamagePrefab, playerCanvas.transform);
                 AttackDisplay.GetComponent<PlayerDamageDisplay>().enabled = true;
 
@@ -229,7 +240,7 @@ public class BasePlayerController : NetworkBehaviour
                 goldDisplay.GetComponent<PlayerGoldDisplay>().enabled = true;
             }
         }
-        if(!IsOwner)
+        if (!IsOwner)
         {
             GameObject healthBar = Instantiate(enemyHealthBarPrefab, GameObject.Find("Enemy UI Canvas").transform);
             HealthBar = healthBar;
@@ -249,7 +260,7 @@ public class BasePlayerController : NetworkBehaviour
     {
         playerInput = new Vector2(0, 0);
         lastAttackTime = -autoAttackSpeed;
-        if(IsServer)
+        if (IsServer)
         {
             LevelUpServerRPC();
         }
@@ -258,7 +269,7 @@ public class BasePlayerController : NetworkBehaviour
     private protected void Update()
     {
         if (!IsOwner) return;
-        if(isDead.Value) return;
+        if (isDead.Value) return;
         SyncStats(); //Takes the base value of each stat, and adds whatever the current buff/debuff is
         // Get input and store it in playerInput
         if (!isAttacking)
@@ -272,7 +283,7 @@ public class BasePlayerController : NetworkBehaviour
                 if (PlayerSprite != null)
                 {
                     PlayerSprite.flipX = true;
-                    if(IsServer)
+                    if (IsServer)
                     {
                         FlipSpriteClientRpc(true);
                     }
@@ -299,7 +310,8 @@ public class BasePlayerController : NetworkBehaviour
                 }
             }
             playerInput = moveDir.normalized;
-        } else if (isAttacking)
+        }
+        else if (isAttacking)
         {
             animator.SetBool("AutoAttack", true);
         }
@@ -309,7 +321,7 @@ public class BasePlayerController : NetworkBehaviour
             currentTarget = null;
             isAutoAttacking = false;
         }
-        if(currentTarget != null && currentTarget.GetComponent<BasePlayerController>() != null && currentTarget.GetComponent<BasePlayerController>().isDead.Value || currentTarget != null && isDead.Value)
+        if (currentTarget != null && currentTarget.GetComponent<BasePlayerController>() != null && currentTarget.GetComponent<BasePlayerController>().isDead.Value || currentTarget != null && isDead.Value)
         {
             currentTarget = null;
             isAutoAttacking = false;
@@ -491,11 +503,11 @@ public class BasePlayerController : NetworkBehaviour
     #endregion
     private void FixedUpdate()
     {
-        if(isDead.Value) return;
+        if (isDead.Value) return;
 
-        if(IsServer)
+        if (IsServer)
         {
-            if(resevoirRegen == true)
+            if (resevoirRegen == true)
             {
                 health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + (health.maxHealth.Value * 0.01f), health.maxHealth.Value);
             }
@@ -559,7 +571,7 @@ public class BasePlayerController : NetworkBehaviour
     {
         health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + regenAmount, health.maxHealth.Value);
     }
-   
+
     private void RegenMana(float regenAmount)
     {
         mana = Mathf.Min(mana + regenAmount, maxMana);
@@ -568,10 +580,11 @@ public class BasePlayerController : NetworkBehaviour
     [ServerRpc]
     public void FlipSpriteServerRpc(bool flip)
     {
-        if(flip)
+        if (flip)
         {
             PlayerSprite.flipX = true;
-        } else
+        }
+        else
         {
             PlayerSprite.flipX = false;
         }

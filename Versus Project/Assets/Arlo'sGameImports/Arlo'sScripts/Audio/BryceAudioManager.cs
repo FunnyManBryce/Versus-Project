@@ -1,8 +1,7 @@
-using UnityEngine.Audio;
 using System;
-using UnityEngine;
-using Unity.Netcode;
 using System.Collections.Generic;
+using Unity.Netcode;
+using UnityEngine;
 
 public class BryceAudioManager : NetworkBehaviour
 {
@@ -14,7 +13,7 @@ public class BryceAudioManager : NetworkBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        foreach(Sound s in sounds) 
+        foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             //volumeControl.audioSource.Add(s.source);
@@ -31,7 +30,7 @@ public class BryceAudioManager : NetworkBehaviour
     public void Update()
     {
         if (sourcesPlaying.Count <= 0) return;
-        for(int i = 0; i < sourcesPlaying.Count; i++)
+        for (int i = 0; i < sourcesPlaying.Count; i++)
         {
             if (!sourcesPlaying[i].isPlaying)
             {
@@ -92,7 +91,7 @@ public class BryceAudioManager : NetworkBehaviour
         sourcesPlaying.Add(audioSource);
     }
 
-    public void Stop (string name) 
+    public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Stop();

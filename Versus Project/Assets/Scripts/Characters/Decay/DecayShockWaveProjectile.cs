@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 
 public class DecayShockWaveProjectile : NetworkBehaviour
@@ -47,7 +45,7 @@ public class DecayShockWaveProjectile : NetworkBehaviour
         if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
         {
             collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
-            if(sender.GetComponent<DecayPlayerController>().immobilizeShockwave)
+            if (sender.GetComponent<DecayPlayerController>().immobilizeShockwave)
             {
                 if (collider.GetComponent<BasePlayerController>() != null)
                 {

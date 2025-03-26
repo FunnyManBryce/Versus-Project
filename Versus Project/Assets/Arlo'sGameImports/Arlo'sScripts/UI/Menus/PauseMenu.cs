@@ -35,12 +35,12 @@ public class PauseMenu : RestartScene
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(restartScene);
-        pauseMenu.SetActive(false); 
+        pauseMenu.SetActive(false);
     }
 
     public void Quit()
     {
         SceneManager.LoadScene(mainMenuScene);
-        Time.timeScale = 1; 
+        Time.timeScale = 1;
     }
 }

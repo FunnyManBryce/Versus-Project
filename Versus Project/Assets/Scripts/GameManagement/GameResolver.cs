@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameResolver : MonoBehaviour
@@ -11,14 +9,15 @@ public class GameResolver : MonoBehaviour
     void Start()
     {
         lameManager = FindObjectOfType<LameManager>();
-        if(lameManager.teamThatWon == 1)
+        if (lameManager.teamThatWon == 1)
         {
             TeamOneWon.SetActive(true);
-        } else
+        }
+        else
         {
             TeamTwoWoo.SetActive(true);
         }
     }
 
-   
+
 }

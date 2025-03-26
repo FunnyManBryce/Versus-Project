@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Netcode;
 using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NetworkManagerUI : NetworkBehaviour
 {
@@ -38,12 +36,14 @@ public class NetworkManagerUI : NetworkBehaviour
 
     private void Awake()
     {
-        hostButton.onClick.AddListener(() => { //Host button creates a lobby
+        hostButton.onClick.AddListener(() =>
+        { //Host button creates a lobby
             NetworkManager.Singleton.StartHost();
             QuitOption.SetActive(true);
             //lobbySelectionUI.SetActive(true); //For now let's only have a 1v1 mode. The code is in place to change this though
         });
-        clientButton.onClick.AddListener(() => { //Lobby button joins a lobby
+        clientButton.onClick.AddListener(() =>
+        { //Lobby button joins a lobby
             NetworkManager.Singleton.StartClient();
             QuitOption.SetActive(true);
         });
@@ -61,7 +61,7 @@ public class NetworkManagerUI : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         Debug.Log("NetworkSpawned");
-        if(IsServer)
+        if (IsServer)
         {
             playersReady.Value = 0;
             playerMaximum.Value = 2;
@@ -87,13 +87,13 @@ public class NetworkManagerUI : NetworkBehaviour
                 charSelectionUI.SetActive(true);
                 readyToStartUI.SetActive(false);
             }
-            if (playersReady.Value == playerMaximum.Value && IsServer == true) 
+            if (playersReady.Value == playerMaximum.Value && IsServer == true)
             {
-                readyToStart.Value = true; 
-            } 
+                readyToStart.Value = true;
+            }
             else if (playersReady.Value != playerMaximum.Value && IsServer == true)
             {
-                readyToStart.Value = false; 
+                readyToStart.Value = false;
             }
         };
         PlayerConnectedServerRPC();
@@ -103,15 +103,15 @@ public class NetworkManagerUI : NetworkBehaviour
         }
     }
 
-    private void Start() 
+    private void Start()
     {
         DontDestroyOnLoad(networkManagerUI);
         networkManagerScript.OnClientDisconnectCallback += PlayerDisconnectedServerRPC; //Makes it so PlayerDisconnectedServerRPC triggers whenever a client disconnects
     }
- 
+
     public void IPString(string s) //Sets IP to whatever is typed into the IP box
     {
-        networkManager.GetComponent<UnityTransport>().ConnectionData.Address = s; 
+        networkManager.GetComponent<UnityTransport>().ConnectionData.Address = s;
         Debug.Log(networkManager.GetComponent<UnityTransport>().ConnectionData.Address);
     }
 
@@ -123,16 +123,16 @@ public class NetworkManagerUI : NetworkBehaviour
     public void CharacterNumber(int charNumber)
     {
         characterNumber = charNumber;
-        foreach(GameObject character in characterInfoUI)
+        foreach (GameObject character in characterInfoUI)
         {
             character.SetActive(false);
         }
         characterInfoUI[charNumber].SetActive(true);
     }
 
-    public void ReadyUp() 
+    public void ReadyUp()
     {
-        if(Character != null) //Makes sure the player has selected a character before they're counted as ready
+        if (Character != null) //Makes sure the player has selected a character before they're counted as ready
         {
             ReadyUpServerRPC();
             charSelectionUI.SetActive(false);
@@ -151,7 +151,7 @@ public class NetworkManagerUI : NetworkBehaviour
         UnReadyUpServerRPC();
     }
 
-    public void Quit() 
+    public void Quit()
     {
         foreach (GameObject character in characterInfoUI)
         {
@@ -191,7 +191,7 @@ public class NetworkManagerUI : NetworkBehaviour
     [Rpc(SendTo.Server)] //sends info that a client has disconnected to the server. This is then syncronized accross all the clients, since that is how network variables work
     public void PlayerDisconnectedServerRPC(ulong clientID)
     {
-        if(serverQuitting == false)
+        if (serverQuitting == false)
         {
             totalPlayers.Value--;
             playersReady.Value = 0;
@@ -213,7 +213,7 @@ public class NetworkManagerUI : NetworkBehaviour
         lobbySelectionUI.SetActive(false);
         playersReady.Value = 0;
     }
-    [Rpc(SendTo.Server)] 
+    [Rpc(SendTo.Server)]
     public void ReadyUpServerRPC()
     {
         playersReady.Value++;
@@ -223,7 +223,7 @@ public class NetworkManagerUI : NetworkBehaviour
     {
         playersReady.Value--;
     }
-    [Rpc(SendTo.NotServer)] 
+    [Rpc(SendTo.NotServer)]
     public void ServerQuitClientRPC()
     {
         QuitOption.SetActive(false);

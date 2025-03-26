@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
-using System.Buffers.Text;
+using UnityEngine;
 
 
 public class MidBoss : NetworkBehaviour
@@ -61,22 +59,25 @@ public class MidBoss : NetworkBehaviour
         if (lameManager.playerTwoChar != null)
         {
             distanceFromPTwo = new Vector3(gameObject.transform.position.x - lameManager.playerTwoChar.transform.position.x, gameObject.transform.position.y - lameManager.playerTwoChar.transform.position.y, gameObject.transform.position.z - lameManager.playerTwoChar.transform.position.z);
-        } else
+        }
+        else
         {
-            distanceFromPTwo = new Vector3(1000,1000, 1000);
+            distanceFromPTwo = new Vector3(1000, 1000, 1000);
         }
         if (distanceFromPOne.magnitude <= 15 || distanceFromPTwo.magnitude <= 15)
         {
             playerInRange = true;
-        } else
+        }
+        else
         {
             playerInRange = false;
         }
         if (!playerInRange) return;
-        if(onCooldown && currentCooldown < cooldownDuration)
+        if (onCooldown && currentCooldown < cooldownDuration)
         {
             currentCooldown += Time.deltaTime;
-        } else if (onCooldown && currentCooldown >= cooldownDuration)
+        }
+        else if (onCooldown && currentCooldown >= cooldownDuration)
         {
             currentAttackType = 0;
             onCooldown = false;
@@ -85,7 +86,7 @@ public class MidBoss : NetworkBehaviour
 
         }
         if (isAttacking || onCooldown) return;
-        if(currentAttackType == 0)
+        if (currentAttackType == 0)
         {
             RandomizeAttackType();
         }
@@ -146,19 +147,21 @@ public class MidBoss : NetworkBehaviour
 
     public void RandomizeAttackType()
     {
-        if(minionsAlive == 0)
+        if (minionsAlive == 0)
         {
             currentAttackType = Random.Range(1, 5);
-        } else
+        }
+        else
         {
             currentAttackType = Random.Range(1, 4);
         }
         if (currentAttackType == lastAttackNumber)
         {
-            if(lastAttackNumber <= 2)
+            if (lastAttackNumber <= 2)
             {
                 currentAttackType += 1;
-            } else if(lastAttackNumber >= 3)
+            }
+            else if (lastAttackNumber >= 3)
             {
                 currentAttackType -= 1;
             }
@@ -181,14 +184,15 @@ public class MidBoss : NetworkBehaviour
     }
     public void ProjectileAttack()
     {
-        if(distanceFromPTwo.magnitude < distanceFromPOne.magnitude)
+        if (distanceFromPTwo.magnitude < distanceFromPOne.magnitude)
         {
             GameObject projectile = Instantiate(Projectile, transform.position, Quaternion.identity);
             NetworkObject netObj = projectile.GetComponent<NetworkObject>();
             netObj.Spawn();
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
             controller.Initialize(18, projDamage, lameManager.playerTwoChar.GetComponent<NetworkObject>(), networkBoss, 5);
-        } else if(distanceFromPTwo.magnitude > distanceFromPOne.magnitude)
+        }
+        else if (distanceFromPTwo.magnitude > distanceFromPOne.magnitude)
         {
             GameObject projectile = Instantiate(Projectile, transform.position, Quaternion.identity);
             NetworkObject netObj = projectile.GetComponent<NetworkObject>();

@@ -14,7 +14,7 @@ namespace NavMeshPlus.Extensions
         {
         }
     }
-    public class AgentOverride2d: MonoBehaviour
+    public class AgentOverride2d : MonoBehaviour
     {
         public NavMeshAgent Agent { get; private set; }
         public IAgentOverride agentOverride { get; set; }

@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class JungleEnemy : NetworkBehaviour
@@ -110,7 +109,8 @@ public class JungleEnemy : NetworkBehaviour
                 if (spawner != null && spawner.GetComponent<JungleSpawner>() != null)
                 {
                     spawner.GetComponent<JungleSpawner>().isSpawnedEnemyAlive = false;
-                } else if(midBossSpawn && spawner != null)
+                }
+                else if (midBossSpawn && spawner != null)
                 {
                     spawner.GetComponent<MidBoss>().minionsAlive--;
                 }
@@ -127,7 +127,7 @@ public class JungleEnemy : NetworkBehaviour
     void Update()
     {
         if (isAttacking || !IsServer) return;
-        if(PlayerOne != null)
+        if (PlayerOne != null)
         {
             playerOneTarget = PlayerOne.transform;
         }
@@ -152,11 +152,12 @@ public class JungleEnemy : NetworkBehaviour
         {
             aggro = false;
             aggroTimer = 0;
-        } else if(midBossSpawn == true)
+        }
+        else if (midBossSpawn == true)
         {
             aggro = true;
         }
-        if(aggro)
+        if (aggro)
         {
             if (PlayerOne != null)
             {
@@ -215,7 +216,8 @@ public class JungleEnemy : NetworkBehaviour
                     distanceFromPlayerTwo = new Vector3(jungleTarget.position.x - PlayerTwo.transform.position.x, jungleTarget.position.y - PlayerTwo.transform.position.y, 0);
                     playerTwoTarget = PlayerTwo.GetComponent<Transform>();
                 }
-            } else
+            }
+            else
             {
                 distanceFromPlayerTwo = new Vector3(1000, 1000, 1000);
             }
@@ -233,7 +235,7 @@ public class JungleEnemy : NetworkBehaviour
             agent.speed = 0;
             isAttacking = true;
             animator.SetBool("Attacking", isAttacking);
-        } 
+        }
     }
 
     public void DealDamage()

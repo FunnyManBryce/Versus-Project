@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class Puppet : NetworkBehaviour
@@ -96,7 +95,7 @@ public class Puppet : NetworkBehaviour
         {
             agent.speed = moveSpeed;
             currentTarget = enemyTarget.GetComponent<NetworkObject>();
-            if(!defensiveMode)
+            if (!defensiveMode)
             {
                 agent.SetDestination(currentTarget.transform.position);
             }
@@ -116,7 +115,8 @@ public class Puppet : NetworkBehaviour
         {
             agent.speed = moveSpeed;
             agent.SetDestination(Father.transform.position);
-        } else if(distanceFromFather.magnitude < 4 && isChasing == false && !defensiveMode)
+        }
+        else if (distanceFromFather.magnitude < 4 && isChasing == false && !defensiveMode)
         {
             agent.SetDestination(puppetPos.position);
         }
@@ -124,7 +124,8 @@ public class Puppet : NetworkBehaviour
         {
             enemyTarget = Father.GetComponent<PuppeteeringPlayerController>().currentTarget.gameObject;
             distanceFromTarget = new Vector3(puppetPos.position.x - enemyTarget.transform.position.x, puppetPos.position.y - enemyTarget.transform.position.y, 0); ;
-        } else
+        }
+        else
         {
             oldTarget = new Vector3(1000, 1000, 0);
             Vector2 pos = new Vector2(Father.transform.position.x, Father.transform.position.y);
@@ -149,7 +150,7 @@ public class Puppet : NetworkBehaviour
     {
         if (currentTarget != null)
         {
-            if(defensiveMode)
+            if (defensiveMode)
             {
                 SpawnProjectileServerRpc(Damage, new NetworkObjectReference(currentTarget), new NetworkObjectReference(NetworkObject));
             }
@@ -175,7 +176,7 @@ public class Puppet : NetworkBehaviour
             netObj.Spawn();
 
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
-            controller.Initialize(10, damage/2, targetObj, senderObj, armorPen);
+            controller.Initialize(10, damage / 2, targetObj, senderObj, armorPen);
         }
         isAttacking = false;
         //animator.SetBool("Attacking", isAttacking);
@@ -188,7 +189,7 @@ public class Puppet : NetworkBehaviour
         if (reference.TryGet(out NetworkObject target))
         {
             target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
-            if(defensiveMode == false) //offensive mode provides lifesteal to player
+            if (defensiveMode == false) //offensive mode provides lifesteal to player
             {
                 Father.GetComponent<Health>().currentHealth.Value = Mathf.Min(Father.GetComponent<Health>().currentHealth.Value + (damage * lifestealMultiplier), Father.GetComponent<Health>().maxHealth.Value);
             }
@@ -223,7 +224,7 @@ public class Puppet : NetworkBehaviour
         healthBar.GetComponent<EnemyHealthBar>().enabled = true;
         healthBar.GetComponent<EnemyHealthBar>().SyncValues(puppet, puppetPos, 1.5f);
     }
-   
+
     public bool CanAttackTarget(NetworkObject targetObject)
     {
         // Check if target has health component

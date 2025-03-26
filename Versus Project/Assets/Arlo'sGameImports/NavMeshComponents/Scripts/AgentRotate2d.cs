@@ -2,7 +2,7 @@
 
 namespace NavMeshPlus.Extensions
 {
-    public class AgentRotate2d: MonoBehaviour
+    public class AgentRotate2d : MonoBehaviour
     {
         private AgentOverride2d override2D;
         private void Start()

@@ -1,7 +1,6 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Unity.Netcode;
 
 public class PlayerManaBar : MonoBehaviour
 {
@@ -83,7 +82,7 @@ public class PlayerManaBar : MonoBehaviour
     {
         if (manaSlider != null)
         {
-            manaSlider.maxValue = playerController.maxMana; 
+            manaSlider.maxValue = playerController.maxMana;
             manaSlider.value = newMana;
         }
         UpdateManaText(newMana);

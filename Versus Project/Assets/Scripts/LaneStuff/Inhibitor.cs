@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class Inhibitor : Tower
 {
@@ -13,7 +11,7 @@ public class Inhibitor : Tower
 
     protected override void Update()
     {
-        if(Team == 1)
+        if (Team == 1)
         {
             if (lameManager.teamOneTowersLeft.Value == orderInLane)
             {
@@ -24,7 +22,7 @@ public class Inhibitor : Tower
                 enemyPlayer = lameManager.playerTwoChar;
             }
         }
-        else if(Team == 2)
+        else if (Team == 2)
         {
             if (lameManager.teamTwoTowersLeft.Value == orderInLane)
             {
@@ -62,7 +60,8 @@ public class Inhibitor : Tower
                 if (Team == 1)
                 {
                     lameManager.teamOneInhibAlive = false;
-                } else if(Team == 2)
+                }
+                else if (Team == 2)
                 {
                     lameManager.teamTwoInhibAlive = false;
                 }

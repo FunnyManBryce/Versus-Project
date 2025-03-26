@@ -19,7 +19,7 @@ public class ProjectileController : NetworkBehaviour
         target = targetObj;
         sender = senderObj;
         armorPen = AP;
-        if(target.CompareTag("Player"))
+        if (target.CompareTag("Player"))
         {
             player = target.GetComponent<BasePlayerController>();
         }
@@ -55,7 +55,7 @@ public class ProjectileController : NetworkBehaviour
     {
         if (target == null || !target.IsSpawned) return;
 
-        if(sender != null)
+        if (sender != null)
         {
             target.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), armorPen, false);
         }

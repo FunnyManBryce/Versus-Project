@@ -1,7 +1,7 @@
+using NavMeshPlus.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using NavMeshPlus.Extensions;
 
 namespace NavMeshPlus.Components
 {

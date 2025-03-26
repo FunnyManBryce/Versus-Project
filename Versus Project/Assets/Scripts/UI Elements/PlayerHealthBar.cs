@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using Unity.Netcode;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealthBar : MonoBehaviour
 {
@@ -74,7 +74,7 @@ public class PlayerHealthBar : MonoBehaviour
             health.maxHealth.OnValueChanged += UpdateMaxHealth;
             health.currentHealth.OnValueChanged += UpdateHealthBar;
             maxHealth = health.maxHealth.Value;
- 
+
             Debug.Log("Max health is " + health.maxHealth.Value);
             Debug.Log("Current health is " + health.currentHealth.Value);
         }
@@ -115,7 +115,7 @@ public class PlayerHealthBar : MonoBehaviour
             healthText.text = $"{Mathf.Ceil(currentHealth)}/{maxHealth}";
         }
     }
-    
+
     void Update()
     {
         if (health == null || !initializedHealth)

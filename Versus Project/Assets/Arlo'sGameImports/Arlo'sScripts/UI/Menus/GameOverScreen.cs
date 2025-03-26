@@ -1,6 +1,3 @@
-using System.Collections;
-using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameOverScreen : RestartScene

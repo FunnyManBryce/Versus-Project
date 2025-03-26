@@ -58,7 +58,7 @@ public class LameManager : NetworkBehaviour
         gameStarted = false;
         foreach (var character in characterList)
         {
-            Camera = character.transform.Find("Main Camera").gameObject;;
+            Camera = character.transform.Find("Main Camera").gameObject; ;
             Camera.SetActive(false);
         }
     }
@@ -66,7 +66,7 @@ public class LameManager : NetworkBehaviour
     void Update()
     {
         if (!IsServer) return;
-        if(gameStarted)
+        if (gameStarted)
         {
             matchTimer.Value += Time.deltaTime;
             intMatchTimer.Value = (int)matchTimer.Value;
@@ -124,15 +124,15 @@ public class LameManager : NetworkBehaviour
         player.GetComponent<BasePlayerController>().isDead.Value = false;
     }
 
-    [Rpc(SendTo.Server)] 
-    public void PlayerSpawnServerRPC(ulong clientID, int team, int charNumber) 
+    [Rpc(SendTo.Server)]
+    public void PlayerSpawnServerRPC(ulong clientID, int team, int charNumber)
     {
         var character = Instantiate(characterList[charNumber], playerSP[team - 1], Quaternion.identity);
         if (team == 1)
         {
             playerOneChar = character;
         }
-        else if(team == 2)
+        else if (team == 2)
         {
             playerTwoChar = character;
         }
@@ -142,7 +142,8 @@ public class LameManager : NetworkBehaviour
             Camera.SetActive(true);
             Camera.AddComponent<AudioListener>();
             gameStarted = true;
-        } else
+        }
+        else
         {
             CameraOnClientRPC(clientID, team);
         }
@@ -178,7 +179,7 @@ public class LameManager : NetworkBehaviour
         for (int i = 0; i < 4; i++)
         {
             var tower = Instantiate(blueTowerSpawnOrder[i], blueLaneSP[i], Quaternion.identity);
-            if(i == 1)
+            if (i == 1)
             {
                 tower.GetComponent<Inhibitor>().Team = 1;
                 tower.GetComponent<Inhibitor>().health.Team.Value = 1;
@@ -282,21 +283,22 @@ public class LameManager : NetworkBehaviour
         gameStarted = false;
         SceneManager.LoadScene("GameOver");
     }
-    
+
     [Rpc(SendTo.Server)]
     public void TowerDestroyedServerRPC(int team)
     {
-        if(team == 1)
+        if (team == 1)
         {
             teamOneTowersLeft.Value--;
-            if(teamOneTowersLeft.Value < 0)
+            if (teamOneTowersLeft.Value < 0)
             {
                 gameStarted = false;
                 teamThatWon = 2;
                 TeamTwoWinClientRPC();
                 SceneManager.LoadScene("GameOver");
             }
-        } else if(team == 2)
+        }
+        else if (team == 2)
         {
             teamTwoTowersLeft.Value--;
             if (teamTwoTowersLeft.Value < 0)

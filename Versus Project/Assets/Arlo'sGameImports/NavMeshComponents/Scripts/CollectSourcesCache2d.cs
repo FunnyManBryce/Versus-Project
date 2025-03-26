@@ -51,7 +51,7 @@ namespace NavMeshPlus.Extensions
         public bool UpdateSource(GameObject gameObject)
         {
             var res = _lookup.ContainsKey(gameObject);
-            if(res)
+            if (res)
             {
                 IsDirty = true;
                 var source = _lookup[gameObject];

@@ -1,7 +1,6 @@
-﻿using UnityEngine.AI;
-using UnityEngine;
+﻿using NavMeshPlus.Extensions;
 using UnityEditor;
-using NavMeshPlus.Extensions;
+using UnityEngine;
 
 namespace NavMeshPlus.Editors.Extensions
 {
@@ -13,7 +12,7 @@ namespace NavMeshPlus.Editors.Extensions
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-    
+
             var surf = target as CollectSourcesCache2d;
 
             serializedObject.ApplyModifiedProperties();

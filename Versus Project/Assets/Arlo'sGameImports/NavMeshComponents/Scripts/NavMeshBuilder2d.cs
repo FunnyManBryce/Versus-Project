@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace NavMeshPlus.Extensions
 {
-    class NavMeshBuilder2dState: IDisposable
+    class NavMeshBuilder2dState : IDisposable
     {
         public Dictionary<Sprite, Mesh> spriteMeshMap;
         public Dictionary<uint, Mesh> coliderMeshMap;
@@ -25,7 +25,7 @@ namespace NavMeshPlus.Extensions
         public CollectObjects CollectObjects;
         public GameObject parent;
         public bool hideEditorLogs;
-        
+
         protected IEnumerable<GameObject> _root;
         private bool _disposed;
 
@@ -253,7 +253,7 @@ namespace NavMeshPlus.Extensions
         }
 
         public static void CollectSources(List<NavMeshBuildSource> sources, Collider2D collider, int area, NavMeshBuilder2dState builder)
-        { 
+        {
             if (collider.usedByComposite)
             {
                 collider = collider.GetComponent<CompositeCollider2D>();
@@ -322,7 +322,7 @@ namespace NavMeshPlus.Extensions
                     if (modifierTilemap && modifierTilemap.TryGetTileModifier(vec3int, tilemap, out NavMeshModifierTilemap.TileModifier tileModifier))
                     {
                         src.area = tileModifier.overrideArea ? tileModifier.area : area;
-                    }    
+                    }
                     sources.Add(src);
 
                     builder.lookupCallback?.Invoke(tilemap.GetInstantiatedObject(vec3int), src);

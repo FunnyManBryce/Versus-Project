@@ -233,6 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 50644417408182427}
+  - component: {fileID: 8824331366935253638}
   - component: {fileID: 138302581809136694}
   - component: {fileID: 2414812415466740570}
   - component: {fileID: 2628991981076659366}
@@ -266,6 +267,26 @@ Transform:
   - {fileID: 7549657286110010647}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8824331366935253638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846404579260722031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a8cc24f389fe44987402d1fc8224da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  isPlayer1UI: 0
+  initialized: 0
+  abilityCooldownPrefab: {fileID: 0}
+  cooldownContainer: {fileID: 0}
+  passiveTimerPrefab: {fileID: 0}
+  passiveTimerContainer: {fileID: 0}
+  hasPassiveTimer: 0
 --- !u!114 &138302581809136694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3858709417
+  GlobalObjectIdHash: 652430502
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -406,6 +427,11 @@ MonoBehaviour:
     type: 3}
   xpBarPrefab: {fileID: 2114343820725859254, guid: 84f89be4897cc754cb0249e3e4bf860f,
     type: 3}
+  passiveCooldownBarPrefab: {fileID: 0}
+  abilty1CooldownBarPrefab: {fileID: 291330824319171567, guid: 036b191130028224796dafdb9c7a69af,
+    type: 3}
+  abilty2CooldownBarPrefab: {fileID: 0}
+  UltimateCooldownBarPrefab: {fileID: 0}
   attackDamagePrefab: {fileID: 2114343820725859254, guid: 9398b58b1e556ef4496d900f58da2cd9,
     type: 3}
   attackSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: ce33ba5ce3d771a46ada95ebda640cd1,
@@ -469,6 +495,7 @@ MonoBehaviour:
     abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
+    preventAbilityUse: 0
   ModeSwitch:
     playerController: {fileID: 2414812415466740570}
     inputKey: 101
@@ -479,6 +506,7 @@ MonoBehaviour:
     abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
+    preventAbilityUse: 0
   Ultimate:
     playerController: {fileID: 2414812415466740570}
     inputKey: 114
@@ -489,6 +517,7 @@ MonoBehaviour:
     abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
+    preventAbilityUse: 0
 --- !u!114 &2628991981076659366
 MonoBehaviour:
   m_ObjectHideFlags: 0
