@@ -98,6 +98,7 @@ public class DecayPlayerController : BasePlayerController
     {
         Debug.Log("Ult is happening!");
         animator.runtimeAnimatorController = UltAnimator;
+        UltAnimChangeClientRpc();
         IEnumerator coroutine = UltimateDuration();
         StartCoroutine(coroutine);
         Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
@@ -131,6 +132,18 @@ public class DecayPlayerController : BasePlayerController
     public IEnumerator UltimateDuration() 
     {
         yield return new WaitForSeconds(ultimateDuration);
+        animator.runtimeAnimatorController = NormalAnimator;
+        UltEndAnimChangeClientRpc();
+    }
+
+    [ClientRpc]
+    public void UltAnimChangeClientRpc()
+    {
+        animator.runtimeAnimatorController = UltAnimator;
+    }
+    [ClientRpc]
+    public void UltEndAnimChangeClientRpc()
+    {
         animator.runtimeAnimatorController = NormalAnimator;
     }
 
