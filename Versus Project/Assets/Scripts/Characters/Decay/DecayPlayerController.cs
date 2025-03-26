@@ -38,7 +38,7 @@ public class DecayPlayerController : BasePlayerController
     new private void Awake()
     {
         base.Awake();
-        AOE.activateAbility = AOEServerRpc;
+        AOE.activateAbility = AbilityOneAnimation;
         Shockwave.activateAbility = AbilityTwoAnimation;
         Ultimate.activateAbility = UltimateServerRpc;
         AOE.abilityLevelUp = AOELevelUp;
@@ -65,6 +65,12 @@ public class DecayPlayerController : BasePlayerController
     {
         if (!IsOwner) return;
         ShockwaveServerRpc();
+    }
+
+    public void AOEHostCheck()
+    {
+        if (!IsOwner) return;
+        AOEServerRpc();
     }
 
     [Rpc(SendTo.Server)]
@@ -115,6 +121,33 @@ public class DecayPlayerController : BasePlayerController
     {
         base.Update();
         if (!IsOwner || isDead.Value) return;
+        if (animator.GetBool("AbilityOne") == true)
+        {
+            Ultimate.preventAbilityUse = true;
+            Shockwave.preventAbilityUse = true;
+        }
+        if (animator.GetBool("AbilityTwo") == true)
+        {
+            Ultimate.preventAbilityUse = true;
+            AOE.preventAbilityUse = true;
+        }
+        if (animator.GetBool("Ult") == true)
+        {
+            AOE.preventAbilityUse = true;
+            Shockwave.preventAbilityUse = true;
+        }
+        if (animator.GetBool("AutoAttack") == true)
+        {
+            Ultimate.preventAbilityUse = true;
+            AOE.preventAbilityUse = true;
+            Shockwave.preventAbilityUse = true;
+        }
+        if (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false)
+        {
+            Ultimate.preventAbilityUse = false;
+            AOE.preventAbilityUse = false;
+            Shockwave.preventAbilityUse = false;
+        }
         float currentTime = lameManager.matchTimer.Value;
         if(currentTime - lastDecayTime >= timeToDecay)
         {

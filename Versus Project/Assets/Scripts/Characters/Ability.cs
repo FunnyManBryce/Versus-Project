@@ -20,6 +20,7 @@ public class AbilityBase<T> where T : BasePlayerController
     public int abilityLevel;
     public bool abilityBeingUsed;
     public bool waitingForClick = false;
+    public bool preventAbilityUse;
     public bool OffCooldown() => lastUsed + (cooldown * ((100 - playerController.cDR) / 100)) < Time.time;
     public float NormalizedCooldown() => Mathf.Min((Time.time - lastUsed) / (cooldown * ((100 - playerController.cDR) / 100)), 1);
     public string CooldownDurationLeft() => ((cooldown * ((100 - playerController.cDR)/100)) - (Time.time - lastUsed)).ToString("0.00");
@@ -32,7 +33,7 @@ public class AbilityBase<T> where T : BasePlayerController
     }
     public void AttemptUse()
     {
-        if (!Input.GetKeyDown(inputKey) || !CanUse()) return;
+        if (!Input.GetKeyDown(inputKey) || !CanUse() || preventAbilityUse) return;
         activateAbility();
         OnUse();
     }
