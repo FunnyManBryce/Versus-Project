@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5049304070953232131}
   - component: {fileID: 7508426306711515757}
   m_Layer: 0
-  m_Name: SkeletonSpawner
+  m_Name: FireblobSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2271739820
+  GlobalObjectIdHash: 307508476
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -66,9 +66,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8104e3c300e5eb49bb2a75de4a749aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimerEnd: 20
+  spawnTimerEnd: 50
   onlySpawnedOnce: 0
   isSpawnedEnemyAlive: 0
-  enemyToSpawn: {fileID: 8942386518775928844, guid: 7e7256a8b5f5b8a4c91dd7b85e12a86f,
+  enemyToSpawn: {fileID: 8942386518775928844, guid: 86daf0de353be4e40b4e31a725c1e634,
     type: 3}
   jungleSpawner: {fileID: 7786157875108222184}

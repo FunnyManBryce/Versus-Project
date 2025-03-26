@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3071331536
+  GlobalObjectIdHash: 1728252279
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -318,9 +318,10 @@ MonoBehaviour:
   cooldown: 0
   aggro: 0
   playerLastHit: 0
+  midBossSpawn: 0
   dead: 0
   targetName: 
-  Damage: 10
+  Damage: 12.5
   armorPen: 1
   chasePlayerDistance: 10
   range: 10
@@ -330,8 +331,8 @@ MonoBehaviour:
   cooldownLength: 0.75
   cooldownTimer: 0
   XPRange: 20
-  XPGiven: 30
-  goldGiven: 20
+  XPGiven: 50
+  goldGiven: 40
   spawner: {fileID: 0}
   PlayerOne: {fileID: 0}
   PlayerTwo: {fileID: 0}
@@ -362,7 +363,7 @@ MonoBehaviour:
   Team:
     m_InternalValue: 0
   markedValue: 1
-  startingMaxHealth: 100
+  startingMaxHealth: 150
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
