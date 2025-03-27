@@ -397,6 +397,7 @@ MonoBehaviour:
   invulnerable: 0
   isNPC: 0
   healthSetManual: 0
+  darknessEffect: 0
 --- !u!114 &2299055155951191650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +471,7 @@ MonoBehaviour:
   attackRange: 4
   lastAttackTime: 0
   isAttacking: 0
+  appliesDarkness: 0
   cDR: 2
   armorPen: 10
   regen: 2.5
@@ -516,6 +518,10 @@ MonoBehaviour:
     type: 3}
   xpBarPrefab: {fileID: 2114343820725859254, guid: 84f89be4897cc754cb0249e3e4bf860f,
     type: 3}
+  passiveCooldownBarPrefab: {fileID: 0}
+  abilty1CooldownBarPrefab: {fileID: 0}
+  abilty2CooldownBarPrefab: {fileID: 0}
+  UltimateCooldownBarPrefab: {fileID: 0}
   attackDamagePrefab: {fileID: 2114343820725859254, guid: 9398b58b1e556ef4496d900f58da2cd9,
     type: 3}
   attackSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: ce33ba5ce3d771a46ada95ebda640cd1,
