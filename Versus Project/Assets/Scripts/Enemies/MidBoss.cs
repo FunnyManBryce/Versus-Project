@@ -228,7 +228,7 @@ public class MidBoss : NetworkBehaviour
             NetworkObject netObj = AOE.GetComponent<NetworkObject>();
             MidbossCircles circleScript = AOE.GetComponent<MidbossCircles>();
             circleScript.damage = AOEDamage;
-            circleScript.sender = netObj;
+            circleScript.sender = gameObject.GetComponent<NetworkObject>();
             netObj.Spawn();
         }
         onCooldown = true;
