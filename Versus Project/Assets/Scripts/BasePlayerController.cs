@@ -167,6 +167,10 @@ public class BasePlayerController : NetworkBehaviour
                 RegenBuff.Value = 0;
                 ManaRegenBuff.Value = 0;
                 SpeedBuff.Value = 0;
+                appliesDarkness = false;
+                darknessDuration = 120;
+                health.darknessEffect = false;
+                
                 for (int i = 0; i < Buffs.Count; i++)
                 {
                     if (Buffs[i] != null)
