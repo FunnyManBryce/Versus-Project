@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.Services.Relay;
 using UnityEngine;
 
 public class BasePlayerController : NetworkBehaviour
 {
+    public string charName;
     public BryceAudioManager bAM;
     private Rigidbody2D rb2d;
     public Animator animator;
@@ -418,7 +420,6 @@ public class BasePlayerController : NetworkBehaviour
 
     private void AutoAttackEnd()
     {
-        Debug.Log("huh");
         isAttacking = false;
         animator.SetBool("AutoAttack", false);
     }
@@ -459,6 +460,9 @@ public class BasePlayerController : NetworkBehaviour
     }
     public void UltimateAnimationEnd()
     {
+        isAttacking = false;
+        animator.SetBool("AutoAttack", false);
+        currentTarget = null;
         animator.SetBool("Ult", false);
     }
 
@@ -487,6 +491,11 @@ public class BasePlayerController : NetworkBehaviour
     {
         if (target.TryGet(out NetworkObject targetObj) && sender.TryGet(out NetworkObject senderObj))
         {
+            if (charName == "Puppeteering")
+            {
+                bAM.PlayServerRpc("Puppeteering Auto", gameObject.transform.position);
+                bAM.PlayClientRpc("Puppeteering Auto", gameObject.transform.position);
+            }
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             NetworkObject netObj = projectile.GetComponent<NetworkObject>();
             netObj.Spawn();
@@ -503,6 +512,11 @@ public class BasePlayerController : NetworkBehaviour
         if (reference.TryGet(out NetworkObject target))
         {
             Debug.Log("9");
+            if(charName == "Decay")
+            {
+                bAM.PlayServerRpc("Decay Auto", gameObject.transform.position);
+                bAM.PlayClientRpc("Decay Auto", gameObject.transform.position);
+            }
             target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
             if(appliesDarkness && target.GetComponent<Health>().darknessEffect == false)
             {

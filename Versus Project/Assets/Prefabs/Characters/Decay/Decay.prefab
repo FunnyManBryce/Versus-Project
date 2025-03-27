@@ -410,6 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0998ba82684352646931444760366ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charName: Decay
   bAM: {fileID: 0}
   animator: {fileID: 3704004338721201214}
   lameManager: {fileID: 0}

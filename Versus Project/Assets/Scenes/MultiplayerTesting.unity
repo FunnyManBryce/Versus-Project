@@ -10144,7 +10144,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6e27933e1932f454aa5b6ab5a17ded0f, type: 3}
     loop: 0
     spatialBlend: 1
-    volume: 1.5
+    volume: 2
     pitch: 1
     spread: 0
     source: {fileID: 0}

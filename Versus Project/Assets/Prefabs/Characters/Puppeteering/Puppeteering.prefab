@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 652430502
+  GlobalObjectIdHash: 3858709417
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fff7458896e65479ceebb30a49234e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charName: Decay
   bAM: {fileID: 0}
   animator: {fileID: 0}
   lameManager: {fileID: 0}
@@ -381,6 +382,7 @@ MonoBehaviour:
   attackRange: 8
   lastAttackTime: 0
   isAttacking: 0
+  appliesDarkness: 0
   cDR: 2
   armorPen: 5
   regen: 2
@@ -715,6 +717,7 @@ MonoBehaviour:
   invulnerable: 0
   isNPC: 0
   healthSetManual: 0
+  darknessEffect: 0
 --- !u!114 &9124016138854936558
 MonoBehaviour:
   m_ObjectHideFlags: 0
