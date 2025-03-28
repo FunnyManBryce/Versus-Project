@@ -55,7 +55,7 @@ public class BasePlayerController : NetworkBehaviour
     public float lastAttackTime;
     public bool isAttacking = false;
     public NetworkVariable<bool> appliesDarkness = new NetworkVariable<bool>();
-    private float darknessDuration = 120;
+    public float darknessDuration = 120;
     public float cDR = 0f;
     public float armorPen = 0f;
     public float regen = 0f;
@@ -148,6 +148,7 @@ public class BasePlayerController : NetworkBehaviour
         {
             if (isDead.Value)
             {
+                currentTarget = null;
                 transform.position = new Vector3(-420, -69, 0);
                 StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
                 attackDamage = BaseDamage.Value;

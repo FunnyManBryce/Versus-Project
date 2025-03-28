@@ -43,13 +43,29 @@ public class PuppeteeringPlayerController : BasePlayerController
     void Start()
     {
         base.Start();
-        String.activateAbility = StringSummonServerRpc;
-        ModeSwitch.activateAbility = PuppetModeSwitchServerRpc;
-        Ultimate.activateAbility = UltimateServerRpc;
+        String.activateAbility = AbilityOneAnimation;
+        ModeSwitch.activateAbility = AbilityTwoAnimation;
+        Ultimate.activateAbility = UltimateAnimation;
         String.abilityLevelUp = StringLevelUp;
         ModeSwitch.abilityLevelUp = ModeSwitchLevelUp;
         Ultimate.abilityLevelUp = UltimateLevelUp;
 
+    }
+
+    public void StringHostCheck()
+    {
+        if (!IsOwner) return;
+        StringSummonServerRpc();
+    }
+    public void ModeSwitchHostCheck()
+    {
+        if (!IsOwner) return;
+        PuppetModeSwitchServerRpc();
+    }
+    public void UltimateHostCheck()
+    {
+        if (!IsOwner) return;
+        UltimateServerRpc();
     }
 
     // Update is called once per frame
@@ -57,6 +73,33 @@ public class PuppeteeringPlayerController : BasePlayerController
     {
         base.Update();
         if (!IsOwner || isDead.Value) return;
+        if (animator.GetBool("AbilityOne") == true)
+        {
+            Ultimate.preventAbilityUse = true;
+            ModeSwitch.preventAbilityUse = true;
+        }
+        if (animator.GetBool("AbilityTwo") == true)
+        {
+            Ultimate.preventAbilityUse = true;
+            String.preventAbilityUse = true;
+        }
+        if (animator.GetBool("Ult") == true)
+        {
+            ModeSwitch.preventAbilityUse = true;
+            String.preventAbilityUse = true;
+        }
+        if (animator.GetBool("AutoAttack") == true)
+        {
+            Ultimate.preventAbilityUse = true;
+            String.preventAbilityUse = true;
+            ModeSwitch.preventAbilityUse = true;
+        }
+        if (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false)
+        {
+            Ultimate.preventAbilityUse = false;
+            String.preventAbilityUse = false;
+            ModeSwitch.preventAbilityUse = false;
+        }
         String.AttemptUse();
         ModeSwitch.AttemptUse();
         Ultimate.AttemptUse();
@@ -91,11 +134,32 @@ public class PuppeteeringPlayerController : BasePlayerController
 
     public override void OnNetworkSpawn()
     {
+        if (IsServer)
+        {
+            BaseDamage.Value = attackDamage;
+            BaseAttackSpeed.Value = autoAttackSpeed;
+            BaseRange.Value = attackRange;
+            BaseCDR.Value = cDR;
+            BaseArmor.Value = health.armor;
+            BaseArmorPen.Value = armorPen;
+            BaseRegen.Value = regen;
+            BaseManaRegen.Value = manaRegen;
+            BaseSpeed.Value = maxSpeed;
+        }
         health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
             if (health.currentHealth.Value <= 0 && isDead.Value == false && IsServer)
             {
                 isDead.Value = true;
+                if (health.lastAttacker.TryGet(out NetworkObject attacker))
+                {
+                    if (attacker.GetComponent<BasePlayerController>() != null)
+                    {
+                        var enemyPlayer = attacker.GetComponent<BasePlayerController>();
+                        enemyPlayer.XP.Value += Level.Value * 50; //Can change the amount given later
+                        enemyPlayer.Gold.Value += Level.Value * 50; //Can change the amount given later
+                    }
+                }
             }
         };
         XP.OnValueChanged += (float previousValue, float newValue) => //Checking for Level up
@@ -125,6 +189,36 @@ public class PuppeteeringPlayerController : BasePlayerController
                         PuppetList.Remove(lastPuppet);
                         puppetsAlive.Value--;
                         puppetToDespawn.Despawn();
+                    }
+                }
+                attackDamage = BaseDamage.Value;
+                autoAttackSpeed = BaseAttackSpeed.Value;
+                attackRange = BaseRange.Value;
+                cDR = BaseCDR.Value;
+                health.armor = BaseArmor.Value;
+                armorPen = BaseArmorPen.Value;
+                regen = BaseRegen.Value;
+                manaRegen = BaseManaRegen.Value;
+                maxSpeed = BaseSpeed.Value;
+
+                DamageBuff.Value = 0;
+                AttackSpeedBuff.Value = 0;
+                RangeBuff.Value = 0;
+                CDRBuff.Value = 0;
+                ArmorBuff.Value = 0;
+                ArmorPenBuff.Value = 0;
+                RegenBuff.Value = 0;
+                ManaRegenBuff.Value = 0;
+                SpeedBuff.Value = 0;
+                appliesDarkness.Value = false;
+                darknessDuration = 120;
+                health.darknessEffect = false;
+
+                for (int i = 0; i < Buffs.Count; i++)
+                {
+                    if (Buffs[i] != null)
+                    {
+                        StopCoroutine(Buffs[i]);
                     }
                 }
             }

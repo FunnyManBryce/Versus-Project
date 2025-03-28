@@ -130,7 +130,7 @@ public class MidBoss : NetworkBehaviour
                     dead = true;
                     if (health.lastAttacker.TryGet(out NetworkObject attacker))
                     {
-                        if (attacker.tag == "Player" || attacker.tag == "Puppet")
+                        if (attacker.tag == "Player")
                         {
                             attacker.GetComponent<BasePlayerController>().XP.Value += XPGiven;
                             attacker.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
