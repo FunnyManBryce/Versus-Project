@@ -134,14 +134,14 @@ public class MidBoss : NetworkBehaviour
                         {
                             attacker.GetComponent<BasePlayerController>().XP.Value += XPGiven;
                             attacker.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
-                            attacker.GetComponent<BasePlayerController>().appliesDarkness = true;
+                            attacker.GetComponent<BasePlayerController>().appliesDarkness.Value = true;
                         }
                         else if(attacker.tag == "Puppet")
                         {
                             attacker = attacker.GetComponent<Puppet>().Father.GetComponent<NetworkObject>();
                             attacker.GetComponent<BasePlayerController>().XP.Value += XPGiven;
                             attacker.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
-                            attacker.GetComponent<BasePlayerController>().appliesDarkness = true;
+                            attacker.GetComponent<BasePlayerController>().appliesDarkness.Value = true;
                         }
                     }
                     gameObject.GetComponent<NetworkObject>().Despawn();

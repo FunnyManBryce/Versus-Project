@@ -54,7 +54,7 @@ public class BasePlayerController : NetworkBehaviour
     public float attackRange = 10f;
     public float lastAttackTime;
     public bool isAttacking = false;
-    public bool appliesDarkness;
+    public NetworkVariable<bool> appliesDarkness = new NetworkVariable<bool>();
     private float darknessDuration = 120;
     public float cDR = 0f;
     public float armorPen = 0f;
@@ -148,6 +148,8 @@ public class BasePlayerController : NetworkBehaviour
         {
             if (isDead.Value)
             {
+                transform.position = new Vector3(-420, -69, 0);
+                StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
                 attackDamage = BaseDamage.Value;
                 autoAttackSpeed = BaseAttackSpeed.Value;
                 attackRange = BaseRange.Value;
@@ -167,7 +169,7 @@ public class BasePlayerController : NetworkBehaviour
                 RegenBuff.Value = 0;
                 ManaRegenBuff.Value = 0;
                 SpeedBuff.Value = 0;
-                appliesDarkness = false;
+                appliesDarkness.Value = false;
                 darknessDuration = 120;
                 health.darknessEffect = false;
                 
@@ -178,8 +180,6 @@ public class BasePlayerController : NetworkBehaviour
                         StopCoroutine(Buffs[i]);
                     }
                 }
-                transform.position = new Vector3(-420, -69, 0);
-                StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
             }
             else
             {
@@ -277,12 +277,12 @@ public class BasePlayerController : NetworkBehaviour
     private protected void Update()
     {
         if (!IsOwner) return;
-        if(appliesDarkness && darknessDuration > 0)
+        if(appliesDarkness.Value && darknessDuration > 0)
         {
             darknessDuration -= Time.deltaTime;
-        } else if(appliesDarkness && darknessDuration <= 0)
+        } else if(appliesDarkness.Value && darknessDuration <= 0)
         {
-            appliesDarkness = false;
+            appliesDarkness.Value = false;
             darknessDuration = 120;
         }
         if (isDead.Value) return;
@@ -522,9 +522,9 @@ public class BasePlayerController : NetworkBehaviour
                 bAM.PlayClientRpc("Decay Auto", gameObject.transform.position);
             }
             target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
-            if(appliesDarkness && target.GetComponent<Health>().darknessEffect == false)
+            if(appliesDarkness.Value && target.GetComponent<Health>().darknessEffect == false)
             {
-                health.InflictBuffServerRpc(target, "Darkness", -1, 5, true);
+                health.InflictBuffServerRpc(new NetworkObjectReference(target), "Darkness", -1, 5, true);
             }
         }
         else
@@ -790,53 +790,13 @@ public class BasePlayerController : NetworkBehaviour
     [Rpc(SendTo.NotServer)]
     public void StatChangeClientRpc(string buffType, float amount) //This makes sure that stats are synced to client and host
     {
-        if (buffType == "Speed")
-        {
-            SpeedBuff.Value += amount;
-        }
-        if (buffType == "Attack Damage")
-        {
-            DamageBuff.Value += amount;
-        }
-        if (buffType == "Armor")
-        {
-            ArmorBuff.Value += amount;
-        }
-        if (buffType == "Armor Pen")
-        {
-            ArmorPenBuff.Value += amount;
-        }
-        if (buffType == "Auto Attack Speed")
-        {
-            AttackSpeedBuff.Value += amount;
-        }
-        if (buffType == "Regen")
-        {
-            RegenBuff.Value += amount;
-        }
-        if (buffType == "Mana Regen")
-        {
-            ManaRegenBuff.Value += amount;
-        }
         if (buffType == "Max Mana")
         {
             maxMana += amount;
         }
-        if (buffType == "CDR")
-        {
-            CDRBuff.Value += amount;
-        }
-        if (buffType == "Health")
-        {
-            health.maxHealth.Value += amount;
-        }
         if (buffType == "Marked")
         {
             health.markedValue += amount;
-        }
-        if (buffType == "Immobilized")
-        {
-            SpeedBuff.Value -= maxSpeed;
         }
     }
 

@@ -54,11 +54,11 @@ public class DecayAOE : NetworkBehaviour
                 else
                 {
                     collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, false);
-                }
-                InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Speed", speedReductionPerTick, reductionDuration, true);
-                if (sender.GetComponent<DecayPlayerController>().AOESpeedSteal) //Decay gains some speed for every hit enemy if the ability is level 3
-                {
-                    sender.GetComponent<DecayPlayerController>().TriggerBuffServerRpc("Speed", -(speedReductionPerTick * 0.1f), reductionDuration, true);
+                    InflictBuffServerRpc(new NetworkObjectReference(collider.GetComponent<NetworkObject>()), "Speed", speedReductionPerTick, reductionDuration, true);
+                    if (sender.GetComponent<DecayPlayerController>().AOESpeedSteal) //Decay gains some speed for every hit enemy if the ability is level 3
+                    {
+                        sender.GetComponent<DecayPlayerController>().TriggerBuffServerRpc("Speed", -(speedReductionPerTick * 0.1f), reductionDuration, true);
+                    }
                 }
             }
         }
@@ -88,8 +88,8 @@ public class DecayAOE : NetworkBehaviour
     {
         gameObject.GetComponent<NetworkObject>().Despawn();
     }
-    
-    [ServerRpc]
+
+    [ServerRpc(RequireOwnership = false)]
     public void InflictBuffServerRpc(NetworkObjectReference Target, string buffType, float amount, float duration, bool hasDuration)
     {
         if (Target.TryGet(out NetworkObject targetObj))

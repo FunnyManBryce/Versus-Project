@@ -23,7 +23,7 @@ public class ProjectileController : NetworkBehaviour
         if (target.CompareTag("Player"))
         {
             player = target.GetComponent<BasePlayerController>();
-            if(player.appliesDarkness)
+            if(player.appliesDarkness.Value)
             {
                 appliesDarkness = true;
             }
@@ -65,7 +65,7 @@ public class ProjectileController : NetworkBehaviour
             target.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), armorPen, false);
             if(appliesDarkness && target.GetComponent<Health>().darknessEffect == false)
             {
-                InflictBuffServerRpc(target, "Darkness", -1, 5, true);
+                InflictBuffServerRpc(new NetworkObjectReference(target), "Darkness", -1, 5, true);
             }
         }
         DestroyProjectileServerRpc();
@@ -85,7 +85,7 @@ public class ProjectileController : NetworkBehaviour
         sender = null;
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void InflictBuffServerRpc(NetworkObjectReference Target, string buffType, float amount, float duration, bool hasDuration)
     {
         if (Target.TryGet(out NetworkObject targetObj))
