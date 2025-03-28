@@ -1,0 +1,516 @@
+fileFormatVersion: 2
+guid: afed9a8029e14444abca8d58d8f48102
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1514579488451502465
+    second: Ted(Tendrils)_0
+  - first:
+      213: 9212335179150258535
+    second: Ted(Tendrils)_1
+  - first:
+      213: 1389438618082346118
+    second: Ted(Tendrils)_2
+  - first:
+      213: -4374514646824713205
+    second: Ted(Tendrils)_3
+  - first:
+      213: -8868169714877566464
+    second: Ted(Tendrils)_4
+  - first:
+      213: -2599536064527117641
+    second: Ted(Tendrils)_5
+  - first:
+      213: 4357908597369429605
+    second: Ted(Tendrils)_6
+  - first:
+      213: 2351004321125698514
+    second: Ted(Tendrils)_7
+  - first:
+      213: -5784382422349289873
+    second: Ted(Tendrils)_8
+  - first:
+      213: -6774451471018481780
+    second: Ted(Tendrils)_9
+  - first:
+      213: 2923867622552728592
+    second: Ted(Tendrils)_10
+  - first:
+      213: 1568886508335680200
+    second: Ted(Tendrils)_11
+  - first:
+      213: -481971415731851822
+    second: Ted(Tendrils)_12
+  - first:
+      213: -9093555968890642169
+    second: Ted(Tendrils)_13
+  - first:
+      213: 1731439179003194904
+    second: Ted(Tendrils)_14
+  - first:
+      213: -7399308902119616671
+    second: Ted(Tendrils)_15
+  - first:
+      213: 6692172789156509728
+    second: Ted(Tendrils)_16
+  - first:
+      213: -2022659227805422023
+    second: Ted(Tendrils)_17
+  - first:
+      213: 2769170560665574399
+    second: Ted(Tendrils)_18
+  - first:
+      213: 5795137263422578102
+    second: Ted(Tendrils)_19
+  - first:
+      213: -2922017291880097672
+    second: Ted(Tendrils)_20
+  - first:
+      213: -9063437822309663379
+    second: Ted(Tendrils)_21
+  - first:
+      213: 9181246585338597897
+    second: Ted(Tendrils)_22
+  - first:
+      213: -6452541837681852282
+    second: Ted(Tendrils)_23
+  - first:
+      213: 5289732687714155624
+    second: Ted(Tendrils)_24
+  - first:
+      213: -3612516034934319054
+    second: Ted(Tendrils)_25
+  - first:
+      213: 889062829525959268
+    second: Ted(Tendrils)_26
+  - first:
+      213: 2119101132129941643
+    second: Ted(Tendrils)_27
+  - first:
+      213: -2019359387243020378
+    second: Ted(Tendrils)_28
+  - first:
+      213: 7457579002255342036
+    second: Ted(Tendrils)_29
+  - first:
+      213: 53498270040266026
+    second: Ted(Tendrils)_30
+  - first:
+      213: 2117271064858257485
+    second: Ted(Tendrils)_31
+  - first:
+      213: 5453673741801246269
+    second: Ted(Tendrils)_32
+  - first:
+      213: 4171516287911460435
+    second: Ted(Tendrils)_33
+  - first:
+      213: 6783477663893010537
+    second: Ted(Tendrils)_34
+  - first:
+      213: -7905723166413930647
+    second: Ted(Tendrils)_35
+  - first:
+      213: -6765826878323197223
+    second: Ted(Tendrils)_36
+  - first:
+      213: -8726874702275783748
+    second: Ted(Tendrils)_37
+  - first:
+      213: -756571195149178316
+    second: Ted(Tendrils)_38
+  - first:
+      213: -3202791565454865935
+    second: Ted(Tendrils)_39
+  - first:
+      213: -7896203656435579941
+    second: Ted(Tendrils)_40
+  - first:
+      213: 1228143455294416229
+    second: Ted(Tendrils)_41
+  - first:
+      213: 8641751793358259749
+    second: Ted(Tendrils)_42
+  - first:
+      213: -3019982833168073945
+    second: Ted(Tendrils)_43
+  - first:
+      213: 8185608677244373505
+    second: Ted(Tendrils)_44
+  - first:
+      213: 4321721509342458716
+    second: Ted(Tendrils)_45
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ted(Tendrils)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7e51c6daf12bfae0800000000000000
+      internalID: -1514579488451502465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_1
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 761f511590ac8df70800000000000000
+      internalID: 9212335179150258535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_2
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6840204cf07484310800000000000000
+      internalID: 1389438618082346118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_3
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b04054b1b1a9a43c0800000000000000
+      internalID: -4374514646824713205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_4
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00278d041aeede480800000000000000
+      internalID: -8868169714877566464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_5
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b25b05e8b79cebd0800000000000000
+      internalID: -2599536064527117641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_6
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56e53d5b7c66a7c30800000000000000
+      internalID: 4357908597369429605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_7
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db0b1259f170a020800000000000000
+      internalID: 2351004321125698514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_8
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f666bd675deb9bfa0800000000000000
+      internalID: -5784382422349289873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_9
+      rect:
+        serializedVersion: 2
+        x: 1575
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8722d997405cf1a0800000000000000
+      internalID: -6774451471018481780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_10
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01475848c1aa39820800000000000000
+      internalID: 2923867622552728592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(Tendrils)_11
+      rect:
+        serializedVersion: 2
+        x: 1925
+        y: 0
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ca404e87fdc5c510800000000000000
+      internalID: 1568886508335680200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: dfbfb5914cf0c49449fe51ea8e62e219
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Ted(Tendrils)_0: -1514579488451502465
+      Ted(Tendrils)_1: 9212335179150258535
+      Ted(Tendrils)_10: 2923867622552728592
+      Ted(Tendrils)_11: 1568886508335680200
+      Ted(Tendrils)_2: 1389438618082346118
+      Ted(Tendrils)_3: -4374514646824713205
+      Ted(Tendrils)_4: -8868169714877566464
+      Ted(Tendrils)_5: -2599536064527117641
+      Ted(Tendrils)_6: 4357908597369429605
+      Ted(Tendrils)_7: 2351004321125698514
+      Ted(Tendrils)_8: -5784382422349289873
+      Ted(Tendrils)_9: -6774451471018481780
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

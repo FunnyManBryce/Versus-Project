@@ -220,7 +220,7 @@ public class MidBoss : NetworkBehaviour
         {
             allowedSpawnPoints.Add(i);
         }
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             int spawnPoint = allowedSpawnPoints[Random.Range(0, allowedSpawnPoints.Count)];
             allowedSpawnPoints.Remove(spawnPoint);

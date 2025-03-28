@@ -10,19 +10,31 @@ public class MidbossCircles : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsServer) return;
+        /*if (!IsServer) return;
         lifespan -= Time.deltaTime;
         if (lifespan < 0)
         {
             Damage();
             gameObject.GetComponent<NetworkObject>().Despawn();
-        }
+        } */
     }
 
-    void Damage()
+    public void DamageServerCheck()
+    {
+        if (!IsServer) return;
+        Damage();
+
+    }
+
+    public void DespawnServerCheck()
+    {
+        if (!IsServer) return;
+        gameObject.GetComponent<NetworkObject>().Despawn();
+    }
+    public void Damage()
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 5);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 4.75f);
         foreach (var collider in hitColliders)
         {
             if (collider.GetComponent<Health>() != null && collider.isTrigger && collider.tag != "JungleEnemy")
