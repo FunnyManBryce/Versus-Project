@@ -9,6 +9,7 @@ public class MidBoss : NetworkBehaviour
     public BryceAudioManager bAM;
     public Health health;
     private LameManager lameManager;
+    public Animator animator;
 
     private bool dead;
     public bool isAttacking;
@@ -97,24 +98,28 @@ public class MidBoss : NetworkBehaviour
         {
             //Should eventually change these to activating animations instead
             isAttacking = true;
+            //animator.SetBool("Slam", true);
             Slam();
         }
         if (currentAttackType == 2)
         {
             //Should eventually change these to activating animations instead
             isAttacking = true;
-            ProjectileAttack();
+            animator.SetBool("ProjSummon", true);
+            //ProjectileAttack();
         }
         if (currentAttackType == 3)
         {
             //Should eventually change these to activating animations instead
             isAttacking = true;
-            AOESpawn();
+            animator.SetBool("AOE", true);
+            //AOESpawn();
         }
         if (currentAttackType == 4)
         {
             //Should eventually change these to activating animations instead
             isAttacking = true;
+            //animator.SetBool("Summon", true);
             Summon();
         }
     }
@@ -136,7 +141,7 @@ public class MidBoss : NetworkBehaviour
                             attacker.GetComponent<BasePlayerController>().Gold.Value += goldGiven;
                             attacker.GetComponent<BasePlayerController>().appliesDarkness.Value = true;
                         }
-                        else if(attacker.tag == "Puppet")
+                        else if (attacker.tag == "Puppet")
                         {
                             attacker = attacker.GetComponent<Puppet>().Father.GetComponent<NetworkObject>();
                             attacker.GetComponent<BasePlayerController>().XP.Value += XPGiven;
@@ -176,6 +181,14 @@ public class MidBoss : NetworkBehaviour
             }
         }
         lastAttackNumber = currentAttackType;
+    }
+
+    public void AnimationEnd()
+    {
+        animator.SetBool("AOE", false);
+        animator.SetBool("Summon", false);
+        animator.SetBool("Slam", false);
+        animator.SetBool("ProjSummon", false);
     }
     public void Slam()
     {

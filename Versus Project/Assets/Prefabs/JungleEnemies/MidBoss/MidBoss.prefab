@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: -1901974733067837653}
   - component: {fileID: 8608470416726532606}
   - component: {fileID: 6224098351736422385}
+  - component: {fileID: 4642984067137895406}
+  - component: {fileID: 3771363473005128850}
   m_Layer: 0
   m_Name: MidBoss
   m_TagString: JungleEnemy
@@ -318,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bAM: {fileID: 0}
   health: {fileID: -1901974733067837653}
+  animator: {fileID: 4642984067137895406}
   isAttacking: 0
   playerInRange: 0
   distanceFromPOne: {x: 0, y: 0, z: 0}
@@ -356,3 +359,39 @@ MonoBehaviour:
     type: 3}
   HealthBar: {fileID: 0}
   networkBoss: {fileID: 6782888038592277727}
+--- !u!95 &4642984067137895406
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942386518775928844}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 270fbd924517d584483978e75a7d5f31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3771363473005128850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942386518775928844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 4642984067137895406}

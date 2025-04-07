@@ -74,6 +74,7 @@ MonoBehaviour:
   damage: 0
   armorPen: 0
   acceleration: 1
+  appliesDarkness: 0
 --- !u!114 &2805992777392049465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ Animator:
   m_GameObject: {fileID: 315554442559877787}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 32e009fde79dfa144a5956f8da0c17a3, type: 2}
+  m_Controller: {fileID: 9100000, guid: e855443359a09194897ea87b02988421, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -184,8 +185,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -24959065661342826, guid: 9dfb9dc6914150047aa4a9e81ebac7b7, type: 3}
-  m_Color: {r: 0.3207547, g: 0.12003082, b: 0.12003082, a: 1}
+  m_Sprite: {fileID: -1522445042459158714, guid: 370f0ae53d1044c468463a6870175c33,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
