@@ -34,9 +34,8 @@ public class StringAbility : NetworkBehaviour
         }
     }
 
-    void Damage()
+    public void Damage()
     {
-        Debug.Log("string do thing");
         Vector2 pos = new Vector2(Pos.position.x, Pos.position.y);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 4);
         foreach (var collider in hitColliders)
@@ -51,7 +50,7 @@ public class StringAbility : NetworkBehaviour
                 {
                     Debug.Log("Damage Triggering");
                     collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Immobilized", 0f, 0.5f, true);
+                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Immobilized", 0f, 1f, true);
                     InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Marked", markAmount, 5f, true);
                     if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                     {
@@ -123,7 +122,7 @@ public class StringAbility : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void InflictBuffServerRpc(NetworkObjectReference Target, string buffType, float amount, float duration, bool hasDuration)
     {
         if (Target.TryGet(out NetworkObject targetObj))

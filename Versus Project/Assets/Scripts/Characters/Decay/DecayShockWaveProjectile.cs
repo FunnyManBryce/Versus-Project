@@ -77,7 +77,7 @@ public class DecayShockWaveProjectile : NetworkBehaviour
             return false;
         }
     }
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void InflictBuffServerRpc(NetworkObjectReference Target, string buffType, float amount, float duration, bool hasDuration)
     {
         if (Target.TryGet(out NetworkObject targetObj))

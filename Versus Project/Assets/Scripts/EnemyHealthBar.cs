@@ -52,7 +52,7 @@ public class EnemyHealthBar : MonoBehaviour
         if (healthSlider != null)
         {
             healthSlider.maxValue = maxHealth;
-            healthSlider.value = maxHealth;
+            healthSlider.value = health.currentHealth.Value;
         }
 
         //UpdateHealthText(maxHealth);

@@ -324,7 +324,14 @@ public class PuppeteeringPlayerController : BasePlayerController
             puppet.lifestealMultiplier = lifestealMultiplier;
             puppet.regen = puppetRegen;
             puppet.health.healthSetManual = true;
-            puppet.health.maxHealth.Value = puppetStartingHealth + (25 * Level.Value);
+            if (Level.Value < 1)
+            {
+                puppet.health.maxHealth.Value = puppetStartingHealth + 25;
+            }
+            else if (Level.Value >= 1)
+            {
+                puppet.health.maxHealth.Value = puppetStartingHealth + (25 * Level.Value);
+            }
             if (spawnType == "ModeSwitch")
             {
                 puppet.health.currentHealth.Value = puppet.health.maxHealth.Value * ((lameManager.matchTimer.Value - puppetDeathTime.Value) / puppetRespawnLength);
@@ -382,7 +389,6 @@ public class PuppeteeringPlayerController : BasePlayerController
                 TriggerBuffServerRpc("Armor", armorBuffMultiplier * health.armor, 5f, true);
                 TriggerBuffServerRpc("Regen", 10, 5f, true);
                 TriggerBuffServerRpc("Speed", 2, 5f, true);
-                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Speed", 2, 5f);
                 puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor", armorBuffMultiplier * puppet.GetComponent<Puppet>().health.armor, 5f);
 
             }
@@ -391,8 +397,6 @@ public class PuppeteeringPlayerController : BasePlayerController
                 TriggerBuffServerRpc("Attack Damage", attackBuffMultiplier * attackDamage, 5f, true);
                 TriggerBuffServerRpc("Armor Pen", pierceBuffMultiplier * armorPen, 5f, true);
                 puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor Pen", pierceBuffMultiplier * puppet.GetComponent<Puppet>().armorPen, 5f);
-                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Attack Damage", attackBuffMultiplier * puppet.GetComponent<Puppet>().Damage, 5f);
-
             }
         }
         if (puppetsAlive.Value == 0)
