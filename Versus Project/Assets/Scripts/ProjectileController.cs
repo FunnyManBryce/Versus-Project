@@ -10,7 +10,6 @@ public class ProjectileController : NetworkBehaviour
     private NetworkObject target;
     private NetworkObject sender;
     private bool isTargetDestroyed = false;
-    private BasePlayerController player;
     public bool appliesDarkness;
 
     public void Initialize(float projSpeed, float projDamage, NetworkObject targetObj, NetworkObject senderObj, float AP)
@@ -20,10 +19,9 @@ public class ProjectileController : NetworkBehaviour
         target = targetObj;
         sender = senderObj;
         armorPen = AP;
-        if (target.CompareTag("Player"))
+        if (sender.CompareTag("Player"))
         {
-            player = target.GetComponent<BasePlayerController>();
-            if(player.appliesDarkness.Value)
+            if(sender.GetComponent<BasePlayerController>().appliesDarkness.Value)
             {
                 appliesDarkness = true;
             }
@@ -34,7 +32,7 @@ public class ProjectileController : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        if (target == null || !target.IsSpawned || target.CompareTag("Player") && player.isDead.Value)
+        if (target == null || !target.IsSpawned || target.CompareTag("Player") && target.GetComponent<BasePlayerController>().isDead.Value)
         {
             if (!isTargetDestroyed)
             {
