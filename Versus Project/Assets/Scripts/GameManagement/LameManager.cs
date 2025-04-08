@@ -140,7 +140,6 @@ public class LameManager : NetworkBehaviour
         {
             Camera = character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
-            Camera.AddComponent<AudioListener>();
             gameStarted = true;
         }
         else
@@ -159,7 +158,6 @@ public class LameManager : NetworkBehaviour
         {
             Camera = Character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
-            Camera.AddComponent<AudioListener>();
         }
     }
 

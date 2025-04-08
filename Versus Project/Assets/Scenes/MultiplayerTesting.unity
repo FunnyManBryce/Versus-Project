@@ -10112,7 +10112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd9801c2587cf748b87b4ceb41e6fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioPrefab: {fileID: 6098931015747056809, guid: e8bd07e273ccf6340b30e79117e9175d,
+  audioPrefab: {fileID: 3429250834988194407, guid: e8bd07e273ccf6340b30e79117e9175d,
     type: 3}
   volumeControl: {fileID: 0}
   sounds:
@@ -10149,18 +10149,18 @@ MonoBehaviour:
     spread: 0
     source: {fileID: 0}
   - name: Decay Auto
-    clip: {fileID: 8300000, guid: 16281bc530db80944a939c4cb5f63fef, type: 3}
+    clip: {fileID: 8300000, guid: 978a13625e269874f92ce62b1f541f52, type: 3}
     loop: 0
     spatialBlend: 1
-    volume: 1.5
+    volume: 3
     pitch: 1
     spread: 0
     source: {fileID: 0}
   - name: Puppeteering Auto
-    clip: {fileID: 8300000, guid: a5c4a3a72ebb0044e9283ea9d401e099, type: 3}
+    clip: {fileID: 8300000, guid: 0b79535a359467e47a6e14dd5f9a4e14, type: 3}
     loop: 0
     spatialBlend: 1
-    volume: 1.5
+    volume: 3
     pitch: 1
     spread: 0
     source: {fileID: 0}
@@ -10174,7 +10174,7 @@ Transform:
   m_GameObject: {fileID: 1148271692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.594383, y: 15.246, z: -1.0991043}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
