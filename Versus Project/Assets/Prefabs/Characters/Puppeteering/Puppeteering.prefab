@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: -8253534391822271971}
   - component: {fileID: 9124016138854936558}
   - component: {fileID: 9141117337617203882}
-  - component: {fileID: 7485780912489175415}
   m_Layer: 0
   m_Name: Puppeteering
   m_TagString: Player
@@ -693,11 +692,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!81 &7485780912489175415
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7846404579260722031}
-  m_Enabled: 1

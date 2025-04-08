@@ -100,6 +100,13 @@ public class NetworkManagerUI : NetworkBehaviour
         if (totalPlayers.Value >= playerMaximum.Value) //if there are too many players in the lobby, kick out the most recently joined one
         {
             DisconnectClientServerRPC(networkManagerScript.LocalClientId);
+            QuitOption.SetActive(false);
+            charSelectionUI.SetActive(false);
+            playersInLobby.SetActive(false);
+            readyToStartUI.SetActive(false);
+            lobbySelectionUI.SetActive(false);
+            lobbyCreationUI.SetActive(true);
+            Character = null;
         }
     }
 

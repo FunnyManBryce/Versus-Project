@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 2299055155951191650}
   - component: {fileID: 176950742428784287}
   - component: {fileID: 6074079616988557854}
-  - component: {fileID: 7647828175139242866}
   m_Layer: 0
   m_Name: Decay
   m_TagString: Player
@@ -664,11 +663,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 3704004338721201214}
---- !u!81 &7647828175139242866
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7846404579260722031}
-  m_Enabled: 1

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -141,10 +142,11 @@ public class LameManager : NetworkBehaviour
             Camera = character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
             gameStarted = true;
+            character.AddComponent<AudioListener>();
         }
         else
         {
-            CameraOnClientRPC(clientID, team);
+            CameraOnClientRPC(clientID, team, character);
         }
         character.GetComponent<BasePlayerController>().clientID = clientID;
         var characterNetworkObject = character.GetComponent<NetworkObject>();
@@ -152,12 +154,16 @@ public class LameManager : NetworkBehaviour
     }
 
     [Rpc(SendTo.NotServer)]
-    public void CameraOnClientRPC(ulong clientID, int team)
+    public void CameraOnClientRPC(ulong clientID, int team, NetworkObjectReference character)
     {
         if (clientId == clientID)
         {
             Camera = Character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
+            if (character.TryGet(out NetworkObject c))
+            {
+                c.AddComponent<AudioListener>();
+            }
         }
     }
 
