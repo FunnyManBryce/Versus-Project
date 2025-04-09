@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class NetworkManagerUI : NetworkBehaviour
 {
+    public BryceAudioManager bAM;
     [SerializeField] private LameManager lameManager;
     [SerializeField] private NetworkManager networkManagerScript;
     public GameObject playersInLobby;
@@ -36,6 +37,7 @@ public class NetworkManagerUI : NetworkBehaviour
 
     private void Awake()
     {
+        bAM.Play("Main Menu Theme", gameObject.transform.position);
         hostButton.onClick.AddListener(() =>
         { //Host button creates a lobby
             NetworkManager.Singleton.StartHost();
@@ -129,7 +131,18 @@ public class NetworkManagerUI : NetworkBehaviour
 
     public void CharacterNumber(int charNumber)
     {
+        if (charNumber == characterNumber) return;
         characterNumber = charNumber;
+        if(characterNumber == 1) //Decay sound
+        {
+            bAM.Play("Decay Pick", gameObject.transform.position);
+            bAM.Stop("Puppeteering Pick");
+        }
+        if (characterNumber == 2) //Puppeteering sound
+        {
+            bAM.Play("Puppeteering Pick", gameObject.transform.position);
+            bAM.Stop("Decay Pick");
+        }
         foreach (GameObject character in characterInfoUI)
         {
             character.SetActive(false);

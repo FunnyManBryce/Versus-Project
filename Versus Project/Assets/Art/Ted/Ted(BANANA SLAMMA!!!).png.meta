@@ -1,0 +1,707 @@
+fileFormatVersion: 2
+guid: 54c0ae0f240548e40a072ccaadc52d43
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1906716642665977422
+    second: Ted(BANANA SLAMMA!!!)_0
+  - first:
+      213: 8911987241860325516
+    second: Ted(BANANA SLAMMA!!!)_1
+  - first:
+      213: -2701010664321558980
+    second: Ted(BANANA SLAMMA!!!)_2
+  - first:
+      213: 8834262727295314311
+    second: Ted(BANANA SLAMMA!!!)_3
+  - first:
+      213: -2938379677548458824
+    second: Ted(BANANA SLAMMA!!!)_4
+  - first:
+      213: -8660221344446250698
+    second: Ted(BANANA SLAMMA!!!)_5
+  - first:
+      213: -8560127415416589574
+    second: Ted(BANANA SLAMMA!!!)_6
+  - first:
+      213: -1904192510878150624
+    second: Ted(BANANA SLAMMA!!!)_7
+  - first:
+      213: 3848368516437903846
+    second: Ted(BANANA SLAMMA!!!)_8
+  - first:
+      213: -71598020362840957
+    second: Ted(BANANA SLAMMA!!!)_9
+  - first:
+      213: -7780584164227837001
+    second: Ted(BANANA SLAMMA!!!)_10
+  - first:
+      213: 630783735018126360
+    second: Ted(BANANA SLAMMA!!!)_11
+  - first:
+      213: -7974701550227619944
+    second: Ted(BANANA SLAMMA!!!)_12
+  - first:
+      213: -4556402657960089729
+    second: Ted(BANANA SLAMMA!!!)_13
+  - first:
+      213: 3603047856601302238
+    second: Ted(BANANA SLAMMA!!!)_14
+  - first:
+      213: 4988430314650893081
+    second: Ted(BANANA SLAMMA!!!)_15
+  - first:
+      213: -1456626924729479867
+    second: Ted(BANANA SLAMMA!!!)_16
+  - first:
+      213: -9129793046684833788
+    second: Ted(BANANA SLAMMA!!!)_17
+  - first:
+      213: 2348059868634762620
+    second: Ted(BANANA SLAMMA!!!)_18
+  - first:
+      213: 7196445464811034443
+    second: Ted(BANANA SLAMMA!!!)_19
+  - first:
+      213: 496720077959163804
+    second: Ted(BANANA SLAMMA!!!)_20
+  - first:
+      213: -4195860216795407603
+    second: Ted(BANANA SLAMMA!!!)_21
+  - first:
+      213: 4701102938790959816
+    second: Ted(BANANA SLAMMA!!!)_22
+  - first:
+      213: -3182783457047430991
+    second: Ted(BANANA SLAMMA!!!)_23
+  - first:
+      213: 564605661284926342
+    second: Ted(BANANA SLAMMA!!!)_24
+  - first:
+      213: 4665604458799000756
+    second: Ted(BANANA SLAMMA!!!)_25
+  - first:
+      213: 4610417895613331581
+    second: Ted(BANANA SLAMMA!!!)_26
+  - first:
+      213: 8831186020110877394
+    second: Ted(BANANA SLAMMA!!!)_27
+  - first:
+      213: -1793336747952000876
+    second: Ted(BANANA SLAMMA!!!)_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b9a192d05bf985e0800000000000000
+      internalID: -1906716642665977422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c80e5e1cd2dbdab70800000000000000
+      internalID: 8911987241860325516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3652928c15148ad0800000000000000
+      internalID: -2701010664321558980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78929e0052b999a70800000000000000
+      internalID: 8834262727295314311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bc4f706047c837d0800000000000000
+      internalID: -2938379677548458824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63186003296b0d780800000000000000
+      internalID: -8660221344446250698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af2f20c1871543980800000000000000
+      internalID: -8560127415416589574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 020162d0003f295e0800000000000000
+      internalID: -1904192510878150624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_8
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e90413b6c6286530800000000000000
+      internalID: 3848368516437903846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_9
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 384d6a5daf1a10ff0800000000000000
+      internalID: -71598020362840957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_10
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b39b2a0defc50490800000000000000
+      internalID: -7780584164227837001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_11
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81c79d7077ef0c800800000000000000
+      internalID: 630783735018126360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_12
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89ffcec113b245190800000000000000
+      internalID: -7974701550227619944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_13
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f77a4a66ce764c0c0800000000000000
+      internalID: -4556402657960089729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_14
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed404719fe8900230800000000000000
+      internalID: 3603047856601302238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_15
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b7e8bf0f67a3540800000000000000
+      internalID: 4988430314650893081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_16
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54dca3d878509cbe0800000000000000
+      internalID: -1456626924729479867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_17
+      rect:
+        serializedVersion: 2
+        x: 1632
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 408e48388957c4180800000000000000
+      internalID: -9129793046684833788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_18
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7d435d820cf59020800000000000000
+      internalID: 2348059868634762620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_19
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4758879509eed360800000000000000
+      internalID: 7196445464811034443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_20
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9f6f877744b4e600800000000000000
+      internalID: 496720077959163804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_21
+      rect:
+        serializedVersion: 2
+        x: 2016
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b57ba0d5f45c5c0800000000000000
+      internalID: -4195860216795407603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(BANANA SLAMMA!!!)_22
+      rect:
+        serializedVersion: 2
+        x: 2112
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ca1e2f173cad3140800000000000000
+      internalID: 4701102938790959816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 343449b65cbeb0149a13d97c985e2836
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Ted(BANANA SLAMMA!!!)_0: -1906716642665977422
+      Ted(BANANA SLAMMA!!!)_1: 8911987241860325516
+      Ted(BANANA SLAMMA!!!)_10: -7780584164227837001
+      Ted(BANANA SLAMMA!!!)_11: 630783735018126360
+      Ted(BANANA SLAMMA!!!)_12: -7974701550227619944
+      Ted(BANANA SLAMMA!!!)_13: -4556402657960089729
+      Ted(BANANA SLAMMA!!!)_14: 3603047856601302238
+      Ted(BANANA SLAMMA!!!)_15: 4988430314650893081
+      Ted(BANANA SLAMMA!!!)_16: -1456626924729479867
+      Ted(BANANA SLAMMA!!!)_17: -9129793046684833788
+      Ted(BANANA SLAMMA!!!)_18: 2348059868634762620
+      Ted(BANANA SLAMMA!!!)_19: 7196445464811034443
+      Ted(BANANA SLAMMA!!!)_2: -2701010664321558980
+      Ted(BANANA SLAMMA!!!)_20: 496720077959163804
+      Ted(BANANA SLAMMA!!!)_21: -4195860216795407603
+      Ted(BANANA SLAMMA!!!)_22: 4701102938790959816
+      Ted(BANANA SLAMMA!!!)_3: 8834262727295314311
+      Ted(BANANA SLAMMA!!!)_4: -2938379677548458824
+      Ted(BANANA SLAMMA!!!)_5: -8660221344446250698
+      Ted(BANANA SLAMMA!!!)_6: -8560127415416589574
+      Ted(BANANA SLAMMA!!!)_7: -1904192510878150624
+      Ted(BANANA SLAMMA!!!)_8: 3848368516437903846
+      Ted(BANANA SLAMMA!!!)_9: -71598020362840957
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

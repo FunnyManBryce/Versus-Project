@@ -9,6 +9,7 @@ public class BryceAudioManager : NetworkBehaviour
     public VolumeControl volumeControl;
     public Sound[] sounds;
     public List<AudioSource> sourcesPlaying;
+    public List<String> sourceNames;
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,6 +37,7 @@ public class BryceAudioManager : NetworkBehaviour
             {
                 Destroy(sourcesPlaying[i].gameObject);
                 sourcesPlaying.Remove(sourcesPlaying[i]);
+                sourceNames.Remove(sourceNames[i]);
             }
         }
     }
@@ -54,6 +56,7 @@ public class BryceAudioManager : NetworkBehaviour
         audioSource.spatialBlend = s.spatialBlend;
         audioSource.minDistance = 10;
         audioSource.Play();
+        sourceNames.Add(name);
         sourcesPlaying.Add(audioSource);
     }
 
@@ -72,6 +75,7 @@ public class BryceAudioManager : NetworkBehaviour
         audioSource.spatialBlend = s.spatialBlend;
         audioSource.minDistance = 10;
         audioSource.Play();
+        sourceNames.Add(name);
         sourcesPlaying.Add(audioSource);
     }
 
@@ -88,12 +92,21 @@ public class BryceAudioManager : NetworkBehaviour
         audioSource.spatialBlend = s.spatialBlend;
         audioSource.minDistance = 10;
         audioSource.Play();
+        sourceNames.Add(name);
         sourcesPlaying.Add(audioSource);
     }
 
     public void Stop(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Stop();
+        if (sourcesPlaying.Count <= 0) return;
+        for (int i = 0; i < sourcesPlaying.Count; i++)
+        {
+            if (sourceNames[i] == name)
+            {
+                Destroy(sourcesPlaying[i].gameObject);
+                sourcesPlaying.Remove(sourcesPlaying[i]);
+                sourceNames.Remove(sourceNames[i]);
+            }
+        }
     }
 }

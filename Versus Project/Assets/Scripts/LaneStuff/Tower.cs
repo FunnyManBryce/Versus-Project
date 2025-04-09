@@ -201,6 +201,8 @@ public class Tower : NetworkBehaviour
             if (health.currentHealth.Value <= 0 && IsServer == true && dead == false)
             {
                 dead = true;
+                bAM.PlayServerRpc("Tower Break", tower.transform.position);
+                bAM.PlayClientRpc("Tower Break", tower.transform.position);
                 if (distanceFromPlayer.magnitude < goldRange)
                 {
                     enemyPlayer.GetComponent<BasePlayerController>().Gold.Value += goldGiven;

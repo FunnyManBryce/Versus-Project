@@ -96,24 +96,18 @@ public class MidBoss : NetworkBehaviour
         }
         if (currentAttackType == 1)
         {
-            //Should eventually change these to activating animations instead
             isAttacking = true;
-            //animator.SetBool("Slam", true);
-            Slam();
+            animator.SetBool("Slam", true);
         }
         if (currentAttackType == 2)
         {
-            //Should eventually change these to activating animations instead
             isAttacking = true;
             animator.SetBool("ProjSummon", true);
-            //ProjectileAttack();
         }
         if (currentAttackType == 3)
         {
-            //Should eventually change these to activating animations instead
             isAttacking = true;
             animator.SetBool("AOE", true);
-            //AOESpawn();
         }
         if (currentAttackType == 4)
         {
@@ -194,7 +188,7 @@ public class MidBoss : NetworkBehaviour
     {
         //needs animation windup
         Vector2 pos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 6);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 7);
         foreach (var collider in hitColliders)
         {
             if (collider.GetComponent<Health>() != null && collider.tag != "JungleEnemy" && collider.isTrigger)

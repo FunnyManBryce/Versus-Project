@@ -1,0 +1,309 @@
+fileFormatVersion: 2
+guid: fd55e203d4a3d724cbd202b6b677107b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1752524900930297681
+    second: Ted(ShockWave)_0
+  - first:
+      213: -6676457287486966064
+    second: Ted(ShockWave)_1
+  - first:
+      213: -506894432115052077
+    second: Ted(ShockWave)_2
+  - first:
+      213: 7893047893976457137
+    second: Ted(ShockWave)_3
+  - first:
+      213: 1924873168995604966
+    second: Ted(ShockWave)_4
+  - first:
+      213: -9018787633749503432
+    second: Ted(ShockWave)_5
+  - first:
+      213: 3184041527739565648
+    second: Ted(ShockWave)_6
+  - first:
+      213: -1442251897366446316
+    second: Ted(ShockWave)_7
+  - first:
+      213: 7205071302042638068
+    second: Ted(ShockWave)_8
+  - first:
+      213: 200950977922149314
+    second: Ted(ShockWave)_9
+  - first:
+      213: -9017376274949527258
+    second: Ted(ShockWave)_10
+  - first:
+      213: 3621102442883781874
+    second: Ted(ShockWave)_11
+  - first:
+      213: -10596747291732014
+    second: Ted(ShockWave)_12
+  - first:
+      213: 9132473705789395864
+    second: Ted(ShockWave)_13
+  - first:
+      213: 5016688881619882820
+    second: Ted(ShockWave)_14
+  - first:
+      213: 4039880200281728560
+    second: Ted(ShockWave)_15
+  - first:
+      213: -6264091770013914902
+    second: Ted(ShockWave)_16
+  - first:
+      213: -9208752889236193363
+    second: Ted(ShockWave)_17
+  - first:
+      213: 8229667815658285557
+    second: Ted(ShockWave)_18
+  - first:
+      213: 2329236370456544537
+    second: Ted(ShockWave)_19
+  - first:
+      213: 3118786767819794971
+    second: Ted(ShockWave)_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ted(ShockWave)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21520b4b1707dff46bd0368fd9c27a42
+      internalID: -1790289208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(ShockWave)_1
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 687c6e3886999274aa39b3cf7a4bf566
+      internalID: -777336237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(ShockWave)_2
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0da5e6f570d0b4a97e0a06b34b88ad
+      internalID: 401413923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(ShockWave)_3
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8726c663a5f00764ebd73d62f4e3ce11
+      internalID: -1532254245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(ShockWave)_4
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 806d0696809972c48921996485efdbf9
+      internalID: -380624576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(ShockWave)_5
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9d5e81ae881ce84caf6e1c5d2cc4d8d
+      internalID: 1415385814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 6eb3fab9d5cdfb14ea43c9c48b2ba533
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Ted(ShockWave)_0: -1790289208
+      Ted(ShockWave)_1: -777336237
+      Ted(ShockWave)_2: 401413923
+      Ted(ShockWave)_3: -1532254245
+      Ted(ShockWave)_4: -380624576
+      Ted(ShockWave)_5: 1415385814
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

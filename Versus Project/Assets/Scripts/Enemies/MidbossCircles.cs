@@ -34,7 +34,7 @@ public class MidbossCircles : NetworkBehaviour
     public void Damage()
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 5f);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 5.5f);
         foreach (var collider in hitColliders)
         {
             if (collider.GetComponent<Health>() != null && collider.isTrigger && collider.tag != "JungleEnemy")

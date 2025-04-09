@@ -10152,7 +10152,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 978a13625e269874f92ce62b1f541f52, type: 3}
     loop: 0
     spatialBlend: 1
-    volume: 3
+    volume: 0.75
     pitch: 1
     spread: 0
     source: {fileID: 0}
@@ -10164,7 +10164,48 @@ MonoBehaviour:
     pitch: 1
     spread: 0
     source: {fileID: 0}
+  - name: Decay Pick
+    clip: {fileID: 8300000, guid: ce5b49480461e2f4ab5e9437066ed37a, type: 3}
+    loop: 0
+    spatialBlend: 1
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Tower Break
+    clip: {fileID: 8300000, guid: a80f6f60cf8e0bd4c8ee338a32fcf609, type: 3}
+    loop: 0
+    spatialBlend: 1
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Main Menu Theme
+    clip: {fileID: 8300000, guid: 3c2dde4433b0ff44abf28899720ac65e, type: 3}
+    loop: 1
+    spatialBlend: 0
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Puppeteering Pick
+    clip: {fileID: 8300000, guid: 2604c494512217548ba122d35edb25b5, type: 3}
+    loop: 0
+    spatialBlend: 1
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Button Press
+    clip: {fileID: 8300000, guid: 5f2a5742609baec4496268dc848b566e, type: 3}
+    loop: 0
+    spatialBlend: 0
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
   sourcesPlaying: []
+  sourceNames: []
 --- !u!4 &1148271694
 Transform:
   m_ObjectHideFlags: 0
@@ -17086,6 +17127,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7218120947281338993, guid: a675514261b47cd478ba26b22178edb5,
+        type: 3}
+      propertyPath: BAM
+      value: 
+      objectReference: {fileID: 1148271693}
+    - target: {fileID: 7218120947281338993, guid: a675514261b47cd478ba26b22178edb5,
+        type: 3}
+      propertyPath: bAM
+      value: 
+      objectReference: {fileID: 1148271693}
     - target: {fileID: 7218120947281338993, guid: a675514261b47cd478ba26b22178edb5,
         type: 3}
       propertyPath: IPText
