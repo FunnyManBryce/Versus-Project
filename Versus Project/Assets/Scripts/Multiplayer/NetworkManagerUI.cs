@@ -40,17 +40,20 @@ public class NetworkManagerUI : NetworkBehaviour
         bAM.Play("Main Menu Theme", gameObject.transform.position);
         hostButton.onClick.AddListener(() =>
         { //Host button creates a lobby
+            bAM.Play("Button Press", gameObject.transform.position);
             NetworkManager.Singleton.StartHost();
             QuitOption.SetActive(true);
             //lobbySelectionUI.SetActive(true); //For now let's only have a 1v1 mode. The code is in place to change this though
         });
         clientButton.onClick.AddListener(() =>
         { //Lobby button joins a lobby
+            bAM.Play("Button Press", gameObject.transform.position);
             NetworkManager.Singleton.StartClient();
             QuitOption.SetActive(true);
         });
         startButton.onClick.AddListener(() => //starts game
         {
+            bAM.Play("Button Press", gameObject.transform.position);
             if (IsServer == true /*&& readyToStart.Value == true*/ ) //REMOVE THIS BEFORE GAME IS UPLOADED
             {
                 SceneManager.LoadScene("MapScene");
@@ -132,6 +135,7 @@ public class NetworkManagerUI : NetworkBehaviour
     public void CharacterNumber(int charNumber)
     {
         if (charNumber == characterNumber) return;
+        bAM.Play("Button Press", gameObject.transform.position);
         characterNumber = charNumber;
         if(characterNumber == 1) //Decay sound
         {
@@ -154,6 +158,7 @@ public class NetworkManagerUI : NetworkBehaviour
     {
         if (Character != null) //Makes sure the player has selected a character before they're counted as ready
         {
+            bAM.Play("Button Press", gameObject.transform.position);
             ReadyUpServerRPC();
             charSelectionUI.SetActive(false);
             readyToStartUI.SetActive(true);
@@ -162,6 +167,7 @@ public class NetworkManagerUI : NetworkBehaviour
 
     public void UnReadyUp()
     {
+        bAM.Play("Button Press", gameObject.transform.position);
         charSelectionUI.SetActive(true);
         readyToStartUI.SetActive(false);
         foreach (GameObject character in characterInfoUI)
@@ -173,6 +179,7 @@ public class NetworkManagerUI : NetworkBehaviour
 
     public void Quit()
     {
+        bAM.Play("Button Press", gameObject.transform.position);
         foreach (GameObject character in characterInfoUI)
         {
             character.SetActive(false);
@@ -192,7 +199,6 @@ public class NetworkManagerUI : NetworkBehaviour
         }
         else //Client only quits individual client
         {
-            DisconnectClientServerRPC(networkManagerScript.LocalClientId);
             QuitOption.SetActive(false);
             charSelectionUI.SetActive(false);
             playersInLobby.SetActive(false);
@@ -200,6 +206,7 @@ public class NetworkManagerUI : NetworkBehaviour
             lobbySelectionUI.SetActive(false);
             lobbyCreationUI.SetActive(true);
             Character = null;
+            DisconnectClientServerRPC(networkManagerScript.LocalClientId);
         }
     }
 
