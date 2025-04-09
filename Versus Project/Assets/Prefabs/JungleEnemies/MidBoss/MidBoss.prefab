@@ -321,6 +321,7 @@ MonoBehaviour:
   bAM: {fileID: 0}
   health: {fileID: -1901974733067837653}
   animator: {fileID: 4642984067137895406}
+  bossSprite: {fileID: 385054977924169405}
   isAttacking: 0
   playerInRange: 0
   distanceFromPOne: {x: 0, y: 0, z: 0}

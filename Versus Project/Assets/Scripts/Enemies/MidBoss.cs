@@ -11,6 +11,7 @@ public class MidBoss : NetworkBehaviour
     private LameManager lameManager;
     public Animator animator;
 
+    public SpriteRenderer bossSprite;
     private bool dead;
     public bool isAttacking;
 
@@ -71,6 +72,33 @@ public class MidBoss : NetworkBehaviour
         if (distanceFromPOne.magnitude <= 15 || distanceFromPTwo.magnitude <= 15)
         {
             playerInRange = true;
+            if (distanceFromPTwo.magnitude < distanceFromPOne.magnitude)
+            {
+                float PTwo = gameObject.transform.position.x - lameManager.playerTwoChar.transform.position.x;
+                if(PTwo < 0f)
+                {
+                    bossSprite.flipX = false;
+                    FlipSpriteClientRpc(false);
+                } else if(PTwo > 0f)
+                {
+                    bossSprite.flipX = true;
+                    FlipSpriteClientRpc(true);
+                }
+            }
+            else if (distanceFromPTwo.magnitude > distanceFromPOne.magnitude)
+            {
+                float POne = gameObject.transform.position.x - lameManager.playerOneChar.transform.position.x;
+                if (POne < 0f)
+                {
+                    bossSprite.flipX = false;
+                    FlipSpriteClientRpc(false);
+                }
+                else if (POne > 0f)
+                {
+                    bossSprite.flipX = true;
+                    FlipSpriteClientRpc(true);
+                }
+            }
         }
         else
         {
@@ -216,7 +244,6 @@ public class MidBoss : NetworkBehaviour
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
             controller.Initialize(18, projDamage, lameManager.playerOneChar.GetComponent<NetworkObject>(), networkBoss, armorPen);
         }
-        //Make target closest player probably through circle thingy
         onCooldown = true;
     }
 
@@ -332,4 +359,16 @@ public class MidBoss : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    public void FlipSpriteClientRpc(bool flip)
+    {
+        if (flip)
+        {
+            bossSprite.flipX = true;
+        }
+        else
+        {
+            bossSprite.flipX = false;
+        }
+    }
 }

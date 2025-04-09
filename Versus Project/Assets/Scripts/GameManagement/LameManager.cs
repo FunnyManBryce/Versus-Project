@@ -137,32 +137,35 @@ public class LameManager : NetworkBehaviour
         {
             playerTwoChar = character;
         }
+        character.GetComponent<BasePlayerController>().clientID = clientID;
+        var characterNetworkObject = character.GetComponent<NetworkObject>();
+        characterNetworkObject.SpawnWithOwnership(clientID);
         if (clientID == 0)
         {
             Camera = character.transform.Find("Main Camera").gameObject;
             Camera.SetActive(true);
             gameStarted = true;
-            character.AddComponent<AudioListener>();
+            characterNetworkObject.AddComponent<AudioListener>();
         }
         else
         {
-            CameraOnClientRPC(clientID, team, character);
+            CameraOnClientRPC(clientID, team, characterNetworkObject);
         }
-        character.GetComponent<BasePlayerController>().clientID = clientID;
-        var characterNetworkObject = character.GetComponent<NetworkObject>();
-        characterNetworkObject.SpawnWithOwnership(clientID);
+
     }
 
     [Rpc(SendTo.NotServer)]
     public void CameraOnClientRPC(ulong clientID, int team, NetworkObjectReference character)
     {
+        Debug.Log("???");
         if (clientId == clientID)
         {
-            Camera = Character.transform.Find("Main Camera").gameObject;
-            Camera.SetActive(true);
+            Debug.Log("????????");
             if (character.TryGet(out NetworkObject c))
             {
                 c.AddComponent<AudioListener>();
+                Camera = c.transform.Find("Main Camera").gameObject;
+                Camera.SetActive(true);
             }
         }
     }
