@@ -190,6 +190,7 @@ public class DecayPlayerController : BasePlayerController
         Shockwave.AttemptUse();
     }
 
+
     [Rpc(SendTo.Server)]
     private void TrackStatDecayServerRpc()
     {

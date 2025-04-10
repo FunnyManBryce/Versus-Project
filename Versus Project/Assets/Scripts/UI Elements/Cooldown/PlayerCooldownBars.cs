@@ -19,34 +19,75 @@ public class PlayerCooldownBars : MonoBehaviour
     [SerializeField] private Transform passiveTimerContainer;
     [SerializeField] private bool hasPassiveTimer;
 
+    [Header("Debug Options")]
+    [SerializeField] private bool enableDebugLogs = true;
+
     // Cached references to ability cooldown UI elements
     private List<AbilityCooldownUI> abilityCooldowns = new List<AbilityCooldownUI>();
     private PassiveTimerUI passiveTimer;
 
+    // Track initialization attempts to avoid excessive logging
+    private float lastInitAttemptTime = 0f;
+    private const float INIT_RETRY_DELAY = 1.0f;
+
     private void Start()
     {
         isPlayer1UI = transform.root.name.Contains("1");
+        LogDebug($"Starting PlayerCooldownBars for {(isPlayer1UI ? "Player 1" : "Player 2")} UI");
+
+        // Initial attempt to find player controller
         FindAndSetPlayerController();
     }
 
     private void FindAndSetPlayerController()
     {
+        if (Time.time - lastInitAttemptTime < INIT_RETRY_DELAY) return;
+        lastInitAttemptTime = Time.time;
+
+        LogDebug("Attempting to find and set player controller");
+
         var players = Object.FindObjectsOfType<BasePlayerController>();
+        LogDebug($"Found {players.Length} BasePlayerController instances");
+
         foreach (var player in players)
         {
+            if (player == null)
+            {
+                LogDebug("Found null player controller reference");
+                continue;
+            }
+
+            if (player.NetworkObject == null)
+            {
+                LogDebug($"Player controller {player.name} has null NetworkObject");
+                continue;
+            }
+
+            LogDebug($"Checking player: {player.name}, IsSpawned: {player.NetworkObject.IsSpawned}, OwnerClientId: {player.NetworkObject.OwnerClientId}");
+
             if (player.NetworkObject.IsSpawned)
             {
                 bool isPlayer1 = player.NetworkObject.OwnerClientId == 0;
+                LogDebug($"Player is spawned. IsPlayer1: {isPlayer1}, IsPlayer1UI: {isPlayer1UI}");
+
                 if (isPlayer1 == isPlayer1UI)
                 {
                     playerController = player;
+                    LogDebug($"Found matching player controller: {player.name}");
+
                     if (playerController != null)
                     {
+                        LogDebug("Initializing cooldown bars for this controller");
                         InitializeCooldownBars();
                         break;
                     }
                 }
             }
+        }
+
+        if (playerController == null)
+        {
+            LogDebug("No matching player controller found. Will retry later.");
         }
     }
 
@@ -54,6 +95,7 @@ public class PlayerCooldownBars : MonoBehaviour
     {
         if (playerController == null || !initialized)
         {
+            // Retry finding player controller
             FindAndSetPlayerController();
             return;
         }
@@ -68,12 +110,19 @@ public class PlayerCooldownBars : MonoBehaviour
 
     private void OnEnable()
     {
+        LogDebug("PlayerCooldownBars OnEnable");
         FindAndSetPlayerController();
     }
 
     private void InitializeCooldownBars()
     {
-        if (playerController == null) return;
+        if (playerController == null)
+        {
+            LogDebug("Cannot initialize cooldown bars: playerController is null");
+            return;
+        }
+
+        LogDebug($"Initializing cooldown bars for {playerController.name}");
 
         // Clear existing cooldown UI if any
         foreach (Transform child in cooldownContainer)
@@ -84,8 +133,11 @@ public class PlayerCooldownBars : MonoBehaviour
 
         // Find and create UI for all abilities
         var abilities = FindAbilities();
+        LogDebug($"Found {abilities.Length} abilities");
+
         foreach (var ability in abilities)
         {
+            LogDebug($"Creating UI for ability type: {ability.GetType().Name}");
             GameObject cooldownUI = Instantiate(abilityCooldownPrefab, cooldownContainer);
             AbilityCooldownUI abilityUI = cooldownUI.GetComponent<AbilityCooldownUI>();
 
@@ -93,38 +145,69 @@ public class PlayerCooldownBars : MonoBehaviour
             {
                 abilityUI.SetupAbility(ability);
                 abilityCooldowns.Add(abilityUI);
+                LogDebug("Added ability cooldown UI");
+            }
+            else
+            {
+                LogDebug($"Failed to set up ability UI: ability null? {ability == null}, abilityUI null? {abilityUI == null}");
             }
         }
 
         // Initialize passive timer if needed
         if (hasPassiveTimer)
         {
+            LogDebug("Initializing passive timer");
             InitializePassiveTimer();
         }
 
         initialized = true;
+        LogDebug("Cooldown bars initialization complete");
     }
 
     private System.Object[] FindAbilities()
     {
         List<System.Object> abilities = new List<System.Object>();
 
-        var fields = playerController.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        LogDebug($"Searching for abilities in {playerController.GetType().Name}");
+
+        var fields = playerController.GetType().GetFields(
+            System.Reflection.BindingFlags.Public |
+            System.Reflection.BindingFlags.NonPublic |
+            System.Reflection.BindingFlags.Instance);
+
+        LogDebug($"Found {fields.Length} fields in player controller");
 
         foreach (var field in fields)
         {
+            LogDebug($"Checking field: {field.Name}, Type: {field.FieldType.Name}");
+
             // Check if field type is AbilityBase<> (any generic version)
             if (field.FieldType.IsGenericType &&
                 field.FieldType.GetGenericTypeDefinition() == typeof(AbilityBase<>))
             {
-                var ability = field.GetValue(playerController);
-                if (ability != null)
+                LogDebug($"Field {field.Name} is an AbilityBase<> type");
+
+                try
                 {
-                    abilities.Add(ability);
+                    var ability = field.GetValue(playerController);
+                    if (ability != null)
+                    {
+                        LogDebug($"Adding ability from field {field.Name}");
+                        abilities.Add(ability);
+                    }
+                    else
+                    {
+                        LogDebug($"Field {field.Name} contains null value");
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    LogDebug($"Error getting ability value: {ex.Message}");
                 }
             }
         }
 
+        LogDebug($"Found {abilities.Count} abilities in total");
         return abilities.ToArray();
     }
 
@@ -143,9 +226,18 @@ public class PlayerCooldownBars : MonoBehaviour
             // For Decay we know the passive is based on lastDecayTime
             if (playerController is DecayPlayerController)
             {
+                LogDebug("Setting up passive timer for DecayPlayerController");
                 DecayPlayerController decayController = (DecayPlayerController)playerController;
-                passiveTimer.Setup("Passive", decayController.timeToDecay);
+                passiveTimer.Setup("Decay", decayController.timeToDecay);
             }
+            else
+            {
+                LogDebug($"Player controller is not DecayPlayerController, it's {playerController.GetType().Name}");
+            }
+        }
+        else
+        {
+            LogDebug("passiveTimerContainer is null");
         }
     }
 
@@ -153,7 +245,10 @@ public class PlayerCooldownBars : MonoBehaviour
     {
         foreach (var cooldownUI in abilityCooldowns)
         {
-            cooldownUI.UpdateUI();
+            if (cooldownUI != null)
+            {
+                cooldownUI.UpdateUI();
+            }
         }
     }
 
@@ -162,11 +257,19 @@ public class PlayerCooldownBars : MonoBehaviour
         if (playerController is DecayPlayerController)
         {
             DecayPlayerController decayController = (DecayPlayerController)playerController;
-            float currentTime = decayController.lameManager.matchTimer.Value;
+            float currentTime = decayController.lameManager?.matchTimer?.Value ?? 0f;
             float timeElapsed = currentTime - decayController.lastDecayTime;
             float remainingTime = Mathf.Max(0, decayController.timeToDecay - timeElapsed);
 
             passiveTimer.UpdateTimer(remainingTime, decayController.timeToDecay);
+        }
+    }
+
+    private void LogDebug(string message)
+    {
+        if (enableDebugLogs)
+        {
+            Debug.Log($"[CooldownBars] [{(isPlayer1UI ? "P1" : "P2")}] {message}");
         }
     }
 }
@@ -179,15 +282,25 @@ public class AbilityCooldownUI : MonoBehaviour
     [SerializeField] private Image fillImage;
     [SerializeField] private TextMeshProUGUI cooldownText;
     [SerializeField] private TextMeshProUGUI abilityNameText;
+    [SerializeField] private bool enableDebugLogs = false;
 
     private System.Object abilityObject;
     private System.Reflection.PropertyInfo cooldownProperty;
     private System.Reflection.PropertyInfo lastUsedProperty;
     private System.Reflection.PropertyInfo abilityLevelProperty;
+    private string abilityName = "Unknown";
 
     public void SetupAbility(System.Object ability)
     {
         abilityObject = ability;
+
+        if (ability == null)
+        {
+            LogDebug("SetupAbility: ability is null");
+            return;
+        }
+
+        LogDebug($"Setting up ability UI for type: {ability.GetType().Name}");
 
         // Use reflection to get the properties we need regardless of the generic type
         System.Type abilityType = ability.GetType();
@@ -195,22 +308,54 @@ public class AbilityCooldownUI : MonoBehaviour
         lastUsedProperty = abilityType.GetProperty("lastUsed");
         abilityLevelProperty = abilityType.GetProperty("abilityLevel");
 
-        // Get ability name (use the field name in the parent class)
-        string abilityName = "Unknown";
-        var fields = abilityType.DeclaringType.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        LogDebug($"Found properties - cooldown: {cooldownProperty != null}, lastUsed: {lastUsedProperty != null}, abilityLevel: {abilityLevelProperty != null}");
 
-        foreach (var field in fields)
+        // Get ability name (use the field name in the parent class)
+        abilityName = "Unknown";
+
+        try
         {
-            if (field.FieldType == abilityType && field.GetValue(abilityType.DeclaringType) == ability)
+            var declaringType = abilityType.DeclaringType;
+            if (declaringType != null)
             {
-                abilityName = field.Name;
-                break;
+                var fields = declaringType.GetFields(
+                    System.Reflection.BindingFlags.Public |
+                    System.Reflection.BindingFlags.NonPublic |
+                    System.Reflection.BindingFlags.Instance);
+
+                foreach (var field in fields)
+                {
+                    if (field.FieldType == abilityType)
+                    {
+                        // Get parent instance
+                        var parent = ability.GetType().GetProperty("parent")?.GetValue(ability);
+                        if (parent != null)
+                        {
+                            var fieldValue = field.GetValue(parent);
+                            if (fieldValue == ability)
+                            {
+                                abilityName = field.Name;
+                                LogDebug($"Found ability name: {abilityName}");
+                                break;
+                            }
+                        }
+                    }
+                }
             }
+        }
+        catch (System.Exception ex)
+        {
+            LogDebug($"Error finding ability name: {ex.Message}");
         }
 
         if (abilityNameText != null)
         {
             abilityNameText.text = abilityName;
+            LogDebug($"Set ability name text to: {abilityName}");
+        }
+        else
+        {
+            LogDebug("abilityNameText is null");
         }
 
         UpdateUI();
@@ -218,53 +363,80 @@ public class AbilityCooldownUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        if (abilityObject == null || cooldownProperty == null || lastUsedProperty == null)
-            return;
-
-        float cooldown = (float)cooldownProperty.GetValue(abilityObject);
-        float lastUsed = (float)lastUsedProperty.GetValue(abilityObject);
-        int abilityLevel = (int)abilityLevelProperty.GetValue(abilityObject);
-
-        float currentTime = Time.time;
-        float timeElapsed = currentTime - lastUsed;
-        float remainingTime = Mathf.Max(0, cooldown - timeElapsed);
-
-        // Only show if ability is level 1 or mroe
-        if (abilityLevel <= 0)
+        if (abilityObject == null)
         {
-            cooldownSlider.gameObject.SetActive(false);
-            if (cooldownText != null) cooldownText.gameObject.SetActive(false);
+            LogDebug("UpdateUI: abilityObject is null");
             return;
         }
-        else
+
+        if (cooldownProperty == null || lastUsedProperty == null || abilityLevelProperty == null)
         {
-            cooldownSlider.gameObject.SetActive(true);
-            if (cooldownText != null) cooldownText.gameObject.SetActive(true);
+            LogDebug("UpdateUI: One or more required properties are null");
+            return;
         }
 
-        // Update slider
-        cooldownSlider.maxValue = cooldown;
-        cooldownSlider.value = remainingTime > 0 ? remainingTime : 0;
-
-        // Update text
-        if (cooldownText != null)
+        try
         {
-            if (remainingTime > 0)
+            float cooldown = (float)cooldownProperty.GetValue(abilityObject);
+            float lastUsed = (float)lastUsedProperty.GetValue(abilityObject);
+            int abilityLevel = (int)abilityLevelProperty.GetValue(abilityObject);
+
+            float currentTime = Time.time;
+            float timeElapsed = currentTime - lastUsed;
+            float remainingTime = Mathf.Max(0, cooldown - timeElapsed);
+
+            // Only show if ability is level 1 or more
+            if (abilityLevel <= 0)
             {
-                cooldownText.text = remainingTime.ToString("F1") + "s";
-                cooldownText.gameObject.SetActive(true);
+                if (cooldownSlider != null) cooldownSlider.gameObject.SetActive(false);
+                if (cooldownText != null) cooldownText.gameObject.SetActive(false);
+                return;
             }
             else
             {
-                cooldownText.text = "Ready";
-                cooldownText.gameObject.SetActive(true);
+                if (cooldownSlider != null) cooldownSlider.gameObject.SetActive(true);
+                if (cooldownText != null) cooldownText.gameObject.SetActive(true);
+            }
+
+            // Update slider
+            if (cooldownSlider != null)
+            {
+                cooldownSlider.maxValue = cooldown;
+                cooldownSlider.value = remainingTime > 0 ? remainingTime : 0;
+            }
+
+            // Update text
+            if (cooldownText != null)
+            {
+                if (remainingTime > 0)
+                {
+                    cooldownText.text = remainingTime.ToString("F1") + "s";
+                    cooldownText.gameObject.SetActive(true);
+                }
+                else
+                {
+                    cooldownText.text = "Ready";
+                    cooldownText.gameObject.SetActive(true);
+                }
+            }
+
+            // Change fill color based on ready status
+            if (fillImage != null)
+            {
+                fillImage.color = remainingTime > 0 ? Color.gray : Color.white;
             }
         }
-
-        // Change fill color based on ready status
-        if (fillImage != null)
+        catch (System.Exception ex)
         {
-            fillImage.color = remainingTime > 0 ? Color.gray : Color.white;
+            LogDebug($"Error updating UI: {ex.Message}");
+        }
+    }
+
+    private void LogDebug(string message)
+    {
+        if (enableDebugLogs)
+        {
+            Debug.Log($"[AbilityUI] [{abilityName}] {message}");
         }
     }
 }
@@ -276,17 +448,31 @@ public class PassiveTimerUI : MonoBehaviour
     [SerializeField] private Image fillImage;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI passiveNameText;
+    [SerializeField] private bool enableDebugLogs = false;
+
+    private string passiveName = "Passive";
 
     public void Setup(string passiveName, float maxDuration)
     {
+        this.passiveName = passiveName;
+        LogDebug($"Setting up timer with name: {passiveName}, maxDuration: {maxDuration}");
+
         if (passiveNameText != null)
         {
             passiveNameText.text = passiveName;
+        }
+        else
+        {
+            LogDebug("passiveNameText is null");
         }
 
         if (timerSlider != null)
         {
             timerSlider.maxValue = maxDuration;
+        }
+        else
+        {
+            LogDebug("timerSlider is null");
         }
     }
 
@@ -310,6 +496,14 @@ public class PassiveTimerUI : MonoBehaviour
         {
             float progress = remainingTime / maxDuration;
             fillImage.color = Color.Lerp(Color.yellow, Color.red, 1 - progress);
+        }
+    }
+
+    private void LogDebug(string message)
+    {
+        if (enableDebugLogs)
+        {
+            Debug.Log($"[PassiveUI] [{passiveName}] {message}");
         }
     }
 }
