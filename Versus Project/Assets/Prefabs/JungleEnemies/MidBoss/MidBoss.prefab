@@ -327,7 +327,7 @@ MonoBehaviour:
   distanceFromPOne: {x: 0, y: 0, z: 0}
   distanceFromPTwo: {x: 0, y: 0, z: 0}
   onCooldown: 0
-  cooldownDuration: 3
+  cooldownDuration: 1
   armorPen: 5
   projDamage: 50
   slamDamage: 100
