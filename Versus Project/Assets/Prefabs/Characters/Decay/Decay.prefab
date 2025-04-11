@@ -512,10 +512,14 @@ MonoBehaviour:
     type: 3}
   xpBarPrefab: {fileID: 2114343820725859254, guid: 84f89be4897cc754cb0249e3e4bf860f,
     type: 3}
-  passiveCooldownBarPrefab: {fileID: 0}
-  abilty1CooldownBarPrefab: {fileID: 0}
-  abilty2CooldownBarPrefab: {fileID: 0}
-  UltimateCooldownBarPrefab: {fileID: 0}
+  passiveCooldownBarPrefab: {fileID: 291330824319171567, guid: c967438d5bcb3394fb7ec1e5939c8b0c,
+    type: 3}
+  abilty1CooldownBarPrefab: {fileID: 291330824319171567, guid: 036b191130028224796dafdb9c7a69af,
+    type: 3}
+  abilty2CooldownBarPrefab: {fileID: 291330824319171567, guid: 2c4f3c73646d1954783ecf20c465e270,
+    type: 3}
+  UltimateCooldownBarPrefab: {fileID: 291330824319171567, guid: 7645ac993ecc8e54c832e06adf6d110b,
+    type: 3}
   attackDamagePrefab: {fileID: 2114343820725859254, guid: 9398b58b1e556ef4496d900f58da2cd9,
     type: 3}
   attackSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: ce33ba5ce3d771a46ada95ebda640cd1,

@@ -191,6 +191,7 @@ public class BasePlayerController : NetworkBehaviour
         };
         if (IsOwner)
         {
+
             int team = NetworkManager.LocalClientId == 0 ? 1 : 2;
             SetTeamServerRpc(team);
             Debug.Log("1");
