@@ -139,10 +139,8 @@ public class MidBoss : NetworkBehaviour
         }
         if (currentAttackType == 4)
         {
-            //Should eventually change these to activating animations instead
             isAttacking = true;
-            //animator.SetBool("Summon", true);
-            Summon();
+            animator.SetBool("Summon", true);
         }
     }
 
