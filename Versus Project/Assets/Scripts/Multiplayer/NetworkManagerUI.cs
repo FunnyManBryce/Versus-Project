@@ -53,9 +53,10 @@ public class NetworkManagerUI : NetworkBehaviour
         });
         startButton.onClick.AddListener(() => //starts game
         {
-            bAM.Play("Button Press", gameObject.transform.position);
+            bAM.StopAllSounds();
             if (IsServer == true /*&& readyToStart.Value == true*/ ) //REMOVE THIS BEFORE GAME IS UPLOADED
             {
+                bAM.StopAllSounds();
                 SceneManager.LoadScene("MapScene");
                 StartGameClientRPC();
                 lameManager.BeginGame();
@@ -265,6 +266,7 @@ public class NetworkManagerUI : NetworkBehaviour
     [Rpc(SendTo.NotServer)]
     public void StartGameClientRPC()
     {
+        bAM.StopAllSounds();
         SceneManager.LoadScene("MapScene");
         lameManager.BeginGame();
 

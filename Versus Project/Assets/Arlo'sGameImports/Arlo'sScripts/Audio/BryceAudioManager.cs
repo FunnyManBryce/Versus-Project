@@ -28,14 +28,29 @@ public class BryceAudioManager : NetworkBehaviour
         }
     }
 
+    public void StopAllSounds()
+    {
+        for (int i = 0; i < sourcesPlaying.Count; i++)
+        {
+            Destroy(sourcesPlaying[i].gameObject);
+            sourcesPlaying.Remove(sourcesPlaying[i]);
+            sourceNames.Remove(sourceNames[i]);
+        }
+        sourcesPlaying = new List<AudioSource>();
+        sourceNames = new List<String>();
+    }
+
     public void Update()
     {
         if (sourcesPlaying.Count <= 0) return;
         for (int i = 0; i < sourcesPlaying.Count; i++)
         {
-            if (!sourcesPlaying[i].isPlaying)
+            if (sourcesPlaying[i] == null || !sourcesPlaying[i].isPlaying)
             {
-                Destroy(sourcesPlaying[i].gameObject);
+                if(sourcesPlaying[i].gameObject != null)
+                {
+                    Destroy(sourcesPlaying[i].gameObject);
+                }
                 sourcesPlaying.Remove(sourcesPlaying[i]);
                 sourceNames.Remove(sourceNames[i]);
             }
@@ -103,7 +118,10 @@ public class BryceAudioManager : NetworkBehaviour
         {
             if (sourceNames[i] == name)
             {
-                Destroy(sourcesPlaying[i].gameObject);
+                if (sourcesPlaying[i].gameObject != null)
+                {
+                    Destroy(sourcesPlaying[i].gameObject);
+                }
                 sourcesPlaying.Remove(sourcesPlaying[i]);
                 sourceNames.Remove(sourceNames[i]);
             }

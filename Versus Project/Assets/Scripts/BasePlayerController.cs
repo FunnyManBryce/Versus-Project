@@ -278,6 +278,7 @@ public class BasePlayerController : NetworkBehaviour
 
     private protected void Update()
     {
+        SyncStats(); //Takes the base value of each stat, and adds whatever the current buff/debuff is
         if (!IsOwner) return;
         if(appliesDarkness.Value && darknessDuration > 0)
         {
@@ -288,7 +289,6 @@ public class BasePlayerController : NetworkBehaviour
             darknessDuration = 120;
         }
         if (isDead.Value) return;
-        SyncStats(); //Takes the base value of each stat, and adds whatever the current buff/debuff is
         // Get input and store it in playerInput
         if (!isAttacking)
         {
