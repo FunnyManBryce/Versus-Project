@@ -8790,6 +8790,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: oneVOneTime
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: spawnTimerEnd
       value: 30
       objectReference: {fileID: 0}
@@ -9258,13 +9263,13 @@ PrefabInstance:
         type: 3}
       propertyPath: 'jungleSpawnOrder.Array.data[3]'
       value: 
-      objectReference: {fileID: 7786157875108222184, guid: 3bc8a211d96f03f4bafd4adebbef3861,
+      objectReference: {fileID: 7786157875108222184, guid: 05370b43524338b44b0f5f111fb76e39,
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
       propertyPath: 'jungleSpawnOrder.Array.data[4]'
       value: 
-      objectReference: {fileID: 7786157875108222184, guid: 3bc8a211d96f03f4bafd4adebbef3861,
+      objectReference: {fileID: 7786157875108222184, guid: 05370b43524338b44b0f5f111fb76e39,
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}

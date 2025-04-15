@@ -169,13 +169,72 @@ public class PuppeteeringPlayerController : BasePlayerController
                 LevelUpServerRPC();
             }
         };
+        SuddenDeath.OnValueChanged += (bool previousValue, bool newValue) =>
+        {
+            if (SuddenDeath.Value)
+            {
+                if (teamNumber.Value == 1)
+                {
+                    transform.position = new Vector3(410, 70, 0);
+                }
+                else
+                {
+                    transform.position = new Vector3(440, 70, 0);
+                }
+                if (puppetsAlive.Value >= 1)
+                {
+                    foreach (var puppet in PuppetList)
+                    {
+                        NetworkObject puppetToDespawn = PuppetList.Last().GetComponent<NetworkObject>();
+                        GameObject lastPuppet = PuppetList.Last();
+                        PuppetList.Remove(lastPuppet);
+                        puppetsAlive.Value--;
+                        puppetToDespawn.Despawn();
+                    }
+                }
+                PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
+                isDead.Value = false;
+                health.currentHealth.Value = health.maxHealth.Value;
+                mana = maxMana;
+                attackDamage = BaseDamage.Value;
+                autoAttackSpeed = BaseAttackSpeed.Value;
+                attackRange = BaseRange.Value;
+                cDR = BaseCDR.Value;
+                health.armor = BaseArmor.Value;
+                armorPen = BaseArmorPen.Value;
+                regen = BaseRegen.Value;
+                manaRegen = BaseManaRegen.Value;
+                maxSpeed = BaseSpeed.Value;
+
+                DamageBuff.Value = 0;
+                AttackSpeedBuff.Value = 0;
+                RangeBuff.Value = 0;
+                CDRBuff.Value = 0;
+                ArmorBuff.Value = 0;
+                ArmorPenBuff.Value = 0;
+                RegenBuff.Value = 0;
+                ManaRegenBuff.Value = 0;
+                SpeedBuff.Value = 0;
+                appliesDarkness.Value = false;
+                darknessDuration = 120;
+                health.darknessEffect = false;
+
+                for (int i = 0; i < Buffs.Count; i++)
+                {
+                    if (Buffs[i] != null)
+                    {
+                        StopCoroutine(Buffs[i]);
+                    }
+                }
+            }
+        };
         isDead.OnValueChanged += (bool previousValue, bool newValue) => //Checking if dead
         {
             if (isDead.Value)
             {
                 currentTarget = null;
                 transform.position = new Vector3(-420, -69, 0);
-                StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
+                StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value, OwnerClientId));
                 if (IsServer)
                 {
                     maxPuppets.Value = 1;
@@ -224,7 +283,6 @@ public class PuppeteeringPlayerController : BasePlayerController
             }
             else
             {
-                transform.position = lameManager.playerSP[health.Team.Value - 1];
                 PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
                 health.currentHealth.Value = health.maxHealth.Value;
                 mana = maxMana;

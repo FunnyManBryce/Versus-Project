@@ -1,0 +1,487 @@
+fileFormatVersion: 2
+guid: 92688962044156d4d97d94fb3182c074
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4266683767559544548
+    second: Ted(sword_guy)_0
+  - first:
+      213: -8425183806577510191
+    second: Ted(sword_guy)_1
+  - first:
+      213: 8627528596472975337
+    second: Ted(sword_guy)_2
+  - first:
+      213: -1833420066179541893
+    second: Ted(sword_guy)_3
+  - first:
+      213: 5599251027085784714
+    second: Ted(sword_guy)_4
+  - first:
+      213: 9183544692735691844
+    second: Ted(sword_guy)_5
+  - first:
+      213: -8068388797898835279
+    second: Ted(sword_guy)_6
+  - first:
+      213: -5997779388005481686
+    second: Ted(sword_guy)_7
+  - first:
+      213: -6675605193310744883
+    second: Ted(sword_guy)_8
+  - first:
+      213: -3357814205877384341
+    second: Ted(sword_guy)_9
+  - first:
+      213: -6166612908024932714
+    second: Ted(sword_guy)_10
+  - first:
+      213: 3620784434820031441
+    second: Ted(sword_guy)_11
+  - first:
+      213: 4997892153808381346
+    second: Ted(sword_guy)_12
+  - first:
+      213: -5148810946413646399
+    second: Ted(sword_guy)_13
+  - first:
+      213: -5380922952133643990
+    second: Ted(sword_guy)_14
+  - first:
+      213: 3485181931389533088
+    second: Ted(sword_guy)_15
+  - first:
+      213: -7281879064173594775
+    second: Ted(sword_guy)_16
+  - first:
+      213: -5854042486621359898
+    second: Ted(sword_guy)_17
+  - first:
+      213: 9098533680362180253
+    second: Ted(sword_guy)_18
+  - first:
+      213: 1052200695302982391
+    second: Ted(sword_guy)_19
+  - first:
+      213: -8248185569579736140
+    second: Ted(sword_guy)_20
+  - first:
+      213: 4529675735322086670
+    second: Ted(sword_guy)_21
+  - first:
+      213: -7660491975893712422
+    second: Ted(sword_guy)_22
+  - first:
+      213: 7460321249537240984
+    second: Ted(sword_guy)_23
+  - first:
+      213: 6700554581293640606
+    second: Ted(sword_guy)_24
+  - first:
+      213: 2100858461037365122
+    second: Ted(sword_guy)_25
+  - first:
+      213: 510523197297315556
+    second: Ted(sword_guy)_26
+  - first:
+      213: -2159154241282783628
+    second: Ted(sword_guy)_27
+  - first:
+      213: -8270122280425136509
+    second: Ted(sword_guy)_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ted(sword_guy)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1120b128b1b9c4c0800000000000000
+      internalID: -4266683767559544548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d8f29967fbb31b80800000000000000
+      internalID: -8425183806577510191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9efcb424c832bb770800000000000000
+      internalID: 8627528596472975337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b749b47e9226e86e0800000000000000
+      internalID: -1833420066179541893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8670bd942984bd40800000000000000
+      internalID: 5599251027085784714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44c4f65dd31827f70800000000000000
+      internalID: 9183544692735691844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1babf7fe223570090800000000000000
+      internalID: -8068388797898835279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2306c89c6b93cca0800000000000000
+      internalID: -5997779388005481686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcec5ff027c7b53a0800000000000000
+      internalID: -6675605193310744883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6b0bec25c5a661d0800000000000000
+      internalID: -3357814205877384341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 696d5d57b3acb6aa0800000000000000
+      internalID: -6166612908024932714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d326bd724c9f3230800000000000000
+      internalID: 3620784434820031441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ted(sword_guy)_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed026fe5f7265194dac191a23fbdc71a
+      internalID: 4997892153808381346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: dd5eccd05762e0d408393e3b07d6170c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Ted(sword_guy)_0: -4266683767559544548
+      Ted(sword_guy)_1: -8425183806577510191
+      Ted(sword_guy)_10: -6166612908024932714
+      Ted(sword_guy)_11: 3620784434820031441
+      Ted(sword_guy)_12: 4997892153808381346
+      Ted(sword_guy)_2: 8627528596472975337
+      Ted(sword_guy)_3: -1833420066179541893
+      Ted(sword_guy)_4: 5599251027085784714
+      Ted(sword_guy)_5: 9183544692735691844
+      Ted(sword_guy)_6: -8068388797898835279
+      Ted(sword_guy)_7: -5997779388005481686
+      Ted(sword_guy)_8: -6675605193310744883
+      Ted(sword_guy)_9: -3357814205877384341
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

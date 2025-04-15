@@ -14,6 +14,7 @@ public class Tower : NetworkBehaviour
 
     public Animator animator;
 
+    public bool inSuddenDeath;
     public bool isAttacking = false;
     public bool cooldown = false;
     public bool aggro = false;
@@ -62,7 +63,7 @@ public class Tower : NetworkBehaviour
         if (!IsServer || isAttacking) return;
         if (Team == 1)
         {
-            if (lameManager.teamOneTowersLeft.Value == orderInLane)
+            if (lameManager.teamOneTowersLeft.Value == orderInLane && !inSuddenDeath)
             {
                 health.invulnerable = false;
             }
@@ -85,7 +86,7 @@ public class Tower : NetworkBehaviour
         }
         else if (Team == 2)
         {
-            if (lameManager.teamTwoTowersLeft.Value == orderInLane)
+            if (lameManager.teamTwoTowersLeft.Value == orderInLane && !inSuddenDeath)
             {
                 health.invulnerable = false;
             }

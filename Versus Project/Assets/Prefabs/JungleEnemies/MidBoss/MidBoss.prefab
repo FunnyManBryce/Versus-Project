@@ -329,12 +329,12 @@ MonoBehaviour:
   onCooldown: 0
   cooldownDuration: 1
   armorPen: 5
-  projDamage: 50
+  projDamage: 20
   slamDamage: 100
   AOEDamage: 25
   Projectile: {fileID: 315554442559877787, guid: ec3a454b975de604fb02f4d0842e7460,
     type: 3}
-  minionSpawn: {fileID: 8942386518775928844, guid: 9cae3eb1c4c29ca4a9281b6294335983,
+  minionSpawn: {fileID: 8942386518775928844, guid: c8681df72fb74874ba3078066dcaf533,
     type: 3}
   AOEObject: {fileID: 4326966052087221786, guid: fb9613833ccbc6e48b4ca904cb859693,
     type: 3}

@@ -15,13 +15,15 @@ public class BasePlayerController : NetworkBehaviour
     public SpriteRenderer AutoAttackSprite;
     public ulong clientID;
 
+    //SuddenDeath
+    public NetworkVariable<bool> SuddenDeath = new NetworkVariable<bool>();
+
     //Movement variables
     public float maxSpeed = 2;
     [SerializeField]
     public float currentSpeed = 0;
     private Vector2 movementInput;
     private Vector2 playerInput;
-
 
     //Base Stats
     public float[] statGrowthRate;
@@ -144,13 +146,60 @@ public class BasePlayerController : NetworkBehaviour
                 LevelUpServerRPC();
             }
         };
+        SuddenDeath.OnValueChanged += (bool previousValue, bool newValue) => 
+        {
+            if(SuddenDeath.Value)
+            {
+                if(teamNumber.Value == 1)
+                {
+                    transform.position = new Vector3(410, 70, 0);
+                }
+                else
+                {
+                    transform.position = new Vector3(440, 70, 0);
+                }
+                isDead.Value = false;
+                health.currentHealth.Value = health.maxHealth.Value;
+                mana = maxMana;
+                attackDamage = BaseDamage.Value;
+                autoAttackSpeed = BaseAttackSpeed.Value;
+                attackRange = BaseRange.Value;
+                cDR = BaseCDR.Value;
+                health.armor = BaseArmor.Value;
+                armorPen = BaseArmorPen.Value;
+                regen = BaseRegen.Value;
+                manaRegen = BaseManaRegen.Value;
+                maxSpeed = BaseSpeed.Value;
+
+                DamageBuff.Value = 0;
+                AttackSpeedBuff.Value = 0;
+                RangeBuff.Value = 0;
+                CDRBuff.Value = 0;
+                ArmorBuff.Value = 0;
+                ArmorPenBuff.Value = 0;
+                RegenBuff.Value = 0;
+                ManaRegenBuff.Value = 0;
+                SpeedBuff.Value = 0;
+                appliesDarkness.Value = false;
+                darknessDuration = 120;
+                health.darknessEffect = false;
+
+                for (int i = 0; i < Buffs.Count; i++)
+                {
+                    if (Buffs[i] != null)
+                    {
+                        StopCoroutine(Buffs[i]);
+                    }
+                }
+            }
+        };
         isDead.OnValueChanged += (bool previousValue, bool newValue) => //Checking if dead
         {
             if (isDead.Value)
             {
                 currentTarget = null;
                 transform.position = new Vector3(-420, -69, 0);
-                StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value));
+                StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value, OwnerClientId));
                 attackDamage = BaseDamage.Value;
                 autoAttackSpeed = BaseAttackSpeed.Value;
                 attackRange = BaseRange.Value;
@@ -184,7 +233,6 @@ public class BasePlayerController : NetworkBehaviour
             }
             else
             {
-                transform.position = lameManager.playerSP[health.Team.Value - 1];
                 health.currentHealth.Value = health.maxHealth.Value;
                 mana = maxMana;
             }

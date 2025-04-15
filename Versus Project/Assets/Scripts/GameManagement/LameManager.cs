@@ -16,7 +16,9 @@ public class LameManager : NetworkBehaviour
     public NetworkVariable<float> matchTimer = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<int> intMatchTimer = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<float> respawnLength = new NetworkVariable<float>(2, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> IsOneVOne = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    public float oneVOneTime = 600f;
 
     [SerializeField] private GameObject lameManager;
 
@@ -67,6 +69,28 @@ public class LameManager : NetworkBehaviour
     void Update()
     {
         if (!IsServer) return;
+        if(matchTimer.Value >= oneVOneTime && IsOneVOne.Value == false)
+        {
+            foreach (var tower in teamOneTowers)
+            {
+                if (tower != null)
+                {
+                    tower.GetComponent<Tower>().inSuddenDeath = true;
+                    tower.GetComponent<Health>().invulnerable = true;
+                }
+            }
+            foreach (var tower in teamTwoTowers)
+            {
+                if (tower != null)
+                {
+                    tower.GetComponent<Tower>().inSuddenDeath = true;
+                    tower.GetComponent<Health>().invulnerable = true;
+                }
+            }
+            IsOneVOne.Value = true;
+            playerOneChar.GetComponent<BasePlayerController>().SuddenDeath.Value = true;
+            playerTwoChar.GetComponent<BasePlayerController>().SuddenDeath.Value = true;
+        }
         if (gameStarted)
         {
             matchTimer.Value += Time.deltaTime;
@@ -117,11 +141,27 @@ public class LameManager : NetworkBehaviour
         }
     }
 
-    public IEnumerator PlayerDeath(NetworkObject player, float respawnTimer)
+    public IEnumerator PlayerDeath(NetworkObject player, float respawnTimer, ulong clientID)
     {
+        if(IsOneVOne.Value)
+        {
+            if(clientID == 0)
+            {
+                TeamTwoWinServerRPC();
+            } else
+            {
+                TeamOneWinServerRPC();
+            }
+            yield break;
+        }
         Debug.Log(respawnTimer);
         yield return new WaitForSeconds(respawnTimer);
+        if (IsOneVOne.Value)
+        {
+            yield break;
+        }
         Debug.Log("timerend");
+        player.transform.position = playerSP[Team - 1];
         player.GetComponent<BasePlayerController>().isDead.Value = false;
     }
 
@@ -275,11 +315,30 @@ public class LameManager : NetworkBehaviour
         }
     }
 
+
+    [Rpc(SendTo.Server)]
+    public void TeamTwoWinServerRPC()
+    {
+        teamThatWon = 2;
+        gameStarted = false;
+        TeamTwoWinClientRPC();
+        SceneManager.LoadScene("GameOver");
+    }
+
     [Rpc(SendTo.NotServer)]
     public void TeamTwoWinClientRPC()
     {
         teamThatWon = 2;
         gameStarted = false;
+        SceneManager.LoadScene("GameOver");
+    }
+
+    [Rpc(SendTo.Server)]
+    public void TeamOneWinServerRPC()
+    {
+        teamThatWon = 1;
+        gameStarted = false;
+        TeamOneWinClientRPC();
         SceneManager.LoadScene("GameOver");
     }
 

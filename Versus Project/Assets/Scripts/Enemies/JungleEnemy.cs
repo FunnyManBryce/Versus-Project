@@ -238,6 +238,14 @@ public class JungleEnemy : NetworkBehaviour
         }
     }
 
+    public void MultiAttack()
+    {
+        if (currentTarget != null)
+        {
+            Debug.Log(currentTarget.name);
+            MultiattackServerRPC(Damage/2, currentTarget, networkEnemy);
+        }
+    }
     public void DealDamage()
     {
         if (currentTarget != null)
@@ -266,6 +274,19 @@ public class JungleEnemy : NetworkBehaviour
         isAttacking = false;
         animator.SetBool("Attacking", isAttacking);
         cooldown = true;
+    }
+
+    [Rpc(SendTo.Server)]
+    public void MultiattackServerRPC(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
+    {
+        if (reference.TryGet(out NetworkObject target))
+        {
+            target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
+        }
+        else
+        {
+            Debug.Log("player networkobject fake??");
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]

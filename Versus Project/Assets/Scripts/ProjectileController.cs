@@ -26,6 +26,10 @@ public class ProjectileController : NetworkBehaviour
                 appliesDarkness = true;
             }
         }
+        if(sender.GetComponent<MidBoss>() == true)
+        {
+            appliesDarkness = true;
+        }
     }
 
     private void Update()
