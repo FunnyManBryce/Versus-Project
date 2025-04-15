@@ -376,7 +376,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             puppet.Team = team;
             puppet.health.Team.Value = team;
             puppet.Father = gameObject;
-            puppet.Damage = 1.5f * damage;
+            puppet.Damage = 1f * damage;
             puppet.moveSpeed = puppetSpeedMultiplier * speed;
             puppet.cooldownLength = puppetCooldown;
             puppet.lifestealMultiplier = lifestealMultiplier;

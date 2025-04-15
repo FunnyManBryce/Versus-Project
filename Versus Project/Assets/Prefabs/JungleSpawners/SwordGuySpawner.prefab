@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 384404316
+  GlobalObjectIdHash: 2781288891
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8104e3c300e5eb49bb2a75de4a749aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimerEnd: 50
+  spawnTimerEnd: 40
   onlySpawnedOnce: 0
   isSpawnedEnemyAlive: 0
   enemyToSpawn: {fileID: 8942386518775928844, guid: c8681df72fb74874ba3078066dcaf533,

@@ -380,6 +380,7 @@ public class BasePlayerController : NetworkBehaviour
         else if (isAttacking)
         {
             animator.SetBool("AutoAttack", true);
+            playerInput = new Vector2(0, 0);
         }
         // Only cancel auto-attacking if player initiates movement with WASD
         if (playerInput.magnitude > 0)

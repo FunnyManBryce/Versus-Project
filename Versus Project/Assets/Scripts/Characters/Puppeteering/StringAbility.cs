@@ -29,6 +29,7 @@ public class StringAbility : NetworkBehaviour
         lifespan -= Time.deltaTime;
         if (lifespan < 0)
         {
+            lifespan = 100000;
             Damage();
             gameObject.GetComponent<NetworkObject>().Despawn();
         }
@@ -48,8 +49,8 @@ public class StringAbility : NetworkBehaviour
                 }
                 else
                 {
-                    Debug.Log("Damage Triggering");
                     collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
+                    if (collider.GetComponent<NetworkObject>().IsSpawned == false) return;
                     InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Immobilized", 0f, 1f, true);
                     InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Marked", markAmount, 5f, true);
                     if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
@@ -57,48 +58,11 @@ public class StringAbility : NetworkBehaviour
                         collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -2, 5f, true);
                     }
                 }
-                /*if (collider.GetComponent<BasePlayerController>() != null)
-                {
-                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f, true);
-                    collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Marked", markAmount, 5f, true);
-                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
-                    {
-                        collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -3, 5f, true);
-                    }
-                }
-                if (collider.GetComponent<MeleeMinion>() != null)
-                {
-                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
-                    collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Marked", markAmount, 5f);
-                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
-                    {
-                        collider.GetComponent<MeleeMinion>().TriggerBuffServerRpc("Speed", -1, 5f);
-                    }
-                }
-                if (collider.GetComponent<JungleEnemy>() != null)
-                {
-                    Debug.Log("Effect Triggering");
-                    collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
-                    collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Marked", markAmount, 5f);
-                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
-                    {
-                        collider.GetComponent<JungleEnemy>().TriggerBuffServerRpc("Speed", -1, 5f);
-                    }
-                }
-                if (collider.GetComponent<Puppet>() != null)
-                {
-                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Immobilized", 0f, 0.5f);
-                    collider.GetComponent<Puppet>().TriggerBuffServerRpc("Marked", markAmount, 5f);
-                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
-                    {
-                        collider.GetComponent<Puppet>().TriggerBuffServerRpc("Speed", -1, 5f);
-                    }
-                }
-                if (!sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll && collider.GetComponent<Tower>() != null)
-                {
-                    collider.GetComponent<Tower>().TriggerBuffServerRpc("Marked", markAmount, 5f);
-                }*/
             }
+        }
+        if (gameObject.GetComponent<NetworkObject>().IsSpawned == false)
+        {
+            gameObject.GetComponent<NetworkObject>().Despawn();
         }
     }
 

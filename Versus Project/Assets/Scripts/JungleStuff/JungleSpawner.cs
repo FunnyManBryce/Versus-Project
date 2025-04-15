@@ -6,6 +6,8 @@ public class JungleSpawner : NetworkBehaviour
     private float spawnTimer = 0f;
     [SerializeField] private float spawnTimerEnd;
     public bool onlySpawnedOnce = false;
+    public bool isRandom;
+    public GameObject[] SpawnOptions;
 
     public bool isSpawnedEnemyAlive = false;
     public GameObject enemyToSpawn;
@@ -30,12 +32,25 @@ public class JungleSpawner : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void SpawnEnemyServerRPC()
     {
-        var enemy = Instantiate(enemyToSpawn, jungleSpawner.transform.position, Quaternion.identity);
-        var enemyNetworkObject = enemy.GetComponent<NetworkObject>();
-        enemyNetworkObject.Spawn();
-        if (!onlySpawnedOnce)
+        if (isRandom)
         {
-            enemy.GetComponent<JungleEnemy>().spawner = jungleSpawner;
+            var enemy = Instantiate(SpawnOptions[Random.Range(0, SpawnOptions.Length)], jungleSpawner.transform.position, Quaternion.identity);
+            var enemyNetworkObject = enemy.GetComponent<NetworkObject>();
+            enemyNetworkObject.Spawn();
+            if (!onlySpawnedOnce)
+            {
+                enemy.GetComponent<JungleEnemy>().spawner = jungleSpawner;
+            }
+        }
+        else
+        {
+            var enemy = Instantiate(enemyToSpawn, jungleSpawner.transform.position, Quaternion.identity);
+            var enemyNetworkObject = enemy.GetComponent<NetworkObject>();
+            enemyNetworkObject.Spawn();
+            if (!onlySpawnedOnce)
+            {
+                enemy.GetComponent<JungleEnemy>().spawner = jungleSpawner;
+            }
         }
     }
 }

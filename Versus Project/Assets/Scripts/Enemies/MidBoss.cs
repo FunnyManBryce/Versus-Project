@@ -212,7 +212,6 @@ public class MidBoss : NetworkBehaviour
     }
     public void Slam()
     {
-        //needs animation windup
         Vector2 pos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 7);
         foreach (var collider in hitColliders)

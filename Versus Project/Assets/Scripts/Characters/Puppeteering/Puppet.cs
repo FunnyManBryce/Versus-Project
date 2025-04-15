@@ -66,7 +66,7 @@ public class Puppet : NetworkBehaviour
     public void SyncStats()
     {
         var FatherScript = Father.GetComponent<PuppeteeringPlayerController>();
-        Damage = 1.5f * FatherScript.attackDamage;
+        Damage = 1f * FatherScript.attackDamage;
         moveSpeed = FatherScript.puppetSpeedMultiplier * FatherScript.maxSpeed;
         cooldownLength = FatherScript.puppetCooldown;
         lifestealMultiplier = FatherScript.lifestealMultiplier;

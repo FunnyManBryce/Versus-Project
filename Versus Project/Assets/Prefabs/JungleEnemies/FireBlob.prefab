@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1788835024
+  GlobalObjectIdHash: 3011861900
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -332,8 +332,8 @@ MonoBehaviour:
   cooldownLength: 0.75
   cooldownTimer: 0
   XPRange: 20
-  XPGiven: 70
-  goldGiven: 50
+  XPGiven: 85
+  goldGiven: 70
   spawner: {fileID: 0}
   PlayerOne: {fileID: 0}
   PlayerTwo: {fileID: 0}
@@ -370,6 +370,7 @@ MonoBehaviour:
   invulnerable: 0
   isNPC: 1
   healthSetManual: 0
+  darknessEffect: 0
 --- !u!61 &8608470416726532606
 BoxCollider2D:
   m_ObjectHideFlags: 0
