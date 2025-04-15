@@ -99,6 +99,7 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject manaRegenDisplayPrefab;
     public GameObject goldDisplayPrefab;
     public GameObject moveSpeedDisplayPrefab;
+    public GameObject shopPrefab;
 
     public GameObject enemyHealthBarPrefab;
     public GameObject HealthBar;
@@ -249,6 +250,9 @@ public class BasePlayerController : NetworkBehaviour
 
             if (playerCanvas != null)
             {
+                GameObject shop = Instantiate(shopPrefab, playerCanvas.transform);
+                shop.GetComponent<Shop>().enabled = true;
+
                 GameObject healthBar = Instantiate(healthBarPrefab, playerCanvas.transform);
                 healthBar.GetComponent<PlayerHealthBar>().enabled = true;
 

@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3800055814
+  GlobalObjectIdHash: 2062833195
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -408,6 +408,8 @@ MonoBehaviour:
   PlayerSprite: {fileID: 176950742428784287}
   AutoAttackSprite: {fileID: 0}
   clientID: 0
+  SuddenDeath:
+    m_InternalValue: 0
   maxSpeed: 8
   currentSpeed: 0
   statGrowthRate:
@@ -539,6 +541,8 @@ MonoBehaviour:
   goldDisplayPrefab: {fileID: 2114343820725859254, guid: a4ec6120fbb465b49a740b2b6cc6a51d,
     type: 3}
   moveSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: de99e14a79e2418449adef0612bf0764,
+    type: 3}
+  shopPrefab: {fileID: 6259355584637624107, guid: 2d38d59c16c31f0408b4fc6a6db1f2fd,
     type: 3}
   enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: f9329fa1a6869f84caca61dc8635e238,
     type: 3}
