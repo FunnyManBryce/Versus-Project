@@ -43,19 +43,17 @@ public class StringAbility : NetworkBehaviour
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                if (collider.gameObject.tag == "Tower" && !sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll || collider.gameObject.tag == "Inhibitor" && !sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll)
-                {
-                    return;
-                }
-                else
+                if (collider.gameObject.tag != "Tower" && collider.gameObject.tag != "Inhibitor" || sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll)
                 {
                     collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
-                    if (collider.GetComponent<NetworkObject>().IsSpawned == false) return;
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Immobilized", 0f, 1f, true);
-                    InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Marked", markAmount, 5f, true);
-                    if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
+                    if (!collider.GetComponent<NetworkObject>().IsSpawned == false)
                     {
-                        collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -2, 5f, true);
+                        InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Immobilized", 0f, 1f, true);
+                        InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Marked", markAmount, 5f, true);
+                        if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
+                        {
+                            collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -2, 5f, true);
+                        }
                     }
                 }
             }

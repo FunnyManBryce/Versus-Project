@@ -44,20 +44,18 @@ public class DecayAOE : NetworkBehaviour
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 8);
         foreach (var collider in hitColliders)
         {
-
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                if (collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Inhibitor")
-                {
-                    return;
-                }
-                else
+                if (collider.gameObject.tag != "Tower" && collider.gameObject.tag != "Inhibitor")
                 {
                     collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, false);
-                    InflictBuffServerRpc(new NetworkObjectReference(collider.GetComponent<NetworkObject>()), "Speed", speedReductionPerTick, reductionDuration, true);
-                    if (sender.GetComponent<DecayPlayerController>().AOESpeedSteal) //Decay gains some speed for every hit enemy if the ability is level 3
+                    if (!collider.GetComponent<NetworkObject>().IsSpawned == false)
                     {
-                        sender.GetComponent<DecayPlayerController>().TriggerBuffServerRpc("Speed", -(speedReductionPerTick * 0.1f), reductionDuration, true);
+                        InflictBuffServerRpc(new NetworkObjectReference(collider.GetComponent<NetworkObject>()), "Speed", speedReductionPerTick, reductionDuration, true);
+                        if (sender.GetComponent<DecayPlayerController>().AOESpeedSteal) //Decay gains some speed for every hit enemy if the ability is level 3
+                        {
+                            sender.GetComponent<DecayPlayerController>().TriggerBuffServerRpc("Speed", -(speedReductionPerTick * 0.1f), reductionDuration, true);
+                        }
                     }
                 }
             }

@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public GameObject[] ItemPrefabs;
-    public Vector3[] ItemPositions;
     public GameObject[] CurrentItems;
     public GameObject player;
     [SerializeField] private Button openShopButton;
 
-
+    public Animator animator;
     public bool isOpen;
 
     [SerializeField] private BasePlayerController playerController;
@@ -20,27 +20,35 @@ public class Shop : MonoBehaviour
 
     public void Awake()
     {
-        openShopButton.onClick.AddListener(() =>
-        {
-            isOpen = !isOpen;
-            if(isOpen)
-            {
-                //Animation to open shop
-            } else
-            {
-                //Animation to close shop
-            }
-        });
     }
+
+    public void OpenButton()
+    {
+        if (animator.GetBool("Opening")) return;
+        animator.SetBool("Opening", true);
+    }
+    public void OpenShop()
+    {
+        animator.SetBool("Opening", false);
+        isOpen = !isOpen;
+        if (isOpen)
+        {
+            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(460, 120, 0);
+        }
+        else
+        {
+            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(1227, 120, 0);
+        }
+    }
+
     void Start()
     {
         isPlayer1UI = transform.root.name.Contains("1");
         FindAndSetPlayerController();
         
-        for (int i = 0; i < ItemPrefabs.Length; i++)
+        for (int i = 0; i < CurrentItems.Length; i++)
         {
-            GameObject item = Instantiate(ItemPrefabs[i],gameObject.transform.position + ItemPositions[i], Quaternion.identity, gameObject.transform);
-            CurrentItems[i] = item;
+            GameObject item = CurrentItems[i];
             Item itemScript = item.GetComponent<Item>();
             itemScript.Shop = gameObject;
             itemScript.itemNumber = i;
@@ -72,30 +80,38 @@ public class Shop : MonoBehaviour
 
     public void ItemBought(int itemNumber)
     {
-        GameObject item = CurrentItems[itemNumber];
-        Item itemScript = item.GetComponent<Item>();
-        if(itemScript.goldCost <= playerController.Gold.Value)
+        if (!playerController.resevoirRegen)
         {
-            playerController.Gold.Value -= itemScript.goldCost;
-            playerController.BaseSpeed.Value += itemScript.StatBuffs[0];
-            playerController.BaseDamage.Value += itemScript.StatBuffs[1];
-            playerController.BaseArmor.Value += itemScript.StatBuffs[2];
-            playerController.BaseArmorPen.Value += itemScript.StatBuffs[3];
-            playerController.BaseAttackSpeed.Value += itemScript.StatBuffs[4];
-            playerController.BaseRegen.Value += itemScript.StatBuffs[5];
-            playerController.BaseManaRegen.Value += itemScript.StatBuffs[6];
-            playerController.TriggerBuffServerRpc("Max Mana", itemScript.StatBuffs[7], 0, false);
-            playerController.BaseCDR.Value += itemScript.StatBuffs[8];
-            playerController.TriggerBuffServerRpc("Health", itemScript.StatBuffs[9], 0, false);
-            if(itemScript.specialEffect == "something")
+            //Dialogue for not being near resevoir
+        }
+        else
+        {
+            GameObject item = CurrentItems[itemNumber];
+            Item itemScript = item.GetComponent<Item>();
+            if (itemScript.goldCost <= playerController.Gold.Value)
             {
-                //Add special effect to player character for purchasing
+                playerController.ItemEffectServerRpc("Gold", itemScript.goldCost);
+                playerController.ItemEffectServerRpc("Speed", itemScript.StatBuffs[0]);
+                playerController.ItemEffectServerRpc("Attack Damage", itemScript.StatBuffs[1]);
+                playerController.ItemEffectServerRpc("Armor", itemScript.StatBuffs[2]);
+                playerController.ItemEffectServerRpc("Armor Pen", itemScript.StatBuffs[3]);
+                playerController.ItemEffectServerRpc("Auto Attack Speed", itemScript.StatBuffs[4]);
+                playerController.ItemEffectServerRpc("Regen", itemScript.StatBuffs[5]);
+                playerController.ItemEffectServerRpc("Mana Regen", itemScript.StatBuffs[6]);
+                playerController.ItemEffectServerRpc("Max Mana", itemScript.StatBuffs[7]);
+                playerController.ItemEffectServerRpc("CDR", itemScript.StatBuffs[8]);
+                playerController.ItemEffectServerRpc("Health", itemScript.StatBuffs[9]);
+                if (itemScript.specialEffect == "something")
+                {
+                    //Add special effect to player character for purchasing
+                }
+                Destroy(item);
+                //Dialogue for item purchase
             }
-            Destroy(item);
-            //Dialogue for item purchase
-        } else
-        {
-            //Dialogue for being too poor
+            else
+            {
+                //Dialogue for being too poor
+            }
         }
     }
 

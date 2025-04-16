@@ -314,6 +314,9 @@ public class PuppeteeringPlayerController : BasePlayerController
 
             if (playerCanvas != null)
             {
+                GameObject shop = Instantiate(shopPrefab, playerCanvas.transform);
+                shop.GetComponent<Shop>().enabled = true;
+
                 GameObject healthBar = Instantiate(healthBarPrefab, playerCanvas.transform);
                 healthBar.GetComponent<PlayerHealthBar>().enabled = true;
 

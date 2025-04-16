@@ -703,7 +703,6 @@ public class BasePlayerController : NetworkBehaviour
         maxSpeed = BaseSpeed.Value + SpeedBuff.Value;
     }
 
-
     [ServerRpc(RequireOwnership = false)]
     public void TriggerBuffServerRpc(string buffType, float amount, float duration, bool hasDuration) //this takes a stat, then lowers/increase it, and triggers a timer to set it back to default
     {
@@ -769,6 +768,55 @@ public class BasePlayerController : NetworkBehaviour
         }
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void ItemEffectServerRpc(string buffType, float amount)
+    {
+        if(buffType == "Gold")
+        {
+            int value = Mathf.FloorToInt(amount);
+            Gold.Value -= value;
+        }
+        if (buffType == "Speed")
+        {
+            BaseSpeed.Value += amount;
+        }
+        if (buffType == "Attack Damage")
+        {
+            BaseDamage.Value += amount;
+        }
+        if (buffType == "Armor")
+        {
+            BaseArmor.Value += amount;
+        }
+        if (buffType == "Armor Pen")
+        {
+            BaseArmorPen.Value += amount;
+        }
+        if (buffType == "Auto Attack Speed")
+        {
+            BaseAttackSpeed.Value += amount;
+        }
+        if (buffType == "Regen")
+        {
+            BaseRegen.Value += amount;
+        }
+        if (buffType == "Mana Regen")
+        {
+            BaseManaRegen.Value += amount;
+        }
+        if (buffType == "Max Mana")
+        {
+            maxMana += amount;
+        }
+        if (buffType == "CDR")
+        {
+            BaseCDR.Value += amount;
+        }
+        if (buffType == "Health")
+        {
+            health.maxHealth.Value += amount;
+        }
+    }
     public IEnumerator BuffDuration(string buffType, float amount, float duration, int buffNumber) //Waits a bit before changing stats back to default
     {
         yield return new WaitForSeconds(duration);

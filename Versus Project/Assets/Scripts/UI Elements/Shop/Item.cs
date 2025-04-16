@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public GameObject Shop;
+    public string itemName;
     public float[] StatBuffs;
     public int goldCost;
     public string specialEffect;
