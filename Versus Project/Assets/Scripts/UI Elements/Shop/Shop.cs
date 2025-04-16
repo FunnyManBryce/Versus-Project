@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,22 +19,76 @@ public class Shop : MonoBehaviour
     public bool initialized;
     [SerializeField] private bool isPlayer1UI;    // Start is called before the first frame update
 
-    public void Awake()
+    public string[] purchasingDialogue;
+    public string[] poorDialogue;
+    public string[] needResevoirDialogue;
+    public string[] idleDialogue;
+    public string[] hoverDialogue;
+    public string[] enteringDialogue;
+    public string[] exitingDialogue;
+    public bool isYapping;
+    public GameObject Text;
+    float yapTimer;
+    public float timeForYap;
+
+    public float idleTimer = 15;
+
+    void Update()
     {
+        if(isYapping && yapTimer >= 0)
+        {
+            yapTimer -= Time.deltaTime;
+        } else if(isYapping && yapTimer <= 0)
+        {
+            isYapping = false;
+            yapTimer = timeForYap;
+            animator.SetBool("isYapping", isYapping);
+            Text.GetComponent<TextMeshProUGUI>().text = "";
+        }
+        if(isOpen && !isYapping && idleTimer >= 0)
+        {
+            idleTimer -= Time.deltaTime;
+        } else if(isOpen && !isYapping && idleTimer <= 0)
+        {
+            idleTimer = 15;
+            isYapping = true;
+            animator.SetBool("isYapping", isYapping);
+            Text.GetComponent<TextMeshProUGUI>().text = idleDialogue[Random.Range(0, idleDialogue.Length)];
+            yapTimer = timeForYap;
+        }
+        if(!isOpen)
+        {
+            idleTimer = 15;
+        }
     }
 
     public void OpenButton()
     {
-        if (animator.GetBool("Opening")) return;
-        animator.SetBool("Opening", true);
+        if (animator.GetBool("Opening") || animator.GetBool("Closing")) return;
+        if(!isOpen)
+        {
+            animator.SetBool("Opening", true);
+        } else
+        {
+            animator.SetBool("Closing", true);
+            isYapping = true;
+            animator.SetBool("isYapping", isYapping);
+            Text.GetComponent<TextMeshProUGUI>().text = exitingDialogue[Random.Range(0, exitingDialogue.Length)];
+            yapTimer = timeForYap;
+        }
     }
     public void OpenShop()
     {
         animator.SetBool("Opening", false);
+        animator.SetBool("Closing", false);
         isOpen = !isOpen;
         if (isOpen)
         {
             gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(460, 120, 0);
+            isYapping = true;
+            animator.SetBool("isYapping", isYapping);
+            Text.GetComponent<TextMeshProUGUI>().text = enteringDialogue[Random.Range(0, enteringDialogue.Length)];
+            yapTimer = timeForYap;
         }
         else
         {
@@ -80,15 +135,18 @@ public class Shop : MonoBehaviour
 
     public void ItemBought(int itemNumber)
     {
-        if (!playerController.resevoirRegen)
+        GameObject item = CurrentItems[itemNumber];
+        Item itemScript = item.GetComponent<Item>();
+        if (itemScript.goldCost <= playerController.Gold.Value)
         {
-            //Dialogue for not being near resevoir
-        }
-        else
-        {
-            GameObject item = CurrentItems[itemNumber];
-            Item itemScript = item.GetComponent<Item>();
-            if (itemScript.goldCost <= playerController.Gold.Value)
+            if (!playerController.resevoirRegen)
+            {
+                isYapping = true;
+                animator.SetBool("isYapping", isYapping);
+                Text.GetComponent<TextMeshProUGUI>().text = needResevoirDialogue[Random.Range(0, needResevoirDialogue.Length)];
+                yapTimer = timeForYap;
+            }
+            else
             {
                 playerController.ItemEffectServerRpc("Gold", itemScript.goldCost);
                 playerController.ItemEffectServerRpc("Speed", itemScript.StatBuffs[0]);
@@ -106,18 +164,20 @@ public class Shop : MonoBehaviour
                     //Add special effect to player character for purchasing
                 }
                 Destroy(item);
-                //Dialogue for item purchase
-            }
-            else
-            {
-                //Dialogue for being too poor
+                isYapping = true;
+                animator.SetBool("isYapping", isYapping);
+                Text.GetComponent<TextMeshProUGUI>().text = purchasingDialogue[Random.Range(0, purchasingDialogue.Length)];
+                yapTimer = timeForYap;
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        else
+        {
+            isYapping = true;
+            animator.SetBool("isYapping", isYapping);
+            Text.GetComponent<TextMeshProUGUI>().text = poorDialogue[Random.Range(0, poorDialogue.Length)];
+            yapTimer = timeForYap;
+        }
         
     }
+
 }

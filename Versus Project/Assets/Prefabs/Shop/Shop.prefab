@@ -132,6 +132,142 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &5609629802982955901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5307843413375806030}
+  - component: {fileID: 6859611351201177862}
+  - component: {fileID: 2109865290290318769}
+  m_Layer: 5
+  m_Name: Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5307843413375806030
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5609629802982955901}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 703084231751098056}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 77.8, y: 23}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6859611351201177862
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5609629802982955901}
+  m_CullTransparentMesh: 1
+--- !u!114 &2109865290290318769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5609629802982955901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 6
+  m_fontSizeBase: 6
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 32.45955, y: 24.042759, z: 121.442055, w: 1.2658749}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6259355584637624107
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +307,7 @@ RectTransform:
   - {fileID: 8212844946205513835}
   - {fileID: 8553044503389016022}
   - {fileID: 1755920437355851321}
+  - {fileID: 5307843413375806030}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -263,6 +400,77 @@ MonoBehaviour:
   playerController: {fileID: 0}
   initialized: 0
   isPlayer1UI: 0
+  purchasingDialogue:
+  - Thanks for the cash.
+  - Enjoy it.
+  - It's yours, my friend!
+  - No returns.
+  - "Now, don\u2019t rely on me to win!"
+  - Now, get more gold!
+  - Many mortals would go crazy to get there hands on this!
+  - Ooh, that's a good one!
+  - Smart deal.
+  poorDialogue:
+  - You're too broke...
+  - 'Nuh uh uh. '
+  - You need more dough for this bakery.
+  - 'Come back when you''re a little, mmm, Richer! '
+  - For a god you're sorely lacking in gold...
+  - 'Sorry, No cash, No Item. '
+  - "No, I don\u2019t take credit. "
+  - Go kill a few guys and come back with more money!
+  - Don't you go low balling me!
+  needResevoirDialogue:
+  - You have to be at a resevoir to buy something.
+  - "Sorry, arms can\u2019t go that far! "
+  - "I can\u2019t teleport the item to you. "
+  - You're too far away.
+  - 'WHAT DO YOU WANT? SPEAK UP! '
+  - 'Just get over here. '
+  - Come to the resevoir where i'm... physically present.
+  - "Do you think it\u2019s just gonna pop into your hands?"
+  - You can only buy things at the resevoir.
+  idleDialogue:
+  - Sure are taking your sweet time...
+  - "Don\u2019t you have a battle to win? "
+  - Why are you still here?
+  - Are you just trying to exhaust my dialogue?
+  - If you just want to hear me speak, it's working...
+  - "Sorry, clock doesn\u2019t work. "
+  - 'Are you just here to chat? '
+  - 'No, the Fedora is not for sale. '
+  - "I wish I could get out there\u2026 "
+  - 'Take your time. Not like it''s better spent. '
+  - There aren't THAT many choices, hurry up!
+  - If time is money, you'd be broke, my friend!
+  hoverDialogue:
+  - That's a good one! Please buy it...
+  enteringDialogue:
+  - Gods killing each other for sport! Gotta love it!
+  - Welcome!
+  - Heya.
+  - How's the fighting?
+  - Are you winning yet?
+  - Why hello!
+  - Got the gold?
+  - 'Lamp oil? Rope? BOMBS? '
+  - 'Yeah, I got the good stuff. '
+  - Best shop in the whole cosmic blanket!
+  - "Whaddaya buyin\u2019?"
+  exitingDialogue:
+  - Adios.
+  - Bye.
+  - See ya!
+  - Thanks for the business.
+  - Thanks, bud.
+  - I'm betting on you!
+  - You oughta win now!
+  - Goodbye, dear customer!
+  - See ya!
+  isYapping: 0
+  Text: {fileID: 5609629802982955901}
+  timeForYap: 3
+  idleTimer: 15
 --- !u!95 &338434531490188724
 Animator:
   serializedVersion: 7
