@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Text.RegularExpressions;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Shop : MonoBehaviour
 {
@@ -60,6 +62,26 @@ public class Shop : MonoBehaviour
         {
             idleTimer = 15;
         }
+        if(isOpen && Vector3.Distance(transform.position, new Vector3(460,120,0)) <= 100f) 
+        {
+            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(460, 120, 0);
+
+        }
+        else if(isOpen)
+        {
+            var speed = 1000 * Time.deltaTime;
+            gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.MoveTowards(gameObject.GetComponent<RectTransform>().anchoredPosition, new Vector3(460, 120, 0), speed);
+        }
+        if (!isOpen && Vector3.Distance(transform.position, new Vector3(1227, 120, 0)) <= 100f)
+        {
+            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(1227, 120, 0);
+
+        }
+        else if (!isOpen)
+        {
+            var speed = 1000 * Time.deltaTime;
+            gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.MoveTowards(gameObject.GetComponent<RectTransform>().anchoredPosition, new Vector3(1227, 120, 0), speed);
+        }
     }
 
     public void OpenButton()
@@ -73,7 +95,7 @@ public class Shop : MonoBehaviour
             animator.SetBool("Closing", true);
             isYapping = true;
             Text.GetComponent<TextMeshProUGUI>().text = exitingDialogue[Random.Range(0, exitingDialogue.Length)];
-            yapTimer = 2.5f;
+            yapTimer = timeForYap;
         }
     }
     public void OpenShop()
@@ -83,15 +105,10 @@ public class Shop : MonoBehaviour
         isOpen = !isOpen;
         if (isOpen)
         {
-            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(460, 120, 0);
             isYapping = true;
             animator.SetBool("isYapping", isYapping);
             Text.GetComponent<TextMeshProUGUI>().text = enteringDialogue[Random.Range(0, enteringDialogue.Length)];
             yapTimer = timeForYap;
-        }
-        else
-        {
-            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(1227, 120, 0);
         }
     }
 
@@ -134,6 +151,7 @@ public class Shop : MonoBehaviour
 
     public void ItemBought(int itemNumber)
     {
+        if (animator.GetBool("Opening") || animator.GetBool("Closing")) return;
         GameObject item = CurrentItems[itemNumber];
         Item itemScript = item.GetComponent<Item>();
         if (itemScript.goldCost <= playerController.Gold.Value)
@@ -179,4 +197,12 @@ public class Shop : MonoBehaviour
         
     }
 
+    public void HoveringDialogue(int itemNumber)
+    {
+        if (animator.GetBool("Opening") || animator.GetBool("Closing")) return;
+        isYapping = true;
+        animator.SetBool("isYapping", isYapping);
+        Text.GetComponent<TextMeshProUGUI>().text = hoverDialogue[itemNumber];
+        yapTimer = timeForYap;
+    }
 }

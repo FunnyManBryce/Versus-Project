@@ -302,12 +302,12 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4130110392077864432}
+  - {fileID: 5307843413375806030}
   - {fileID: 8036021921806834960}
   - {fileID: 7041953419604273637}
   - {fileID: 8212844946205513835}
   - {fileID: 8553044503389016022}
   - {fileID: 1755920437355851321}
-  - {fileID: 5307843413375806030}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -444,7 +444,11 @@ MonoBehaviour:
   - There aren't THAT many choices, hurry up!
   - If time is money, you'd be broke, my friend!
   hoverDialogue:
-  - That's a good one! Please buy it...
+  - This is item 1!
+  - This is item 2
+  - This is item 3?
+  - This is item 4!?!?!?!
+  - This is overpowered...
   enteringDialogue:
   - Gods killing each other for sport! Gotta love it!
   - Welcome!
@@ -605,6 +609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TestItem 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246102276589774806, guid: 79ed6f6d66a937c4b9c7bbffce4ac6b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
