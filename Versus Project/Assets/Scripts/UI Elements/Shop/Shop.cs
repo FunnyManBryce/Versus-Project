@@ -72,9 +72,8 @@ public class Shop : MonoBehaviour
         {
             animator.SetBool("Closing", true);
             isYapping = true;
-            animator.SetBool("isYapping", isYapping);
             Text.GetComponent<TextMeshProUGUI>().text = exitingDialogue[Random.Range(0, exitingDialogue.Length)];
-            yapTimer = timeForYap;
+            yapTimer = 2.5f;
         }
     }
     public void OpenShop()

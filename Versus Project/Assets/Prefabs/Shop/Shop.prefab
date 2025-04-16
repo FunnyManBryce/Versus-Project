@@ -469,7 +469,7 @@ MonoBehaviour:
   - See ya!
   isYapping: 0
   Text: {fileID: 5609629802982955901}
-  timeForYap: 3
+  timeForYap: 2
   idleTimer: 15
 --- !u!95 &338434531490188724
 Animator:
