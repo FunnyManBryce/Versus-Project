@@ -183,15 +183,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a8cc24f389fe44987402d1fc8224da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownSlider: {fileID: 0}
+  fillImage: {fileID: 0}
+  cooldownText: {fileID: 0}
   playerController: {fileID: 0}
+  abilityIcon: {fileID: 0}
+  manaCostIndicator: {fileID: 0}
+  initializedCooldown: 0
   isPlayer1UI: 0
-  initialized: 0
-  abilityCooldownPrefab: {fileID: 0}
-  cooldownContainer: {fileID: 0}
-  passiveTimerPrefab: {fileID: 0}
-  passiveTimerContainer: {fileID: 0}
-  hasPassiveTimer: 0
-  enableDebugLogs: 1
+  abilityIndex: 0
 --- !u!114 &138302581809136694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3858709417
+  GlobalObjectIdHash: 652430502
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -341,8 +341,10 @@ MonoBehaviour:
   passiveCooldownBarPrefab: {fileID: 0}
   abilty1CooldownBarPrefab: {fileID: 291330824319171567, guid: 036b191130028224796dafdb9c7a69af,
     type: 3}
-  abilty2CooldownBarPrefab: {fileID: 0}
-  UltimateCooldownBarPrefab: {fileID: 0}
+  abilty2CooldownBarPrefab: {fileID: 291330824319171567, guid: 2c4f3c73646d1954783ecf20c465e270,
+    type: 3}
+  UltimateCooldownBarPrefab: {fileID: 291330824319171567, guid: 7645ac993ecc8e54c832e06adf6d110b,
+    type: 3}
   attackDamagePrefab: {fileID: 2114343820725859254, guid: 9398b58b1e556ef4496d900f58da2cd9,
     type: 3}
   attackSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: ce33ba5ce3d771a46ada95ebda640cd1,

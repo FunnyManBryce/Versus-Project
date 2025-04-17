@@ -326,6 +326,15 @@ public class PuppeteeringPlayerController : BasePlayerController
                 GameObject xpBar = Instantiate(xpBarPrefab, playerCanvas.transform);
                 xpBar.GetComponent<PlayerXPBar>().enabled = true;
 
+                GameObject abilty1CooldownBar = Instantiate(abilty1CooldownBarPrefab, playerCanvas.transform);
+                abilty1CooldownBar.GetComponent<PlayerCooldownBars>().enabled = true;
+
+                GameObject abilty2CooldownBar = Instantiate(abilty2CooldownBarPrefab, playerCanvas.transform);
+                abilty2CooldownBar.GetComponent<PlayerCooldownBars>().enabled = true;
+
+                GameObject ultimateCooldownBar = Instantiate(UltimateCooldownBarPrefab, playerCanvas.transform);
+                ultimateCooldownBar.GetComponent<PlayerCooldownBars>().enabled = true;
+
                 GameObject goldDisplay = Instantiate(goldDisplayPrefab, playerCanvas.transform);
                 goldDisplay.GetComponent<PlayerGoldDisplay>().enabled = true;
 
