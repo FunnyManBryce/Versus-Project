@@ -107,9 +107,9 @@ MonoBehaviour:
   cooldownSlider: {fileID: 3781873435626338629}
   fillImage: {fileID: 8844856810989589393}
   cooldownText: {fileID: 3414096024823822345}
+  manaCostText: {fileID: 8943819702987871257}
   playerController: {fileID: 0}
   abilityIcon: {fileID: 0}
-  manaCostIndicator: {fileID: 0}
   initializedCooldown: 0
   isPlayer1UI: 0
   abilityIndex: 1
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 5979091789677564916}
   - component: {fileID: 8943819702987871257}
   m_Layer: 5
-  m_Name: Abilty Name
+  m_Name: Mana Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -433,8 +433,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.08, y: 0.329}
-  m_SizeDelta: {x: 79.89301, y: 48.517166}
+  m_AnchoredPosition: {x: 2.78, y: -0.247}
+  m_SizeDelta: {x: 57.21497, y: 48.517166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5979091789677564916
 CanvasRenderer:

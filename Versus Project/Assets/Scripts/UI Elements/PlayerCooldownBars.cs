@@ -23,8 +23,8 @@ public class PlayerCooldownBars : MonoBehaviour
     private Func<float> getManaCost;
     private float cooldownDuration;
 
-    private Color normalColor = Color.cyan;
-    private Color insufficientManaColor = Color.red;
+    private Color normalColor = new Color(0.706f, 0.851f, 0.702f,1); 
+    private Color insufficientManaColor = new Color(0.722f, 0.427f, 0.427f, 1);
 
     private void Start()
     {
