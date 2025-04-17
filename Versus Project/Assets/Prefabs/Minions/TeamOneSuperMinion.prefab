@@ -207,6 +207,7 @@ MonoBehaviour:
   towerTarget: {fileID: 0}
   minionTarget: {fileID: 5134948185573290296}
   enemyMinionTarget: {fileID: 0}
+  minionSprite: {fileID: 385054977924169405}
   agent: {fileID: 4082273046993157032}
   animator: {fileID: 5958823289627424989}
   distanceFromTarget: {x: 0, y: 0, z: 0}
@@ -360,6 +361,7 @@ MonoBehaviour:
   invulnerable: 0
   isNPC: 1
   healthSetManual: 0
+  darknessEffect: 0
 --- !u!61 &2824147659481601537
 BoxCollider2D:
   m_ObjectHideFlags: 0

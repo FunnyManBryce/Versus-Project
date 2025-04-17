@@ -47,6 +47,13 @@ public class Shop : MonoBehaviour
             animator.SetBool("isYapping", isYapping);
             Text.GetComponent<TextMeshProUGUI>().text = "";
         }
+        if(isYapping && !animator.GetBool("isYapping") && !animator.GetBool("Closing"))
+        {
+            isYapping = false;
+            yapTimer = timeForYap;
+            animator.SetBool("isYapping", isYapping);
+            Text.GetComponent<TextMeshProUGUI>().text = "";
+        }
         if(isOpen && !isYapping && idleTimer >= 0)
         {
             idleTimer -= Time.deltaTime;
@@ -95,7 +102,7 @@ public class Shop : MonoBehaviour
             animator.SetBool("Closing", true);
             isYapping = true;
             Text.GetComponent<TextMeshProUGUI>().text = exitingDialogue[Random.Range(0, exitingDialogue.Length)];
-            yapTimer = timeForYap;
+            yapTimer = timeForYap + 1;
         }
     }
     public void OpenShop()

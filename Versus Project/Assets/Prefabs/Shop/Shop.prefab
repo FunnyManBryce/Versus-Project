@@ -444,10 +444,10 @@ MonoBehaviour:
   - There aren't THAT many choices, hurry up!
   - If time is money, you'd be broke, my friend!
   hoverDialogue:
-  - This is item 1!
-  - This is item 2
-  - This is item 3?
-  - This is item 4!?!?!?!
+  - Gives you more life. A good first purchase!
+  - If you wanna be quick, this item is for you!
+  - This makes you stronger!
+  - This makes you less likely to die!
   - This is overpowered...
   enteringDialogue:
   - Gods killing each other for sport! Gotta love it!

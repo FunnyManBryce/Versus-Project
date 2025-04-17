@@ -14,6 +14,7 @@ public class MeleeMinion : NetworkBehaviour
     public Transform towerTarget;
     public Transform minionTarget;
     public Transform enemyMinionTarget;
+    [SerializeField] SpriteRenderer minionSprite;
 
     public NavMeshAgent agent;
 
@@ -130,6 +131,13 @@ public class MeleeMinion : NetworkBehaviour
 
     void Update()
     {
+        if (agent.desiredVelocity.x < 0)
+        {
+            minionSprite.flipX = true;
+        } else
+        {
+            minionSprite.flipX = false;
+        }
         if (isAttacking || !IsServer) return;
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
