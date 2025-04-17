@@ -8,9 +8,9 @@ public class PlayerCooldownBars : MonoBehaviour
     [SerializeField] private Slider cooldownSlider;
     [SerializeField] private Image fillImage;
     [SerializeField] private TextMeshProUGUI cooldownText;
+    [SerializeField] private TextMeshProUGUI manaCostText;
     [SerializeField] private BasePlayerController playerController;
     [SerializeField] private GameObject abilityIcon;
-    [SerializeField] private Image manaCostIndicator;
 
     public bool initializedCooldown;
     [SerializeField] private bool isPlayer1UI;
@@ -23,8 +23,8 @@ public class PlayerCooldownBars : MonoBehaviour
     private Func<float> getManaCost;
     private float cooldownDuration;
 
-    private Color normalColor = Color.cyan;
-    private Color insufficientManaColor = Color.red;
+    private Color normalColor = new Color(0.706f, 0.851f, 0.702f,1); 
+    private Color insufficientManaColor = new Color(0.722f, 0.427f, 0.427f, 1);
 
     private void Start()
     {
@@ -79,6 +79,10 @@ public class PlayerCooldownBars : MonoBehaviour
             {
                 SetupAbilityDelegates(decayPlayer);
             }
+            else if (playerController is PuppeteeringPlayerController puppetPlayer)
+            {
+                SetupAbilityDelegates(puppetPlayer);
+            }
             // Add other player controller types here as needed
 
             if (isOffCooldown != null)
@@ -90,7 +94,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 }
 
                 UpdateCooldownText();
-                UpdateManaCostIndicator();
+                UpdateManaCostText();
                 initializedCooldown = true;
             }
         }
@@ -124,6 +128,34 @@ public class PlayerCooldownBars : MonoBehaviour
         }
     }
 
+    private void SetupAbilityDelegates(PuppeteeringPlayerController player)
+    {
+        switch (abilityIndex)
+        {
+            case 1: // First ability (String)
+                isOffCooldown = () => player.String.OffCooldown();
+                getNormalizedCooldown = () => player.String.NormalizedCooldown();
+                getCooldownTimeLeft = () => player.String.CooldownDurationLeft();
+                getManaCost = () => player.String.manaCost;
+                cooldownDuration = player.String.cooldown;
+                break;
+            case 2: // Second ability (ModeSwitch)
+                isOffCooldown = () => player.ModeSwitch.OffCooldown();
+                getNormalizedCooldown = () => player.ModeSwitch.NormalizedCooldown();
+                getCooldownTimeLeft = () => player.ModeSwitch.CooldownDurationLeft();
+                getManaCost = () => player.ModeSwitch.manaCost;
+                cooldownDuration = player.ModeSwitch.cooldown;
+                break;
+            case 3: // Ultimate
+                isOffCooldown = () => player.Ultimate.OffCooldown();
+                getNormalizedCooldown = () => player.Ultimate.NormalizedCooldown();
+                getCooldownTimeLeft = () => player.Ultimate.CooldownDurationLeft();
+                getManaCost = () => player.Ultimate.manaCost;
+                cooldownDuration = player.Ultimate.cooldown;
+                break;
+        }
+    }
+
     private void UpdateCooldownBar()
     {
         if (isOffCooldown == null) return;
@@ -143,7 +175,7 @@ public class PlayerCooldownBars : MonoBehaviour
         }
 
         UpdateCooldownText();
-        UpdateManaCostIndicator();
+        UpdateManaCostText();
     }
 
     private void UpdateCooldownText()
@@ -161,15 +193,17 @@ public class PlayerCooldownBars : MonoBehaviour
         }
     }
 
-    private void UpdateManaCostIndicator()
+    private void UpdateManaCostText()
     {
-        if (manaCostIndicator != null)
+        if (manaCostText != null)
         {
-            float manaCostPercentage = getManaCost() / playerController.maxMana;
-            manaCostIndicator.fillAmount = manaCostPercentage;
-            manaCostIndicator.color = playerController.mana >= getManaCost() ?
-                new Color(0, 0.5f, 1f, 0.5f) :
-                new Color(1f, 0.3f, 0.3f, 0.5f);
+            // Display the mana cost as text
+            manaCostText.text = getManaCost().ToString("0");
+
+            // Color the text based on whether the player has enough mana
+            manaCostText.color = playerController.mana >= getManaCost() ?
+                Color.white :
+                insufficientManaColor;
         }
     }
 }
