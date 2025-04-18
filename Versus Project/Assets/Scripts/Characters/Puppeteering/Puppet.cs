@@ -16,6 +16,9 @@ public class Puppet : NetworkBehaviour
     public NavMeshAgent agent;
 
     public Animator animator;
+    [SerializeField] SpriteRenderer puppetSprite;
+    public RuntimeAnimatorController OffensiveAnimator;
+    public RuntimeAnimatorController DefensiveAnimator;
 
     private Vector3 distanceFromFather;
     public Vector3 distanceFromTarget;
@@ -84,10 +87,32 @@ public class Puppet : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (agent.desiredVelocity.x < 0)
+        {
+            puppetSprite.flipX = true;
+        }
+        else
+        {
+            puppetSprite.flipX = false;
+        }
+        if(isAttacking && cooldown)
+        {
+            isAttacking = false;
+            animator.SetBool("Attacking", isAttacking);
+        }
         if (isAttacking || !IsServer) return;
+        if (agent.desiredVelocity.magnitude > 0.1)
+        {
+            animator.SetFloat("Speed", 1);
+        } else
+        {
+            animator.SetFloat("Speed", 0);
+        }
         SyncStats();
+        AnimChangeClientRpc(defensiveMode);
         if (defensiveMode == true)
         {
+            animator.runtimeAnimatorController = DefensiveAnimator;
             agent.SetDestination(Father.transform.position);
             attackDistance = 12;
             float currentTime = Time.time;
@@ -99,6 +124,7 @@ public class Puppet : NetworkBehaviour
         }
         else
         {
+            animator.runtimeAnimatorController = OffensiveAnimator;
             attackDistance = 4;
         }
         if (Father.GetComponent<PuppeteeringPlayerController>().currentTarget != null)
@@ -161,7 +187,8 @@ public class Puppet : NetworkBehaviour
         {
             isAttacking = true;
             agent.speed = moveSpeed;
-            DealDamage();
+            animator.SetBool("Attacking", isAttacking);
+            //DealDamage();
         }
         if (distanceFromFather.magnitude > followDistance)
         {
@@ -189,7 +216,7 @@ public class Puppet : NetworkBehaviour
         else
         {
             isAttacking = false;
-            //animator.SetBool("Attacking", isAttacking);
+            animator.SetBool("Attacking", isAttacking);
         }
     }
 
@@ -206,7 +233,7 @@ public class Puppet : NetworkBehaviour
             controller.Initialize(10, damage / 2, targetObj, senderObj, armorPen);
         }
         isAttacking = false;
-        //animator.SetBool("Attacking", isAttacking);
+        animator.SetBool("Attacking", isAttacking);
         cooldown = true;
     }
 
@@ -226,7 +253,7 @@ public class Puppet : NetworkBehaviour
             Debug.Log("This is bad");
         }
         isAttacking = false;
-        //animator.SetBool("Attacking", isAttacking);
+        animator.SetBool("Attacking", isAttacking);
         cooldown = true;
     }
 
@@ -250,6 +277,19 @@ public class Puppet : NetworkBehaviour
         HealthBar = healthBar;
         healthBar.GetComponent<EnemyHealthBar>().enabled = true;
         healthBar.GetComponent<EnemyHealthBar>().SyncValues(puppet, puppetPos, 1.5f);
+    }
+    
+    [ClientRpc]
+    public void AnimChangeClientRpc(bool defensiveMode)
+    {
+        if(defensiveMode)
+        {
+            animator.runtimeAnimatorController = DefensiveAnimator;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = OffensiveAnimator;
+        }
     }
 
     public bool CanAttackTarget(NetworkObject targetObject)
