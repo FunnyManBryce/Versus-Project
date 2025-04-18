@@ -56,6 +56,28 @@ public class GreedPlayerController : BasePlayerController
         isMelee = true;
     }
 
+
+    // Quick Punch (Ability 1) Implementation
+    public void QuickPunchHostCheck()
+    {
+        if (!IsOwner) return;
+        QuickPunchServerRpc();
+    }
+
+    // Ground Slam (Ability 2) Implementation
+    public void GroundSlamHostCheck()
+    {
+        if (!IsOwner) return;
+        GroundSlamServerRpc();
+    }
+
+
+    // Ultimate Implementation
+    public void UncivRageHostCheck()
+    {
+        if (!IsOwner) return;
+        UncivRageServerRpc();
+    }
     new private void Update()
     {
         base.Update();
@@ -110,6 +132,7 @@ public class GreedPlayerController : BasePlayerController
                 HealFromUltServerRpc(healAmount);
             }
         }
+        
 
         // Process life steal from marked targets
         List<NetworkObject> removeTargets = new List<NetworkObject>();
@@ -144,12 +167,6 @@ public class GreedPlayerController : BasePlayerController
         }
     }
 
-    // Quick Punch (Ability 1) Implementation
-    public void QuickPunchHostCheck()
-    {
-        if (!IsOwner) return;
-        QuickPunchServerRpc();
-    }
 
     [Rpc(SendTo.Server)]
     public void QuickPunchServerRpc()
@@ -207,12 +224,6 @@ public class GreedPlayerController : BasePlayerController
         isDashing = false;
     }
 
-    // Ground Slam (Ability 2) Implementation
-    public void GroundSlamHostCheck()
-    {
-        if (!IsOwner) return;
-        GroundSlamServerRpc();
-    }
 
     [Rpc(SendTo.Server)]
     public void GroundSlamServerRpc()
@@ -250,13 +261,6 @@ public class GreedPlayerController : BasePlayerController
         }
     }
 
-    // Ultimate Implementation
-    public void UncivRageHostCheck()
-    {
-        if (!IsOwner) return;
-        UncivRageServerRpc();
-    }
-
     [Rpc(SendTo.Server)]
     public void UncivRageServerRpc()
     {
@@ -265,7 +269,6 @@ public class GreedPlayerController : BasePlayerController
         animator.runtimeAnimatorController = UltAnimator;
         UltAnimChangeClientRpc();
 
-        // Apply buffs
         TriggerBuffServerRpc("Speed", ultMovementSpeedIncrease, ultimateDuration, true);
 
         IEnumerator coroutine = UltimateDuration();

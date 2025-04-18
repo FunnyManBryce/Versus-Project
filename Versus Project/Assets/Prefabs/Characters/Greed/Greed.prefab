@@ -232,7 +232,7 @@ Animator:
   m_GameObject: {fileID: 7846404579260722031}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 255bf4f12ce881843b7a629ec6bc1d55, type: 2}
+  m_Controller: {fileID: 9100000, guid: b83518fd12f4db241b83d3536fc4a693, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
   lifeStealRatio: 0.3
   slamAOEPrefab: {fileID: 0}
   UltAnimator: {fileID: 0}
-  NormalAnimator: {fileID: 0}
+  NormalAnimator: {fileID: 9100000, guid: b83518fd12f4db241b83d3536fc4a693, type: 2}
   ultimateDuration: 8
   ultMovementSpeedIncrease: 1.5
   ultPassiveMultiplier: 2
