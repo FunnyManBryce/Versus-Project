@@ -23,7 +23,7 @@ public class PlayerCooldownBars : MonoBehaviour
     private Func<float> getManaCost;
     private float cooldownDuration;
 
-    private Color normalColor = new Color(0.706f, 0.851f, 0.702f,1); 
+    private Color normalColor = new Color(0.706f, 0.851f, 0.702f, 1);
     private Color insufficientManaColor = new Color(0.722f, 0.427f, 0.427f, 1);
 
     private void Start()
@@ -82,6 +82,10 @@ public class PlayerCooldownBars : MonoBehaviour
             else if (playerController is PuppeteeringPlayerController puppetPlayer)
             {
                 SetupAbilityDelegates(puppetPlayer);
+            }
+            else if (playerController is GreedPlayerController greedPlayer)
+            {
+                SetupAbilityDelegates(greedPlayer);
             }
             // Add other player controller types here as needed
 
@@ -152,6 +156,41 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.Ultimate.CooldownDurationLeft();
                 getManaCost = () => player.Ultimate.manaCost;
                 cooldownDuration = player.Ultimate.cooldown;
+                break;
+        }
+    }
+
+    private void SetupAbilityDelegates(GreedPlayerController player)
+    {
+        switch (abilityIndex)
+        {
+            case 0: // Passive - doesn't have cooldown but including for completeness
+                isOffCooldown = () => true;
+                getNormalizedCooldown = () => 1f;
+                getCooldownTimeLeft = () => "0.00";
+                getManaCost = () => 0f;
+                cooldownDuration = 0f;
+                break;
+            case 1: // First ability (QuickPunch)
+                isOffCooldown = () => player.QuickPunch.OffCooldown();
+                getNormalizedCooldown = () => player.QuickPunch.NormalizedCooldown();
+                getCooldownTimeLeft = () => player.QuickPunch.CooldownDurationLeft();
+                getManaCost = () => player.QuickPunch.manaCost;
+                cooldownDuration = player.QuickPunch.cooldown;
+                break;
+            case 2: // Second ability (GroundSlam)
+                isOffCooldown = () => player.GroundSlam.OffCooldown();
+                getNormalizedCooldown = () => player.GroundSlam.NormalizedCooldown();
+                getCooldownTimeLeft = () => player.GroundSlam.CooldownDurationLeft();
+                getManaCost = () => player.GroundSlam.manaCost;
+                cooldownDuration = player.GroundSlam.cooldown;
+                break;
+            case 3: // Ultimate (UncivRage)
+                isOffCooldown = () => player.UncivRage.OffCooldown();
+                getNormalizedCooldown = () => player.UncivRage.NormalizedCooldown();
+                getCooldownTimeLeft = () => player.UncivRage.CooldownDurationLeft();
+                getManaCost = () => player.UncivRage.manaCost;
+                cooldownDuration = player.UncivRage.cooldown;
                 break;
         }
     }

@@ -11,7 +11,7 @@ public class BasePlayerController : NetworkBehaviour
     private Rigidbody2D rb2d;
     public Animator animator;
     public LameManager lameManager;
-    [SerializeField] SpriteRenderer PlayerSprite;
+    public SpriteRenderer PlayerSprite;
     public SpriteRenderer AutoAttackSprite;
     public ulong clientID;
 
