@@ -129,16 +129,32 @@ public class MeleeMinion : NetworkBehaviour
         }
     }
 
-    void Update()
+    [ClientRpc]
+    public void FlipSpriteClientRpc(bool flip)
     {
-        if (agent.desiredVelocity.x < 0)
+        if (flip)
         {
             minionSprite.flipX = true;
-        } else
+        }
+        else
         {
             minionSprite.flipX = false;
         }
-        if (isAttacking || !IsServer) return;
+    }
+
+    void Update()
+    {
+        if (!IsServer) return;
+        if (agent.desiredVelocity.x < 0)
+        {
+            minionSprite.flipX = true;
+            FlipSpriteClientRpc(true);
+        } else
+        {
+            minionSprite.flipX = false;
+            FlipSpriteClientRpc(false);
+        }
+        if (isAttacking) return;
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
             cooldownTimer += Time.deltaTime;

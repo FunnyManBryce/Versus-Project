@@ -84,10 +84,10 @@ public class Puppet : NetworkBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    [ClientRpc]
+    public void FlipSpriteClientRpc(bool flip)
     {
-        if (agent.desiredVelocity.x < 0)
+        if (flip)
         {
             puppetSprite.flipX = true;
         }
@@ -95,12 +95,28 @@ public class Puppet : NetworkBehaviour
         {
             puppetSprite.flipX = false;
         }
-        if(isAttacking && cooldown)
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isAttacking && cooldown)
         {
             isAttacking = false;
             animator.SetBool("Attacking", isAttacking);
         }
-        if (isAttacking || !IsServer) return;
+        if(!IsServer) return;
+        if (agent.desiredVelocity.x < 0)
+        {
+            puppetSprite.flipX = true;
+            FlipSpriteClientRpc(true);
+        }
+        else if(agent.desiredVelocity.x > 0)
+        {
+            puppetSprite.flipX = false;
+            FlipSpriteClientRpc(false);
+        }
+        if (isAttacking) return;
         if (agent.desiredVelocity.magnitude > 0.1)
         {
             animator.SetFloat("Speed", 1);
