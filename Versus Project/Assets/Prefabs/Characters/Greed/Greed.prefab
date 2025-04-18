@@ -481,7 +481,17 @@ MonoBehaviour:
     m_InternalValue: 0
   maxSpeed: 9
   currentSpeed: 0
-  statGrowthRate: []
+  statGrowthRate:
+  - 0
+  - 3
+  - 5
+  - 0
+  - 0.01
+  - 0.05
+  - 0
+  - 0
+  - 2
+  - 120
   BaseDamage:
     m_InternalValue: 0
   BaseAttackSpeed:
@@ -538,7 +548,19 @@ MonoBehaviour:
   health: {fileID: -8253534391822271971}
   XPToNextLevel:
     m_InternalValue: 0
-  XPPerLevel: []
+  XPPerLevel:
+  - 100
+  - 200
+  - 300
+  - 400
+  - 500
+  - 600
+  - 700
+  - 800
+  - 900
+  - 1000
+  - 1100
+  - 1200
   unspentUpgrades:
     m_InternalValue: 0
   isDead:
@@ -616,8 +638,8 @@ MonoBehaviour:
   ultPassiveMultiplier: 2
   missingHealthHealRatio: 0.1
   QuickPunch:
-    playerController: {fileID: 0}
-    inputKey: 0
+    playerController: {fileID: -4589182503098133746}
+    inputKey: 113
     cooldown: 3
     manaCost: 0
     lastUsed: 0
@@ -627,8 +649,8 @@ MonoBehaviour:
     waitingForClick: 0
     preventAbilityUse: 0
   GroundSlam:
-    playerController: {fileID: 0}
-    inputKey: 0
+    playerController: {fileID: -4589182503098133746}
+    inputKey: 101
     cooldown: 10
     manaCost: 0
     lastUsed: 0
@@ -638,8 +660,8 @@ MonoBehaviour:
     waitingForClick: 0
     preventAbilityUse: 0
   UncivRage:
-    playerController: {fileID: 0}
-    inputKey: 0
+    playerController: {fileID: -4589182503098133746}
+    inputKey: 114
     cooldown: 90
     manaCost: 0
     lastUsed: 0

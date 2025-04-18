@@ -108,7 +108,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.083333336
-    functionName: StringHostCheck
+    functionName: QuickPunchHostCheck
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
