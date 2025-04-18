@@ -233,12 +233,16 @@ public class Puppet : NetworkBehaviour
         {
             isAttacking = false;
             animator.SetBool("Attacking", isAttacking);
+            cooldown = true;
         }
     }
 
     [Rpc(SendTo.Server)]
     private void SpawnProjectileServerRpc(float damage, NetworkObjectReference target, NetworkObjectReference sender)
     {
+        isAttacking = false;
+        animator.SetBool("Attacking", isAttacking);
+        cooldown = true;
         if (target.TryGet(out NetworkObject targetObj) && sender.TryGet(out NetworkObject senderObj))
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
@@ -248,14 +252,14 @@ public class Puppet : NetworkBehaviour
             ProjectileController controller = projectile.GetComponent<ProjectileController>();
             controller.Initialize(10, damage / 2, targetObj, senderObj, armorPen);
         }
-        isAttacking = false;
-        animator.SetBool("Attacking", isAttacking);
-        cooldown = true;
     }
 
     [Rpc(SendTo.Server)]
     public void DealDamageServerRPC(float damage, NetworkObjectReference reference, NetworkObjectReference sender)
     {
+        isAttacking = false;
+        animator.SetBool("Attacking", isAttacking);
+        cooldown = true;
         if (reference.TryGet(out NetworkObject target))
         {
             target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
@@ -268,9 +272,6 @@ public class Puppet : NetworkBehaviour
         {
             Debug.Log("This is bad");
         }
-        isAttacking = false;
-        animator.SetBool("Attacking", isAttacking);
-        cooldown = true;
     }
 
     public override void OnNetworkSpawn()
