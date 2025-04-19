@@ -14,7 +14,6 @@ public class DecayPlayerController : BasePlayerController
 
     public int passiveLevel;
     public float timeToDecay = 30f;
-    public bool statLossIsAOE = false;
 
     public GameObject AOEPrefab;
     public float AOEDamageMultiplier;
@@ -200,22 +199,6 @@ public class DecayPlayerController : BasePlayerController
         BaseArmorPen.Value -= decayAmount;
         BaseRegen.Value -= (0.05f * decayAmount);
         BaseManaRegen.Value -= (0.05f * decayAmount);
-        if (statLossIsAOE)
-        {
-            Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 5);
-            foreach (var collider in hitColliders)
-            {
-                if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
-                {
-                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -decayAmount, 30, true);
-                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -decayAmount, 30, true);
-                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -decayAmount, 30, true);
-                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", (0.05f * -decayAmount), 30, true);
-                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", (0.05f * -decayAmount), 30, true);
-                }
-            }
-        }
     }
 
     //Ability Level Up Effects
@@ -223,10 +206,6 @@ public class DecayPlayerController : BasePlayerController
     [ServerRpc(RequireOwnership = false)]
     public void SyncAbilityLevelServerRpc(int abilityNumber)
     {
-        if (abilityNumber == 0)
-        {
-            PassiveLevelUp();
-        }
         if (abilityNumber == 1)
         {
             AOELevelUp();
@@ -240,128 +219,117 @@ public class DecayPlayerController : BasePlayerController
             UltimateLevelUp();
         }
     }
-    public void PassiveLevelUp()
-    {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
-        {
-            unspentUpgrades.Value--;
-            passiveLevel++;
-        }
-        else
-        {
-            passiveLevel++;
-            SyncAbilityLevelServerRpc(0);
-        }
-        if (passiveLevel == 2)
-        {
-            decayAmount -= 0.2f;
-        }
-        if (passiveLevel == 3)
-        {
-            statLossIsAOE = true;
-        }
-        if (passiveLevel == 4)
-        {
-            decayAmount -= 0.2f;
-            timeToDecay -= 7.5f;
-        }
-        if (passiveLevel == 5)
-        {
-            decayAmount -= 0.2f;
-            timeToDecay -= 7.5f;
-        }
-    }
 
     public void AOELevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
+        if (!AOE.isUnlocked)
         {
-            unspentUpgrades.Value--;
-            AOE.abilityLevel++;
+            AOE.isUnlocked = true;
         }
         else
         {
-            AOE.abilityLevel++;
-            SyncAbilityLevelServerRpc(1);
-        }
-        if (AOE.abilityLevel == 2)
-        {
-            AOEDamageMultiplier += 0.5f;
-        }
-        if (AOE.abilityLevel == 3)
-        {
-            AOESpeedSteal = true;
-        }
-        if (AOE.abilityLevel == 4)
-        {
-            AOE.manaCost -= 10;
-        }
-        if (AOE.abilityLevel == 5)
-        {
-            speedReductionDuration += 2.5f;
+            if (unspentUpgrades.Value <= 0 || AOE.abilityLevel == 5) return;
+            if (IsServer)
+            {
+                unspentUpgrades.Value--;
+                AOE.abilityLevel++;
+            }
+            else
+            {
+                AOE.abilityLevel++;
+                SyncAbilityLevelServerRpc(1);
+            }
+            if (AOE.abilityLevel == 2)
+            {
+                AOEDamageMultiplier += 0.25f;
+            }
+            if (AOE.abilityLevel == 3)
+            {
+                AOESpeedSteal = true;
+            }
+            if (AOE.abilityLevel == 4)
+            {
+                AOE.cooldown -= 10f;
+            }
+            if (AOE.abilityLevel == 5)
+            {
+                speedReductionDuration += 5f;
+            }
         }
     }
     public void ShockwaveLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
+        if (!Shockwave.isUnlocked)
         {
-            unspentUpgrades.Value--;
-            Shockwave.abilityLevel++;
+            Shockwave.isUnlocked = true;
         }
         else
         {
-            Shockwave.abilityLevel++;
-            SyncAbilityLevelServerRpc(2);
-        }
-        if (Shockwave.abilityLevel == 2)
-        {
-            shockWaveDuration += 0.5f;
-        }
-        if (Shockwave.abilityLevel == 3)
-        {
-            immobilizeShockwave = true;
-        }
-        if (Shockwave.abilityLevel == 4)
-        {
-            shockwaveDamageMultiplier += 0.5f;
-        }
-        if (Shockwave.abilityLevel == 5)
-        {
-            Shockwave.manaCost -= 15;
+            if (unspentUpgrades.Value <= 0 || Shockwave.abilityLevel == 5) return;
+            if (IsServer)
+            {
+                unspentUpgrades.Value--;
+                Shockwave.abilityLevel++;
+            }
+            else
+            {
+                Shockwave.abilityLevel++;
+                SyncAbilityLevelServerRpc(2);
+            }
+            if (Shockwave.abilityLevel == 2)
+            {
+                Shockwave.cooldown -= 1f;
+            }
+            if (Shockwave.abilityLevel == 3)
+            {
+                immobilizeShockwave = true;
+            }
+            if (Shockwave.abilityLevel == 4)
+            {
+                shockwaveDamageMultiplier += 0.5f;
+            }
+            if (Shockwave.abilityLevel == 5)
+            {
+                Shockwave.manaCost -= 15;
+            }
         }
     }
 
     public void UltimateLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
+        if (!Ultimate.isUnlocked)
         {
-            unspentUpgrades.Value--;
-            Ultimate.abilityLevel++;
+            Ultimate.isUnlocked = true;
         }
         else
         {
-            Ultimate.abilityLevel++;
-            SyncAbilityLevelServerRpc(3);
-        }
-        if (Ultimate.abilityLevel == 2)
-        {
-            ultSpeedIncrease = true;
-        }
-        if (Ultimate.abilityLevel == 3)
-        {
-            Ultimate.cooldown -= 10;
-        }
-        if (Ultimate.abilityLevel == 4)
-        {
-            ultimateDuration += 5;
-        }
-        if (Ultimate.abilityLevel == 5)
-        {
-            Ultimate.cooldown -= 10;
+            if (unspentUpgrades.Value <= 0 || Ultimate.abilityLevel == 5) return;
+            if (IsServer)
+            {
+                unspentUpgrades.Value--;
+                Ultimate.abilityLevel++;
+            }
+            else
+            {
+                Ultimate.abilityLevel++;
+                SyncAbilityLevelServerRpc(3);
+            }
+            if (Ultimate.abilityLevel == 2)
+            {
+                ultSpeedIncrease = true;
+            }
+            if (Ultimate.abilityLevel == 3)
+            {
+                Ultimate.cooldown -= 10;
+            }
+            if (Ultimate.abilityLevel == 4)
+            {
+                Ultimate.cooldown -= 10;
+            }
+            if (Ultimate.abilityLevel == 5)
+            {
+                ultimateDuration += 8;
+            }
         }
     }
     #endregion

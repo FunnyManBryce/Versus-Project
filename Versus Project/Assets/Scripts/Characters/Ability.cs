@@ -12,6 +12,7 @@ public class AbilityBase<T> where T : BasePlayerController
     public T playerController;
     [Space]
     public KeyCode inputKey;
+    public bool isUnlocked;
     public float cooldown;
     public float manaCost;
     public float lastUsed;
@@ -32,7 +33,7 @@ public class AbilityBase<T> where T : BasePlayerController
     }
     public void AttemptUse()
     {
-        if (!Input.GetKeyDown(inputKey) || !CanUse() || preventAbilityUse) return;
+        if (!Input.GetKeyDown(inputKey) || !CanUse() || preventAbilityUse || !isUnlocked) return;
         activateAbility();
         OnUse();
     }

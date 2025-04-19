@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class PlayerCooldownBars : MonoBehaviour
 {
@@ -121,6 +122,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.Shockwave.CooldownDurationLeft();
                 getManaCost = () => player.Shockwave.manaCost;
                 cooldownDuration = player.Shockwave.cooldown;
+
                 break;
             case 3: // Ultimate
                 isOffCooldown = () => player.Ultimate.OffCooldown();
@@ -245,4 +247,50 @@ public class PlayerCooldownBars : MonoBehaviour
                 insufficientManaColor;
         }
     }
+
+    public void AbilityUpgrade()
+    {
+        Debug.Log("ermwhatballs");
+        if (playerController is DecayPlayerController decayPlayer)
+        {
+            switch (abilityIndex)
+            {
+                case 1: // First ability (AOE)
+                    decayPlayer.AOE.abilityLevelUp();
+                    Debug.Log("1");
+
+                    break;
+                case 2: // Second ability (Shockwave)
+                    decayPlayer.Shockwave.abilityLevelUp();
+                    Debug.Log("2");
+
+                    break;
+                case 3: // Ultimate
+                    decayPlayer.Ultimate.abilityLevelUp();
+                    Debug.Log("3");
+                    break;
+            }
+        }
+        else if (playerController is PuppeteeringPlayerController puppetPlayer)
+        {
+            switch (abilityIndex)
+            {
+                case 1: // First ability (AOE)
+                    puppetPlayer.String.abilityLevelUp();
+                    break;
+                case 2: // Second ability (Shockwave)
+                    puppetPlayer.ModeSwitch.abilityLevelUp();
+
+                    break;
+                case 3: // Ultimate
+                    puppetPlayer.Ultimate.abilityLevelUp();
+                    break;
+            }
+        }
+        /*else if (playerController is GreedPlayerController greedPlayer)
+        {
+
+        }*/
+    }
+
 }

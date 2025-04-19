@@ -516,10 +516,6 @@ public class PuppeteeringPlayerController : BasePlayerController
     [ServerRpc(RequireOwnership = false)]
     public void SyncAbilityLevelServerRpc(int abilityNumber)
     {
-        if (abilityNumber == 0)
-        {
-            PassiveLevelUp();
-        }
         if (abilityNumber == 1)
         {
             StringLevelUp();
@@ -533,129 +529,120 @@ public class PuppeteeringPlayerController : BasePlayerController
             UltimateLevelUp();
         }
     }
-    public void PassiveLevelUp()
-    {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
-        {
-            unspentUpgrades.Value--;
-            passiveLevel++;
-        }
-        else
-        {
-            passiveLevel++;
-            SyncAbilityLevelServerRpc(0);
-        }
-        if (passiveLevel == 2)
-        {
-            puppetStartingHealth += 50;
-        }
-        if (passiveLevel == 3)
-        {
-            puppetRespawnLength = puppetRespawnLength - 5;
-        }
-        if (passiveLevel == 4)
-        {
-            puppetSpeedMultiplier += 0.3f;
-        }
-        if (passiveLevel == 5)
-        {
-            puppetCooldown -= 0.5f;
-        }
-    }
 
     public void StringLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
+        if (!String.isUnlocked)
         {
-            unspentUpgrades.Value--;
-            String.abilityLevel++;
+            String.isUnlocked = true;
         }
         else
         {
-            String.abilityLevel++;
-            SyncAbilityLevelServerRpc(1);
-        }
-        if (String.abilityLevel == 2)
-        {
-            stringMoveReduction = true;
-        }
-        if (String.abilityLevel == 3)
-        {
-            stringMarkValue = 0.33f;
-        }
-        if (String.abilityLevel == 4)
-        {
-            stringDamageMultiplier = stringDamageMultiplier + 0.667f;
-        }
-        if (String.abilityLevel == 5)
-        {
-            stringTargetsAll = true;
+            if (unspentUpgrades.Value <= 0 || String.abilityLevel == 5) return;
+            if (IsServer)
+            {
+                unspentUpgrades.Value--;
+                String.abilityLevel++;
+            }
+            else
+            {
+                String.abilityLevel++;
+                SyncAbilityLevelServerRpc(1);
+            }
+            if (String.abilityLevel == 2)
+            {
+                stringMoveReduction = true;
+            }
+            if (String.abilityLevel == 3)
+            {
+                stringMarkValue = 0.33f;
+            }
+            if (String.abilityLevel == 4)
+            {
+                stringDamageMultiplier = stringDamageMultiplier + 0.667f;
+            }
+            if (String.abilityLevel == 5)
+            {
+                stringTargetsAll = true;
+            }
         }
     }
     public void ModeSwitchLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
+        if (!ModeSwitch.isUnlocked)
         {
-            unspentUpgrades.Value--;
-            ModeSwitch.abilityLevel++;
+            ModeSwitch.isUnlocked = true;
         }
         else
         {
-            ModeSwitch.abilityLevel++;
-            SyncAbilityLevelServerRpc(2);
-        }
-        if (ModeSwitch.abilityLevel == 2)
-        {
-            lifestealMultiplier += 0.2f;
-            puppetRegen += 5f;
-        }
-        if (ModeSwitch.abilityLevel == 3)
-        {
-            ModeSwitch.cooldown -= 5;
-        }
-        if (ModeSwitch.abilityLevel == 4)
-        {
-            lifestealMultiplier += 0.3f;
-            puppetRegen += 10f;
-        }
-        if (ModeSwitch.abilityLevel == 5)
-        {
-            ModeSwitch.manaCost -= 10;
+            if (unspentUpgrades.Value <= 0 || ModeSwitch.abilityLevel == 5) return;
+            if (IsServer)
+            {
+                unspentUpgrades.Value--;
+                ModeSwitch.abilityLevel++;
+            }
+            else
+            {
+                ModeSwitch.abilityLevel++;
+                SyncAbilityLevelServerRpc(2);
+            }
+            if (ModeSwitch.abilityLevel == 2)
+            {
+                lifestealMultiplier += 0.2f;
+                puppetRegen += 5f;
+            }
+            if (ModeSwitch.abilityLevel == 3)
+            {
+                ModeSwitch.cooldown -= 5;
+            }
+            if (ModeSwitch.abilityLevel == 4)
+            {
+                lifestealMultiplier += 0.3f;
+                puppetRegen += 10f;
+            }
+            if (ModeSwitch.abilityLevel == 5)
+            {
+                ModeSwitch.manaCost -= 10;
+            }
         }
     }
 
     public void UltimateLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
+        if (!Ultimate.isUnlocked)
         {
-            unspentUpgrades.Value--;
-            Ultimate.abilityLevel++;
+            Ultimate.isUnlocked = true;
         }
         else
         {
-            Ultimate.abilityLevel++;
-            SyncAbilityLevelServerRpc(3);
-        }
-        if (Ultimate.abilityLevel == 2)
-        {
-            ultimateDuration += 5;
-        }
-        if (Ultimate.abilityLevel == 3)
-        {
-            doubleUltSpawn = true;
-        }
-        if (Ultimate.abilityLevel == 4)
-        {
-            Ultimate.cooldown -= 10;
-            Ultimate.manaCost -= 10;
-        }
-        if (Ultimate.abilityLevel == 5)
-        {
-            ultInvuln = true;
+            if (unspentUpgrades.Value <= 0 || Ultimate.abilityLevel == 5) return;
+            if (IsServer)
+            {
+                unspentUpgrades.Value--;
+                Ultimate.abilityLevel++;
+            }
+            else
+            {
+                Ultimate.abilityLevel++;
+                SyncAbilityLevelServerRpc(3);
+            }
+            if (Ultimate.abilityLevel == 2)
+            {
+                ultimateDuration += 5;
+            }
+            if (Ultimate.abilityLevel == 3)
+            {
+                doubleUltSpawn = true;
+            }
+            if (Ultimate.abilityLevel == 4)
+            {
+                Ultimate.cooldown -= 10;
+                Ultimate.manaCost -= 10;
+            }
+            if (Ultimate.abilityLevel == 5)
+            {
+                ultInvuln = true;
+            }
         }
     }
     #endregion 

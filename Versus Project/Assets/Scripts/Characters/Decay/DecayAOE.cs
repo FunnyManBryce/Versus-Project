@@ -54,7 +54,7 @@ public class DecayAOE : NetworkBehaviour
                         InflictBuffServerRpc(new NetworkObjectReference(collider.GetComponent<NetworkObject>()), "Speed", speedReductionPerTick, reductionDuration, true);
                         if (sender.GetComponent<DecayPlayerController>().AOESpeedSteal) //Decay gains some speed for every hit enemy if the ability is level 3
                         {
-                            sender.GetComponent<DecayPlayerController>().TriggerBuffServerRpc("Speed", -(speedReductionPerTick * 0.1f), reductionDuration, true);
+                            sender.GetComponent<DecayPlayerController>().TriggerBuffServerRpc("Speed", -(speedReductionPerTick * 0.2f), reductionDuration, true);
                         }
                     }
                 }

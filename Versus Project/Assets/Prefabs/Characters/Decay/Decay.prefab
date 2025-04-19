@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3800055814
+  GlobalObjectIdHash: 2062833195
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -554,7 +554,6 @@ MonoBehaviour:
   Decay: {fileID: 7846404579260722031}
   passiveLevel: 0
   timeToDecay: 30
-  statLossIsAOE: 0
   AOEPrefab: {fileID: 6191041724843646727, guid: c5347d732afcf6d40910e3bbf5f563eb,
     type: 3}
   AOEDamageMultiplier: 0.25
@@ -572,6 +571,7 @@ MonoBehaviour:
   AOE:
     playerController: {fileID: 2299055155951191650}
     inputKey: 113
+    isUnlocked: 0
     cooldown: 25
     manaCost: 60
     lastUsed: 0
@@ -583,6 +583,7 @@ MonoBehaviour:
   Shockwave:
     playerController: {fileID: 2299055155951191650}
     inputKey: 101
+    isUnlocked: 0
     cooldown: 5
     manaCost: 30
     lastUsed: 0
@@ -594,6 +595,7 @@ MonoBehaviour:
   Ultimate:
     playerController: {fileID: 2299055155951191650}
     inputKey: 114
+    isUnlocked: 0
     cooldown: 60
     manaCost: 80
     lastUsed: 0
