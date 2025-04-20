@@ -8,8 +8,8 @@ public class GreedPlayerController : BasePlayerController
 {
     // Passive - Gold conversion
     public float goldConversionRatio = 0.1f; // Base amount of damage gained per gold
-    public NetworkVariable<float> goldDamageBonus = new NetworkVariable<float>();
     public GameObject Greed;
+    public float basePlayerDamage;
 
     // Ability 1 - Quick Punch with Dash
     public float dashDistance = 3f;
@@ -23,10 +23,6 @@ public class GreedPlayerController : BasePlayerController
     public float slamDamageMultiplier = 0.5f;
     public float slamRadius = 3f;
     public float stunDuration = 0.5f;
-    public float lifeStealDuration = 5f;
-    public float lifeStealRatio = 0.3f;
-    public GameObject slamAOEPrefab;
-    private Dictionary<NetworkObject, float> lifeStealTargets = new Dictionary<NetworkObject, float>();
 
     // Ultimate - Uncivilized Rage
     public RuntimeAnimatorController UltAnimator;
@@ -35,12 +31,16 @@ public class GreedPlayerController : BasePlayerController
     public float ultMovementSpeedIncrease = 1.5f;
     public float ultPassiveMultiplier = 2.0f;
     public float missingHealthHealRatio = 0.05f; // Heal for 5% of missing health per second during ult
+    public float ultDashDistance = 5f; // New: Distance to dash to target during ultimate cast
+    public float ultDashSpeed = 30f; // New: Speed of dash during ultimate cast
     private bool isUltActive = false;
+    private Dictionary<NetworkObject, float> lifeStealTargets = new Dictionary<NetworkObject, float>();
 
     // Ability references
     public AbilityBase<GreedPlayerController> QuickPunch;
     public AbilityBase<GreedPlayerController> GroundSlam;
     public AbilityBase<GreedPlayerController> UncivRage;
+
 
     new private void Awake()
     {
@@ -52,7 +52,6 @@ public class GreedPlayerController : BasePlayerController
         GroundSlam.abilityLevelUp = GroundSlamLevelUp;
         UncivRage.abilityLevelUp = UltLevelUp;
 
-        // Set Greed as melee character
         isMelee = true;
     }
 
@@ -61,7 +60,13 @@ public class GreedPlayerController : BasePlayerController
     public void QuickPunchHostCheck()
     {
         if (!IsOwner) return;
-        QuickPunchServerRpc();
+
+        // Get mouse position in world space for dash direction
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 playerPosition = Greed.transform.position;
+        Vector2 dashDirection = (mousePosition - playerPosition).normalized;
+
+        QuickPunchServerRpc(dashDirection);
     }
 
     // Ground Slam (Ability 2) Implementation
@@ -76,28 +81,31 @@ public class GreedPlayerController : BasePlayerController
     public void UncivRageHostCheck()
     {
         if (!IsOwner) return;
-        UncivRageServerRpc();
+
+        // Get mouse position for dash target during ultimate
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 playerPosition = Greed.transform.position;
+        Vector2 dashDirection = (mousePosition - playerPosition).normalized;
+
+        UncivRageServerRpc(dashDirection);
     }
+
     new private void Update()
     {
         base.Update();
         if (!IsOwner || isDead.Value) return;
 
-        // Update passive gold conversion
-        float goldBonus = Gold.Value * goldConversionRatio;
-        if (isUltActive) goldBonus *= ultPassiveMultiplier;
-        UpdateGoldDamageBonusServerRpc(goldBonus);
+        UpdateGoldPassive();
 
-        // Ability locks
         if (animator.GetBool("AbilityOne") == true)
         {
-            UncivRage.preventAbilityUse = true;
             GroundSlam.preventAbilityUse = true;
+            UncivRage.preventAbilityUse = true;
         }
         if (animator.GetBool("AbilityTwo") == true)
         {
-            UncivRage.preventAbilityUse = true;
             QuickPunch.preventAbilityUse = true;
+            UncivRage.preventAbilityUse = true;
         }
         if (animator.GetBool("Ult") == true)
         {
@@ -106,11 +114,12 @@ public class GreedPlayerController : BasePlayerController
         }
         if (animator.GetBool("AutoAttack") == true)
         {
-            UncivRage.preventAbilityUse = true;
             QuickPunch.preventAbilityUse = true;
             GroundSlam.preventAbilityUse = true;
+            UncivRage.preventAbilityUse = true;
         }
-        if (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false)
+        if (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false &&
+            animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false)
         {
             UncivRage.preventAbilityUse = false;
             QuickPunch.preventAbilityUse = false;
@@ -132,7 +141,6 @@ public class GreedPlayerController : BasePlayerController
                 HealFromUltServerRpc(healAmount);
             }
         }
-        
 
         // Process life steal from marked targets
         List<NetworkObject> removeTargets = new List<NetworkObject>();
@@ -149,13 +157,29 @@ public class GreedPlayerController : BasePlayerController
         }
     }
 
-    [ServerRpc]
-    private void UpdateGoldDamageBonusServerRpc(float bonus)
+    private void UpdateGoldPassive()
     {
-        goldDamageBonus.Value = bonus;
-        // Apply to base damage for real-time updates
-        float baseDamageWithoutBonus = BaseDamage.Value - goldDamageBonus.Value;
-        BaseDamage.Value = baseDamageWithoutBonus + bonus;
+        float goldMultiplier = isUltActive ? ultPassiveMultiplier : 1.0f;
+        float goldBonus = Gold.Value * goldConversionRatio * goldMultiplier;
+
+        // Update the attack damage with base damage plus gold bonus
+        if (IsOwner)
+        {
+            UpdateAttackDamageServerRpc(basePlayerDamage + goldBonus);
+        }
+    }
+
+    [ServerRpc]
+    private void UpdateAttackDamageServerRpc(float newAttackDamage)
+    {
+        attackDamage = newAttackDamage;
+        SyncAttackDamageClientRpc(newAttackDamage);
+    }
+
+    [ClientRpc]
+    private void SyncAttackDamageClientRpc(float newAttackDamage)
+    {
+        attackDamage = newAttackDamage;
     }
 
     [ServerRpc]
@@ -169,25 +193,22 @@ public class GreedPlayerController : BasePlayerController
 
 
     [Rpc(SendTo.Server)]
-    public void QuickPunchServerRpc()
+    public void QuickPunchServerRpc(Vector2 dashDirection)
     {
         bAM.PlayServerRpc("Greed Punch", Greed.transform.position);
         bAM.PlayClientRpc("Greed Punch", Greed.transform.position);
-
-        // Calculate dash direction based on facing
-        Vector2 dashDirection = PlayerSprite.flipX ? Vector2.left : Vector2.right;
-        StartCoroutine(DashCoroutine(dashDirection));
 
         // Damage in a cone in front of the player
         Vector2 origin = Greed.transform.position;
         Vector2 forward = dashDirection;
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(origin, punchRange);
 
+        bool hitPlayerController = false;
+
         foreach (var collider in hitColliders)
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                // Check if target is within cone angle
                 Vector2 directionToTarget = ((Vector2)collider.transform.position - origin).normalized;
                 float angle = Vector2.Angle(forward, directionToTarget);
 
@@ -196,27 +217,58 @@ public class GreedPlayerController : BasePlayerController
                     float damage = attackDamage * punchDamageMultiplier;
                     collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(NetworkObject), armorPen, false);
 
-                    // Apply life steal if target is marked
-                    if (lifeStealTargets.ContainsKey(collider.GetComponent<NetworkObject>()))
+                    // Check if we hit a player controller
+                    if (collider.GetComponent<BasePlayerController>() != null)
                     {
-                        float healAmount = damage * lifeStealRatio;
-                        health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + healAmount, health.maxHealth.Value);
+                        hitPlayerController = true;
                     }
                 }
             }
         }
+
+        // If we hit a player controller, reduce the cooldown by 50%
+        if (hitPlayerController)
+        {
+            QuickPunch.lastUsed += QuickPunch.cooldown * 0.5f;
+        }
+
+        // Use the provided dash direction from mouse position
+        StartCoroutine(DashCoroutine(dashDirection, dashDistance, dashSpeed));
+
+        // Update sprite direction to match dash direction
+        if (dashDirection.x < 0)
+        {
+            SetSpriteDirectionServerRpc(true); // flip sprite to face left
+        }
+        else if (dashDirection.x > 0)
+        {
+            SetSpriteDirectionServerRpc(false); // sprite faces right
+        }
     }
 
-    private IEnumerator DashCoroutine(Vector2 direction)
+    [ServerRpc]
+    private void SetSpriteDirectionServerRpc(bool flipX)
+    {
+        SetSpriteDirectionClientRpc(flipX);
+    }
+
+    [ClientRpc]
+    private void SetSpriteDirectionClientRpc(bool flipX)
+    {
+        PlayerSprite.flipX = flipX;
+    }
+
+    // Modified to accept distance and speed parameters for reuse with ultimate
+    private IEnumerator DashCoroutine(Vector2 direction, float distance, float speed)
     {
         isDashing = true;
         float startTime = Time.time;
         Vector3 startPos = transform.position;
-        Vector3 targetPos = startPos + new Vector3(direction.x, direction.y, 0) * dashDistance;
+        Vector3 targetPos = startPos + new Vector3(direction.x, direction.y, 0) * distance;
 
-        while (Time.time < startTime + (dashDistance / dashSpeed))
+        while (Time.time < startTime + (distance / speed))
         {
-            float t = (Time.time - startTime) / (dashDistance / dashSpeed);
+            float t = (Time.time - startTime) / (distance / speed);
             transform.position = Vector3.Lerp(startPos, targetPos, t);
             yield return null;
         }
@@ -231,12 +283,7 @@ public class GreedPlayerController : BasePlayerController
         bAM.PlayServerRpc("Greed Slam", Greed.transform.position);
         bAM.PlayClientRpc("Greed Slam", Greed.transform.position);
 
-        // Instantiate slam AOE effect
-        var slam = Instantiate(slamAOEPrefab, Greed.transform.position, Quaternion.identity);
-        var slamNetworkObject = slam.GetComponent<NetworkObject>();
-        slamNetworkObject.SpawnWithOwnership(clientID);
-
-        // Apply damage and stun in radius
+        // Apply damage and stun in radius (direct detection)
         Vector2 origin = Greed.transform.position;
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(origin, slamRadius);
 
@@ -248,21 +295,21 @@ public class GreedPlayerController : BasePlayerController
                 float damage = attackDamage * slamDamageMultiplier;
                 collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(NetworkObject), armorPen, false);
 
-                // Apply stun
-                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Immobilized", 1, stunDuration, true);
-
-                // Mark for life steal
+                // Apply custom stun that reduces stats to zero
                 NetworkObject targetObj = collider.GetComponent<NetworkObject>();
-                lifeStealTargets[targetObj] = Time.time + lifeStealDuration;
-
-                // Visual effect for marking
-                health.InflictBuffServerRpc(targetObj, "Marked", 1, lifeStealDuration, true);
+                if (targetObj.TryGetComponent<BasePlayerController>(out var targetController))
+                {
+                    targetController.TriggerBuffServerRpc("Speed", -targetController.BaseSpeed.Value, stunDuration, true);
+                    targetController.TriggerBuffServerRpc("Auto Attack Speed", -targetController.BaseAttackSpeed.Value, stunDuration, true);
+                    targetController.TriggerBuffServerRpc("Attack Damage", -targetController.BaseDamage.Value, stunDuration, true);
+                    health.InflictBuffServerRpc(targetObj, "Immobilized", 1, stunDuration, true);
+                }
             }
         }
     }
 
     [Rpc(SendTo.Server)]
-    public void UncivRageServerRpc()
+    public void UncivRageServerRpc(Vector2 dashDirection)
     {
         Debug.Log("Greed Ultimate is happening!");
         isUltActive = true;
@@ -271,6 +318,20 @@ public class GreedPlayerController : BasePlayerController
 
         TriggerBuffServerRpc("Speed", ultMovementSpeedIncrease, ultimateDuration, true);
 
+        // Perform initial dash to target position
+        StartCoroutine(DashCoroutine(dashDirection, ultDashDistance, ultDashSpeed));
+
+        // Update sprite direction to match dash direction
+        if (dashDirection.x < 0)
+        {
+            SetSpriteDirectionServerRpc(true); // flip sprite to face left
+        }
+        else if (dashDirection.x > 0)
+        {
+            SetSpriteDirectionServerRpc(false); // sprite faces right
+        }
+
+        // Start the ultimate duration timer
         IEnumerator coroutine = UltimateDuration();
         StartCoroutine(coroutine);
     }
@@ -278,7 +339,11 @@ public class GreedPlayerController : BasePlayerController
     public IEnumerator UltimateDuration()
     {
         yield return new WaitForSeconds(ultimateDuration);
-        yield return new WaitUntil(() => (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false));
+        // Wait until no animations are playing before ending the ultimate
+        yield return new WaitUntil(() => (animator.GetBool("AbilityTwo") == false &&
+                                         animator.GetBool("AbilityOne") == false &&
+                                         animator.GetBool("Ult") == false &&
+                                         animator.GetBool("AutoAttack") == false));
 
         isUltActive = false;
         animator.runtimeAnimatorController = NormalAnimator;
@@ -334,6 +399,7 @@ public class GreedPlayerController : BasePlayerController
         // Improve gold conversion ratio
         goldConversionRatio += 0.05f;
     }
+
     //Level Up Effects
     #region
     public void QuickPunchLevelUp()
@@ -364,7 +430,7 @@ public class GreedPlayerController : BasePlayerController
         }
         if (QuickPunch.abilityLevel == 5)
         {
-            QuickPunch.cooldown -= 1f;
+            QuickPunch.cooldown -= 0.2f;
         }
     }
 
@@ -388,7 +454,7 @@ public class GreedPlayerController : BasePlayerController
         }
         if (GroundSlam.abilityLevel == 3)
         {
-            lifeStealRatio += 0.1f;
+            GroundSlam.cooldown -= 2f;
         }
         if (GroundSlam.abilityLevel == 4)
         {
@@ -396,7 +462,7 @@ public class GreedPlayerController : BasePlayerController
         }
         if (GroundSlam.abilityLevel == 5)
         {
-            lifeStealDuration += 2f;
+            GroundSlam.cooldown -= 2f;
         }
     }
 

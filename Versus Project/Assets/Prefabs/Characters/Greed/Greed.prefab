@@ -509,7 +509,7 @@ MonoBehaviour:
   BaseManaRegen:
     m_InternalValue: 0
   BaseSpeed:
-    m_InternalValue: 10
+    m_InternalValue: 8
   DamageBuff:
     m_InternalValue: 0
   AttackSpeedBuff:
@@ -529,7 +529,7 @@ MonoBehaviour:
   SpeedBuff:
     m_InternalValue: 0
   attackDamage: 25
-  autoAttackSpeed: 1.5
+  autoAttackSpeed: 0.9
   autoAttackProjSpeed: 1000
   attackRange: 3
   lastAttackTime: 0
@@ -617,20 +617,18 @@ MonoBehaviour:
   HealthBar: {fileID: 8908759716115922835, guid: 6b8fe1d69b602b74fbb50a6da198d85d,
     type: 3}
   goldConversionRatio: 0.1
-  goldDamageBonus:
-    m_InternalValue: 0
   Greed: {fileID: 7846404579260722031}
-  dashDistance: 3
-  dashSpeed: 20
-  punchDamageMultiplier: 0.8
+  basePlayerDamage: 20
+  dashDistance: 5
+  dashSpeed: 40
+  punchDamageMultiplier: 1.3
   punchConeAngle: 60
-  punchRange: 2.5
+  punchRange: 7.5
   slamDamageMultiplier: 0.5
   slamRadius: 3
   stunDuration: 0.5
   lifeStealDuration: 5
   lifeStealRatio: 0.3
-  slamAOEPrefab: {fileID: 0}
   UltAnimator: {fileID: 0}
   NormalAnimator: {fileID: 9100000, guid: b83518fd12f4db241b83d3536fc4a693, type: 2}
   ultimateDuration: 8
@@ -640,7 +638,7 @@ MonoBehaviour:
   QuickPunch:
     playerController: {fileID: -4589182503098133746}
     inputKey: 113
-    cooldown: 3
+    cooldown: 1.7
     manaCost: 0
     lastUsed: 0
     pointClickTimeUsed: 0
