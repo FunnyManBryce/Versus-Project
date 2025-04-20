@@ -627,17 +627,18 @@ MonoBehaviour:
   slamDamageMultiplier: 0.5
   slamRadius: 3
   stunDuration: 0.5
-  lifeStealDuration: 5
-  lifeStealRatio: 0.3
   UltAnimator: {fileID: 0}
   NormalAnimator: {fileID: 9100000, guid: b83518fd12f4db241b83d3536fc4a693, type: 2}
   ultimateDuration: 8
   ultMovementSpeedIncrease: 1.5
   ultPassiveMultiplier: 2
   missingHealthHealRatio: 0.1
+  ultDashDistance: 5
+  ultDashSpeed: 30
   QuickPunch:
     playerController: {fileID: -4589182503098133746}
     inputKey: 113
+    isUnlocked: 0
     cooldown: 1.7
     manaCost: 0
     lastUsed: 0
@@ -649,6 +650,7 @@ MonoBehaviour:
   GroundSlam:
     playerController: {fileID: -4589182503098133746}
     inputKey: 101
+    isUnlocked: 0
     cooldown: 10
     manaCost: 0
     lastUsed: 0
@@ -660,7 +662,8 @@ MonoBehaviour:
   UncivRage:
     playerController: {fileID: -4589182503098133746}
     inputKey: 114
-    cooldown: 90
+    isUnlocked: 0
+    cooldown: 20
     manaCost: 0
     lastUsed: 0
     pointClickTimeUsed: 0

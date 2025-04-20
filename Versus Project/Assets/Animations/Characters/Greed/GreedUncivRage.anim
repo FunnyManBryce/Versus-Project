@@ -35,50 +35,6 @@ AnimationClip:
     - time: 0.33333334
       value: {fileID: 8959957008156380852, guid: 455ef9949e78477499a596a36e5c7994,
         type: 3}
-    - time: 0.41666666
-      value: {fileID: 8959957008156380852, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 0.5
-      value: {fileID: -3049292385230130635, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 0.5833333
-      value: {fileID: 4152660022857607531, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 0.6666667
-      value: {fileID: -5391397589158351561, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 0.75
-      value: {fileID: -5227008322829045542, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 0.8333333
-      value: {fileID: 5503955391285139511, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 0.9166667
-      value: {fileID: 8311767658685955551, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 1
-      value: {fileID: 5568944560609508135, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 1.0833334
-      value: {fileID: 1746945588235928173, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 1.1666666
-      value: {fileID: -8127945856510073306, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 1.25
-      value: {fileID: -3278151216091236432, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 1.3333334
-      value: {fileID: -4203194902381521214, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 1.4166666
-      value: {fileID: 92522953843836486, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - time: 1.5
-      value: {fileID: 7391989338814591089, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
-    - time: 1.5833334
-      value: {fileID: -7036066350017199774, guid: 455ef9949e78477499a596a36e5c7994,
-        type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -106,27 +62,12 @@ AnimationClip:
     - {fileID: 7087902608680111683, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
     - {fileID: 2602520060605764983, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
     - {fileID: 8959957008156380852, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: 8959957008156380852, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: -3049292385230130635, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: 4152660022857607531, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: -5391397589158351561, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: -5227008322829045542, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: 5503955391285139511, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: 8311767658685955551, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: 5568944560609508135, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: 1746945588235928173, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: -8127945856510073306, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: -3278151216091236432, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: -4203194902381521214, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: 92522953843836486, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: 7391989338814591089, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
-    - {fileID: -7036066350017199774, guid: 455ef9949e78477499a596a36e5c7994, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.6666666
+    m_StopTime: 0.36666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -146,14 +87,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.25
+  - time: 0.016666668
     functionName: UncivRageHostCheck
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.6666666
+  - time: 0.36666667
     functionName: UltimateAnimationEnd
     data: 
     objectReferenceParameter: {fileID: 0}

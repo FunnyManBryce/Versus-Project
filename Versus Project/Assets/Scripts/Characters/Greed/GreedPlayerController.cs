@@ -226,23 +226,19 @@ public class GreedPlayerController : BasePlayerController
             }
         }
 
-        // If we hit a player controller, reduce the cooldown by 50%
         if (hitPlayerController)
         {
             QuickPunch.lastUsed += QuickPunch.cooldown * 0.5f;
         }
-
-        // Use the provided dash direction from mouse position
         StartCoroutine(DashCoroutine(dashDirection, dashDistance, dashSpeed));
 
-        // Update sprite direction to match dash direction
         if (dashDirection.x < 0)
         {
-            SetSpriteDirectionServerRpc(true); // flip sprite to face left
+            SetSpriteDirectionServerRpc(true);
         }
         else if (dashDirection.x > 0)
         {
-            SetSpriteDirectionServerRpc(false); // sprite faces right
+            SetSpriteDirectionServerRpc(false); 
         }
     }
 
