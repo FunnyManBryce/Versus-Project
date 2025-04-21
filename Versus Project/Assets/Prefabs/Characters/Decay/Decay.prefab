@@ -468,7 +468,7 @@ MonoBehaviour:
   appliesDarkness:
     m_InternalValue: 0
   darknessDuration: 120
-  cDR: 2
+  cDR: 0
   armorPen: 10
   regen: 2.5
   isMelee: 1
@@ -493,6 +493,8 @@ MonoBehaviour:
   - 1000
   - 1100
   unspentUpgrades:
+    m_InternalValue: 0
+  unspentUnlocks:
     m_InternalValue: 0
   isDead:
     m_InternalValue: 0

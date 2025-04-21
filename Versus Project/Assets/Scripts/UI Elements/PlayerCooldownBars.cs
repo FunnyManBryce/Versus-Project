@@ -246,7 +246,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text =  decayPlayer.AOE.abilityName;
                     if (decayPlayer.AOE.isUnlocked && decayPlayer.AOE.abilityLevel < 5)
                     {
-                        descLevelUpEffect.text = "Next Level Up: " + decayPlayer.AOE.levelUpEffects[decayPlayer.AOE.abilityLevel];
+                        descLevelUpEffect.text = "Next Level: " + decayPlayer.AOE.levelUpEffects[decayPlayer.AOE.abilityLevel];
                     }
                     else if (!decayPlayer.AOE.isUnlocked)
                     {
@@ -264,7 +264,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = decayPlayer.Shockwave.abilityName;
                     if (decayPlayer.Shockwave.isUnlocked && decayPlayer.Shockwave.abilityLevel < 5)
                     {
-                        descLevelUpEffect.text = "Next Level Up: " + decayPlayer.Shockwave.levelUpEffects[decayPlayer.Shockwave.abilityLevel];
+                        descLevelUpEffect.text = "Next Level: " + decayPlayer.Shockwave.levelUpEffects[decayPlayer.Shockwave.abilityLevel];
                     }
                     else if (!decayPlayer.Shockwave.isUnlocked)
                     {
@@ -282,7 +282,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = decayPlayer.Ultimate.abilityName;
                     if (decayPlayer.Ultimate.isUnlocked && decayPlayer.Ultimate.abilityLevel < 5)
                     {
-                        descLevelUpEffect.text = "Next Level Up: " + decayPlayer.Ultimate.levelUpEffects[decayPlayer.Ultimate.abilityLevel];
+                        descLevelUpEffect.text = "Next Level: " + decayPlayer.Ultimate.levelUpEffects[decayPlayer.Ultimate.abilityLevel];
                     }
                     else if (!decayPlayer.Ultimate.isUnlocked)
                     {
@@ -306,7 +306,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = puppetPlayer.String.abilityName;
                     if (puppetPlayer.String.isUnlocked && puppetPlayer.String.abilityLevel < 5)
                     {
-                        descLevelUpEffect.text = "Next Level Up: " + puppetPlayer.String.levelUpEffects[puppetPlayer.String.abilityLevel];
+                        descLevelUpEffect.text = "Next Level: " + puppetPlayer.String.levelUpEffects[puppetPlayer.String.abilityLevel];
                     }
                     else if (!puppetPlayer.String.isUnlocked)
                     {
@@ -324,7 +324,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = puppetPlayer.ModeSwitch.abilityName;
                     if (puppetPlayer.ModeSwitch.isUnlocked && puppetPlayer.ModeSwitch.abilityLevel < 5)
                     {
-                        descLevelUpEffect.text = "Next Level Up: " + puppetPlayer.ModeSwitch.levelUpEffects[puppetPlayer.ModeSwitch.abilityLevel];
+                        descLevelUpEffect.text = "Next Level: " + puppetPlayer.ModeSwitch.levelUpEffects[puppetPlayer.ModeSwitch.abilityLevel];
                     }
                     else if (!puppetPlayer.ModeSwitch.isUnlocked)
                     {
@@ -342,7 +342,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = puppetPlayer.Ultimate.abilityName;
                     if (puppetPlayer.Ultimate.isUnlocked && puppetPlayer.Ultimate.abilityLevel < 5)
                     {
-                        descLevelUpEffect.text = "Next Level Up: " + puppetPlayer.Ultimate.levelUpEffects[puppetPlayer.Ultimate.abilityLevel];
+                        descLevelUpEffect.text = "Next Level: " + puppetPlayer.Ultimate.levelUpEffects[puppetPlayer.Ultimate.abilityLevel];
                     }
                     else if(!puppetPlayer.Ultimate.isUnlocked)
                     {
@@ -421,10 +421,10 @@ public class PlayerCooldownBars : MonoBehaviour
                     break;
             }
         }
-        /*else if (playerController is GreedPlayerController greedPlayer)
+        else if (playerController is GreedPlayerController greedPlayer)
         {
 
-        }*/
+        }
     }
 
     public void MouseEnter()

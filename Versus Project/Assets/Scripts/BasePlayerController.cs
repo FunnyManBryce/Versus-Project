@@ -929,6 +929,12 @@ public class BasePlayerController : NetworkBehaviour
             XP.Value = 0;
         }
         XPToNextLevel.Value = XPPerLevel[Level.Value];
-        unspentUnlocks.Value++;
+        if(Level.Value < 4)
+        {
+            unspentUnlocks.Value++;
+        } else
+        {
+            unspentUpgrades.Value++;
+        }
     }
 }
