@@ -52,7 +52,7 @@ public class StringAbility : NetworkBehaviour
                         InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Marked", markAmount, 5f, true);
                         if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                         {
-                            collider.GetComponent<BasePlayerController>().TriggerBuffServerRpc("Speed", -2, 5f, true);
+                            InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Speed", -2, 5f, true);
                         }
                     }
                 }

@@ -224,7 +224,16 @@ public class DecayPlayerController : BasePlayerController
     {
         if (!AOE.isUnlocked)
         {
+            if (unspentUnlocks.Value <= 0) return;
             AOE.isUnlocked = true;
+            if (IsServer)
+            {
+                unspentUnlocks.Value--;
+            }
+            else
+            {
+                SyncAbilityLevelServerRpc(1);
+            }
         }
         else
         {
@@ -241,7 +250,7 @@ public class DecayPlayerController : BasePlayerController
             }
             if (AOE.abilityLevel == 2)
             {
-                AOEDamageMultiplier += 0.25f;
+                AOEDamageMultiplier += 0.125f;
             }
             if (AOE.abilityLevel == 3)
             {
@@ -261,7 +270,16 @@ public class DecayPlayerController : BasePlayerController
     {
         if (!Shockwave.isUnlocked)
         {
+            if (unspentUnlocks.Value <= 0) return;
             Shockwave.isUnlocked = true;
+            if (IsServer)
+            {
+                unspentUnlocks.Value--;
+            }
+            else
+            {
+                SyncAbilityLevelServerRpc(2);
+            }
         }
         else
         {
@@ -299,7 +317,16 @@ public class DecayPlayerController : BasePlayerController
     {
         if (!Ultimate.isUnlocked)
         {
+            if (unspentUnlocks.Value <= 0) return;
             Ultimate.isUnlocked = true;
+            if (IsServer)
+            {
+                unspentUnlocks.Value--;
+            }
+            else
+            {
+                SyncAbilityLevelServerRpc(3);
+            }
         }
         else
         {
@@ -328,7 +355,7 @@ public class DecayPlayerController : BasePlayerController
             }
             if (Ultimate.abilityLevel == 5)
             {
-                ultimateDuration += 8;
+                ultimateDuration += 5;
             }
         }
     }

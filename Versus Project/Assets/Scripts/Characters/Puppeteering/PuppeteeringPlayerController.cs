@@ -33,7 +33,6 @@ public class PuppeteeringPlayerController : BasePlayerController
 
     public float ultimateDuration = 20f;
     private bool doubleUltSpawn = false;
-    private bool ultInvuln = false;
 
     public AbilityBase<PuppeteeringPlayerController> String;
     public AbilityBase<PuppeteeringPlayerController> ModeSwitch;
@@ -415,10 +414,6 @@ public class PuppeteeringPlayerController : BasePlayerController
             if (spawnType == "ultSpawn" && puppetsAlive.Value > 1)
             {
                 puppet.defensiveMode = !PuppetList[0].GetComponent<Puppet>().defensiveMode;
-                if (ultInvuln)
-                {
-                    puppet.TriggerBuffServerRpc("Invulnerability", 0, 3);
-                }
             }
             else
             {
@@ -534,7 +529,16 @@ public class PuppeteeringPlayerController : BasePlayerController
     {
         if (!String.isUnlocked)
         {
+            if (unspentUnlocks.Value <= 0) return;
             String.isUnlocked = true;
+            if (IsServer)
+            {
+                unspentUnlocks.Value--;
+            }
+            else
+            {
+                SyncAbilityLevelServerRpc(1);
+            }
         }
         else
         {
@@ -564,6 +568,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             if (String.abilityLevel == 5)
             {
                 stringTargetsAll = true;
+                String.cooldown -= 5f;
             }
         }
     }
@@ -571,7 +576,16 @@ public class PuppeteeringPlayerController : BasePlayerController
     {
         if (!ModeSwitch.isUnlocked)
         {
+            if (unspentUnlocks.Value <= 0) return;
             ModeSwitch.isUnlocked = true;
+            if (IsServer)
+            {
+                unspentUnlocks.Value--;
+            }
+            else
+            {
+                SyncAbilityLevelServerRpc(2);
+            }
         }
         else
         {
@@ -611,7 +625,16 @@ public class PuppeteeringPlayerController : BasePlayerController
     {
         if (!Ultimate.isUnlocked)
         {
+            if (unspentUnlocks.Value <= 0) return;
             Ultimate.isUnlocked = true;
+            if (IsServer)
+            {
+                unspentUnlocks.Value--;
+            }
+            else
+            {
+                SyncAbilityLevelServerRpc(3);
+            }
         }
         else
         {
@@ -633,15 +656,15 @@ public class PuppeteeringPlayerController : BasePlayerController
             if (Ultimate.abilityLevel == 3)
             {
                 doubleUltSpawn = true;
+                Ultimate.manaCost -= 10;
             }
             if (Ultimate.abilityLevel == 4)
             {
                 Ultimate.cooldown -= 10;
-                Ultimate.manaCost -= 10;
             }
             if (Ultimate.abilityLevel == 5)
             {
-                ultInvuln = true;
+                ultimateDuration += 5;
             }
         }
     }

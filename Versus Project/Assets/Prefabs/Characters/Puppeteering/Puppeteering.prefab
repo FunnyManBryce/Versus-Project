@@ -186,9 +186,15 @@ MonoBehaviour:
   cooldownSlider: {fileID: 0}
   fillImage: {fileID: 0}
   cooldownText: {fileID: 0}
+  manaCostText: {fileID: 0}
   playerController: {fileID: 0}
   abilityIcon: {fileID: 0}
-  manaCostIndicator: {fileID: 0}
+  Description: {fileID: 0}
+  descCooldown: {fileID: 0}
+  descName: {fileID: 0}
+  descManaCost: {fileID: 0}
+  descDescription: {fileID: 0}
+  descLevelUpEffect: {fileID: 0}
   initializedCooldown: 0
   isPlayer1UI: 0
   abilityIndex: 0
@@ -204,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 652430502
+  GlobalObjectIdHash: 3858709417
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -403,6 +409,7 @@ MonoBehaviour:
   String:
     playerController: {fileID: 2414812415466740570}
     inputKey: 113
+    isUnlocked: 0
     cooldown: 20
     manaCost: 50
     lastUsed: 0
@@ -411,9 +418,19 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
+    abilityName: String Strangle
+    abilityDescription: Conjures string at your mouse cursor, whiich will damage,
+      immoblize, and mark enemies caught in it after 0.75 seconds.
+    levelUpEffects:
+    - Unlocks Ability
+    - String reduces movespeed of hit enemies for 5 seconds.
+    - Marked enemies take 33& more damage instead of 25%
+    - String damage increased by 50%
+    - Reduces cooldown by 5 seconds. String can now target towers.
   ModeSwitch:
     playerController: {fileID: 2414812415466740570}
     inputKey: 101
+    isUnlocked: 0
     cooldown: 10
     manaCost: 20
     lastUsed: 0
@@ -422,9 +439,20 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
+    abilityName: Cunning Mix-up
+    abilityDescription: Swaps Puppet between offensive and defensive mode, providing
+      temporary buffs to Puppeteering depending on the mode.
+    levelUpEffects:
+    - Unlocks Ability
+    - Offensive mode provides puppet lifesteal. Defensive mode provides +5 regen
+      to puppet.
+    - Reduces cooldown by 5 seconds.
+    - Offensive lifesteal is 1.5X stronger. Defensive regen increased by +10.
+    - Mana cost reduced by 10
   Ultimate:
     playerController: {fileID: 2414812415466740570}
     inputKey: 114
+    isUnlocked: 0
     cooldown: 60
     manaCost: 70
     lastUsed: 0
@@ -433,6 +461,15 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
+    abilityName: Double Trouble
+    abilityDescription: Instantly summons a puppet. For 20 seconds, Puppeteering
+      can have 2 max puppets.
+    levelUpEffects:
+    - Unlocks Ability
+    - +5 second duration
+    - Ult will spawn up to two puppets if none are alive. Mana cost reduced by 10.
+    - Reduces cooldown by 10
+    - +5 second duration
 --- !u!114 &2628991981076659366
 MonoBehaviour:
   m_ObjectHideFlags: 0

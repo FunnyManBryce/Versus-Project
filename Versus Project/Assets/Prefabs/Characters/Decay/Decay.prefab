@@ -556,7 +556,7 @@ MonoBehaviour:
   timeToDecay: 30
   AOEPrefab: {fileID: 6191041724843646727, guid: c5347d732afcf6d40910e3bbf5f563eb,
     type: 3}
-  AOEDamageMultiplier: 0.25
+  AOEDamageMultiplier: 0.375
   speedReductionDuration: 5
   AOESpeedSteal: 0
   shockwaveDamageMultiplier: 3
@@ -580,6 +580,15 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
+    abilityName: Aura of Rot
+    abilityDescription: Decay creates an aura around him that damages enemies and
+      lowers enemies move speed for five seconds.
+    levelUpEffects:
+    - Unlocks Ability
+    - Increases damage by 33%
+    - Decay temporarily steals movement speed from enemies hit by the AOE.
+    - Cooldown reduced by 10 seconds.
+    - Movement speed debuff lasts +5 seconds
   Shockwave:
     playerController: {fileID: 2299055155951191650}
     inputKey: 101
@@ -592,6 +601,15 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
+    abilityName: Shockwave
+    abilityDescription: Decay sends out a quick, damaging shockwave in the direction
+      of your cursor.
+    levelUpEffects:
+    - Unlocks Ability
+    - Cooldown reduced by 1 second
+    - Shockwave immobilizes hit enemies for 0.5 seconds
+    - Increases damage by 33%
+    - Reduces mana cost by 15
   Ultimate:
     playerController: {fileID: 2299055155951191650}
     inputKey: 114
@@ -604,6 +622,15 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
+    abilityName: Former Glory
+    abilityDescription: Decay transfers all passive stat decay to nearby enemies.
+      This effect lasts for 15 seconds.
+    levelUpEffects:
+    - Unlocks Ability
+    - Ultimate increases Decay's speed by 2 for the duration.
+    - Cooldown reduced by 10
+    - Cooldown reduced by 10
+    - Ultimate duration increased by 5 seconds
 --- !u!212 &176950742428784287
 SpriteRenderer:
   m_ObjectHideFlags: 0

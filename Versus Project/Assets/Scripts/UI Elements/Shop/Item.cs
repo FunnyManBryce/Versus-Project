@@ -23,7 +23,6 @@ public class Item : MonoBehaviour
 
     public void MouseEnter()
     {
-        Debug.Log("??");
         Description.SetActive(true);
         Shop.GetComponent<Shop>().HoveringDialogue(itemNumber);
     }

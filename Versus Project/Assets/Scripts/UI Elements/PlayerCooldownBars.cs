@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Unity.VisualScripting;
 
 public class PlayerCooldownBars : MonoBehaviour
 {
@@ -12,6 +13,14 @@ public class PlayerCooldownBars : MonoBehaviour
     [SerializeField] private TextMeshProUGUI manaCostText;
     [SerializeField] private BasePlayerController playerController;
     [SerializeField] private GameObject abilityIcon;
+    
+    //Ability Description text
+    [SerializeField] private GameObject Description;
+    [SerializeField] private TextMeshProUGUI descCooldown;
+    [SerializeField] private TextMeshProUGUI descName;
+    [SerializeField] private TextMeshProUGUI descManaCost;
+    [SerializeField] private TextMeshProUGUI descDescription;
+    [SerializeField] private TextMeshProUGUI descLevelUpEffect;
 
     public bool initializedCooldown;
     [SerializeField] private bool isPlayer1UI;
@@ -115,6 +124,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.AOE.CooldownDurationLeft();
                 getManaCost = () => player.AOE.manaCost;
                 cooldownDuration = player.AOE.cooldown;
+                descDescription.text = "Description: " + player.AOE.abilityDescription;
                 break;
             case 2: // Second ability (Shockwave)
                 isOffCooldown = () => player.Shockwave.OffCooldown();
@@ -122,7 +132,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.Shockwave.CooldownDurationLeft();
                 getManaCost = () => player.Shockwave.manaCost;
                 cooldownDuration = player.Shockwave.cooldown;
-
+                descDescription.text = "Description: " + player.Shockwave.abilityDescription;
                 break;
             case 3: // Ultimate
                 isOffCooldown = () => player.Ultimate.OffCooldown();
@@ -130,6 +140,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.Ultimate.CooldownDurationLeft();
                 getManaCost = () => player.Ultimate.manaCost;
                 cooldownDuration = player.Ultimate.cooldown;
+                descDescription.text = "Description: " + player.Ultimate.abilityDescription;
                 break;
         }
     }
@@ -144,6 +155,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.String.CooldownDurationLeft();
                 getManaCost = () => player.String.manaCost;
                 cooldownDuration = player.String.cooldown;
+                descDescription.text = "Description: " + player.String.abilityDescription;
                 break;
             case 2: // Second ability (ModeSwitch)
                 isOffCooldown = () => player.ModeSwitch.OffCooldown();
@@ -151,6 +163,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.ModeSwitch.CooldownDurationLeft();
                 getManaCost = () => player.ModeSwitch.manaCost;
                 cooldownDuration = player.ModeSwitch.cooldown;
+                descDescription.text = "Description: " + player.ModeSwitch.abilityDescription;
                 break;
             case 3: // Ultimate
                 isOffCooldown = () => player.Ultimate.OffCooldown();
@@ -158,6 +171,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.Ultimate.CooldownDurationLeft();
                 getManaCost = () => player.Ultimate.manaCost;
                 cooldownDuration = player.Ultimate.cooldown;
+                descDescription.text = "Description: " + player.Ultimate.abilityDescription;
                 break;
         }
     }
@@ -221,6 +235,129 @@ public class PlayerCooldownBars : MonoBehaviour
 
     private void UpdateCooldownText()
     {
+        if (playerController is DecayPlayerController decayPlayer)
+        {
+            switch (abilityIndex)
+            {
+                case 1: // First ability (AOE)
+                    descManaCost.text = "Mana Cost: " + decayPlayer.AOE.manaCost;
+                    descCooldown.text = "Cooldown: " + (decayPlayer.AOE.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + decayPlayer.AOE.abilityDescription;
+                    descName.text =  decayPlayer.AOE.abilityName;
+                    if (decayPlayer.AOE.isUnlocked && decayPlayer.AOE.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level Up: " + decayPlayer.AOE.levelUpEffects[decayPlayer.AOE.abilityLevel];
+                    }
+                    else if (!decayPlayer.AOE.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (decayPlayer.AOE.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+                case 2: // Second ability (Shockwave)
+                    descManaCost.text = "Mana Cost: " + decayPlayer.Shockwave.manaCost;
+                    descCooldown.text = "Cooldown: " + (decayPlayer.Shockwave.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + decayPlayer.Shockwave.abilityDescription;
+                    descName.text = decayPlayer.Shockwave.abilityName;
+                    if (decayPlayer.Shockwave.isUnlocked && decayPlayer.Shockwave.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level Up: " + decayPlayer.Shockwave.levelUpEffects[decayPlayer.Shockwave.abilityLevel];
+                    }
+                    else if (!decayPlayer.Shockwave.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (decayPlayer.Shockwave.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+                case 3: // Ultimate
+                    descManaCost.text = "Mana Cost: " + decayPlayer.Ultimate.manaCost;
+                    descCooldown.text = "Cooldown: " + (decayPlayer.Ultimate.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + decayPlayer.Ultimate.abilityDescription;
+                    descName.text = decayPlayer.Ultimate.abilityName;
+                    if (decayPlayer.Ultimate.isUnlocked && decayPlayer.Ultimate.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level Up: " + decayPlayer.Ultimate.levelUpEffects[decayPlayer.Ultimate.abilityLevel];
+                    }
+                    else if (!decayPlayer.Ultimate.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (decayPlayer.Ultimate.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+            }
+        }
+        else if (playerController is PuppeteeringPlayerController puppetPlayer)
+        {
+            switch (abilityIndex)
+            {
+                case 1: // First ability (String)
+                    descManaCost.text = "Mana Cost: " + puppetPlayer.String.manaCost;
+                    descCooldown.text = "Cooldown: " + (puppetPlayer.String.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + puppetPlayer.String.abilityDescription;
+                    descName.text = puppetPlayer.String.abilityName;
+                    if (puppetPlayer.String.isUnlocked && puppetPlayer.String.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level Up: " + puppetPlayer.String.levelUpEffects[puppetPlayer.String.abilityLevel];
+                    }
+                    else if (!puppetPlayer.String.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (puppetPlayer.String.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+                case 2: // Second ability (ModeSwitch)
+                    descManaCost.text = "Mana Cost: " + puppetPlayer.ModeSwitch.manaCost;
+                    descCooldown.text = "Cooldown: " + (puppetPlayer.ModeSwitch.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + puppetPlayer.ModeSwitch.abilityDescription;
+                    descName.text = puppetPlayer.ModeSwitch.abilityName;
+                    if (puppetPlayer.ModeSwitch.isUnlocked && puppetPlayer.ModeSwitch.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level Up: " + puppetPlayer.ModeSwitch.levelUpEffects[puppetPlayer.ModeSwitch.abilityLevel];
+                    }
+                    else if (!puppetPlayer.ModeSwitch.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (puppetPlayer.ModeSwitch.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+                case 3: // Ultimate
+                    descManaCost.text = "Mana Cost: " + puppetPlayer.Ultimate.manaCost;
+                    descCooldown.text = "Cooldown: " + (puppetPlayer.Ultimate.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + puppetPlayer.Ultimate.abilityDescription;
+                    descName.text = puppetPlayer.Ultimate.abilityName;
+                    if (puppetPlayer.Ultimate.isUnlocked && puppetPlayer.Ultimate.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level Up: " + puppetPlayer.Ultimate.levelUpEffects[puppetPlayer.Ultimate.abilityLevel];
+                    }
+                    else if(!puppetPlayer.Ultimate.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    } else if(puppetPlayer.Ultimate.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+            }
+        }
+        /*else if (playerController is GreedPlayerController greedPlayer)
+        {
+
+        }*/
         if (cooldownText != null)
         {
             if (isOffCooldown())
@@ -232,6 +369,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 cooldownText.text = getCooldownTimeLeft();
             }
         }
+
     }
 
     private void UpdateManaCostText()
@@ -250,24 +388,20 @@ public class PlayerCooldownBars : MonoBehaviour
 
     public void AbilityUpgrade()
     {
-        Debug.Log("ermwhatballs");
         if (playerController is DecayPlayerController decayPlayer)
         {
             switch (abilityIndex)
             {
                 case 1: // First ability (AOE)
                     decayPlayer.AOE.abilityLevelUp();
-                    Debug.Log("1");
 
                     break;
                 case 2: // Second ability (Shockwave)
                     decayPlayer.Shockwave.abilityLevelUp();
-                    Debug.Log("2");
 
                     break;
                 case 3: // Ultimate
                     decayPlayer.Ultimate.abilityLevelUp();
-                    Debug.Log("3");
                     break;
             }
         }
@@ -291,6 +425,15 @@ public class PlayerCooldownBars : MonoBehaviour
         {
 
         }*/
+    }
+
+    public void MouseEnter()
+    {
+        Description.SetActive(true);
+    }
+    public void MouseExit()
+    {
+        Description.SetActive(false);
     }
 
 }

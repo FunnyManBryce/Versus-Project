@@ -72,6 +72,7 @@ public class BasePlayerController : NetworkBehaviour
     public NetworkVariable<float> XPToNextLevel = new NetworkVariable<float>();
     public float[] XPPerLevel;
     public NetworkVariable<int> unspentUpgrades = new NetworkVariable<int>();
+    public NetworkVariable<int> unspentUnlocks = new NetworkVariable<int>();
     public NetworkVariable<bool> isDead = new NetworkVariable<bool>();
     public NetworkVariable<int> Level = new NetworkVariable<int>();
     public NetworkVariable<float> XP = new NetworkVariable<float>();
@@ -597,6 +598,7 @@ public class BasePlayerController : NetworkBehaviour
             if (resevoirRegen == true)
             {
                 health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + (health.maxHealth.Value * 0.01f), health.maxHealth.Value);
+                mana = Mathf.Min(mana + (maxMana * 0.01f), maxMana);
             }
         }
 
@@ -909,7 +911,7 @@ public class BasePlayerController : NetworkBehaviour
         Level.Value++;
         if (Level.Value > 1)
         {
-
+            unspentUpgrades.Value++;
             BaseSpeed.Value += statGrowthRate[0];
             BaseDamage.Value += statGrowthRate[1];
             BaseArmor.Value += statGrowthRate[2];
@@ -927,6 +929,6 @@ public class BasePlayerController : NetworkBehaviour
             XP.Value = 0;
         }
         XPToNextLevel.Value = XPPerLevel[Level.Value];
-        unspentUpgrades.Value++;
+        unspentUnlocks.Value++;
     }
 }
