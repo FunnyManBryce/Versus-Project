@@ -60,6 +60,11 @@ public class Tower : NetworkBehaviour
 
     protected virtual void Update()
     {
+        if (isAttacking && cooldown)
+        {
+            isAttacking = false;
+            animator.SetBool("Attacking", isAttacking);
+        }
         if (!IsServer || isAttacking) return;
         if (Team == 1)
         {
@@ -224,6 +229,9 @@ public class Tower : NetworkBehaviour
 
     public void DealDamage()
     {
+        isAttacking = false;
+        animator.SetBool("Attacking", isAttacking);
+        cooldown = true;
         if (currentTarget != null)
         {
             if (currentTarget.GetComponent<MeleeMinion>() != null)
@@ -238,20 +246,14 @@ public class Tower : NetworkBehaviour
                 SpawnProjectileServerRpc(Damage, currentTarget, networkTower);
             }
         }
-        else
-        {
-            Debug.Log("erm");
-            isAttacking = false;
-            animator.SetBool("Attacking", isAttacking);
-        }
     }
 
     [Rpc(SendTo.Server)]
     private void SpawnProjectileServerRpc(float damage, NetworkObjectReference target, NetworkObjectReference sender)
     {
-        isAttacking = false;
+        /*isAttacking = false;
         animator.SetBool("Attacking", isAttacking);
-        cooldown = true;
+        cooldown = true;*/
         if (target.TryGet(out NetworkObject targetObj) && sender.TryGet(out NetworkObject senderObj))
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
