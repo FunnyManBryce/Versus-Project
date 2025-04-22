@@ -25,15 +25,13 @@ public class GreedPlayerController : BasePlayerController
     public float stunDuration = 0.5f;
 
     // Ultimate - Uncivilized Rage
-    public RuntimeAnimatorController UltAnimator;
-    public RuntimeAnimatorController NormalAnimator;
     public float ultimateDuration = 8f;
     public float ultMovementSpeedIncrease = 1.5f;
     public float ultPassiveMultiplier = 2.0f;
-    public float missingHealthHealRatio = 0.05f; // Heal for 5% of missing health per second during ult
-    public float ultDashSpeed = 30f; // Speed for the initial ultimate dash
+    public float missingHealthHealRatio = 0.02f; // Heal for 5% of missing health per second during ult
     private bool isUltActive = false;
     private Dictionary<NetworkObject, float> lifeStealTargets = new Dictionary<NetworkObject, float>();
+    public float ultDashSpeed = 30f; // New variable for ult dash speed
 
     // Ability references
     public AbilityBase<GreedPlayerController> QuickPunch;
@@ -81,24 +79,47 @@ public class GreedPlayerController : BasePlayerController
     {
         if (!IsOwner) return;
 
-        // Get mouse position for target location
+        // Get mouse position to find target for ultimate dash
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 playerPosition = Greed.transform.position;
-        Vector2 dashDirection = (mousePosition - playerPosition).normalized;
 
-        // Check if there's a targetable enemy under the cursor
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-        NetworkObject targetObject = null;
+        // Find the nearest valid target near the mouse position
+        NetworkObject targetObject = FindTargetNearPosition(mousePosition);
 
-        if (hit.collider != null && hit.collider.TryGetComponent<NetworkObject>(out var networkObj))
+        if (targetObject != null)
         {
-            if (CanAttackTarget(networkObj) && hit.collider.TryGetComponent<Health>(out var _))
+            UncivRageServerRpc(targetObject);
+        }
+        else
+        {
+            // If no target found, just activate the ultimate at current position
+            UncivRageServerRpc(new NetworkObjectReference());
+        }
+    }
+
+    private NetworkObject FindTargetNearPosition(Vector2 position)
+    {
+        // Find nearby targets
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(position, 5f);
+
+        NetworkObject closestTarget = null;
+        float closestDistance = float.MaxValue;
+
+        foreach (var collider in hitColliders)
+        {
+            if (collider.GetComponent<Health>() != null &&
+                CanAttackTarget(collider.GetComponent<NetworkObject>()) &&
+                collider.isTrigger)
             {
-                targetObject = networkObj;
+                float distance = Vector2.Distance(position, collider.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestTarget = collider.GetComponent<NetworkObject>();
+                }
             }
         }
 
-        UncivRageServerRpc(dashDirection, new NetworkObjectReference(targetObject));
+        return closestTarget;
     }
 
     new private void Update()
@@ -108,29 +129,22 @@ public class GreedPlayerController : BasePlayerController
 
         UpdateGoldPassive();
 
-        // Ability locks - Notice we've removed the Ultimate checks that were preventing other abilities
+        // Ability locks - kept some basic locks to prevent ability spamming during animations
         if (animator.GetBool("AbilityOne") == true)
         {
-            // Only lock conflicting abilities during quick punch
             GroundSlam.preventAbilityUse = true;
         }
         if (animator.GetBool("AbilityTwo") == true)
         {
-            // Only lock conflicting abilities during ground slam
             QuickPunch.preventAbilityUse = true;
         }
-
-        // We're no longer preventing ability usage during Ultimate
-
         if (animator.GetBool("AutoAttack") == true)
         {
-            // During auto attacks, prevent abilities but not ultimate
             QuickPunch.preventAbilityUse = true;
             GroundSlam.preventAbilityUse = true;
         }
-        if (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("AutoAttack") == false)
+        if (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false)
         {
-            // Reset all prevention when animations are done
             UncivRage.preventAbilityUse = false;
             QuickPunch.preventAbilityUse = false;
             GroundSlam.preventAbilityUse = false;
@@ -319,99 +333,47 @@ public class GreedPlayerController : BasePlayerController
     }
 
     [Rpc(SendTo.Server)]
-    public void UncivRageServerRpc(Vector2 dashDirection, NetworkObjectReference targetObjRef)
+    public void UncivRageServerRpc(NetworkObjectReference targetRef)
     {
         Debug.Log("Greed Ultimate is happening!");
+        bAM.PlayServerRpc("Greed Ultimate", Greed.transform.position);
+        bAM.PlayClientRpc("Greed Ultimate", Greed.transform.position);
+
         isUltActive = true;
-        animator.runtimeAnimatorController = UltAnimator;
-        UltAnimChangeClientRpc();
 
-        TriggerBuffServerRpc("Speed", ultMovementSpeedIncrease, ultimateDuration, true);
-
-        // Check if we have a valid target to dash to
-        if (targetObjRef.TryGet(out NetworkObject targetObj))
+        // Check if we have a target to dash to
+        if (targetRef.TryGet(out NetworkObject targetObject) && targetObject != null)
         {
-            Vector3 targetPosition = targetObj.transform.position;
-            Vector3 startPosition = transform.position;
-            Vector2 directionToTarget = ((Vector2)targetPosition - (Vector2)startPosition).normalized;
-            float distanceToTarget = Vector2.Distance(startPosition, targetPosition);
+            // Calculate direction and perform dash to target
+            Vector2 dashDirection = ((Vector2)targetObject.transform.position - (Vector2)transform.position).normalized;
+            float dashDistance = Vector2.Distance(transform.position, targetObject.transform.position);
 
-            // Offset slightly so we don't end up inside the target
-            float dashOffset = 1.0f;
-            Vector3 finalDashPosition = targetPosition - (Vector3)(directionToTarget * dashOffset);
-
-            StartCoroutine(DashToTargetCoroutine(finalDashPosition));
-
-            // Update sprite direction to match dash
-            if (directionToTarget.x < 0)
+            // Update sprite direction based on dash
+            if (dashDirection.x < 0)
             {
                 SetSpriteDirectionServerRpc(true); // flip sprite to face left
             }
-            else if (directionToTarget.x > 0)
+            else if (dashDirection.x > 0)
             {
                 SetSpriteDirectionServerRpc(false); // sprite faces right
             }
-        }
-        else
-        {
-            // If no valid target, just dash in the direction of the mouse
-            float ultDashDistance = 5f; // Default dash distance if no target
-            StartCoroutine(DashCoroutine(dashDirection, ultDashDistance, ultDashSpeed));
 
-            // Update sprite direction
-            if (dashDirection.x < 0)
-            {
-                SetSpriteDirectionServerRpc(true);
-            }
-            else if (dashDirection.x > 0)
-            {
-                SetSpriteDirectionServerRpc(false);
-            }
+            // Initiate dash to target
+            StartCoroutine(DashCoroutine(dashDirection, dashDistance, ultDashSpeed));
         }
+
+        TriggerBuffServerRpc("Speed", ultMovementSpeedIncrease, ultimateDuration, true);
 
         IEnumerator coroutine = UltimateDuration();
         StartCoroutine(coroutine);
     }
 
-    private IEnumerator DashToTargetCoroutine(Vector3 targetPosition)
-    {
-        isDashing = true;
-        float startTime = Time.time;
-        Vector3 startPos = transform.position;
-        float distanceToTravel = Vector3.Distance(startPos, targetPosition);
-        float dashDuration = distanceToTravel / ultDashSpeed;
-
-        while (Time.time < startTime + dashDuration)
-        {
-            float t = (Time.time - startTime) / dashDuration;
-            transform.position = Vector3.Lerp(startPos, targetPosition, t);
-            yield return null;
-        }
-
-        transform.position = targetPosition;
-        isDashing = false;
-    }
-
     public IEnumerator UltimateDuration()
     {
         yield return new WaitForSeconds(ultimateDuration);
-        yield return new WaitUntil(() => (animator.GetBool("Ult") == false));
+        yield return new WaitUntil(() => (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false));
 
         isUltActive = false;
-        animator.runtimeAnimatorController = NormalAnimator;
-        UltEndAnimChangeClientRpc();
-    }
-
-    [ClientRpc]
-    public void UltAnimChangeClientRpc()
-    {
-        animator.runtimeAnimatorController = UltAnimator;
-    }
-
-    [ClientRpc]
-    public void UltEndAnimChangeClientRpc()
-    {
-        animator.runtimeAnimatorController = NormalAnimator;
     }
 
     // Ability Level Up Effects
