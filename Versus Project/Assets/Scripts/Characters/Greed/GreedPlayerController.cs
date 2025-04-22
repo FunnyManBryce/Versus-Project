@@ -331,7 +331,6 @@ public class GreedPlayerController : BasePlayerController
         // Check if we have a valid target to dash to
         if (targetObjRef.TryGet(out NetworkObject targetObj))
         {
-            // If there's a target, dash to it (unlimited distance)
             Vector3 targetPosition = targetObj.transform.position;
             Vector3 startPosition = transform.position;
             Vector2 directionToTarget = ((Vector2)targetPosition - (Vector2)startPosition).normalized;
@@ -389,7 +388,6 @@ public class GreedPlayerController : BasePlayerController
             yield return null;
         }
 
-        // Ensure we reach exactly the target position
         transform.position = targetPosition;
         isDashing = false;
     }
@@ -397,8 +395,6 @@ public class GreedPlayerController : BasePlayerController
     public IEnumerator UltimateDuration()
     {
         yield return new WaitForSeconds(ultimateDuration);
-        // We'll only wait for animations that would conflict with ending the ultimate
-        // This allows players to use abilities during the ultimate
         yield return new WaitUntil(() => (animator.GetBool("Ult") == false));
 
         isUltActive = false;
