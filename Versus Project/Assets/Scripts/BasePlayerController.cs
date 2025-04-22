@@ -67,7 +67,7 @@ public class BasePlayerController : NetworkBehaviour
     public float manaRegen = 0f;
 
     private float lastRegenTick = 0f;
-    public bool resevoirRegen = false;
+    public NetworkVariable<bool> resevoirRegen = new NetworkVariable<bool>();
     public Health health;
     public NetworkVariable<float> XPToNextLevel = new NetworkVariable<float>();
     public float[] XPPerLevel;
@@ -595,7 +595,7 @@ public class BasePlayerController : NetworkBehaviour
 
         if (IsServer)
         {
-            if (resevoirRegen == true)
+            if (resevoirRegen.Value == true)
             {
                 health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + (health.maxHealth.Value * 0.01f), health.maxHealth.Value);
                 mana = Mathf.Min(mana + (maxMana * 0.01f), maxMana);

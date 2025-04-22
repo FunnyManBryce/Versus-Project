@@ -101,6 +101,7 @@ public class PlayerHealthBar : MonoBehaviour
     {
         if (healthSlider != null)
         {
+            healthSlider.maxValue = maxHealth;
             healthSlider.value = newHealth;
         }
 

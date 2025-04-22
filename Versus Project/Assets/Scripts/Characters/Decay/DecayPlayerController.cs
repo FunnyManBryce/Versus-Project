@@ -155,16 +155,22 @@ public class DecayPlayerController : BasePlayerController
         {
             Ultimate.preventAbilityUse = true;
             Shockwave.preventAbilityUse = true;
+            isAttacking = false;
+            animator.SetBool("AutoAttack", false);
         }
         if (animator.GetBool("AbilityTwo") == true)
         {
             Ultimate.preventAbilityUse = true;
             AOE.preventAbilityUse = true;
+            isAttacking = false;
+            animator.SetBool("AutoAttack", false);
         }
         if (animator.GetBool("Ult") == true)
         {
             AOE.preventAbilityUse = true;
             Shockwave.preventAbilityUse = true;
+            isAttacking = false;
+            animator.SetBool("AutoAttack", false);
         }
         if (animator.GetBool("AutoAttack") == true)
         {

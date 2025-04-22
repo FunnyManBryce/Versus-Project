@@ -163,7 +163,7 @@ public class Shop : MonoBehaviour
         Item itemScript = item.GetComponent<Item>();
         if (itemScript.goldCost <= playerController.Gold.Value)
         {
-            if (!playerController.resevoirRegen)
+            if (!playerController.resevoirRegen.Value)
             {
                 isYapping = true;
                 animator.SetBool("isYapping", isYapping);

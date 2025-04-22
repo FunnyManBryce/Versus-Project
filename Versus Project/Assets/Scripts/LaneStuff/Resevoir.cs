@@ -19,7 +19,7 @@ public class Resevoir : NetworkBehaviour
     {
         if (IsServer && other.tag == "Player" && other.GetComponent<BasePlayerController>().teamNumber.Value == Team)
         {
-            other.GetComponent<BasePlayerController>().resevoirRegen = true;
+            other.GetComponent<BasePlayerController>().resevoirRegen.Value = true;
         }
     }
 
@@ -27,7 +27,7 @@ public class Resevoir : NetworkBehaviour
     {
         if (IsServer && other.tag == "Player" && other.GetComponent<BasePlayerController>().teamNumber.Value == Team)
         {
-            other.GetComponent<BasePlayerController>().resevoirRegen = false;
+            other.GetComponent<BasePlayerController>().resevoirRegen.Value = false;
         }
     }
 }
