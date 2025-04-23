@@ -398,97 +398,145 @@ public class GreedPlayerController : BasePlayerController
     #region
     public void QuickPunchLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
+        if (!QuickPunch.isUnlocked)
         {
-            unspentUpgrades.Value--;
-            QuickPunch.abilityLevel++;
+            if (unspentUnlocks.Value <= 0) return;
+            QuickPunch.isUnlocked = true;
+            if (IsServer)
+            {
+                unspentUnlocks.Value--;
+            }
+            else
+            {
+                SyncAbilityLevelServerRpc(1);
+            }
         }
         else
         {
-            QuickPunch.abilityLevel++;
-            SyncAbilityLevelServerRpc(1);
-        }
+            if (unspentUpgrades.Value <= 0) return;
+            if (IsServer)
+            {
+                unspentUpgrades.Value--;
+                QuickPunch.abilityLevel++;
+            }
+            else
+            {
+                QuickPunch.abilityLevel++;
+                SyncAbilityLevelServerRpc(1);
+            }
 
-        if (QuickPunch.abilityLevel == 2)
-        {
-            punchDamageMultiplier += 0.2f;
-        }
-        if (QuickPunch.abilityLevel == 3)
-        {
-            dashDistance += 1f;
-        }
-        if (QuickPunch.abilityLevel == 4)
-        {
-            punchConeAngle += 15f;
-        }
-        if (QuickPunch.abilityLevel == 5)
-        {
-            QuickPunch.cooldown -= 0.2f;
+            if (QuickPunch.abilityLevel == 2)
+            {
+                punchDamageMultiplier += 0.2f;
+            }
+            if (QuickPunch.abilityLevel == 3)
+            {
+                dashDistance += 1f;
+            }
+            if (QuickPunch.abilityLevel == 4)
+            {
+                punchConeAngle += 15f;
+            }
+            if (QuickPunch.abilityLevel == 5)
+            {
+                QuickPunch.cooldown -= 0.2f;
+            }
         }
     }
 
     public void GroundSlamLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
+        if (!GroundSlam.isUnlocked)
         {
-            unspentUpgrades.Value--;
-            GroundSlam.abilityLevel++;
+            if (unspentUnlocks.Value <= 0) return;
+            GroundSlam.isUnlocked = true;
+            if (IsServer)
+            {
+                unspentUnlocks.Value--;
+            }
+            else
+            {
+                SyncAbilityLevelServerRpc(2);
+            }
         }
         else
         {
-            GroundSlam.abilityLevel++;
-            SyncAbilityLevelServerRpc(2);
-        }
+            if (unspentUpgrades.Value <= 0) return;
+            if (IsServer)
+            {
+                unspentUpgrades.Value--;
+                GroundSlam.abilityLevel++;
+            }
+            else
+            {
+                GroundSlam.abilityLevel++;
+                SyncAbilityLevelServerRpc(2);
+            }
 
-        if (GroundSlam.abilityLevel == 2)
-        {
-            stunDuration += 0.3f;
-        }
-        if (GroundSlam.abilityLevel == 3)
-        {
-            GroundSlam.cooldown -= 2f;
-        }
-        if (GroundSlam.abilityLevel == 4)
-        {
-            slamRadius += 1f;
-        }
-        if (GroundSlam.abilityLevel == 5)
-        {
-            GroundSlam.cooldown -= 2f;
+            if (GroundSlam.abilityLevel == 2)
+            {
+                stunDuration += 0.3f;
+            }
+            if (GroundSlam.abilityLevel == 3)
+            {
+                GroundSlam.cooldown -= 2f;
+            }
+            if (GroundSlam.abilityLevel == 4)
+            {
+                slamRadius += 1f;
+            }
+            if (GroundSlam.abilityLevel == 5)
+            {
+                GroundSlam.cooldown -= 2f;
+            }
         }
     }
 
     public void UltLevelUp()
     {
-        if (unspentUpgrades.Value <= 0) return;
-        if (IsServer)
+        if (!UncivRage.isUnlocked)
         {
-            unspentUpgrades.Value--;
-            UncivRage.abilityLevel++;
+            if (unspentUnlocks.Value <= 0) return;
+            UncivRage.isUnlocked = true;
+            if (IsServer)
+            {
+                unspentUnlocks.Value--;
+            }
+            else
+            {
+                SyncAbilityLevelServerRpc(3);
+            }
         }
         else
         {
-            UncivRage.abilityLevel++;
-            SyncAbilityLevelServerRpc(3);
-        }
+            if (unspentUpgrades.Value <= 0) return;
+            if (IsServer)
+            {
+                unspentUpgrades.Value--;
+                UncivRage.abilityLevel++;
+            }
+            else
+            {
+                UncivRage.abilityLevel++;
+                SyncAbilityLevelServerRpc(3);
+            }
 
-        if (UncivRage.abilityLevel == 2)
-        {
-            missingHealthHealRatio += 0.02f;
-        }
-        if (UncivRage.abilityLevel == 3)
-        {
-            ultPassiveMultiplier += 0.5f;
-        }
-        if (UncivRage.abilityLevel == 4)
-        {
-            ultimateDuration += 3f;
-        }
-        if (UncivRage.abilityLevel == 5)
-        {
-            UncivRage.cooldown -= 20f;
+            if (UncivRage.abilityLevel == 2)
+            {
+                missingHealthHealRatio += 0.02f;
+            }
+            if (UncivRage.abilityLevel == 3)
+            {
+                ultPassiveMultiplier += 0.5f;
+            }
+            if (UncivRage.abilityLevel == 4)
+            {
+                ultimateDuration += 3f;
+            }
+            if (UncivRage.abilityLevel == 5)
+            {
+                UncivRage.cooldown -= 20f;
+            }
         }
     }
     #endregion

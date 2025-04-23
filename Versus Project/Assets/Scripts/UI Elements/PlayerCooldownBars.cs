@@ -354,10 +354,66 @@ public class PlayerCooldownBars : MonoBehaviour
                     break;
             }
         }
-        /*else if (playerController is GreedPlayerController greedPlayer)
+        else if (playerController is GreedPlayerController greedPlayer)
         {
-
-        }*/
+            switch (abilityIndex)
+            {
+                case 1: // First ability (String)
+                    descManaCost.text = "";
+                    descCooldown.text = "Cooldown: " + (greedPlayer.QuickPunch.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + greedPlayer.QuickPunch.abilityDescription;
+                    descName.text = greedPlayer.QuickPunch.abilityName;
+                    if (greedPlayer.QuickPunch.isUnlocked && greedPlayer.QuickPunch.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level: " + greedPlayer.QuickPunch.levelUpEffects[greedPlayer.QuickPunch.abilityLevel];
+                    }
+                    else if (!greedPlayer.QuickPunch.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (greedPlayer.QuickPunch.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+                case 2: // Second ability (ModeSwitch)
+                    descManaCost.text = "";
+                    descCooldown.text = "Cooldown: " + (greedPlayer.GroundSlam.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + greedPlayer.GroundSlam.abilityDescription;
+                    descName.text = greedPlayer.GroundSlam.abilityName;
+                    if (greedPlayer.GroundSlam.isUnlocked && greedPlayer.GroundSlam.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level: " + greedPlayer.GroundSlam.levelUpEffects[greedPlayer.GroundSlam.abilityLevel];
+                    }
+                    else if (!greedPlayer.GroundSlam.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (greedPlayer.GroundSlam.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+                case 3: // Ultimate
+                    descManaCost.text = "";
+                    descCooldown.text = "Cooldown: " + (greedPlayer.UncivRage.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + greedPlayer.UncivRage.abilityDescription;
+                    descName.text = greedPlayer.UncivRage.abilityName;
+                    if (greedPlayer.UncivRage.isUnlocked && greedPlayer.UncivRage.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level: " + greedPlayer.UncivRage.levelUpEffects[greedPlayer.UncivRage.abilityLevel];
+                    }
+                    else if (!greedPlayer.UncivRage.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (greedPlayer.UncivRage.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+            }
+        }
         if (cooldownText != null)
         {
             if (isOffCooldown())
@@ -423,7 +479,19 @@ public class PlayerCooldownBars : MonoBehaviour
         }
         else if (playerController is GreedPlayerController greedPlayer)
         {
+            switch (abilityIndex)
+            {
+                case 1: // First ability (AOE)
+                    greedPlayer.QuickPunch.abilityLevelUp();
+                    break;
+                case 2: // Second ability (Shockwave)
+                    greedPlayer.GroundSlam.abilityLevelUp();
 
+                    break;
+                case 3: // Ultimate
+                    greedPlayer.UncivRage.abilityLevelUp();
+                    break;
+            }
         }
     }
 
