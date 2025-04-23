@@ -17,6 +17,7 @@ public class GreedPlayerController : BasePlayerController
     public float punchDamageMultiplier = 0.8f;
     public float punchConeAngle = 60f;
     public float punchRange = 2.5f;
+    public float punchConeOffsetDistance = 0.75f;
     private bool isDashing = false;
 
     // Ability 2 - Ground Slam
@@ -52,8 +53,6 @@ public class GreedPlayerController : BasePlayerController
         isMelee = true;
     }
 
-
-    // Quick Punch (Ability 1) Implementation
     public void QuickPunchHostCheck()
     {
         if (!IsOwner) return;
@@ -65,16 +64,12 @@ public class GreedPlayerController : BasePlayerController
 
         QuickPunchServerRpc(dashDirection);
     }
-
-    // Ground Slam (Ability 2) Implementation
     public void GroundSlamHostCheck()
     {
         if (!IsOwner) return;
         GroundSlamServerRpc();
     }
 
-
-    // Ultimate Implementation
     public void UncivRageHostCheck()
     {
         if (!IsOwner) return;
@@ -91,7 +86,6 @@ public class GreedPlayerController : BasePlayerController
         }
         else
         {
-            // If no target found, just activate the ultimate at current position
             UncivRageServerRpc(new NetworkObjectReference());
         }
     }
@@ -165,23 +159,7 @@ public class GreedPlayerController : BasePlayerController
                 HealFromUltServerRpc(healAmount);
             }
         }
-
-
-        // Process life steal from marked targets
-        List<NetworkObject> removeTargets = new List<NetworkObject>();
-        foreach (var target in lifeStealTargets)
-        {
-            if (Time.time >= target.Value)
-            {
-                removeTargets.Add(target.Key);
-            }
-        }
-        foreach (var target in removeTargets)
-        {
-            lifeStealTargets.Remove(target);
-        }
     }
-
     private void UpdateGoldPassive()
     {
         float goldMultiplier = isUltActive ? ultPassiveMultiplier : 1.0f;
@@ -223,19 +201,24 @@ public class GreedPlayerController : BasePlayerController
         bAM.PlayServerRpc("Greed Punch", Greed.transform.position);
         bAM.PlayClientRpc("Greed Punch", Greed.transform.position);
 
-        // Damage in a cone in front of the player
-        Vector2 origin = Greed.transform.position;
-        Vector2 forward = dashDirection;
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(origin, punchRange);
+
+        // Calculate an offset point behind the player based on dash direction
+        Vector2 offsetDirection = -dashDirection; // Opposite of dash direction
+        Vector2 playerPosition = Greed.transform.position;
+        Vector2 offsetOrigin = playerPosition + (offsetDirection * punchConeOffsetDistance);
+
+        // Now use this offset origin for the cone detection
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(offsetOrigin, punchRange);
 
         bool hitPlayerController = false;
+
 
         foreach (var collider in hitColliders)
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                Vector2 directionToTarget = ((Vector2)collider.transform.position - origin).normalized;
-                float angle = Vector2.Angle(forward, directionToTarget);
+                Vector2 directionToTarget = ((Vector2)collider.transform.position - offsetOrigin).normalized;
+                float angle = Vector2.Angle(dashDirection, directionToTarget);
 
                 if (angle <= punchConeAngle / 2)
                 {
@@ -250,14 +233,12 @@ public class GreedPlayerController : BasePlayerController
                 }
             }
         }
-
-        // If we hit a player controller, reduce the cooldown by 50%
+        
         if (hitPlayerController)
         {
             QuickPunch.lastUsed += QuickPunch.cooldown * 0.5f;
         }
 
-        // Use the provided dash direction from mouse position
         StartCoroutine(DashCoroutine(dashDirection, dashDistance, dashSpeed));
 
         // Update sprite direction to match dash direction
@@ -358,7 +339,6 @@ public class GreedPlayerController : BasePlayerController
                 SetSpriteDirectionServerRpc(false); // sprite faces right
             }
 
-            // Initiate dash to target
             StartCoroutine(DashCoroutine(dashDirection, dashDistance, ultDashSpeed));
         }
 
