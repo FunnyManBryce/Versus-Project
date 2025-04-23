@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7642307968588321635}
   - component: {fileID: 716811766169228648}
   m_Layer: 5
-  m_Name: TestItem 1
+  m_Name: Boy Friend Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,19 +91,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shop: {fileID: 0}
-  itemName: Speed Stone
+  itemName: Boy Friend Sword
   StatBuffs:
-  - 1
   - 0
+  - 25
   - 0
-  - 0
-  - 0.1
-  - 0
+  - 15
   - 0
   - 0
   - 0
   - 0
-  goldCost: 250
+  - 15
+  - 250
+  goldCost: 1050
   specialEffect: 
   Description: {fileID: 8857401324507193527}
   itemNumber: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Speed Stone
+  m_text: Boy Friend Sword
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -308,9 +308,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Effect: +1 Move Speed
+  m_text: 'Effect: +25 Attack Damage
 
-    +0.1 Attack Speed'
+    +15 CDR
+
+    +250 Max Health
+
+    +15 Armor
+    Pen'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -511,7 +516,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.0630169, y: 64.79472, z: 0.19078837, w: 0.80270576}
+  m_margin: {x: 1.0630169, y: 68.546936, z: 0.19078837, w: 0.80270576}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -839,7 +844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold Cost: 250'
+  m_text: 'Gold Cost: 1050'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

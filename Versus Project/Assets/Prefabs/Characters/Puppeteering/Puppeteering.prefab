@@ -289,7 +289,7 @@ MonoBehaviour:
     m_InternalValue: 0
   SpeedBuff:
     m_InternalValue: 0
-  attackDamage: 16
+  attackDamage: 25
   autoAttackSpeed: 1
   autoAttackProjSpeed: 10
   attackRange: 8
@@ -305,7 +305,8 @@ MonoBehaviour:
   maxMana: 100
   mana: 0
   manaRegen: 2.5
-  resevoirRegen: 0
+  resevoirRegen:
+    m_InternalValue: 0
   health: {fileID: -8253534391822271971}
   XPToNextLevel:
     m_InternalValue: 0
