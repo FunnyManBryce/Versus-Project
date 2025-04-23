@@ -393,27 +393,24 @@ MonoBehaviour:
   ultActive:
     m_InternalValue: 0
   puppetRespawnLength: 20
-  puppetStartingHealth: 175
+  puppetStartingHealth: 150
   puppetSpeedMultiplier: 1
   puppetCooldown: 2
   puppetRegen: 5
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
   passiveLevel: 0
-  stringDamageMultiplier: 4
-  stringMarkValue: 0.25
+  stringDamageMultiplier: 3
+  stringMarkValue: 0.33
   stringMoveReduction: 0
   stringTargetsAll: 0
-  armorBuffMultiplier: 2
-  attackBuffMultiplier: 0.3
-  pierceBuffMultiplier: 2
   lifestealMultiplier: 0
   ultimateDuration: 20
   String:
     playerController: {fileID: 2414812415466740570}
     inputKey: 113
     isUnlocked: 0
-    cooldown: 20
+    cooldown: 15
     manaCost: 50
     lastUsed: 0
     pointClickTimeUsed: 0
@@ -422,13 +419,13 @@ MonoBehaviour:
     waitingForClick: 0
     preventAbilityUse: 0
     abilityName: String Strangle
-    abilityDescription: Conjures string at your mouse cursor, whiich will damage,
-      immoblize, and mark enemies caught in it after 0.75 seconds.
+    abilityDescription: Conjures string at your mouse cursor, whiich will damage
+      and mark enemies caught in it after 0.75 seconds.
     levelUpEffects:
     - Unlocks Ability
     - String reduces movespeed of hit enemies for 5 seconds.
-    - Marked enemies take 33& more damage instead of 25%
-    - String damage increased by 50%
+    - Marked enemies take 50% more damage instead of 33%
+    - String damage increased by 66%
     - Reduces cooldown by 5 seconds. String can now target towers.
   ModeSwitch:
     playerController: {fileID: 2414812415466740570}
@@ -447,8 +444,8 @@ MonoBehaviour:
       temporary buffs to Puppeteering depending on the mode.
     levelUpEffects:
     - Unlocks Ability
-    - Offensive mode provides puppet lifesteal. Defensive mode provides +5 regen
-      to puppet.
+    - Offensive mode provides puppet lifesteal to player. Defensive mode provides
+      +5 regen to puppet.
     - Reduces cooldown by 5 seconds.
     - Offensive lifesteal is 1.5X stronger. Defensive regen increased by +10.
     - Mana cost reduced by 10

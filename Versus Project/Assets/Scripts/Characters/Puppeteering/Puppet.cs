@@ -76,11 +76,11 @@ public class Puppet : NetworkBehaviour
         regen = FatherScript.puppetRegen;
         if(FatherScript.Level.Value < 1)
         {
-            health.maxHealth.Value = FatherScript.puppetStartingHealth + 25;
+            health.maxHealth.Value = FatherScript.puppetStartingHealth + 50;
         }
         else if (FatherScript.Level.Value >= 1)
         {
-            health.maxHealth.Value = FatherScript.puppetStartingHealth + (25 * FatherScript.Level.Value);
+            health.maxHealth.Value = FatherScript.puppetStartingHealth + (50 * FatherScript.Level.Value);
         }
     }
 

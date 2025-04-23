@@ -23,7 +23,6 @@ public class DecayPlayerController : BasePlayerController
     public float shockwaveDamageMultiplier;
     public GameObject shockwavePrefab;
     public float shockWaveDuration = 2f;
-    public bool immobilizeShockwave = false;
 
     public RuntimeAnimatorController UltAnimator;
     public RuntimeAnimatorController NormalAnimator;
@@ -306,11 +305,11 @@ public class DecayPlayerController : BasePlayerController
             }
             if (Shockwave.abilityLevel == 3)
             {
-                immobilizeShockwave = true;
+                shockwaveDamageMultiplier += 0.5f;
             }
             if (Shockwave.abilityLevel == 4)
             {
-                shockwaveDamageMultiplier += 0.5f;
+                shockwaveDamageMultiplier += 0.75f;
             }
             if (Shockwave.abilityLevel == 5)
             {

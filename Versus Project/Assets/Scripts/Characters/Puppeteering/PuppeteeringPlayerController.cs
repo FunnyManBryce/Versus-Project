@@ -26,9 +26,6 @@ public class PuppeteeringPlayerController : BasePlayerController
     public bool stringMoveReduction = false;
     public bool stringTargetsAll = false;
 
-    public float armorBuffMultiplier;
-    public float attackBuffMultiplier;
-    public float pierceBuffMultiplier;
     public float lifestealMultiplier;
 
     public float ultimateDuration = 20f;
@@ -395,11 +392,11 @@ public class PuppeteeringPlayerController : BasePlayerController
             puppet.health.healthSetManual = true;
             if (Level.Value < 1)
             {
-                puppet.health.maxHealth.Value = puppetStartingHealth + 25;
+                puppet.health.maxHealth.Value = puppetStartingHealth + 50;
             }
             else if (Level.Value >= 1)
             {
-                puppet.health.maxHealth.Value = puppetStartingHealth + (25 * Level.Value);
+                puppet.health.maxHealth.Value = puppetStartingHealth + (50 * Level.Value);
             }
             if (spawnType == "ModeSwitch")
             {
@@ -451,17 +448,14 @@ public class PuppeteeringPlayerController : BasePlayerController
             puppet.GetComponent<Puppet>().defensiveMode = !puppet.GetComponent<Puppet>().defensiveMode;
             if (puppet.GetComponent<Puppet>().defensiveMode == true) //Switching to defensive mode buffs defense
             {
-                TriggerBuffServerRpc("Armor", armorBuffMultiplier * health.armor, 5f, true);
+                TriggerBuffServerRpc("Armor", BaseArmor.Value * 0.5f, 10, true);
                 TriggerBuffServerRpc("Regen", 10, 5f, true);
                 TriggerBuffServerRpc("Speed", 2, 5f, true);
-                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor", armorBuffMultiplier * puppet.GetComponent<Puppet>().health.armor, 5f);
 
             }
             else // Switching to offensive mode buffs offense
             {
-                TriggerBuffServerRpc("Attack Damage", attackBuffMultiplier * attackDamage, 5f, true);
-                TriggerBuffServerRpc("Armor Pen", pierceBuffMultiplier * armorPen, 5f, true);
-                puppet.GetComponent<Puppet>().TriggerBuffServerRpc("Armor Pen", pierceBuffMultiplier * puppet.GetComponent<Puppet>().armorPen, 5f);
+                TriggerBuffServerRpc("Attack Damage", BaseDamage.Value * 0.5f, 10f, true);
             }
         }
         if (puppetsAlive.Value == 0)
@@ -559,11 +553,11 @@ public class PuppeteeringPlayerController : BasePlayerController
             }
             if (String.abilityLevel == 3)
             {
-                stringMarkValue = 0.33f;
+                stringMarkValue = 0.5f;
             }
             if (String.abilityLevel == 4)
             {
-                stringDamageMultiplier = stringDamageMultiplier + 0.667f;
+                stringDamageMultiplier += 2f;
             }
             if (String.abilityLevel == 5)
             {

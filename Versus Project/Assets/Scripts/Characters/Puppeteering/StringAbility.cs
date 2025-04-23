@@ -48,8 +48,7 @@ public class StringAbility : NetworkBehaviour
                     collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
                     if (!collider.GetComponent<NetworkObject>().IsSpawned == false)
                     {
-                        InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Immobilized", 0f, 1f, true);
-                        InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Marked", markAmount, 5f, true);
+                        InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Marked", markAmount, 10f, true);
                         if (sender.GetComponent<PuppeteeringPlayerController>().stringMoveReduction)
                         {
                             InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Speed", -2, 5f, true);

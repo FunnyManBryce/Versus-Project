@@ -475,7 +475,8 @@ MonoBehaviour:
   maxMana: 100
   mana: 0
   manaRegen: 5
-  resevoirRegen: 0
+  resevoirRegen:
+    m_InternalValue: 0
   health: {fileID: -8253534391822271971}
   XPToNextLevel:
     m_InternalValue: 0
@@ -561,11 +562,10 @@ MonoBehaviour:
   AOEDamageMultiplier: 0.375
   speedReductionDuration: 5
   AOESpeedSteal: 0
-  shockwaveDamageMultiplier: 3
+  shockwaveDamageMultiplier: 2.5
   shockwavePrefab: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
     type: 3}
   shockWaveDuration: 2
-  immobilizeShockwave: 0
   UltAnimator: {fileID: 9100000, guid: d4e09627fa2266043a4273bc4bf46d04, type: 2}
   NormalAnimator: {fileID: 9100000, guid: 255bf4f12ce881843b7a629ec6bc1d55, type: 2}
   ultimateDuration: 15
@@ -609,8 +609,8 @@ MonoBehaviour:
     levelUpEffects:
     - Unlocks Ability
     - Cooldown reduced by 1 second
-    - Shockwave immobilizes hit enemies for 0.5 seconds
-    - Increases damage by 33%
+    - Increases damage by 20%
+    - Increases damage by 25%
     - Reduces mana cost by 15
   Ultimate:
     playerController: {fileID: 2299055155951191650}
