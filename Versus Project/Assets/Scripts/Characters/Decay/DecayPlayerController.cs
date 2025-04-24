@@ -148,6 +148,11 @@ public class DecayPlayerController : BasePlayerController
 
     new private void Update()
     {
+        if(isStunned.Value)
+        {
+            isAttacking = false;
+            animator.SetBool("AutoAttack", false);
+        }
         base.Update();
         if (!IsOwner || isDead.Value) return;
         if (animator.GetBool("AbilityOne") == true)
@@ -189,9 +194,12 @@ public class DecayPlayerController : BasePlayerController
             lastDecayTime = currentTime;
             TrackStatDecayServerRpc();
         }
-        Ultimate.AttemptUse();
-        AOE.AttemptUse();
-        Shockwave.AttemptUse();
+        if (!isStunned.Value)
+        {
+            Ultimate.AttemptUse();
+            AOE.AttemptUse();
+            Shockwave.AttemptUse();
+        }
     }
 
 

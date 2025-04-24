@@ -32,6 +32,7 @@ public class Puppet : NetworkBehaviour
     private bool foundTarget;
     public float regen = 5f;
     private float lastRegenTick = 0f;
+    public bool isStunned;
 
     public string targetName;
     public float Damage;
@@ -105,7 +106,12 @@ public class Puppet : NetworkBehaviour
             isAttacking = false;
             animator.SetBool("Attacking", isAttacking);
         }
-        if(!IsServer) return;
+        if(isStunned)
+        {
+            isAttacking = false;
+            animator.SetBool("Attacking", isAttacking);
+        }
+        if(!IsServer || isStunned) return;
         if (agent.desiredVelocity.x < 0)
         {
             puppetSprite.flipX = true;
@@ -395,6 +401,10 @@ public class Puppet : NetworkBehaviour
             moveSpeed += amount;
             health.darknessEffect = true;
         }
+        if (buffType == "Stun")
+        {
+            isStunned = true;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
     }
@@ -444,6 +454,10 @@ public class Puppet : NetworkBehaviour
         {
             moveSpeed -= amount;
             health.darknessEffect = false;
+        }
+        if (buffType == "Stun")
+        {
+            isStunned = false;
         }
     }
 

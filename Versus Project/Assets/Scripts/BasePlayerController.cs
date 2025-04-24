@@ -47,6 +47,7 @@ public class BasePlayerController : NetworkBehaviour
     public NetworkVariable<float> RegenBuff = new NetworkVariable<float>();
     public NetworkVariable<float> ManaRegenBuff = new NetworkVariable<float>();
     public NetworkVariable<float> SpeedBuff = new NetworkVariable<float>();
+    public NetworkVariable<bool> isStunned = new NetworkVariable<bool>();
     public List<IEnumerator> Buffs = new List<IEnumerator>();
 
     //Combat variables
@@ -221,6 +222,8 @@ public class BasePlayerController : NetworkBehaviour
                 RegenBuff.Value = 0;
                 ManaRegenBuff.Value = 0;
                 SpeedBuff.Value = 0;
+                health.markedValue = 1;
+                isStunned.Value = false;
                 appliesDarkness.Value = false;
                 darknessDuration = 120;
                 health.darknessEffect = false;
@@ -341,7 +344,7 @@ public class BasePlayerController : NetworkBehaviour
             appliesDarkness.Value = false;
             darknessDuration = 120;
         }
-        if (isDead.Value) return;
+        if (isDead.Value || isStunned.Value) return;
         // Get input and store it in playerInput
         if (!isAttacking)
         {
@@ -764,6 +767,10 @@ public class BasePlayerController : NetworkBehaviour
             SpeedBuff.Value += amount;
             health.darknessEffect = true;
         }
+        if (buffType == "Stun")
+        {
+            isStunned.Value = true;
+        }
         StatChangeClientRpc(buffType, amount);
         if (hasDuration)
         {
@@ -891,6 +898,10 @@ public class BasePlayerController : NetworkBehaviour
         {
             SpeedBuff.Value -= amount;
             health.darknessEffect = false;
+        }
+        if (buffType == "Stun")
+        {
+            isStunned.Value = false;
         }
         StatChangeClientRpc(buffType, -amount);
     }

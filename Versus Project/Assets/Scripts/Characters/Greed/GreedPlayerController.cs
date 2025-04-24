@@ -118,6 +118,12 @@ public class GreedPlayerController : BasePlayerController
 
     new private void Update()
     {
+        if (isStunned.Value)
+        {
+            isAttacking = false;
+            animator.SetBool("AutoAttack", false);
+        }
+        
         base.Update();
         if (!IsOwner || isDead.Value) return;
 
@@ -127,15 +133,18 @@ public class GreedPlayerController : BasePlayerController
         if (animator.GetBool("AbilityOne") == true)
         {
             GroundSlam.preventAbilityUse = true;
+            UncivRage.preventAbilityUse = true;
         }
         if (animator.GetBool("AbilityTwo") == true)
         {
             QuickPunch.preventAbilityUse = true;
+            UncivRage.preventAbilityUse = true;
         }
         if (animator.GetBool("AutoAttack") == true)
         {
             QuickPunch.preventAbilityUse = true;
             GroundSlam.preventAbilityUse = true;
+            UncivRage.preventAbilityUse = true;
         }
         if (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false)
         {
@@ -145,9 +154,12 @@ public class GreedPlayerController : BasePlayerController
         }
 
         // Attempt abilities
-        UncivRage.AttemptUse();
-        QuickPunch.AttemptUse();
-        GroundSlam.AttemptUse();
+        if (!isStunned.Value)
+        {
+            UncivRage.AttemptUse();
+            QuickPunch.AttemptUse();
+            GroundSlam.AttemptUse();
+        }
 
         // Apply ult healing based on missing health
         if (isUltActive)

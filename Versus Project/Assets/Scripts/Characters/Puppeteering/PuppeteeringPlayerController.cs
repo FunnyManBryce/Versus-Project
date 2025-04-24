@@ -67,6 +67,11 @@ public class PuppeteeringPlayerController : BasePlayerController
     // Update is called once per frame
     void Update()
     {
+        if (isStunned.Value)
+        {
+            isAttacking = false;
+            animator.SetBool("AutoAttack", false);
+        }
         base.Update();
         if (!IsOwner || isDead.Value) return;
         if (animator.GetBool("AbilityOne") == true)
@@ -96,9 +101,12 @@ public class PuppeteeringPlayerController : BasePlayerController
             String.preventAbilityUse = false;
             ModeSwitch.preventAbilityUse = false;
         }
-        String.AttemptUse();
-        ModeSwitch.AttemptUse();
-        Ultimate.AttemptUse();
+        if (!isStunned.Value)
+        {
+            String.AttemptUse();
+            ModeSwitch.AttemptUse();
+            Ultimate.AttemptUse();
+        }
         if (ultActive.Value == true)
         {
             float currentTime = lameManager.matchTimer.Value;
