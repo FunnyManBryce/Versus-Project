@@ -459,6 +459,8 @@ MonoBehaviour:
     m_InternalValue: 0
   SpeedBuff:
     m_InternalValue: 0
+  isStunned:
+    m_InternalValue: 0
   attackDamage: 30
   autoAttackSpeed: 1
   autoAttackProjSpeed: 5
@@ -472,9 +474,9 @@ MonoBehaviour:
   armorPen: 10
   regen: 2.5
   isMelee: 1
-  maxMana: 100
+  maxMana: 500
   mana: 0
-  manaRegen: 5
+  manaRegen: 1.6666666
   resevoirRegen:
     m_InternalValue: 0
   health: {fileID: -8253534391822271971}
@@ -483,16 +485,16 @@ MonoBehaviour:
   XPPerLevel:
   - 0
   - 100
-  - 200
-  - 300
-  - 400
+  - 211
+  - 276
+  - 323
+  - 359
+  - 388
+  - 413
+  - 434
+  - 470
+  - 485
   - 500
-  - 600
-  - 700
-  - 800
-  - 900
-  - 1000
-  - 1100
   unspentUpgrades:
     m_InternalValue: 0
   unspentUnlocks:
@@ -575,7 +577,7 @@ MonoBehaviour:
     inputKey: 113
     isUnlocked: 0
     cooldown: 25
-    manaCost: 60
+    manaCost: 40
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
@@ -596,7 +598,7 @@ MonoBehaviour:
     inputKey: 101
     isUnlocked: 0
     cooldown: 5
-    manaCost: 30
+    manaCost: 60
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
@@ -617,7 +619,7 @@ MonoBehaviour:
     inputKey: 114
     isUnlocked: 0
     cooldown: 60
-    manaCost: 80
+    manaCost: 100
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1

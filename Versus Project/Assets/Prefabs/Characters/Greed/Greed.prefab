@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3671417763
+  GlobalObjectIdHash: 1307297395
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -554,16 +554,16 @@ MonoBehaviour:
   XPPerLevel:
   - 0
   - 100
-  - 200
-  - 300
-  - 400
+  - 211
+  - 276
+  - 323
+  - 359
+  - 388
+  - 413
+  - 434
+  - 470
+  - 485
   - 500
-  - 600
-  - 700
-  - 800
-  - 900
-  - 1000
-  - 1100
   unspentUpgrades:
     m_InternalValue: 0
   unspentUnlocks:
