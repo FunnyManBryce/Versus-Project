@@ -315,10 +315,7 @@ public class GreedPlayerController : BasePlayerController
 
                 // Apply custom stun that reduces stats to zero
                 NetworkObject targetObj = collider.GetComponent<NetworkObject>();
-                if (targetObj.TryGetComponent<BasePlayerController>(out var targetController))
-                {
-                    targetController.TriggerBuffServerRpc("Stun", 1, stunDuration, true);
-                }
+                health.InflictBuffServerRpc(targetObj, "Stun", 1, stunDuration, true);
             }
         }
     }
