@@ -18,6 +18,7 @@ public class GreedPlayerController : BasePlayerController
     public float punchConeAngle = 60f;
     public float punchRange = 2.5f;
     public float punchConeOffsetDistance = 0.75f;
+    public float punchPlayerHitCooldownReduction = 0.5f;
     private bool isDashing = false;
 
     // Ability 2 - Ground Slam
@@ -248,7 +249,7 @@ public class GreedPlayerController : BasePlayerController
         
         if (hitPlayerController)
         {
-            QuickPunch.lastUsed += QuickPunch.cooldown * 0.5f;
+            QuickPunch.lastUsed += QuickPunch.cooldown * (punchPlayerHitCooldownReduction);
         }
 
         StartCoroutine(DashCoroutine(dashDirection, dashDistance, dashSpeed));
@@ -316,10 +317,7 @@ public class GreedPlayerController : BasePlayerController
                 NetworkObject targetObj = collider.GetComponent<NetworkObject>();
                 if (targetObj.TryGetComponent<BasePlayerController>(out var targetController))
                 {
-                    targetController.TriggerBuffServerRpc("Speed", -targetController.BaseSpeed.Value, stunDuration, true);
-                    targetController.TriggerBuffServerRpc("Auto Attack Speed", -targetController.BaseAttackSpeed.Value, stunDuration, true);
-                    targetController.TriggerBuffServerRpc("Attack Damage", -targetController.BaseDamage.Value, stunDuration, true);
-                    health.InflictBuffServerRpc(targetObj, "Immobilized", 1, stunDuration, true);
+                    targetController.TriggerBuffServerRpc("Stun", 1, stunDuration, true);
                 }
             }
         }
@@ -439,19 +437,20 @@ public class GreedPlayerController : BasePlayerController
 
             if (QuickPunch.abilityLevel == 2)
             {
-                punchDamageMultiplier += 0.2f;
+                QuickPunch.cooldown -= 0.5f;
             }
             if (QuickPunch.abilityLevel == 3)
             {
-                dashDistance += 1f;
+                dashDistance += 1.5f;
+                punchRange += 1.5f;
             }
             if (QuickPunch.abilityLevel == 4)
             {
-                punchConeAngle += 15f;
+                punchPlayerHitCooldownReduction += 0.25f;
             }
             if (QuickPunch.abilityLevel == 5)
             {
-                QuickPunch.cooldown -= 0.2f;
+                punchDamageMultiplier += 0.2f;
             }
         }
     }
@@ -487,19 +486,19 @@ public class GreedPlayerController : BasePlayerController
 
             if (GroundSlam.abilityLevel == 2)
             {
-                stunDuration += 0.3f;
+                stunDuration += 0.25f;
             }
             if (GroundSlam.abilityLevel == 3)
             {
-                GroundSlam.cooldown -= 2f;
+                GroundSlam.cooldown -= 3f;
             }
             if (GroundSlam.abilityLevel == 4)
             {
-                slamRadius += 1f;
+                slamRadius += 1.5f;
             }
             if (GroundSlam.abilityLevel == 5)
             {
-                GroundSlam.cooldown -= 2f;
+                slamDamageMultiplier += 0.4f;
             }
         }
     }
@@ -535,7 +534,7 @@ public class GreedPlayerController : BasePlayerController
 
             if (UncivRage.abilityLevel == 2)
             {
-                missingHealthHealRatio += 0.02f;
+                UncivRage.cooldown -= 20f;
             }
             if (UncivRage.abilityLevel == 3)
             {
@@ -547,7 +546,7 @@ public class GreedPlayerController : BasePlayerController
             }
             if (UncivRage.abilityLevel == 5)
             {
-                UncivRage.cooldown -= 20f;
+                missingHealthHealRatio += 0.05f;
             }
         }
     }

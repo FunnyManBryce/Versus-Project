@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1307297395
+  GlobalObjectIdHash: 3671417763
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -528,6 +528,8 @@ MonoBehaviour:
     m_InternalValue: 0
   SpeedBuff:
     m_InternalValue: 0
+  isStunned:
+    m_InternalValue: 0
   attackDamage: 25
   autoAttackSpeed: 0.9
   autoAttackProjSpeed: 1000
@@ -628,10 +630,11 @@ MonoBehaviour:
   punchConeAngle: 60
   punchRange: 8.5
   punchConeOffsetDistance: 1.5
-  slamDamageMultiplier: 0.5
-  slamRadius: 3
+  punchPlayerHitCooldownReduction: 0.5
+  slamDamageMultiplier: 0.6
+  slamRadius: 4
   stunDuration: 0.5
-  ultimateDuration: 8
+  ultimateDuration: 7
   ultMovementSpeedIncrease: 1.5
   ultPassiveMultiplier: 2
   missingHealthHealRatio: 0.1
@@ -640,7 +643,7 @@ MonoBehaviour:
     playerController: {fileID: -4589182503098133746}
     inputKey: 113
     isUnlocked: 0
-    cooldown: 2.5
+    cooldown: 3
     manaCost: 0
     lastUsed: 0
     pointClickTimeUsed: 0
@@ -649,13 +652,15 @@ MonoBehaviour:
     waitingForClick: 0
     preventAbilityUse: 0
     abilityName: Quick Punch
-    abilityDescription: 
+    abilityDescription: Greed quickly dashes in the direction of the cursor doing
+      damage in a cone from the starting posistion. If hitting a enemy player reduce
+      the cooldown signifcantly
     levelUpEffects:
     - Unlock Ability
-    - 
-    - 
-    - 
-    - 
+    - Lower the cooldown by 0.5 seconds
+    - Dash distance and punch range increased
+    - Punch cooldown reduction for hitting a player increased
+    - Punch now has a higher base damage multiplyer
   GroundSlam:
     playerController: {fileID: -4589182503098133746}
     inputKey: 101
@@ -669,18 +674,18 @@ MonoBehaviour:
     waitingForClick: 0
     preventAbilityUse: 0
     abilityName: Ground Slam
-    abilityDescription: 
+    abilityDescription: Slam the ground around you stunning nearby players
     levelUpEffects:
     - Unlock Ability
-    - 
-    - 
-    - 
-    - 
+    - Stun duration increased by 50%
+    - Cooldown reduced by 3 seconds
+    - Slam radius increased by 33%
+    - Slam does 66% more damage
   UncivRage:
     playerController: {fileID: -4589182503098133746}
     inputKey: 114
     isUnlocked: 0
-    cooldown: 20
+    cooldown: 80
     manaCost: 0
     lastUsed: 0
     pointClickTimeUsed: 0
@@ -689,10 +694,12 @@ MonoBehaviour:
     waitingForClick: 0
     preventAbilityUse: 0
     abilityName: Uncivilized Rage
-    abilityDescription: 
+    abilityDescription: Dash on to your target buffing yourself for 7 seconds, increasing
+      movespeed, doubling your passive gold conversion ratio, and healing over the
+      time based on missing health
     levelUpEffects:
     - Unlock Ability
-    - 
-    - 
-    - 
-    - 
+    - Decrease the cooldown of the ultimate by 20 seconds
+    - Increase the passive conversion ratio from 2x to 2.5x
+    - Increase the ultimate duration to 10 seconds
+    - Increase the missing health ratio on the heal by 50%
