@@ -94,17 +94,17 @@ MonoBehaviour:
   itemName: "Pain\u2019s Embrace"
   StatBuffs:
   - 0
-  - 40
+  - 65
   - 0
   - 0
-  - 0.2
+  - 0.3
   - 0
   - 0
   - 0
   - 0
   - 0
-  goldCost: 800
-  specialEffect: 10% Lifesteal
+  goldCost: 1200
+  specialEffect: 15% Lifesteal
   Description: {fileID: 8857401324507193527}
   itemNumber: 0
 --- !u!1 &2697933005182123455
@@ -308,11 +308,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Effect: +40 Attack Damage
+  m_text: 'Effect: +65 Attack Damage
 
-    +10% Lifesteal
+    +15% Lifesteal
 
-    +0.2 Attack Speed'
+    +0.3 Attack Speed'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -841,7 +841,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold Cost: 800'
+  m_text: 'Gold Cost: 1200'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
