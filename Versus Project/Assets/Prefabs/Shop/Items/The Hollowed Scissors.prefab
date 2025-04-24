@@ -95,8 +95,8 @@ MonoBehaviour:
   StatBuffs:
   - 0
   - 50
-  - 10
-  - 30
+  - 0
+  - 25
   - 0
   - 0
   - 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   - 0
   - 0
   goldCost: 1300
-  specialEffect: 20% Lifesteal
+  specialEffect: 25% Lifesteal
   Description: {fileID: 6208750970993936572}
   itemNumber: 0
 --- !u!1 &2028573222974838455
@@ -421,9 +421,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Effect: +50 Attack Damage
 
-    +20 Armor Pen
+    +25% Armor Pen
 
-    +20% Lifesteal'
+    +25% Lifesteal'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

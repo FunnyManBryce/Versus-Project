@@ -94,10 +94,10 @@ MonoBehaviour:
   itemName: Debts Due
   StatBuffs:
   - 0
-  - 20
+  - 30
   - 0
-  - 0
-  - 0.5
+  - 5
+  - 0.55
   - 0
   - 0
   - 0
@@ -310,10 +310,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Effect: +100 Gold on player kill
 
-    +0.5 Attack Speed
+    +0.55Attack Speed
 
-    +20 Attack
-    Damage'
+    +30 Attack
+    Damage
+
+    +5 Armor Pen'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

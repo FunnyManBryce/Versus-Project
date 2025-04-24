@@ -94,7 +94,7 @@ MonoBehaviour:
   itemName: Boy Friend Sword
   StatBuffs:
   - 0
-  - 25
+  - 40
   - 0
   - 15
   - 0
@@ -102,8 +102,8 @@ MonoBehaviour:
   - 0
   - 0
   - 15
-  - 250
-  goldCost: 1050
+  - 300
+  goldCost: 1100
   specialEffect: 
   Description: {fileID: 8857401324507193527}
   itemNumber: 0
@@ -308,11 +308,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Effect: +25 Attack Damage
+  m_text: 'Effect: +40 Attack Damage
 
     +15 CDR
 
-    +250 Max Health
+    +300 Max Health
 
     +15 Armor
     Pen'
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold Cost: 1050'
+  m_text: 'Gold Cost: 1100'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
