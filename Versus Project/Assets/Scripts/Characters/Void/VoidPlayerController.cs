@@ -485,19 +485,19 @@ public class VoidPlayerController : BasePlayerController
 
             if (VoidBall.abilityLevel == 2)
             {
-                ballDamageMultiplier += 0.1f; // Increase damage
+                ballDamageMultiplier += 0.2f; // Increase damage
             }
             if (VoidBall.abilityLevel == 3)
             {
-                dangerCircleRadius += 0.5f; // Increase size
+                dangerCircleWarningTime -= 0.5f; // Increase size
             }
             if (VoidBall.abilityLevel == 4)
             {
-                VoidBall.cooldown -= 0.5f; // Reduce cooldown
+                VoidBall.cooldown -= 1f; // Reduce cooldown
             }
             if (VoidBall.abilityLevel == 5)
             {
-                ballReturnSpeed += 1.5f; // Faster return
+                passiveDamageIncrease += 0.05f; 
             }
         }
 

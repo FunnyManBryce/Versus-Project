@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 321467190
+  GlobalObjectIdHash: 14862719
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -475,7 +475,7 @@ MonoBehaviour:
   regen: 0
   isMelee: 0
   maxMana: 650
-  mana: 0
+  mana: 650
   manaRegen: 1
   resevoirRegen:
     m_InternalValue: 0
@@ -555,13 +555,13 @@ MonoBehaviour:
   VoidCore: {fileID: 7846404579260722031}
   voidBallPrefab: {fileID: 6271209008562182701, guid: dcbd7ba032f7e7f4783f94309e0f80b7,
     type: 3}
-  passiveDamageIncrease: 0.15
+  passiveDamageIncrease: 0.05
   passiveDuration: 8
   passiveStacks:
     m_InternalValue: 0
   baseAttackDamage: 0
   dangerCircleRadius: 1
-  dangerCircleWarningTime: 1.25
+  dangerCircleWarningTime: 1.5
   ballReturnSpeed: 20
   ballDamageMultiplier: 1
   voidBallCastRange: 15
@@ -576,9 +576,9 @@ MonoBehaviour:
   VoidBall:
     playerController: {fileID: -7934763187758970237}
     inputKey: 113
-    isUnlocked: 1
+    isUnlocked: 0
     cooldown: 5
-    manaCost: 16.666666
+    manaCost: 10
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
@@ -586,17 +586,18 @@ MonoBehaviour:
     waitingForClick: 0
     preventAbilityUse: 0
     abilityName: Coalesce
-    abilityDescription: 
+    abilityDescription: Click abilty than Mouse 1 to set a returning orb that will
+      deal damage
     levelUpEffects:
-    - 
-    - 
-    - 
-    - 
-    - 
+    - Unlock Abilty
+    - Coalesce does 20 % more damage
+    - Ball warning circle 0.5 seconds shorter
+    - Cooldown reduced by 20%
+    - 'Passive gains a additional 5% attack growth on consecutive abilty hit '
   BlinkAbility:
     playerController: {fileID: -7934763187758970237}
     inputKey: 101
-    isUnlocked: 1
+    isUnlocked: 0
     cooldown: 15
     manaCost: 80
     lastUsed: 0
@@ -606,18 +607,20 @@ MonoBehaviour:
     waitingForClick: 0
     preventAbilityUse: 0
     abilityName: Tears In Space
-    abilityDescription: 
+    abilityDescription: Tear a hole through reality to quickly blink to a area near
+      you
     levelUpEffects:
-    - 
-    - 
-    - 
-    - 
-    - 
+    - Unlock Abilty
+    - Abilty cooldown reduced by 3 seconds
+    - Abilty cooldown reduced by 3 seconds
+    - Abilty cooldown reduced by 3 seconds
+    - Passive gains a additional 5% attack growth on consecutive abilty hit (slightly
+      increase blink distance
   VoidPerspective:
     playerController: {fileID: -7934763187758970237}
     inputKey: 114
-    isUnlocked: 1
-    cooldown: 20
+    isUnlocked: 0
+    cooldown: 100
     manaCost: 100
     lastUsed: 0
     pointClickTimeUsed: 0
@@ -626,13 +629,14 @@ MonoBehaviour:
     waitingForClick: 0
     preventAbilityUse: 0
     abilityName: Voids Perspective
-    abilityDescription: 
+    abilityDescription: Zoom out camera, have Your camera gets zoomed out, Coalesce
+      cooldown is cut in fourths with no more mana cost
     levelUpEffects:
+    - Unlock Abilty
     - 
     - 
     - 
-    - 
-    - 
+    - 'Passive gains a additional 5% attack growth on consecutive abilty hit '
   targetableLayer:
     serializedVersion: 2
     m_Bits: 0
