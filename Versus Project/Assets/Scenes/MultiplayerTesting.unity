@@ -7077,7 +7077,7 @@ MonoBehaviour:
         m_MethodName: CharacterSelected
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7846404579260722031, guid: a4fafb22d6cc4e04db69f5e55b92e755,
+          m_ObjectArgument: {fileID: 7846404579260722031, guid: 4f9e51faf562dc7448b9278eed325aa7,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -9320,7 +9320,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'characterList.Array.data[0]'
       value: 
-      objectReference: {fileID: 7846404579260722031, guid: a4fafb22d6cc4e04db69f5e55b92e755,
+      objectReference: {fileID: 7846404579260722031, guid: 4f9e51faf562dc7448b9278eed325aa7,
         type: 3}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
@@ -14228,7 +14228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577824343}
   m_Layer: 5
-  m_Name: Imagination UI Info
+  m_Name: Void UI Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14450,7 +14450,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Imagination
+  m_text: 'Void
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

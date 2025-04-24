@@ -232,7 +232,7 @@ Animator:
   m_GameObject: {fileID: 7846404579260722031}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b83518fd12f4db241b83d3536fc4a693, type: 2}
+  m_Controller: {fileID: 9100000, guid: 05232c7b965f18f4a8aa3ab55e1a4f89, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: Void
   bAM: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 3704004338721201214}
   lameManager: {fileID: 0}
   PlayerSprite: {fileID: 176950742428784287}
   AutoAttackSprite: {fileID: 0}
@@ -479,7 +479,7 @@ MonoBehaviour:
   manaRegen: 1
   resevoirRegen:
     m_InternalValue: 0
-  health: {fileID: 0}
+  health: {fileID: -8253534391822271971}
   XPToNextLevel:
     m_InternalValue: 0
   XPPerLevel:
@@ -507,7 +507,8 @@ MonoBehaviour:
     m_InternalValue: 0
   Gold:
     m_InternalValue: 0
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 315554442559877787, guid: 81b6ba07eb9f35642a910177aa04f334,
+    type: 3}
   teamNumber:
     m_InternalValue: 0
   currentTarget: {fileID: 0}
