@@ -158,7 +158,8 @@ public class BasePlayerController : NetworkBehaviour
         {
             if(SuddenDeath.Value)
             {
-                if(teamNumber.Value == 1)
+                currentTarget = null;
+                if (teamNumber.Value == 1)
                 {
                     transform.position = new Vector3(410, 70, 0);
                 }
@@ -188,6 +189,8 @@ public class BasePlayerController : NetworkBehaviour
                 RegenBuff.Value = 0;
                 ManaRegenBuff.Value = 0;
                 SpeedBuff.Value = 0;
+                health.markedValue = 1;
+                isStunned.Value = false;
                 appliesDarkness.Value = false;
                 darknessDuration = 120;
                 health.darknessEffect = false;

@@ -160,9 +160,12 @@ public class LameManager : NetworkBehaviour
         {
             yield break;
         }
-        Debug.Log("timerend");
-        player.transform.position = playerSP[Team - 1];
-        player.GetComponent<BasePlayerController>().isDead.Value = false;
+        else
+        {
+            Debug.Log("timerend");
+            player.transform.position = playerSP[Team - 1];
+            player.GetComponent<BasePlayerController>().isDead.Value = false;
+        }
     }
 
     [Rpc(SendTo.Server)]

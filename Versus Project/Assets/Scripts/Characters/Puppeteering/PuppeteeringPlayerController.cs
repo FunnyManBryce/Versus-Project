@@ -182,13 +182,10 @@ public class PuppeteeringPlayerController : BasePlayerController
         {
             if (SuddenDeath.Value)
             {
-                if (teamNumber.Value == 1)
+                currentTarget = null;
+                if (IsServer)
                 {
-                    transform.position = new Vector3(410, 70, 0);
-                }
-                else
-                {
-                    transform.position = new Vector3(440, 70, 0);
+                    maxPuppets.Value = 1;
                 }
                 if (puppetsAlive.Value >= 1)
                 {
@@ -201,7 +198,6 @@ public class PuppeteeringPlayerController : BasePlayerController
                         puppetToDespawn.Despawn();
                     }
                 }
-                PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
                 isDead.Value = false;
                 health.currentHealth.Value = health.maxHealth.Value;
                 mana = maxMana;
@@ -223,6 +219,8 @@ public class PuppeteeringPlayerController : BasePlayerController
                 ArmorPenBuff.Value = 0;
                 RegenBuff.Value = 0;
                 ManaRegenBuff.Value = 0;
+                health.markedValue = 1;
+                isStunned.Value = false;
                 SpeedBuff.Value = 0;
                 appliesDarkness.Value = false;
                 darknessDuration = 120;
@@ -235,6 +233,15 @@ public class PuppeteeringPlayerController : BasePlayerController
                         StopCoroutine(Buffs[i]);
                     }
                 }
+                if (teamNumber.Value == 1)
+                {
+                    transform.position = new Vector3(410, 70, 0);
+                }
+                else
+                {
+                    transform.position = new Vector3(440, 70, 0);
+                }
+                PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
             }
         };
         isDead.OnValueChanged += (bool previousValue, bool newValue) => //Checking if dead
@@ -277,6 +284,8 @@ public class PuppeteeringPlayerController : BasePlayerController
                 ArmorPenBuff.Value = 0;
                 RegenBuff.Value = 0;
                 ManaRegenBuff.Value = 0;
+                health.markedValue = 1;
+                isStunned.Value = false;
                 SpeedBuff.Value = 0;
                 appliesDarkness.Value = false;
                 darknessDuration = 120;
@@ -292,8 +301,11 @@ public class PuppeteeringPlayerController : BasePlayerController
             }
             else
             {
-                transform.position = lameManager.playerSP[teamNumber.Value - 1];
-                PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
+                if(!SuddenDeath.Value)
+                {
+                    transform.position = lameManager.playerSP[teamNumber.Value - 1];
+                    PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
+                }
                 health.currentHealth.Value = health.maxHealth.Value;
                 mana = maxMana;
             }
