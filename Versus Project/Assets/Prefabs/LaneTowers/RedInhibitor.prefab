@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1225754387
+  GlobalObjectIdHash: 2304862857
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -135,11 +135,13 @@ MonoBehaviour:
   towerTarget: {fileID: 1967155613948874045}
   enemyMinionTarget: {fileID: 0}
   animator: {fileID: 0}
+  inSuddenDeath: 0
   isAttacking: 0
   cooldown: 0
   aggro: 0
   dead: 0
   playerLastHit: 0
+  isStunned: 0
   tower: {fileID: 761847280962229105}
   enemyPlayer: {fileID: 0}
   enemyPuppet: {fileID: 0}
@@ -148,7 +150,7 @@ MonoBehaviour:
   networkTower: {fileID: -3539533397057558113}
   currentTarget: {fileID: 0}
   distanceFromPuppet: {x: 0, y: 0, z: 0}
-  goldRange: 0
+  goldRange: 10
   goldGiven: 250
   Damage: 0
   armorPen: 1
@@ -293,6 +295,7 @@ MonoBehaviour:
   invulnerable: 0
   isNPC: 1
   healthSetManual: 0
+  darknessEffect: 0
 --- !u!58 &5408749681070355075
 CircleCollider2D:
   m_ObjectHideFlags: 0

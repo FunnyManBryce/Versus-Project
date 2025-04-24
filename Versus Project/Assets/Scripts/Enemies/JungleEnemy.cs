@@ -32,6 +32,7 @@ public class JungleEnemy : NetworkBehaviour
     public bool playerLastHit = false;
     public bool midBossSpawn = false;
     public bool dead;
+    public bool isStunned;
 
     public string targetName;
     public float Damage;
@@ -126,7 +127,12 @@ public class JungleEnemy : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAttacking || !IsServer) return;
+        if (isStunned)
+        {
+            isAttacking = false;
+            animator.SetBool("Attacking", isAttacking);
+        }
+        if (!IsServer || isAttacking || isStunned) return;
         if (PlayerOne != null)
         {
             playerOneTarget = PlayerOne.transform;
@@ -351,6 +357,10 @@ public class JungleEnemy : NetworkBehaviour
             moveSpeed += amount;
             health.darknessEffect = true;
         }
+        if (buffType == "Stun")
+        {
+            isStunned = true;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
     }
@@ -396,6 +406,10 @@ public class JungleEnemy : NetworkBehaviour
         {
             moveSpeed -= amount;
             health.darknessEffect = false;
+        }
+        if (buffType == "Stun")
+        {
+            isStunned = false;
         }
     }
 }

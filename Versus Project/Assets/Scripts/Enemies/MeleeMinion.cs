@@ -33,6 +33,7 @@ public class MeleeMinion : NetworkBehaviour
     public bool aggro = false;
     public bool playerLastHit = false;
     public bool dead;
+    public bool isStunned;
 
     public float baseHP;
     public float Damage;
@@ -144,7 +145,12 @@ public class MeleeMinion : NetworkBehaviour
 
     void Update()
     {
-        if (!IsServer) return;
+        if (isStunned)
+        {
+            isAttacking = false;
+            animator.SetBool("Attacking", isAttacking);
+        }
+        if (isStunned) return;
         if (agent.desiredVelocity.x < 0)
         {
             minionSprite.flipX = true;
@@ -403,6 +409,10 @@ public class MeleeMinion : NetworkBehaviour
             moveSpeed += amount;
             health.darknessEffect = true;
         }
+        if (buffType == "Stun")
+        {
+            isStunned = true;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
     }
@@ -448,6 +458,10 @@ public class MeleeMinion : NetworkBehaviour
         {
             moveSpeed -= amount;
             health.darknessEffect = false;
+        }
+        if (buffType == "Stun")
+        {
+            isStunned = false;
         }
     }
 

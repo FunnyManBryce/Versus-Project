@@ -20,6 +20,7 @@ public class Tower : NetworkBehaviour
     public bool aggro = false;
     public bool dead;
     public bool playerLastHit = false;
+    public bool isStunned;
 
     public GameObject tower;
     public GameObject enemyPlayer;
@@ -65,7 +66,12 @@ public class Tower : NetworkBehaviour
             isAttacking = false;
             animator.SetBool("Attacking", isAttacking);
         }
-        if (!IsServer || isAttacking) return;
+        if (isStunned)
+        {
+            isAttacking = false;
+            animator.SetBool("Attacking", isAttacking);
+        }
+        if (!IsServer || isAttacking || isStunned) return;
         if (Team == 1)
         {
             if (lameManager.teamOneTowersLeft.Value == orderInLane && !inSuddenDeath)
@@ -165,7 +171,7 @@ public class Tower : NetworkBehaviour
             distanceFromTarget = distanceFromMinion;
             currentTarget = enemyMinion.GetComponent<NetworkObject>();
         }
-        else if (distanceFromPlayer.magnitude < distanceFromMinion.magnitude)
+        else if ((distanceFromPlayer.magnitude < distanceFromMinion.magnitude && distanceFromPlayer.magnitude < towerRange) || (distanceFromPuppet.magnitude < distanceFromMinion.magnitude && distanceFromPuppet.magnitude < towerRange))
         {
             if (distanceFromPlayer.magnitude > distanceFromPuppet.magnitude && enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
             {
@@ -179,6 +185,10 @@ public class Tower : NetworkBehaviour
                 distanceFromTarget = distanceFromPlayer;
                 currentTarget = enemyPlayer.GetComponent<NetworkObject>();
             }
+        } else
+        {
+            distanceFromTarget = new Vector3(1000, 1000, 1000);
+            currentTarget = null;
         }
         if (distanceFromTarget.magnitude < towerRange && cooldown == false && currentTarget != null)
         {
@@ -308,6 +318,10 @@ public class Tower : NetworkBehaviour
         {
             health.markedValue += amount;
         }
+        if (buffType == "Stun")
+        {
+            isStunned = true;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
     }
@@ -340,6 +354,10 @@ public class Tower : NetworkBehaviour
         if (buffType == "Marked")
         {
             health.markedValue -= amount;
+        }
+        if (buffType == "Stun")
+        {
+            isStunned = false;
         }
     }
 }

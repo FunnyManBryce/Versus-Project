@@ -157,11 +157,16 @@ public class PuppeteeringPlayerController : BasePlayerController
                 isDead.Value = true;
                 if (health.lastAttacker.TryGet(out NetworkObject attacker))
                 {
-                    if (attacker.GetComponent<BasePlayerController>() != null)
+                    if (attacker.tag == "Player")
                     {
-                        var enemyPlayer = attacker.GetComponent<BasePlayerController>();
-                        enemyPlayer.XP.Value += Level.Value * 50; //Can change the amount given later
-                        enemyPlayer.Gold.Value += Level.Value * 50; //Can change the amount given later
+                        attacker.GetComponent<BasePlayerController>().XP.Value += 50;
+                        attacker.GetComponent<BasePlayerController>().Gold.Value += 50;
+                    }
+                    else if (attacker.tag == "Puppet")
+                    {
+                        attacker = attacker.GetComponent<Puppet>().Father.GetComponent<NetworkObject>();
+                        attacker.GetComponent<BasePlayerController>().XP.Value += 50;
+                        attacker.GetComponent<BasePlayerController>().Gold.Value += 50;
                     }
                 }
             }
@@ -287,6 +292,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             }
             else
             {
+                transform.position = lameManager.playerSP[teamNumber.Value - 1];
                 PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
                 health.currentHealth.Value = health.maxHealth.Value;
                 mana = maxMana;

@@ -134,11 +134,13 @@ MonoBehaviour:
   towerTarget: {fileID: 3319039571354012073}
   enemyMinionTarget: {fileID: 0}
   animator: {fileID: 2518130113755198442}
+  inSuddenDeath: 0
   isAttacking: 0
   cooldown: 0
   aggro: 0
   dead: 0
   playerLastHit: 0
+  isStunned: 0
   tower: {fileID: 8003257773554308308}
   enemyPlayer: {fileID: 0}
   enemyPuppet: {fileID: 0}
@@ -148,7 +150,7 @@ MonoBehaviour:
   networkTower: {fileID: 0}
   currentTarget: {fileID: 0}
   distanceFromPuppet: {x: 0, y: 0, z: 0}
-  goldRange: 0
+  goldRange: 10
   goldGiven: 200
   Damage: 150
   armorPen: 1
@@ -327,6 +329,7 @@ MonoBehaviour:
   invulnerable: 0
   isNPC: 1
   healthSetManual: 0
+  darknessEffect: 0
 --- !u!61 &1719187643439791867
 BoxCollider2D:
   m_ObjectHideFlags: 0

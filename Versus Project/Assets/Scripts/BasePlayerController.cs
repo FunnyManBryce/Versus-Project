@@ -133,11 +133,16 @@ public class BasePlayerController : NetworkBehaviour
                 isDead.Value = true;
                 if (health.lastAttacker.TryGet(out NetworkObject attacker))
                 {
-                    if (attacker.GetComponent<BasePlayerController>() != null)
+                    if (attacker.tag == "Player")
                     {
-                        var enemyPlayer = attacker.GetComponent<BasePlayerController>();
-                        enemyPlayer.XP.Value += Level.Value * 50; //Can change the amount given later
-                        enemyPlayer.Gold.Value += Level.Value * 50; //Can change the amount given later
+                        attacker.GetComponent<BasePlayerController>().XP.Value += 50;
+                        attacker.GetComponent<BasePlayerController>().Gold.Value += 50;
+                    }
+                    else if (attacker.tag == "Puppet")
+                    {
+                        attacker = attacker.GetComponent<Puppet>().Father.GetComponent<NetworkObject>();
+                        attacker.GetComponent<BasePlayerController>().XP.Value += 50;
+                        attacker.GetComponent<BasePlayerController>().Gold.Value += 50;
                     }
                 }
             }

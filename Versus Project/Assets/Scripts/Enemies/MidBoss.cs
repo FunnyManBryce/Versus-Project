@@ -14,6 +14,7 @@ public class MidBoss : NetworkBehaviour
     public SpriteRenderer bossSprite;
     private bool dead;
     public bool isAttacking;
+    public bool isStunned;
 
     public bool playerInRange;
     public Vector3 distanceFromPOne;
@@ -59,7 +60,7 @@ public class MidBoss : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsServer) return;
+        if (!IsServer || isStunned) return;
         distanceFromPOne = new Vector3(gameObject.transform.position.x - lameManager.playerOneChar.transform.position.x, gameObject.transform.position.y - lameManager.playerOneChar.transform.position.y, gameObject.transform.position.z - lameManager.playerOneChar.transform.position.z);
         if (lameManager.playerTwoChar != null)
         {
@@ -319,6 +320,10 @@ public class MidBoss : NetworkBehaviour
         {
             health.markedValue += amount;
         }
+        if (buffType == "Stun")
+        {
+            isStunned = false;
+        }
         IEnumerator coroutine = BuffDuration(buffType, amount, duration);
         StartCoroutine(coroutine);
     }
@@ -353,6 +358,10 @@ public class MidBoss : NetworkBehaviour
         if (buffType == "Auto Attack Speed")
         {
             cooldownDuration += amount;
+        }
+        if (buffType == "Stun")
+        {
+            isStunned = false;
         }
     }
 
