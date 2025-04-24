@@ -97,6 +97,10 @@ public class PlayerCooldownBars : MonoBehaviour
             {
                 SetupAbilityDelegates(greedPlayer);
             }
+            else if (playerController is VoidPlayerController voidPlayer)
+            {
+                SetupAbilityDelegates(voidPlayer);
+            }
             // Add other player controller types here as needed
 
             if (isOffCooldown != null)
@@ -207,6 +211,91 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.UncivRage.CooldownDurationLeft();
                 getManaCost = () => player.UncivRage.manaCost;
                 cooldownDuration = player.UncivRage.cooldown;
+                break;
+        }
+    }
+
+    private void SetupAbilityDelegates(VoidPlayerController player)
+    {
+        switch (abilityIndex)
+        {
+            case 0: // Passive - Damage stacking
+                isOffCooldown = () => true; // Passive is always active
+                getNormalizedCooldown = () => 1f;
+                getCooldownTimeLeft = () => "0.00";
+                getManaCost = () => 0f;
+                cooldownDuration = 0f;
+                descDescription.text = "Description: Consecutive hits with Void Ball increase damage output";
+                descName.text = "Void Corruption";
+                descCooldown.text = "Stacks reset after " + player.passiveDuration + " seconds without hitting";
+                descManaCost.text = "Current Stacks: " + player.passiveStacks.Value;
+                descLevelUpEffect.text = "Next Level: Increases damage bonus and duration";
+                break;
+
+            case 1: // First ability (Void Ball)
+                isOffCooldown = () => player.VoidBall.OffCooldown();
+                getNormalizedCooldown = () => player.VoidBall.NormalizedCooldown();
+                getCooldownTimeLeft = () => player.VoidBall.CooldownDurationLeft();
+                getManaCost = () => player.VoidBall.manaCost;
+                cooldownDuration = player.VoidBall.cooldown;
+                descDescription.text = "Description: " + player.VoidBall.abilityDescription;
+                descName.text = player.VoidBall.abilityName;
+                if (player.VoidBall.isUnlocked && player.VoidBall.abilityLevel < 5)
+                {
+                    descLevelUpEffect.text = "Next Level: " + player.VoidBall.levelUpEffects[player.VoidBall.abilityLevel];
+                }
+                else if (!player.VoidBall.isUnlocked)
+                {
+                    descLevelUpEffect.text = "Spend an unlock to get this ability";
+                }
+                else if (player.VoidBall.abilityLevel == 5)
+                {
+                    descLevelUpEffect.text = "Max Level";
+                }
+                break;
+
+            case 2: // Second ability (Blink)
+                isOffCooldown = () => player.BlinkAbility.OffCooldown();
+                getNormalizedCooldown = () => player.BlinkAbility.NormalizedCooldown();
+                getCooldownTimeLeft = () => player.BlinkAbility.CooldownDurationLeft();
+                getManaCost = () => player.BlinkAbility.manaCost;
+                cooldownDuration = player.BlinkAbility.cooldown;
+                descDescription.text = "Description: " + player.BlinkAbility.abilityDescription;
+                descName.text = player.BlinkAbility.abilityName;
+                if (player.BlinkAbility.isUnlocked && player.BlinkAbility.abilityLevel < 5)
+                {
+                    descLevelUpEffect.text = "Next Level: " + player.BlinkAbility.levelUpEffects[player.BlinkAbility.abilityLevel];
+                }
+                else if (!player.BlinkAbility.isUnlocked)
+                {
+                    descLevelUpEffect.text = "Spend an unlock to get this ability";
+                }
+                else if (player.BlinkAbility.abilityLevel == 5)
+                {
+                    descLevelUpEffect.text = "Max Level";
+                }
+                break;
+
+            case 3: // Ultimate (Void Perspective)
+                isOffCooldown = () => player.VoidPerspective.OffCooldown();
+                getNormalizedCooldown = () => player.VoidPerspective.NormalizedCooldown();
+                getCooldownTimeLeft = () => player.VoidPerspective.CooldownDurationLeft();
+                getManaCost = () => player.VoidPerspective.manaCost;
+                cooldownDuration = player.VoidPerspective.cooldown;
+                descDescription.text = "Description: " + player.VoidPerspective.abilityDescription;
+                descName.text = player.VoidPerspective.abilityName;
+                if (player.VoidPerspective.isUnlocked && player.VoidPerspective.abilityLevel < 5)
+                {
+                    descLevelUpEffect.text = "Next Level: " + player.VoidPerspective.levelUpEffects[player.VoidPerspective.abilityLevel];
+                }
+                else if (!player.VoidPerspective.isUnlocked)
+                {
+                    descLevelUpEffect.text = "Spend an unlock to get this ability";
+                }
+                else if (player.VoidPerspective.abilityLevel == 5)
+                {
+                    descLevelUpEffect.text = "Max Level";
+                }
                 break;
         }
     }
@@ -408,6 +497,74 @@ public class PlayerCooldownBars : MonoBehaviour
                         descLevelUpEffect.text = "Spend an unlock to get this ability";
                     }
                     else if (greedPlayer.UncivRage.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+            }
+        }
+        else if (playerController is VoidPlayerController voidPlayer)
+        {
+            switch (abilityIndex)
+            {
+                case 0: // Passive
+                    descManaCost.text = "Current Stacks: " + voidPlayer.passiveStacks.Value;
+                    descCooldown.text = "Stacks reset after " + voidPlayer.passiveDuration + " seconds without hitting";
+                    descDescription.text = "Description: Consecutive hits with Void Ball increase damage output";
+                    descName.text = "Void Corruption";
+                    descLevelUpEffect.text = voidPlayer.unspentUpgrades.Value > 0 ?
+                        "Next Level: Increases damage bonus and duration" : "Max Level";
+                    break;
+                case 1: // First ability (Void Ball)
+                    descManaCost.text = "Mana Cost: " + voidPlayer.VoidBall.manaCost;
+                    descCooldown.text = "Cooldown: " + (voidPlayer.VoidBall.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + voidPlayer.VoidBall.abilityDescription;
+                    descName.text = voidPlayer.VoidBall.abilityName;
+                    if (voidPlayer.VoidBall.isUnlocked && voidPlayer.VoidBall.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level: " + voidPlayer.VoidBall.levelUpEffects[voidPlayer.VoidBall.abilityLevel];
+                    }
+                    else if (!voidPlayer.VoidBall.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (voidPlayer.VoidBall.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+                case 2: // Second ability (Blink)
+                    descManaCost.text = "Mana Cost: " + voidPlayer.BlinkAbility.manaCost;
+                    descCooldown.text = "Cooldown: " + (voidPlayer.BlinkAbility.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + voidPlayer.BlinkAbility.abilityDescription;
+                    descName.text = voidPlayer.BlinkAbility.abilityName;
+                    if (voidPlayer.BlinkAbility.isUnlocked && voidPlayer.BlinkAbility.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level: " + voidPlayer.BlinkAbility.levelUpEffects[voidPlayer.BlinkAbility.abilityLevel];
+                    }
+                    else if (!voidPlayer.BlinkAbility.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (voidPlayer.BlinkAbility.abilityLevel == 5)
+                    {
+                        descLevelUpEffect.text = "Max Level";
+                    }
+                    break;
+                case 3: // Ultimate (Void Perspective)
+                    descManaCost.text = "Mana Cost: " + voidPlayer.VoidPerspective.manaCost;
+                    descCooldown.text = "Cooldown: " + (voidPlayer.VoidPerspective.cooldown * ((100 - playerController.cDR) / 100)) + " seconds";
+                    descDescription.text = "Description: " + voidPlayer.VoidPerspective.abilityDescription;
+                    descName.text = voidPlayer.VoidPerspective.abilityName;
+                    if (voidPlayer.VoidPerspective.isUnlocked && voidPlayer.VoidPerspective.abilityLevel < 5)
+                    {
+                        descLevelUpEffect.text = "Next Level: " + voidPlayer.VoidPerspective.levelUpEffects[voidPlayer.VoidPerspective.abilityLevel];
+                    }
+                    else if (!voidPlayer.VoidPerspective.isUnlocked)
+                    {
+                        descLevelUpEffect.text = "Spend an unlock to get this ability";
+                    }
+                    else if (voidPlayer.VoidPerspective.abilityLevel == 5)
                     {
                         descLevelUpEffect.text = "Max Level";
                     }

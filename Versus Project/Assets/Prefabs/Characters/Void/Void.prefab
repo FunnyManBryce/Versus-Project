@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 14862719
+  GlobalObjectIdHash: 321467190
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -575,49 +575,64 @@ MonoBehaviour:
   movementSpeedReduction: 0.999
   VoidBall:
     playerController: {fileID: 0}
-    inputKey: 0
+    inputKey: 113
     isUnlocked: 0
-    cooldown: 0
-    manaCost: 0
+    cooldown: 5
+    manaCost: 50
     lastUsed: 0
     pointClickTimeUsed: 0
-    abilityLevel: 0
+    abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
     abilityName: 
     abilityDescription: 
-    levelUpEffects: []
+    levelUpEffects:
+    - 
+    - 
+    - 
+    - 
+    - 
   BlinkAbility:
     playerController: {fileID: 0}
-    inputKey: 0
+    inputKey: 101
     isUnlocked: 0
-    cooldown: 0
-    manaCost: 0
+    cooldown: 15
+    manaCost: 80
     lastUsed: 0
     pointClickTimeUsed: 0
-    abilityLevel: 0
+    abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
     abilityName: 
     abilityDescription: 
-    levelUpEffects: []
+    levelUpEffects:
+    - 
+    - 
+    - 
+    - 
+    - 
   VoidPerspective:
     playerController: {fileID: 0}
-    inputKey: 0
+    inputKey: 114
     isUnlocked: 0
-    cooldown: 0
-    manaCost: 0
+    cooldown: 20
+    manaCost: 100
     lastUsed: 0
     pointClickTimeUsed: 0
-    abilityLevel: 0
+    abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
-    abilityName: 
+    abilityName: Void Perspective
     abilityDescription: 
-    levelUpEffects: []
+    levelUpEffects:
+    - 
+    - 
+    - 
+    - 
+    - 
   targetableLayer:
     serializedVersion: 2
     m_Bits: 0
