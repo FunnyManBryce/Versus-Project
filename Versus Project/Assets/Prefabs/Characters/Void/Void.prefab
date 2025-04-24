@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 321467190
+  GlobalObjectIdHash: 14862719
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -462,7 +462,7 @@ MonoBehaviour:
   isStunned:
     m_InternalValue: 0
   attackDamage: 30
-  autoAttackSpeed: 0.9
+  autoAttackSpeed: 0.6
   autoAttackProjSpeed: 15
   attackRange: 7
   lastAttackTime: 0
@@ -555,37 +555,37 @@ MonoBehaviour:
   VoidCore: {fileID: 7846404579260722031}
   voidBallPrefab: {fileID: 6271209008562182701, guid: dcbd7ba032f7e7f4783f94309e0f80b7,
     type: 3}
-  passiveDamageIncrease: 0.1
+  passiveDamageIncrease: 0.15
   passiveDuration: 8
   passiveStacks:
     m_InternalValue: 0
   baseAttackDamage: 0
-  dangerCircleRadius: 2.5
-  dangerCircleWarningTime: 1
-  ballReturnSpeed: 5
-  ballDamageMultiplier: 0.7
+  dangerCircleRadius: 1
+  dangerCircleWarningTime: 1.25
+  ballReturnSpeed: 20
+  ballDamageMultiplier: 1
   voidBallCastRange: 15
   dangerCirclePrefab: {fileID: 5385389721141281123, guid: 139be3166f475d841adb3763335e7541,
     type: 3}
   blinkDistance: 5
-  blinkCooldown: 15
   ultimateDuration: 8
-  cameraZoomOutMultiplier: 2
+  cameraZoomOutMultiplier: 1.5
   abilityCooldownReduction: 0.8
   movementSpeedReduction: 0.999
+  voidBallUltimateRangeMultiplier: 10
   VoidBall:
-    playerController: {fileID: 0}
+    playerController: {fileID: -7934763187758970237}
     inputKey: 113
-    isUnlocked: 0
+    isUnlocked: 1
     cooldown: 5
-    manaCost: 50
+    manaCost: 16.666666
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
-    abilityName: 
+    abilityName: Coalesce
     abilityDescription: 
     levelUpEffects:
     - 
@@ -594,9 +594,9 @@ MonoBehaviour:
     - 
     - 
   BlinkAbility:
-    playerController: {fileID: 0}
+    playerController: {fileID: -7934763187758970237}
     inputKey: 101
-    isUnlocked: 0
+    isUnlocked: 1
     cooldown: 15
     manaCost: 80
     lastUsed: 0
@@ -605,7 +605,7 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
-    abilityName: 
+    abilityName: Tears In Space
     abilityDescription: 
     levelUpEffects:
     - 
@@ -614,9 +614,9 @@ MonoBehaviour:
     - 
     - 
   VoidPerspective:
-    playerController: {fileID: 0}
+    playerController: {fileID: -7934763187758970237}
     inputKey: 114
-    isUnlocked: 0
+    isUnlocked: 1
     cooldown: 20
     manaCost: 100
     lastUsed: 0
@@ -625,7 +625,7 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
-    abilityName: Void Perspective
+    abilityName: Voids Perspective
     abilityDescription: 
     levelUpEffects:
     - 

@@ -21,18 +21,18 @@ public class VoidPlayerController : BasePlayerController
     public float dangerCircleWarningTime = 1.0f;  
     public float ballReturnSpeed = 5f;            
     public float ballDamageMultiplier = 0.7f;     
-    public float voidBallCastRange = 15f;             
+    public float voidBallCastRange = 20f;             
     public GameObject dangerCirclePrefab;         
 
     // Ability 2 - Blink
     public float blinkDistance = 5f;              
-    public float blinkCooldown = 15f; 
 
     // Ultimate - Void Perspective
     public float ultimateDuration = 8f;           
     public float cameraZoomOutMultiplier = 2f;
     public float abilityCooldownReduction = 0.8f; 
-    public float movementSpeedReduction = 0.999f; 
+    public float movementSpeedReduction = 0.999f;
+    public float voidBallUltimateRangeMultiplier = 10f;
     private bool isUltimateActive = false;
     private float normalCooldownQ;
     private Camera playerCamera;
@@ -189,11 +189,18 @@ public class VoidPlayerController : BasePlayerController
         if (!IsOwner) return;
 
         // Initialize ability
-        VoidBall.OnUse();
+        if (!isUltimateActive)
+        {
+            VoidBall.OnUse();
+        }
+        else
+        {
+            VoidBall.lastUsed = Time.time;
+        }
+
         waitingForBallPlacement = true;
         AbilityOneAnimation();
     }
-
     [ServerRpc]
     private void VoidBallPlaceServerRpc(Vector2 position)
     {
@@ -298,6 +305,7 @@ public class VoidPlayerController : BasePlayerController
         VoidPerspectiveServerRpc();
     }
 
+
     [ServerRpc]
     private void VoidPerspectiveServerRpc()
     {
@@ -306,21 +314,18 @@ public class VoidPlayerController : BasePlayerController
         bAM.PlayClientRpc("Void Ultimate", transform.position);
 
         isUltimateActive = true;
-
-        // Apply temporary invulnerability
         health.invulnerable = true;
 
-        // Make player immobile (reduce speed drastically)
         TriggerBuffServerRpc("Speed", -maxSpeed * movementSpeedReduction, ultimateDuration, true);
 
-        // Adjust cooldown of Void Ball ability
         VoidBall.cooldown = normalCooldownQ * (1 - abilityCooldownReduction);
 
-        // Zoom out camera for owner
+        float originalRange = voidBallCastRange;
+        voidBallCastRange *= 10f;
+
         SetCameraZoomClientRpc(cameraZoomOutMultiplier);
 
-        // Start duration tracking
-        IEnumerator coroutine = UltimateDuration();
+        IEnumerator coroutine = UltimateDuration(originalRange);
         StartCoroutine(coroutine);
     }
 
@@ -333,22 +338,20 @@ public class VoidPlayerController : BasePlayerController
         }
     }
 
-    public IEnumerator UltimateDuration()
+    public IEnumerator UltimateDuration(float originalRange)
     {
         yield return new WaitForSeconds(ultimateDuration);
 
-        // Wait until no animations are playing
         yield return new WaitUntil(() => (animator.GetBool("AbilityTwo") == false &&
                                         animator.GetBool("AbilityOne") == false &&
                                         animator.GetBool("Ult") == false &&
                                         animator.GetBool("AutoAttack") == false));
 
-        // Reset ultimate effects
         health.invulnerable = false;
         isUltimateActive = false;
         VoidBall.cooldown = normalCooldownQ;
+        voidBallCastRange = originalRange;  
 
-        // Reset camera zoom for owner
         SetCameraZoomClientRpc(1f / cameraZoomOutMultiplier);
     }
 
