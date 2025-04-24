@@ -144,9 +144,9 @@ GameObject:
   - component: {fileID: 3297089066167603808}
   - component: {fileID: 4824983665588721915}
   - component: {fileID: -8253534391822271971}
+  - component: {fileID: -7934763187758970237}
   - component: {fileID: 176950742428784287}
   - component: {fileID: 6074079616988557854}
-  - component: {fileID: -4589182503098133746}
   m_Layer: 0
   m_Name: Void
   m_TagString: Player
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1307297395
+  GlobalObjectIdHash: 14862719
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -389,6 +389,237 @@ MonoBehaviour:
   isNPC: 0
   healthSetManual: 0
   darknessEffect: 0
+--- !u!114 &-7934763187758970237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846404579260722031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f99bd76a76e9d4408ba9c7e79937c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Void
+  bAM: {fileID: 0}
+  animator: {fileID: 0}
+  lameManager: {fileID: 0}
+  PlayerSprite: {fileID: 176950742428784287}
+  AutoAttackSprite: {fileID: 0}
+  clientID: 0
+  SuddenDeath:
+    m_InternalValue: 0
+  maxSpeed: 7
+  currentSpeed: 0
+  statGrowthRate:
+  - 0
+  - 4
+  - 3
+  - 0
+  - 0.02
+  - 0
+  - 0.2
+  - 60
+  - 0
+  - 30
+  BaseDamage:
+    m_InternalValue: 0
+  BaseAttackSpeed:
+    m_InternalValue: 0
+  BaseRange:
+    m_InternalValue: 0
+  BaseCDR:
+    m_InternalValue: 0
+  BaseArmor:
+    m_InternalValue: 0
+  BaseArmorPen:
+    m_InternalValue: 0
+  BaseRegen:
+    m_InternalValue: 0
+  BaseManaRegen:
+    m_InternalValue: 0
+  BaseSpeed:
+    m_InternalValue: 0
+  DamageBuff:
+    m_InternalValue: 0
+  AttackSpeedBuff:
+    m_InternalValue: 0
+  RangeBuff:
+    m_InternalValue: 0
+  CDRBuff:
+    m_InternalValue: 0
+  ArmorBuff:
+    m_InternalValue: 0
+  ArmorPenBuff:
+    m_InternalValue: 0
+  RegenBuff:
+    m_InternalValue: 0
+  ManaRegenBuff:
+    m_InternalValue: 0
+  SpeedBuff:
+    m_InternalValue: 0
+  isStunned:
+    m_InternalValue: 0
+  attackDamage: 30
+  autoAttackSpeed: 0.9
+  autoAttackProjSpeed: 15
+  attackRange: 7
+  lastAttackTime: 0
+  isAttacking: 0
+  appliesDarkness:
+    m_InternalValue: 0
+  darknessDuration: 120
+  cDR: 0
+  armorPen: 0
+  regen: 0
+  isMelee: 0
+  maxMana: 650
+  mana: 0
+  manaRegen: 1
+  resevoirRegen:
+    m_InternalValue: 0
+  health: {fileID: 0}
+  XPToNextLevel:
+    m_InternalValue: 0
+  XPPerLevel:
+  - 0
+  - 100
+  - 211
+  - 276
+  - 323
+  - 359
+  - 388
+  - 413
+  - 434
+  - 470
+  - 485
+  - 500
+  unspentUpgrades:
+    m_InternalValue: 0
+  unspentUnlocks:
+    m_InternalValue: 0
+  isDead:
+    m_InternalValue: 0
+  Level:
+    m_InternalValue: 0
+  XP:
+    m_InternalValue: 0
+  Gold:
+    m_InternalValue: 0
+  projectilePrefab: {fileID: 0}
+  teamNumber:
+    m_InternalValue: 0
+  currentTarget: {fileID: 0}
+  isAutoAttacking: 0
+  healthBarPrefab: {fileID: 2114343820725859254, guid: 753f07b7fe461ec4cb29d8192d34b102,
+    type: 3}
+  manaBarPrefab: {fileID: 2114343820725859254, guid: 75d84f3c1f8f9ca4085165eaef63f178,
+    type: 3}
+  xpBarPrefab: {fileID: 2114343820725859254, guid: 84f89be4897cc754cb0249e3e4bf860f,
+    type: 3}
+  passiveCooldownBarPrefab: {fileID: 0}
+  abilty1CooldownBarPrefab: {fileID: 291330824319171567, guid: 036b191130028224796dafdb9c7a69af,
+    type: 3}
+  abilty2CooldownBarPrefab: {fileID: 291330824319171567, guid: 2c4f3c73646d1954783ecf20c465e270,
+    type: 3}
+  UltimateCooldownBarPrefab: {fileID: 291330824319171567, guid: 7645ac993ecc8e54c832e06adf6d110b,
+    type: 3}
+  attackDamagePrefab: {fileID: 2114343820725859254, guid: 9398b58b1e556ef4496d900f58da2cd9,
+    type: 3}
+  attackSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: ce33ba5ce3d771a46ada95ebda640cd1,
+    type: 3}
+  attackRangeDisplayPrefab: {fileID: 2114343820725859254, guid: 88d565695519f874cb903757d61700f1,
+    type: 3}
+  armorDisplayPrefab: {fileID: 2114343820725859254, guid: c5e01f7ad1aa4f64681a752ffcb8f685,
+    type: 3}
+  cDRDisplayPrefab: {fileID: 2114343820725859254, guid: 74cc74eeb9a66534eae5d814423aeb2e,
+    type: 3}
+  armorPenDisplayPrefab: {fileID: 2114343820725859254, guid: 6e92c9de323add145afb927bb16ce057,
+    type: 3}
+  regenDisplayPrefab: {fileID: 2114343820725859254, guid: e50ac21fc97b40649945f31cb7911be0,
+    type: 3}
+  manaRegenDisplayPrefab: {fileID: 2114343820725859254, guid: 3b6cb034afe0709459b3446ac02d6019,
+    type: 3}
+  goldDisplayPrefab: {fileID: 2114343820725859254, guid: a4ec6120fbb465b49a740b2b6cc6a51d,
+    type: 3}
+  moveSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: de99e14a79e2418449adef0612bf0764,
+    type: 3}
+  shopPrefab: {fileID: 6259355584637624107, guid: 2d38d59c16c31f0408b4fc6a6db1f2fd,
+    type: 3}
+  enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
+    type: 3}
+  HealthBar: {fileID: 8908759716115922835, guid: 6b8fe1d69b602b74fbb50a6da198d85d,
+    type: 3}
+  VoidCore: {fileID: 7846404579260722031}
+  voidBallPrefab: {fileID: 6271209008562182701, guid: dcbd7ba032f7e7f4783f94309e0f80b7,
+    type: 3}
+  passiveDamageIncrease: 0.1
+  passiveDuration: 8
+  passiveStacks:
+    m_InternalValue: 0
+  baseAttackDamage: 0
+  dangerCircleRadius: 2.5
+  dangerCircleWarningTime: 1
+  ballReturnSpeed: 5
+  ballDamageMultiplier: 0.7
+  voidBallCastRange: 15
+  dangerCirclePrefab: {fileID: 5385389721141281123, guid: 139be3166f475d841adb3763335e7541,
+    type: 3}
+  blinkDistance: 5
+  blinkCooldown: 15
+  ultimateDuration: 8
+  cameraZoomOutMultiplier: 2
+  abilityCooldownReduction: 0.8
+  movementSpeedReduction: 0.999
+  VoidBall:
+    playerController: {fileID: 0}
+    inputKey: 0
+    isUnlocked: 0
+    cooldown: 0
+    manaCost: 0
+    lastUsed: 0
+    pointClickTimeUsed: 0
+    abilityLevel: 0
+    abilityBeingUsed: 0
+    waitingForClick: 0
+    preventAbilityUse: 0
+    abilityName: 
+    abilityDescription: 
+    levelUpEffects: []
+  BlinkAbility:
+    playerController: {fileID: 0}
+    inputKey: 0
+    isUnlocked: 0
+    cooldown: 0
+    manaCost: 0
+    lastUsed: 0
+    pointClickTimeUsed: 0
+    abilityLevel: 0
+    abilityBeingUsed: 0
+    waitingForClick: 0
+    preventAbilityUse: 0
+    abilityName: 
+    abilityDescription: 
+    levelUpEffects: []
+  VoidPerspective:
+    playerController: {fileID: 0}
+    inputKey: 0
+    isUnlocked: 0
+    cooldown: 0
+    manaCost: 0
+    lastUsed: 0
+    pointClickTimeUsed: 0
+    abilityLevel: 0
+    abilityBeingUsed: 0
+    waitingForClick: 0
+    preventAbilityUse: 0
+    abilityName: 
+    abilityDescription: 
+    levelUpEffects: []
+  targetableLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!212 &176950742428784287
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -458,227 +689,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 3704004338721201214}
---- !u!114 &-4589182503098133746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7846404579260722031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c92f2bd3d6f9d534eb6baf7a0d663280, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charName: Greed
-  bAM: {fileID: 0}
-  animator: {fileID: 3704004338721201214}
-  lameManager: {fileID: 0}
-  PlayerSprite: {fileID: 176950742428784287}
-  AutoAttackSprite: {fileID: 0}
-  clientID: 0
-  SuddenDeath:
-    m_InternalValue: 0
-  maxSpeed: 9
-  currentSpeed: 0
-  statGrowthRate:
-  - 0
-  - 3
-  - 5
-  - 0
-  - 0.01
-  - 0.05
-  - 0
-  - 0
-  - 2
-  - 120
-  BaseDamage:
-    m_InternalValue: 0
-  BaseAttackSpeed:
-    m_InternalValue: 0
-  BaseRange:
-    m_InternalValue: 0
-  BaseCDR:
-    m_InternalValue: 0
-  BaseArmor:
-    m_InternalValue: 0
-  BaseArmorPen:
-    m_InternalValue: 0
-  BaseRegen:
-    m_InternalValue: 0
-  BaseManaRegen:
-    m_InternalValue: 0
-  BaseSpeed:
-    m_InternalValue: 8
-  DamageBuff:
-    m_InternalValue: 0
-  AttackSpeedBuff:
-    m_InternalValue: 0
-  RangeBuff:
-    m_InternalValue: 0
-  CDRBuff:
-    m_InternalValue: 0
-  ArmorBuff:
-    m_InternalValue: 0
-  ArmorPenBuff:
-    m_InternalValue: 0
-  RegenBuff:
-    m_InternalValue: 0
-  ManaRegenBuff:
-    m_InternalValue: 0
-  SpeedBuff:
-    m_InternalValue: 0
-  attackDamage: 25
-  autoAttackSpeed: 0.9
-  autoAttackProjSpeed: 1000
-  attackRange: 3
-  lastAttackTime: 0
-  isAttacking: 0
-  appliesDarkness:
-    m_InternalValue: 0
-  darknessDuration: 120
-  cDR: 0
-  armorPen: 0
-  regen: 2
-  isMelee: 1
-  maxMana: 100
-  mana: 100
-  manaRegen: 10
-  resevoirRegen: 0
-  health: {fileID: -8253534391822271971}
-  XPToNextLevel:
-    m_InternalValue: 0
-  XPPerLevel:
-  - 100
-  - 200
-  - 300
-  - 400
-  - 500
-  - 600
-  - 700
-  - 800
-  - 900
-  - 1000
-  - 1100
-  - 1200
-  unspentUpgrades:
-    m_InternalValue: 0
-  unspentUnlocks:
-    m_InternalValue: 0
-  isDead:
-    m_InternalValue: 0
-  Level:
-    m_InternalValue: 0
-  XP:
-    m_InternalValue: 0
-  Gold:
-    m_InternalValue: 0
-  projectilePrefab: {fileID: 315554442559877787, guid: 81b6ba07eb9f35642a910177aa04f334,
-    type: 3}
-  teamNumber:
-    m_InternalValue: 0
-  currentTarget: {fileID: 0}
-  isAutoAttacking: 0
-  healthBarPrefab: {fileID: 2114343820725859254, guid: 753f07b7fe461ec4cb29d8192d34b102,
-    type: 3}
-  manaBarPrefab: {fileID: 2114343820725859254, guid: 75d84f3c1f8f9ca4085165eaef63f178,
-    type: 3}
-  xpBarPrefab: {fileID: 2114343820725859254, guid: 84f89be4897cc754cb0249e3e4bf860f,
-    type: 3}
-  passiveCooldownBarPrefab: {fileID: 0}
-  abilty1CooldownBarPrefab: {fileID: 291330824319171567, guid: 036b191130028224796dafdb9c7a69af,
-    type: 3}
-  abilty2CooldownBarPrefab: {fileID: 291330824319171567, guid: 2c4f3c73646d1954783ecf20c465e270,
-    type: 3}
-  UltimateCooldownBarPrefab: {fileID: 291330824319171567, guid: 7645ac993ecc8e54c832e06adf6d110b,
-    type: 3}
-  attackDamagePrefab: {fileID: 2114343820725859254, guid: 9398b58b1e556ef4496d900f58da2cd9,
-    type: 3}
-  attackSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: ce33ba5ce3d771a46ada95ebda640cd1,
-    type: 3}
-  attackRangeDisplayPrefab: {fileID: 2114343820725859254, guid: 88d565695519f874cb903757d61700f1,
-    type: 3}
-  armorDisplayPrefab: {fileID: 2114343820725859254, guid: c5e01f7ad1aa4f64681a752ffcb8f685,
-    type: 3}
-  cDRDisplayPrefab: {fileID: 2114343820725859254, guid: 74cc74eeb9a66534eae5d814423aeb2e,
-    type: 3}
-  armorPenDisplayPrefab: {fileID: 2114343820725859254, guid: 6e92c9de323add145afb927bb16ce057,
-    type: 3}
-  regenDisplayPrefab: {fileID: 2114343820725859254, guid: e50ac21fc97b40649945f31cb7911be0,
-    type: 3}
-  manaRegenDisplayPrefab: {fileID: 2114343820725859254, guid: 3b6cb034afe0709459b3446ac02d6019,
-    type: 3}
-  goldDisplayPrefab: {fileID: 2114343820725859254, guid: a4ec6120fbb465b49a740b2b6cc6a51d,
-    type: 3}
-  moveSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: de99e14a79e2418449adef0612bf0764,
-    type: 3}
-  shopPrefab: {fileID: 6259355584637624107, guid: 2d38d59c16c31f0408b4fc6a6db1f2fd,
-    type: 3}
-  enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
-    type: 3}
-  HealthBar: {fileID: 8908759716115922835, guid: 6b8fe1d69b602b74fbb50a6da198d85d,
-    type: 3}
-  goldConversionRatio: 0.1
-  Greed: {fileID: 7846404579260722031}
-  basePlayerDamage: 20
-  dashDistance: 5
-  dashSpeed: 40
-  punchDamageMultiplier: 1.3
-  punchConeAngle: 60
-  punchRange: 7.5
-  slamDamageMultiplier: 0.5
-  slamRadius: 3
-  stunDuration: 0.5
-  UltAnimator: {fileID: 0}
-  NormalAnimator: {fileID: 9100000, guid: b83518fd12f4db241b83d3536fc4a693, type: 2}
-  ultimateDuration: 8
-  ultMovementSpeedIncrease: 1.5
-  ultPassiveMultiplier: 2
-  missingHealthHealRatio: 0.1
-  ultDashDistance: 5
-  ultDashSpeed: 30
-  QuickPunch:
-    playerController: {fileID: -4589182503098133746}
-    inputKey: 113
-    isUnlocked: 1
-    cooldown: 1.7
-    manaCost: 0
-    lastUsed: 0
-    pointClickTimeUsed: 0
-    abilityLevel: 1
-    abilityBeingUsed: 0
-    waitingForClick: 0
-    preventAbilityUse: 0
-    abilityName: 
-    abilityDescription: 
-    levelUpEffects: []
-  GroundSlam:
-    playerController: {fileID: -4589182503098133746}
-    inputKey: 101
-    isUnlocked: 1
-    cooldown: 10
-    manaCost: 0
-    lastUsed: 0
-    pointClickTimeUsed: 0
-    abilityLevel: 1
-    abilityBeingUsed: 0
-    waitingForClick: 0
-    preventAbilityUse: 0
-    abilityName: 
-    abilityDescription: 
-    levelUpEffects: []
-  UncivRage:
-    playerController: {fileID: -4589182503098133746}
-    inputKey: 114
-    isUnlocked: 1
-    cooldown: 20
-    manaCost: 0
-    lastUsed: 0
-    pointClickTimeUsed: 0
-    abilityLevel: 1
-    abilityBeingUsed: 0
-    waitingForClick: 0
-    preventAbilityUse: 0
-    abilityName: 
-    abilityDescription: 
-    levelUpEffects: []
