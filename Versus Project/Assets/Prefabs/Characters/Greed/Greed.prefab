@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3671417763
+  GlobalObjectIdHash: 1307297395
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -550,6 +550,7 @@ MonoBehaviour:
   XPToNextLevel:
     m_InternalValue: 0
   XPPerLevel:
+  - 0
   - 100
   - 200
   - 300
@@ -561,7 +562,6 @@ MonoBehaviour:
   - 900
   - 1000
   - 1100
-  - 1200
   unspentUpgrades:
     m_InternalValue: 0
   unspentUnlocks:
@@ -639,7 +639,7 @@ MonoBehaviour:
   QuickPunch:
     playerController: {fileID: -4589182503098133746}
     inputKey: 113
-    isUnlocked: 1
+    isUnlocked: 0
     cooldown: 2.5
     manaCost: 0
     lastUsed: 0
@@ -648,13 +648,18 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
-    abilityName: 
+    abilityName: Quick Punch
     abilityDescription: 
-    levelUpEffects: []
+    levelUpEffects:
+    - Unlock Ability
+    - 
+    - 
+    - 
+    - 
   GroundSlam:
     playerController: {fileID: -4589182503098133746}
     inputKey: 101
-    isUnlocked: 1
+    isUnlocked: 0
     cooldown: 10
     manaCost: 0
     lastUsed: 0
@@ -663,13 +668,18 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
-    abilityName: 
+    abilityName: Ground Slam
     abilityDescription: 
-    levelUpEffects: []
+    levelUpEffects:
+    - Unlock Ability
+    - 
+    - 
+    - 
+    - 
   UncivRage:
     playerController: {fileID: -4589182503098133746}
     inputKey: 114
-    isUnlocked: 1
+    isUnlocked: 0
     cooldown: 20
     manaCost: 0
     lastUsed: 0
@@ -678,6 +688,11 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
-    abilityName: 
+    abilityName: Uncivilized Rage
     abilityDescription: 
-    levelUpEffects: []
+    levelUpEffects:
+    - Unlock Ability
+    - 
+    - 
+    - 
+    - 

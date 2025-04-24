@@ -593,11 +593,14 @@ public class BasePlayerController : NetworkBehaviour
     {
         if (isDead.Value) return;
 
-        if (IsServer)
+        if (resevoirRegen.Value == true)
         {
-            if (resevoirRegen.Value == true)
+            if (IsServer)
             {
                 health.currentHealth.Value = Mathf.Min(health.currentHealth.Value + (health.maxHealth.Value * 0.01f), health.maxHealth.Value);
+            }
+            if (IsOwner)
+            {
                 mana = Mathf.Min(mana + (maxMana * 0.01f), maxMana);
             }
         }
