@@ -66,6 +66,8 @@ public class BasePlayerController : NetworkBehaviour
     public float maxMana = 0f;
     public float mana = 0f;
     public float manaRegen = 0f;
+    public NetworkVariable<float> LifeStealPercentage = new NetworkVariable<float>();
+    public NetworkVariable<bool> DebtsDue = new NetworkVariable<bool>();
 
     private float lastRegenTick = 0f;
     public NetworkVariable<bool> resevoirRegen = new NetworkVariable<bool>();
@@ -137,12 +139,20 @@ public class BasePlayerController : NetworkBehaviour
                     {
                         attacker.GetComponent<BasePlayerController>().XP.Value += 50;
                         attacker.GetComponent<BasePlayerController>().Gold.Value += 50;
+                        if (attacker.GetComponent<BasePlayerController>().DebtsDue.Value)
+                        {
+                            attacker.GetComponent<BasePlayerController>().Gold.Value += 100; 
+                        }
                     }
                     else if (attacker.tag == "Puppet")
                     {
                         attacker = attacker.GetComponent<Puppet>().Father.GetComponent<NetworkObject>();
                         attacker.GetComponent<BasePlayerController>().XP.Value += 50;
                         attacker.GetComponent<BasePlayerController>().Gold.Value += 50;
+                        if (attacker.GetComponent<BasePlayerController>().DebtsDue.Value)
+                        {
+                            attacker.GetComponent<BasePlayerController>().Gold.Value += 100;
+                        }
                     }
                 }
             }
@@ -835,6 +845,14 @@ public class BasePlayerController : NetworkBehaviour
         if (buffType == "Health")
         {
             health.maxHealth.Value += amount;
+        }
+        if (buffType == "Player Kill Money")
+        {
+           DebtsDue.Value = true;
+        }
+        if (buffType == "Lifesteal")
+        {
+            LifeStealPercentage.Value += amount;
         }
     }
     public IEnumerator BuffDuration(string buffType, float amount, float duration, int buffNumber) //Waits a bit before changing stats back to default

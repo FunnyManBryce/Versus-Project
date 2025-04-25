@@ -161,12 +161,20 @@ public class PuppeteeringPlayerController : BasePlayerController
                     {
                         attacker.GetComponent<BasePlayerController>().XP.Value += 50;
                         attacker.GetComponent<BasePlayerController>().Gold.Value += 50;
+                        if (attacker.GetComponent<BasePlayerController>().DebtsDue.Value)
+                        {
+                            attacker.GetComponent<BasePlayerController>().Gold.Value += 100;
+                        }
                     }
                     else if (attacker.tag == "Puppet")
                     {
                         attacker = attacker.GetComponent<Puppet>().Father.GetComponent<NetworkObject>();
                         attacker.GetComponent<BasePlayerController>().XP.Value += 50;
                         attacker.GetComponent<BasePlayerController>().Gold.Value += 50;
+                        if (attacker.GetComponent<BasePlayerController>().DebtsDue.Value)
+                        {
+                            attacker.GetComponent<BasePlayerController>().Gold.Value += 100;
+                        }
                     }
                 }
             }

@@ -149,6 +149,13 @@ public class Tower : NetworkBehaviour
         {
             distanceFromMinion = new Vector3(1000, 1000, 0);
         }
+        if(distanceFromMinion.magnitude < towerRange)
+        {
+            health.armor = 10;
+        } else
+        {
+            health.armor = 500;
+        }
         if (enemyPlayer != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>() != null && enemyPlayer.GetComponent<PuppeteeringPlayerController>().puppetsAlive.Value > 0)
         {
             oldTarget = new Vector3(1000, 1000, 0);

@@ -62,6 +62,23 @@ public class Health : NetworkBehaviour
                 {
                     currentHealth.Value -= reducedDamage;
                 }
+                if(attacker.GetComponent<BasePlayerController>() != null)
+                {
+                    if(attacker.GetComponent<BasePlayerController>().DebtsDue.Value && gameObject.GetComponent<BasePlayerController>() != null && currentHealth.Value <= (0.05 * maxHealth.Value))
+                    {
+                        currentHealth.Value = 0f;
+                    }
+                    if(attacker.GetComponent<BasePlayerController>().LifeStealPercentage.Value > 0)
+                    {
+                        if(gameObject.GetComponent<BasePlayerController>() != null)
+                        {
+                            attacker.GetComponent<BasePlayerController>().health.HealServerRPC(reducedDamage * attacker.GetComponent<BasePlayerController>().LifeStealPercentage.Value, attacker);
+                        } else
+                        {
+                            attacker.GetComponent<BasePlayerController>().health.HealServerRPC(reducedDamage * attacker.GetComponent<BasePlayerController>().LifeStealPercentage.Value * 0.2f, attacker);
+                        }
+                    }
+                }
             }
         }
     }
@@ -71,7 +88,7 @@ public class Health : NetworkBehaviour
     {
         if (sender.TryGet(out NetworkObject healer))
         {
-            currentHealth.Value += Mathf.Min(currentHealth.Value + amount, maxHealth.Value);
+            currentHealth.Value = Mathf.Min(currentHealth.Value + amount, maxHealth.Value);
         }
     }
 

@@ -183,9 +183,17 @@ public class Shop : MonoBehaviour
                 playerController.ItemEffectServerRpc("Max Mana", itemScript.StatBuffs[7]);
                 playerController.ItemEffectServerRpc("CDR", itemScript.StatBuffs[8]);
                 playerController.ItemEffectServerRpc("Health", itemScript.StatBuffs[9]);
-                if (itemScript.specialEffect == "something")
+                if (itemScript.specialEffect == "Player Kill Money")
                 {
-                    //Add special effect to player character for purchasing
+                    playerController.ItemEffectServerRpc("Player Kill Money", 0);
+                }
+                if (itemScript.specialEffect == "25% Lifesteal")
+                {
+                    playerController.ItemEffectServerRpc("Lifesteal", 0.25f);
+                }
+                if (itemScript.specialEffect == "10% Lifesteal")
+                {
+                    playerController.ItemEffectServerRpc("Lifesteal", 0.1f);
                 }
                 Destroy(item);
                 isYapping = true;
