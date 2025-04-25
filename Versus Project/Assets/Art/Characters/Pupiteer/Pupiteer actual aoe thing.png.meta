@@ -1,0 +1,708 @@
+fileFormatVersion: 2
+guid: 953463d172053c141a0cc6247e98c7fe
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2690125116203242980
+    second: Pupiteer actual aoe thing_0
+  - first:
+      213: 8541546219347059970
+    second: Pupiteer actual aoe thing_1
+  - first:
+      213: -4365480242384212736
+    second: Pupiteer actual aoe thing_2
+  - first:
+      213: -547658502528041619
+    second: Pupiteer actual aoe thing_3
+  - first:
+      213: 4686143928191964513
+    second: Pupiteer actual aoe thing_4
+  - first:
+      213: 4986186829605896937
+    second: Pupiteer actual aoe thing_5
+  - first:
+      213: 4318765149287079365
+    second: Pupiteer actual aoe thing_6
+  - first:
+      213: 8185667812052492980
+    second: Pupiteer actual aoe thing_7
+  - first:
+      213: 1200123625584322742
+    second: Pupiteer actual aoe thing_8
+  - first:
+      213: -441084882508416953
+    second: Pupiteer actual aoe thing_9
+  - first:
+      213: -4054857847579505491
+    second: Pupiteer actual aoe thing_10
+  - first:
+      213: -6952204196823373135
+    second: Pupiteer actual aoe thing_11
+  - first:
+      213: -7129585843429185557
+    second: Pupiteer actual aoe thing_12
+  - first:
+      213: -8977351108978021631
+    second: Pupiteer actual aoe thing_13
+  - first:
+      213: 7880209327959026594
+    second: Pupiteer actual aoe thing_14
+  - first:
+      213: -6552298104846841585
+    second: Pupiteer actual aoe thing_15
+  - first:
+      213: 6049644909509805297
+    second: Pupiteer actual aoe thing_16
+  - first:
+      213: 8818672112438231761
+    second: Pupiteer actual aoe thing_17
+  - first:
+      213: -2268253636307615985
+    second: Pupiteer actual aoe thing_18
+  - first:
+      213: -1345781287665292782
+    second: Pupiteer actual aoe thing_19
+  - first:
+      213: 7625676214266881877
+    second: Pupiteer actual aoe thing_20
+  - first:
+      213: 1736121322191979967
+    second: Pupiteer actual aoe thing_21
+  - first:
+      213: 7471798174243601830
+    second: Pupiteer actual aoe thing_22
+  - first:
+      213: -8956444192852530697
+    second: Pupiteer actual aoe thing_23
+  - first:
+      213: 7447413846222595538
+    second: Pupiteer actual aoe thing_24
+  - first:
+      213: 2817495702204134086
+    second: Pupiteer actual aoe thing_25
+  - first:
+      213: -1237258538670265396
+    second: Pupiteer actual aoe thing_26
+  - first:
+      213: -4152663103809583011
+    second: Pupiteer actual aoe thing_27
+  - first:
+      213: 1090632789989503156
+    second: Pupiteer actual aoe thing_28
+  - first:
+      213: 2474622870506647628
+    second: Pupiteer actual aoe thing_29
+  - first:
+      213: -2517178197793882947
+    second: Pupiteer actual aoe thing_30
+  - first:
+      213: 8307740262109548984
+    second: Pupiteer actual aoe thing_31
+  - first:
+      213: -6840546841555102179
+    second: Pupiteer actual aoe thing_32
+  - first:
+      213: 4207194694965794746
+    second: Pupiteer actual aoe thing_33
+  - first:
+      213: -1810923350759727093
+    second: Pupiteer actual aoe thing_34
+  - first:
+      213: 3117746623880992673
+    second: Pupiteer actual aoe thing_35
+  - first:
+      213: -7986314942913851995
+    second: Pupiteer actual aoe thing_36
+  - first:
+      213: 8422112593224178234
+    second: Pupiteer actual aoe thing_37
+  - first:
+      213: 5685654190996590624
+    second: Pupiteer actual aoe thing_38
+  - first:
+      213: 9061827663377916941
+    second: Pupiteer actual aoe thing_39
+  - first:
+      213: 3057549895480850069
+    second: Pupiteer actual aoe thing_40
+  - first:
+      213: -3413959025853798060
+    second: Pupiteer actual aoe thing_41
+  - first:
+      213: -442061742524676132
+    second: Pupiteer actual aoe thing_42
+  - first:
+      213: -838954482636161094
+    second: Pupiteer actual aoe thing_43
+  - first:
+      213: -8310987177281482866
+    second: Pupiteer actual aoe thing_44
+  - first:
+      213: -3025895263542630973
+    second: Pupiteer actual aoe thing_45
+  - first:
+      213: -9111699432331989844
+    second: Pupiteer actual aoe thing_46
+  - first:
+      213: -6084175955952958275
+    second: Pupiteer actual aoe thing_47
+  - first:
+      213: -7679206259474110625
+    second: Pupiteer actual aoe thing_48
+  - first:
+      213: -6085344686593202344
+    second: Pupiteer actual aoe thing_49
+  - first:
+      213: -1608683553323951776
+    second: Pupiteer actual aoe thing_50
+  - first:
+      213: -9138370984596331759
+    second: Pupiteer actual aoe thing_51
+  - first:
+      213: 2155313558458544338
+    second: Pupiteer actual aoe thing_52
+  - first:
+      213: 8184198623685122884
+    second: Pupiteer actual aoe thing_53
+  - first:
+      213: 8312402824671546947
+    second: Pupiteer actual aoe thing_54
+  - first:
+      213: 8271526902308170948
+    second: Pupiteer actual aoe thing_55
+  - first:
+      213: 7679619451404115800
+    second: Pupiteer actual aoe thing_56
+  - first:
+      213: 3164219739290136454
+    second: Pupiteer actual aoe thing_57
+  - first:
+      213: 2573657836957868294
+    second: Pupiteer actual aoe thing_58
+  - first:
+      213: 409586999940733521
+    second: Pupiteer actual aoe thing_59
+  - first:
+      213: -1955550514439554483
+    second: Pupiteer actual aoe thing_60
+  - first:
+      213: -756703634045435665
+    second: Pupiteer actual aoe thing_61
+  - first:
+      213: 9059354522189341369
+    second: Pupiteer actual aoe thing_62
+  - first:
+      213: -4896865662170314529
+    second: Pupiteer actual aoe thing_63
+  - first:
+      213: 1438044587044242129
+    second: Pupiteer actual aoe thing_64
+  - first:
+      213: -8001134529018098254
+    second: Pupiteer actual aoe thing_65
+  - first:
+      213: 3225032826944077307
+    second: Pupiteer actual aoe thing_66
+  - first:
+      213: -2796755785167850846
+    second: Pupiteer actual aoe thing_67
+  - first:
+      213: 6995786770866570952
+    second: Pupiteer actual aoe thing_68
+  - first:
+      213: -4934936914591507345
+    second: Pupiteer actual aoe thing_69
+  - first:
+      213: 6293157849567812270
+    second: Pupiteer actual aoe thing_70
+  - first:
+      213: 3275203289758286093
+    second: Pupiteer actual aoe thing_71
+  - first:
+      213: 445725991741713751
+    second: Pupiteer actual aoe thing_72
+  - first:
+      213: 9107185184844330821
+    second: Pupiteer actual aoe thing_73
+  - first:
+      213: -2357304727873179353
+    second: Pupiteer actual aoe thing_74
+  - first:
+      213: 6610435491478533028
+    second: Pupiteer actual aoe thing_75
+  - first:
+      213: -8423706996166130586
+    second: Pupiteer actual aoe thing_76
+  - first:
+      213: 8903763149271290067
+    second: Pupiteer actual aoe thing_77
+  - first:
+      213: 5638057535487335368
+    second: Pupiteer actual aoe thing_78
+  - first:
+      213: -6293967458319057212
+    second: Pupiteer actual aoe thing_79
+  - first:
+      213: -6294015956837843354
+    second: Pupiteer actual aoe thing_80
+  - first:
+      213: -1772374936419556273
+    second: Pupiteer actual aoe thing_81
+  - first:
+      213: 4315494881640369626
+    second: Pupiteer actual aoe thing_82
+  - first:
+      213: -5447645508858940248
+    second: Pupiteer actual aoe thing_83
+  - first:
+      213: 2629843207333600876
+    second: Pupiteer actual aoe thing_84
+  - first:
+      213: -7223291486459940819
+    second: Pupiteer actual aoe thing_85
+  - first:
+      213: 2754079476709276076
+    second: Pupiteer actual aoe thing_86
+  - first:
+      213: 4457490662788276256
+    second: Pupiteer actual aoe thing_87
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_0
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e596a05a8e355520800000000000000
+      internalID: 2690125116203242980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20523cc080ba98670800000000000000
+      internalID: 8541546219347059970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00de3be49d2ba63c0800000000000000
+      internalID: -4365480242384212736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6df79a5e735668f0800000000000000
+      internalID: -547658502528041619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_4
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1655c3e0317880140800000000000000
+      internalID: 4686143928191964513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e2046ae08e723540800000000000000
+      internalID: 4986186829605896937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_6
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cdd79f75065feb30800000000000000
+      internalID: 4318765149287079365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_7
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b2ecba6185599170800000000000000
+      internalID: 8185667812052492980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_8
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b8e1853412b7a010800000000000000
+      internalID: 1200123625584322742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_9
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7487a46e2a3f0e9f0800000000000000
+      internalID: -441084882508416953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_10
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dac815c65404ab7c0800000000000000
+      internalID: -4054857847579505491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_11
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1baec5a0e1fc48f90800000000000000
+      internalID: -6952204196823373135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_12
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be7efb6137f9e0d90800000000000000
+      internalID: -7129585843429185557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_13
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10be76dfaba0a6380800000000000000
+      internalID: -8977351108978021631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupiteer actual aoe thing_14
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aba7b4f1a02c5d60800000000000000
+      internalID: 7880209327959026594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2e6e8e9b7243d374ca9692033774cc03
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Pupiteer actual aoe thing_0: 2690125116203242980
+      Pupiteer actual aoe thing_1: 8541546219347059970
+      Pupiteer actual aoe thing_10: -4054857847579505491
+      Pupiteer actual aoe thing_11: -6952204196823373135
+      Pupiteer actual aoe thing_12: -7129585843429185557
+      Pupiteer actual aoe thing_13: -8977351108978021631
+      Pupiteer actual aoe thing_14: 7880209327959026594
+      Pupiteer actual aoe thing_2: -4365480242384212736
+      Pupiteer actual aoe thing_3: -547658502528041619
+      Pupiteer actual aoe thing_4: 4686143928191964513
+      Pupiteer actual aoe thing_5: 4986186829605896937
+      Pupiteer actual aoe thing_6: 4318765149287079365
+      Pupiteer actual aoe thing_7: 8185667812052492980
+      Pupiteer actual aoe thing_8: 1200123625584322742
+      Pupiteer actual aoe thing_9: -441084882508416953
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
