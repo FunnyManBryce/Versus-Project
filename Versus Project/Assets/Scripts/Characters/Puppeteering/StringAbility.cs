@@ -8,7 +8,6 @@ public class StringAbility : NetworkBehaviour
     public float damage;
     public float markAmount;
     public Transform Pos;
-    public float lifespan = 0.5f;
     public NetworkObject sender;
     // Start is called before the first frame update
     void Start()
@@ -22,21 +21,9 @@ public class StringAbility : NetworkBehaviour
         //damage = sender.GetComponent<BasePlayerController>().attackDamage * 2;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!IsServer) return;
-        lifespan -= Time.deltaTime;
-        if (lifespan < 0)
-        {
-            lifespan = 100000;
-            Damage();
-            gameObject.GetComponent<NetworkObject>().Despawn();
-        }
-    }
-
     public void Damage()
     {
+        if (!IsServer) return;
         Vector2 pos = new Vector2(Pos.position.x, Pos.position.y);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 4);
         foreach (var collider in hitColliders)
@@ -57,10 +44,12 @@ public class StringAbility : NetworkBehaviour
                 }
             }
         }
-        if (gameObject.GetComponent<NetworkObject>().IsSpawned == false)
-        {
-            gameObject.GetComponent<NetworkObject>().Despawn();
-        }
+    }
+
+    public void Despawn()
+    {
+        if (!IsServer) return;
+        gameObject.GetComponent<NetworkObject>().Despawn();
     }
 
     private bool CanAttackTarget(NetworkObject targetObject)
