@@ -104,6 +104,7 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject goldDisplayPrefab;
     public GameObject moveSpeedDisplayPrefab;
     public GameObject shopPrefab;
+    public GameObject unspentUpgradesPrefab;
 
     public GameObject enemyHealthBarPrefab;
     public GameObject HealthBar;
@@ -322,6 +323,9 @@ public class BasePlayerController : NetworkBehaviour
 
                 GameObject goldDisplay = Instantiate(goldDisplayPrefab, playerCanvas.transform);
                 goldDisplay.GetComponent<PlayerGoldDisplay>().enabled = true;
+                
+                GameObject upgradesDisplay = Instantiate(unspentUpgradesPrefab, playerCanvas.transform);
+                upgradesDisplay.GetComponent<PlayerUnspentUpgradsUI>().enabled = true;
             }
         }
         if (!IsOwner)

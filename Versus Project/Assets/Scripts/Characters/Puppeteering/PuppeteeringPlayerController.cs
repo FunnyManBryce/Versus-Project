@@ -395,6 +395,8 @@ public class PuppeteeringPlayerController : BasePlayerController
                 GameObject manaRegenDisplay = Instantiate(manaRegenDisplayPrefab, playerCanvas.transform);
                 manaRegenDisplay.GetComponent<PlayerManaRegenDisplay>().enabled = true;
 
+                GameObject upgradesDisplay = Instantiate(unspentUpgradesPrefab, playerCanvas.transform);
+                upgradesDisplay.GetComponent<PlayerUnspentUpgradsUI>().enabled = true;
             }
         }
         if (!IsOwner)
