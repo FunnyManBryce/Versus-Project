@@ -310,7 +310,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Effect: +65 Attack Damage
 
-    +15% Lifesteal
+    +10% Lifesteal
 
     +0.3 Attack Speed'
   m_isRightToLeft: 0
