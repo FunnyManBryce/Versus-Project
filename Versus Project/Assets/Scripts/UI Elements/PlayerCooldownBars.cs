@@ -650,6 +650,22 @@ public class PlayerCooldownBars : MonoBehaviour
                     break;
             }
         }
+        else if (playerController is VoidPlayerController voidPlayer)
+        {
+            switch (abilityIndex)
+            {
+                case 1: // First ability (AOE)
+                    voidPlayer.VoidBall.abilityLevelUp();
+                    break;
+                case 2: // Second ability (Shockwave)
+                    voidPlayer.BlinkAbility.abilityLevelUp();
+
+                    break;
+                case 3: // Ultimate
+                    voidPlayer.VoidPerspective.abilityLevelUp();
+                    break;
+            }
+        }
     }
 
     public void MouseEnter()
