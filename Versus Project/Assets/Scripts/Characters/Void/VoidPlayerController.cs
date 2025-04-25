@@ -536,19 +536,20 @@ public class VoidPlayerController : BasePlayerController
 
             if (BlinkAbility.abilityLevel == 2)
             {
-                blinkDistance += 1f; // Increase distance
+                BlinkAbility.cooldown -= 3f; // Reduce cooldown
             }
             if (BlinkAbility.abilityLevel == 3)
             {
-                BlinkAbility.cooldown -= 2f; // Reduce cooldown
+                BlinkAbility.cooldown -= 3f; // Reduce cooldown
             }
             if (BlinkAbility.abilityLevel == 4)
             {
-                BlinkAbility.manaCost -= 10f; // Reduce mana cost
+                BlinkAbility.cooldown -= 3f; // Reduce cooldown
             }
             if (BlinkAbility.abilityLevel == 5)
             {
                 blinkDistance += 1.5f; // Further increase distance
+                passiveDamageIncrease += 0.05f;
             }
         }
     }
@@ -584,11 +585,11 @@ public class VoidPlayerController : BasePlayerController
 
             if (VoidPerspective.abilityLevel == 2)
             {
-                ultimateDuration += 2f; // Longer duration
+                ultimateDuration += 3f; // Longer duration
             }
             if (VoidPerspective.abilityLevel == 3)
             {
-                VoidPerspective.cooldown -= 15f; // Lower cooldown
+                VoidPerspective.cooldown -= 25f; // Lower cooldown
             }
             if (VoidPerspective.abilityLevel == 4)
             {
@@ -597,6 +598,7 @@ public class VoidPlayerController : BasePlayerController
             if (VoidPerspective.abilityLevel == 5)
             {
                 abilityCooldownReduction += 0.1f; // 85% CDR on Q during ult
+                passiveDamageIncrease += 0.05f;
             }
         }
     }
