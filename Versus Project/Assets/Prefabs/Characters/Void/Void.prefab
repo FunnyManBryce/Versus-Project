@@ -562,19 +562,19 @@ MonoBehaviour:
   voidBallPrefab: {fileID: 6271209008562182701, guid: dcbd7ba032f7e7f4783f94309e0f80b7,
     type: 3}
   passiveDamageIncrease: 0.1
-  passiveDuration: 10
+  passiveDuration: 15
   passiveStacks:
     m_InternalValue: 0
   baseAttackDamage: 0
   dangerCircleRadius: 1
   dangerCircleWarningTime: 1
-  ballReturnSpeed: 20
+  ballReturnSpeed: 0.1
   ballDamageMultiplier: 1
   voidBallCastRange: 15
   dangerCirclePrefab: {fileID: 5385389721141281123, guid: 139be3166f475d841adb3763335e7541,
     type: 3}
   voidBallMultiCastCount: 1
-  blinkDistance: 5
+  blinkDistance: 4
   ultimateDuration: 6
   cameraZoomOutMultiplier: 1.5
   abilityCooldownReduction: 0.25
@@ -630,7 +630,7 @@ MonoBehaviour:
     isUnlocked: 0
     cooldown: 80
     manaCost: 100
-    lastUsed: 0
+    lastUsed: -90
     pointClickTimeUsed: 0
     abilityLevel: 1
     abilityBeingUsed: 0

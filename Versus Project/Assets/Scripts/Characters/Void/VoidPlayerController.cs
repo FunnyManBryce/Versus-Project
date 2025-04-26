@@ -411,13 +411,15 @@ public class VoidPlayerController : BasePlayerController
     }
 
     // When a void ball hits an enemy
-    public void OnVoidBallHit()
+    public void OnVoidBallHit(NetworkObject hitTarget)
     {
-        // Update last hit time for passive
         lastAbilityHitTime = Time.time;
 
-        // Increment passive stacks
-        IncrementPassiveServerRpc();
+        // Only increment passive stacks if the hit target is a player
+        if (hitTarget != null && hitTarget.TryGetComponent<BasePlayerController>(out _))
+        {
+            IncrementPassiveServerRpc();
+        }
     }
 
     [ServerRpc]
