@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3824647960
+  GlobalObjectIdHash: 3824891134
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -160,8 +160,6 @@ MonoBehaviour:
   speed: 0
   damage: 0
   armorPen: 0
-  accelerationRate: 100
-  maxSpeedMultiplier: 1000
   hitEffectPrefab: {fileID: 0}
   trailRenderer: {fileID: 731292610749168863}
 --- !u!96 &731292610749168863
