@@ -13,12 +13,6 @@ public class VoidBallController : NetworkBehaviour
     private NetworkObjectReference casterRef;
     private VoidPlayerController voidPlayer;
 
-    // Acceleration properties
-    public float accelerationRate = 0.5f;    // Speed increases by this amount per second
-    public float maxSpeedMultiplier = 3.0f;  // Maximum speed will be this times the initial speed
-    private float initialSpeed;              // Store the initial speed
-    private float travelTime = 0f;           // Track how long the ball has been traveling
-
     // Visual effects
     public GameObject hitEffectPrefab;
     public TrailRenderer trailRenderer;
@@ -30,7 +24,6 @@ public class VoidBallController : NetworkBehaviour
     public void Initialize(float moveSpeed, float damageAmount, NetworkObjectReference caster, float armorPenetration, VoidPlayerController casterPlayer)
     {
         speed = moveSpeed;
-        initialSpeed = moveSpeed;  // Store initial speed for acceleration calculations
         damage = damageAmount;
         armorPen = armorPenetration;
         casterRef = caster;
@@ -47,42 +40,22 @@ public class VoidBallController : NetworkBehaviour
     {
         yield return new WaitForSeconds(delay);
         isReturning = true;
-
-        // Reset travel time when returning to maintain smooth acceleration
-        travelTime = 0f;
     }
 
     private void Update()
     {
         if (!IsServer) return;
 
-        // Increment travel time
-        travelTime += Time.deltaTime;
-
-        // Calculate current speed based on travel time
-        float currentSpeed = initialSpeed + (accelerationRate * travelTime);
-
-        // Cap the speed at the maximum limit
-        currentSpeed = Mathf.Min(currentSpeed, initialSpeed * maxSpeedMultiplier);
-
-        // Apply the calculated speed
         if (isReturning)
         {
             // Calculate return path to caster
             if (casterRef.TryGet(out NetworkObject casterObj))
             {
                 Vector3 direction = (casterObj.transform.position - transform.position).normalized;
-                transform.position += direction * currentSpeed * Time.deltaTime;
+                transform.position += direction * speed * Time.deltaTime;
 
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, angle);
-
-                // Scale the trail width based on speed for visual feedback
-                if (trailRenderer != null)
-                {
-                    float speedRatio = currentSpeed / (initialSpeed * maxSpeedMultiplier);
-                    trailRenderer.startWidth = Mathf.Lerp(trailRenderer.startWidth, trailRenderer.startWidth * 1.5f, speedRatio);
-                }
 
                 if (Vector3.Distance(transform.position, casterObj.transform.position) < 1.0f)
                 {
@@ -114,12 +87,7 @@ public class VoidBallController : NetworkBehaviour
                 {
                     hitTargets.Add(targetObj.NetworkObjectId);
 
-                    // Calculate bonus damage based on current speed
-                    float currentSpeed = initialSpeed + (accelerationRate * travelTime);
-                    float speedMultiplier = Mathf.Clamp(currentSpeed / initialSpeed, 1f, maxSpeedMultiplier);
-                    float calculatedDamage = damage * speedMultiplier;
-
-                    health.TakeDamageServerRPC(calculatedDamage, casterRef, armorPen, false);
+                    health.TakeDamageServerRPC(damage, casterRef, armorPen, false);
 
                     if (hitEffectPrefab != null)
                     {
@@ -130,10 +98,10 @@ public class VoidBallController : NetworkBehaviour
                         StartCoroutine(DestroyAfterDelay(hitEffect, 1.0f));
                     }
 
-                    // Notify void player of hit for passive - passing the target object
+                    // Notify void player of hit for passive
                     if (voidPlayer != null)
                     {
-                        voidPlayer.OnVoidBallHit(targetObj);
+                        voidPlayer.OnVoidBallHit();
                     }
 
                     // Play sound effect

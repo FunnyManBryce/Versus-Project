@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 14862719
+  GlobalObjectIdHash: 321467190
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -561,23 +561,22 @@ MonoBehaviour:
   VoidCore: {fileID: 7846404579260722031}
   voidBallPrefab: {fileID: 6271209008562182701, guid: dcbd7ba032f7e7f4783f94309e0f80b7,
     type: 3}
-  passiveDamageIncrease: 0.1
-  passiveDuration: 15
+  passiveDamageIncrease: 0.05
+  passiveDuration: 8
   passiveStacks:
     m_InternalValue: 0
   baseAttackDamage: 0
   dangerCircleRadius: 1
   dangerCircleWarningTime: 1
-  ballReturnSpeed: 0.1
+  ballReturnSpeed: 20
   ballDamageMultiplier: 1
   voidBallCastRange: 15
   dangerCirclePrefab: {fileID: 5385389721141281123, guid: 139be3166f475d841adb3763335e7541,
     type: 3}
-  voidBallMultiCastCount: 1
-  blinkDistance: 4
+  blinkDistance: 5
   ultimateDuration: 6
   cameraZoomOutMultiplier: 1.5
-  abilityCooldownReduction: 0.25
+  abilityCooldownReduction: 0.8
   movementSpeedReduction: 0.999
   voidBallUltimateRangeMultiplier: 10
   VoidBall:
@@ -594,19 +593,18 @@ MonoBehaviour:
     preventAbilityUse: 0
     abilityName: Coalesce
     abilityDescription: Click abilty than Mouse 1 to set a returning orb that will
-      deal damage twice
+      deal damage
     levelUpEffects:
     - Unlock Abilty
     - Coalesce does 20 % more damage
     - Ball warning circle 0.5 seconds shorter
     - Cooldown reduced by 20%
-    - 'Cast the three balls, and Passive gains a additional 10% attack growth on
-      consecutive abilty hit '
+    - 'Passive gains a additional 5% attack growth on consecutive abilty hit '
   BlinkAbility:
     playerController: {fileID: -7934763187758970237}
     inputKey: 101
     isUnlocked: 0
-    cooldown: 12
+    cooldown: 15
     manaCost: 80
     lastUsed: 0
     pointClickTimeUsed: 0
@@ -622,15 +620,15 @@ MonoBehaviour:
     - Abilty cooldown reduced by 3 seconds
     - Abilty cooldown reduced by 3 seconds
     - Abilty cooldown reduced by 3 seconds
-    - Passive gains a additional 10% attack growth on consecutive abilty hit (slightly
+    - Passive gains a additional 5% attack growth on consecutive abilty hit (slightly
       increase blink distance
   VoidPerspective:
     playerController: {fileID: -7934763187758970237}
     inputKey: 114
     isUnlocked: 0
-    cooldown: 80
+    cooldown: 20
     manaCost: 100
-    lastUsed: -90
+    lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
     abilityBeingUsed: 0
@@ -638,13 +636,13 @@ MonoBehaviour:
     preventAbilityUse: 0
     abilityName: Voids Perspective
     abilityDescription: Zoom out camera, have Your camera gets zoomed out, Coalesce
-      cooldown is cut by 50% with no more mana cost for 6 seconds
+      cooldown is cut by 75% with no more mana cost for 6 seconds
     levelUpEffects:
     - Unlock Abilty
-    - Void Perspective now allows you to multicast 2 times the amount
-    - decrease cooldown of this abilty by 25 seconds
     - increase the duration of the ultimate by 3 seconds and zoom out farther
-    - 'Passive gains a additional 10% attack growth on consecutive abilty hit '
+    - decrease cooldown of this abilty by 25 seconds
+    - ult cuts q cd by 85% instead of 75%
+    - 'Passive gains a additional 5% attack growth on consecutive abilty hit '
   targetableLayer:
     serializedVersion: 2
     m_Bits: 0
