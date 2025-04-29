@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4203327502
+  GlobalObjectIdHash: 1053785986
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -256,7 +256,7 @@ MonoBehaviour:
   distanceFromPuppet: {x: 0, y: 0, z: 0}
   goldRange: 10
   goldGiven: 0
-  Damage: 500
+  Damage: 300
   armorPen: 1
   orderInLane: 0
   aggroTimer: 0

@@ -257,7 +257,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             if (isDead.Value)
             {
                 currentTarget = null;
-                transform.position = new Vector3(-420, -69, 0);
+                transform.position = new Vector3(10000, 10000, 0);
                 StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value, OwnerClientId));
                 if (IsServer)
                 {
