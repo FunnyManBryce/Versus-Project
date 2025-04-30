@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 321467190
+  GlobalObjectIdHash: 14862719
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -562,7 +562,7 @@ MonoBehaviour:
   voidBallPrefab: {fileID: 6271209008562182701, guid: dcbd7ba032f7e7f4783f94309e0f80b7,
     type: 3}
   passiveDamageIncrease: 0.05
-  passiveDuration: 8
+  passiveDuration: 2
   passiveStacks:
     m_InternalValue: 0
   baseAttackDamage: 0

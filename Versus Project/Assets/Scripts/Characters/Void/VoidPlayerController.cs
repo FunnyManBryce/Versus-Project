@@ -6,11 +6,11 @@ using Unity.Netcode;
 public class VoidPlayerController : BasePlayerController
 {
     // Core character references
-    public GameObject VoidCore; 
-    public GameObject voidBallPrefab; 
+    public GameObject VoidCore;
+    public GameObject voidBallPrefab;
 
     // Passive - Damage stacking
-    public float passiveDamageIncrease = 0.1f; 
+    public float passiveDamageIncrease = 0.1f;
     public float passiveDuration = 8f; // Duration before stacks reset if no Q hits
     private float lastAbilityHitTime;
     public NetworkVariable<int> passiveStacks = new NetworkVariable<int>();
@@ -18,19 +18,19 @@ public class VoidPlayerController : BasePlayerController
 
     // Ability 1 - Void Ball
     public float dangerCircleRadius = 2.5f;
-    public float dangerCircleWarningTime = 1.0f;  
-    public float ballReturnSpeed = 5f;            
-    public float ballDamageMultiplier = 0.7f;     
-    public float voidBallCastRange = 20f;             
-    public GameObject dangerCirclePrefab;         
+    public float dangerCircleWarningTime = 1.0f;
+    public float ballReturnSpeed = 5f;
+    public float ballDamageMultiplier = 0.7f;
+    public float voidBallCastRange = 20f;
+    public GameObject dangerCirclePrefab;
 
     // Ability 2 - Blink
-    public float blinkDistance = 5f;              
+    public float blinkDistance = 5f;
 
     // Ultimate - Void Perspective
-    public float ultimateDuration = 8f;           
+    public float ultimateDuration = 8f;
     public float cameraZoomOutMultiplier = 2f;
-    public float abilityCooldownReduction = 0.8f; 
+    public float abilityCooldownReduction = 0.8f;
     public float movementSpeedReduction = 0.999f;
     public float voidBallUltimateRangeMultiplier = 10f;
     private bool isUltimateActive = false;
@@ -48,6 +48,11 @@ public class VoidPlayerController : BasePlayerController
     // State tracking
     private Vector3 blinkTargetPosition;
     private bool waitingForBallPlacement = false;
+
+    // Bug-fix: Add flags to prevent multiple activations
+    private bool isProcessingVoidBall = false;
+    private bool isProcessingBlink = false;
+    private bool isProcessingUltimate = false;
 
     new private void Awake()
     {
@@ -151,22 +156,55 @@ public class VoidPlayerController : BasePlayerController
         // Attempt abilities if not stunned
         if (!isStunned.Value)
         {
-            VoidPerspective.AttemptUse();
+            // BUG FIX: Don't use AttemptUse() for abilities that handle their own logic
+            // FIX: Call AbilityBase processing only once per ability
+
+            // Handle ultimate activation
+            if (Input.GetKeyDown(VoidPerspective.inputKey) &&
+                VoidPerspective.isUnlocked &&
+                !VoidPerspective.preventAbilityUse &&
+                VoidPerspective.CanUse() &&
+                !isProcessingUltimate)
+            {
+                VoidPerspectiveHostCheck();
+            }
 
             // Special handling for void ball during ultimate
             if (isUltimateActive)
             {
                 // Allow Q to be used more frequently during ultimate
-                if (Input.GetKeyDown(VoidBall.inputKey) && VoidBall.isUnlocked && !VoidBall.preventAbilityUse &&
-                    VoidBall.CanUse() && !waitingForBallPlacement)
+                if (Input.GetKeyDown(VoidBall.inputKey) &&
+                    VoidBall.isUnlocked &&
+                    !VoidBall.preventAbilityUse &&
+                    VoidBall.CanUse() &&
+                    !waitingForBallPlacement &&
+                    !isProcessingVoidBall)
                 {
                     VoidBallHostCheck();
                 }
             }
             else
             {
-                VoidBall.AttemptUse();
-                BlinkAbility.AttemptUse();
+                // Handle void ball activation
+                if (Input.GetKeyDown(VoidBall.inputKey) &&
+                    VoidBall.isUnlocked &&
+                    !VoidBall.preventAbilityUse &&
+                    VoidBall.CanUse() &&
+                    !waitingForBallPlacement &&
+                    !isProcessingVoidBall)
+                {
+                    VoidBallHostCheck();
+                }
+
+                // Handle blink activation
+                if (Input.GetKeyDown(BlinkAbility.inputKey) &&
+                    BlinkAbility.isUnlocked &&
+                    !BlinkAbility.preventAbilityUse &&
+                    BlinkAbility.CanUse() &&
+                    !isProcessingBlink)
+                {
+                    BlinkHostCheck();
+                }
             }
         }
     }
@@ -186,21 +224,37 @@ public class VoidPlayerController : BasePlayerController
 
     public void VoidBallHostCheck()
     {
-        if (!IsOwner) return;
+        if (!IsOwner || isProcessingVoidBall) return;
+
+        isProcessingVoidBall = true;
 
         // Initialize ability
         if (!isUltimateActive)
         {
+            // Bug fix: Call OnUse() here to deduct mana only once
             VoidBall.OnUse();
         }
         else
         {
+            // Bug fix: Still need to deduct mana
+            mana -= VoidBall.manaCost;
             VoidBall.lastUsed = Time.time;
         }
 
         waitingForBallPlacement = true;
         AbilityOneAnimation();
+
+        // Reset processing flag after a short delay
+        StartCoroutine(ResetVoidBallProcessingFlag());
     }
+
+    private IEnumerator ResetVoidBallProcessingFlag()
+    {
+        // Wait for a short time to prevent multiple activations
+        yield return new WaitForSeconds(0.2f);
+        isProcessingVoidBall = false;
+    }
+
     [ServerRpc]
     private void VoidBallPlaceServerRpc(Vector2 position)
     {
@@ -248,7 +302,9 @@ public class VoidPlayerController : BasePlayerController
 
     public void BlinkHostCheck()
     {
-        if (!IsOwner) return;
+        if (!IsOwner || isProcessingBlink) return;
+
+        isProcessingBlink = true;
 
         // Get mouse position for blink direction
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -259,9 +315,20 @@ public class VoidPlayerController : BasePlayerController
         blinkTargetPosition = playerPosition + (blinkDirection * blinkDistance);
 
         // Execute blink
+        // Bug fix: Call OnUse() here to deduct mana only once
         BlinkAbility.OnUse();
         AbilityTwoAnimation();
         BlinkServerRpc(blinkTargetPosition);
+
+        // Reset processing flag after a short delay
+        StartCoroutine(ResetBlinkProcessingFlag());
+    }
+
+    private IEnumerator ResetBlinkProcessingFlag()
+    {
+        // Wait for a short time to prevent multiple activations
+        yield return new WaitForSeconds(0.2f);
+        isProcessingBlink = false;
     }
 
     [ServerRpc]
@@ -297,14 +364,26 @@ public class VoidPlayerController : BasePlayerController
 
     public void VoidPerspectiveHostCheck()
     {
-        if (!IsOwner) return;
+        if (!IsOwner || isProcessingUltimate) return;
+
+        isProcessingUltimate = true;
 
         // Execute ultimate
+        // Bug fix: Call OnUse() here to deduct mana only once
         VoidPerspective.OnUse();
         UltimateAnimation();
         VoidPerspectiveServerRpc();
+
+        // Reset processing flag after a short delay
+        StartCoroutine(ResetUltimateProcessingFlag());
     }
 
+    private IEnumerator ResetUltimateProcessingFlag()
+    {
+        // Wait for a short time to prevent multiple activations
+        yield return new WaitForSeconds(0.2f);
+        isProcessingUltimate = false;
+    }
 
     [ServerRpc]
     private void VoidPerspectiveServerRpc()
@@ -350,7 +429,7 @@ public class VoidPlayerController : BasePlayerController
         health.invulnerable = false;
         isUltimateActive = false;
         VoidBall.cooldown = normalCooldownQ;
-        voidBallCastRange = originalRange;  
+        voidBallCastRange = originalRange;
 
         SetCameraZoomClientRpc(1f / cameraZoomOutMultiplier);
     }
@@ -497,7 +576,7 @@ public class VoidPlayerController : BasePlayerController
             }
             if (VoidBall.abilityLevel == 5)
             {
-                passiveDamageIncrease += 0.05f; 
+                passiveDamageIncrease += 0.05f;
             }
         }
 
