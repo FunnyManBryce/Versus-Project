@@ -9,6 +9,12 @@ public class VoidPlayerController : BasePlayerController
     public GameObject VoidCore;
     public GameObject voidBallPrefab;
 
+    // Multi-casting feature
+    public int baseVoidBallCasts = 1;  // Default number of casts
+    public float multiCastDelay = 0.5f; // Delay between multi-casts
+    private int remainingCasts = 0;     // Track remaining casts in current sequence
+    public NetworkVariable<int> currentMaxCasts = new NetworkVariable<int>();
+
     // Passive - Damage stacking
     public float passiveDamageIncrease = 0.1f;
     public float passiveDuration = 8f; // Duration before stacks reset if no Q hits
@@ -72,6 +78,9 @@ public class VoidPlayerController : BasePlayerController
         normalCooldownQ = VoidBall.cooldown;
         baseAttackDamage = attackDamage;
 
+        // Initialize multi-cast variable
+        currentMaxCasts.Value = baseVoidBallCasts;
+
         // Character is a ranged attacker
         isMelee = false;
     }
@@ -90,6 +99,7 @@ public class VoidPlayerController : BasePlayerController
             isAttacking = false;
             animator.SetBool("AutoAttack", false);
             waitingForBallPlacement = false;
+            remainingCasts = 0; // Reset casts if stunned
         }
 
         base.Update();
@@ -143,22 +153,34 @@ public class VoidPlayerController : BasePlayerController
             // Check if within range
             if (Vector3.Distance(transform.position, mousePosition) <= voidBallCastRange)
             {
-                waitingForBallPlacement = false;
                 VoidBallPlaceServerRpc(new Vector2(mousePosition.x, mousePosition.y));
+
+                // Decrement remaining casts
+                remainingCasts--;
+
+                // Continue waiting for placement if more casts remain
+                if (remainingCasts <= 0)
+                {
+                    waitingForBallPlacement = false;
+                }
+                else
+                {
+                    // Show visual indicator for remaining casts
+                    UpdateMultiCastUIClientRpc(remainingCasts);
+                }
             }
         }
         else if (waitingForBallPlacement && Input.GetMouseButtonDown(1))
         {
             // Cancel ability on right-click
             waitingForBallPlacement = false;
+            remainingCasts = 0;
+            UpdateMultiCastUIClientRpc(0);
         }
 
         // Attempt abilities if not stunned
         if (!isStunned.Value)
         {
-            // BUG FIX: Don't use AttemptUse() for abilities that handle their own logic
-            // FIX: Call AbilityBase processing only once per ability
-
             // Handle ultimate activation
             if (Input.GetKeyDown(VoidPerspective.inputKey) &&
                 VoidPerspective.isUnlocked &&
@@ -233,16 +255,25 @@ public class VoidPlayerController : BasePlayerController
         {
             // Bug fix: Call OnUse() here to deduct mana only once
             VoidBall.OnUse();
+
+            // Set up multi-cast for normal mode
+            remainingCasts = currentMaxCasts.Value;
         }
         else
         {
             // Bug fix: Still need to deduct mana
             mana -= VoidBall.manaCost;
             VoidBall.lastUsed = Time.time;
+
+            // Double the casts during ultimate
+            remainingCasts = currentMaxCasts.Value * 2;
         }
 
         waitingForBallPlacement = true;
         AbilityOneAnimation();
+
+        // Update UI to show available casts
+        UpdateMultiCastUIClientRpc(remainingCasts);
 
         // Reset processing flag after a short delay
         StartCoroutine(ResetVoidBallProcessingFlag());
@@ -253,6 +284,14 @@ public class VoidPlayerController : BasePlayerController
         // Wait for a short time to prevent multiple activations
         yield return new WaitForSeconds(0.2f);
         isProcessingVoidBall = false;
+    }
+
+    [ClientRpc]
+    private void UpdateMultiCastUIClientRpc(int remainingCasts)
+    {
+        // Update UI to show remaining casts
+        // This would connect to your UI system
+        Debug.Log($"Remaining Void Ball casts: {remainingCasts}");
     }
 
     [ServerRpc]
@@ -568,20 +607,36 @@ public class VoidPlayerController : BasePlayerController
             }
             if (VoidBall.abilityLevel == 3)
             {
-                dangerCircleWarningTime -= 0.5f; // Increase size
+                dangerCircleWarningTime -= 0.5f; // Faster warning time
+                UpdateMultiCastMaxServerRpc(currentMaxCasts.Value + 1);
             }
             if (VoidBall.abilityLevel == 4)
             {
-                VoidBall.cooldown -= 1f; // Reduce cooldown
+                VoidBall.cooldown -= 2f; // Reduce cooldown
             }
             if (VoidBall.abilityLevel == 5)
             {
-                passiveDamageIncrease += 0.05f;
+                // Add multi-cast at max level
+                passiveDamageIncrease += 0.1f;
             }
         }
 
         // Update stored normal cooldown for Q
         normalCooldownQ = VoidBall.cooldown;
+    }
+
+    [ServerRpc]
+    private void UpdateMultiCastMaxServerRpc(int newMaxCasts)
+    {
+        currentMaxCasts.Value = newMaxCasts;
+        SyncMultiCastMaxClientRpc(newMaxCasts);
+    }
+
+    [ClientRpc]
+    private void SyncMultiCastMaxClientRpc(int newMaxCasts)
+    {
+        // Update UI if needed
+        Debug.Log($"Max Void Ball casts updated to: {newMaxCasts}");
     }
 
     public void BlinkLevelUp()
@@ -620,6 +675,7 @@ public class VoidPlayerController : BasePlayerController
             if (BlinkAbility.abilityLevel == 3)
             {
                 BlinkAbility.cooldown -= 3f; // Reduce cooldown
+                UpdateMultiCastMaxServerRpc(currentMaxCasts.Value + 1);
             }
             if (BlinkAbility.abilityLevel == 4)
             {
@@ -628,7 +684,7 @@ public class VoidPlayerController : BasePlayerController
             if (BlinkAbility.abilityLevel == 5)
             {
                 blinkDistance += 1.5f; // Further increase distance
-                passiveDamageIncrease += 0.05f;
+                passiveDamageIncrease += 0.1f;
             }
         }
     }
@@ -668,16 +724,17 @@ public class VoidPlayerController : BasePlayerController
             }
             if (VoidPerspective.abilityLevel == 3)
             {
-                VoidPerspective.cooldown -= 25f; // Lower cooldown
+                cameraZoomOutMultiplier += 0.25f; // Greater zoom
+                // Add an additional cast at level 4 ultimate
+                UpdateMultiCastMaxServerRpc(currentMaxCasts.Value + 1);
             }
             if (VoidPerspective.abilityLevel == 4)
             {
-                cameraZoomOutMultiplier += 0.25f; // Greater zoom
+                VoidPerspective.cooldown -= 25f;
             }
             if (VoidPerspective.abilityLevel == 5)
             {
-                abilityCooldownReduction += 0.1f; // 85% CDR on Q during ult
-                passiveDamageIncrease += 0.05f;
+                passiveDamageIncrease += 0.2f;
             }
         }
     }
