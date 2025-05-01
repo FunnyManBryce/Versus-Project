@@ -233,6 +233,11 @@ public class VoidPlayerController : BasePlayerController
 
     private void UpdatePassiveDamage()
     {
+        if (baseAttackDamage != BaseDamage.Value)
+        {
+            baseAttackDamage = BaseDamage.Value;
+        }
+
         // Calculate damage increase based on stacks (multiplicative)
         float damageMultiplier = Mathf.Pow(1 + passiveDamageIncrease, passiveStacks.Value);
         float newDamage = baseAttackDamage * damageMultiplier;

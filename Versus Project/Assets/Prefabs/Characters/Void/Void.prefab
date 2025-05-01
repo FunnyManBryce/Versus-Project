@@ -562,7 +562,7 @@ MonoBehaviour:
   voidBallPrefab: {fileID: 6271209008562182701, guid: dcbd7ba032f7e7f4783f94309e0f80b7,
     type: 3}
   baseVoidBallCasts: 2
-  multiCastDelay: 0.5
+  multiCastDelay: 0.3
   currentMaxCasts:
     m_InternalValue: 0
   passiveDamageIncrease: 0.1
@@ -571,10 +571,10 @@ MonoBehaviour:
     m_InternalValue: 0
   baseAttackDamage: 0
   dangerCircleRadius: 1
-  dangerCircleWarningTime: 1
+  dangerCircleWarningTime: 1.75
   ballReturnSpeed: 20
   ballDamageMultiplier: 1
-  voidBallCastRange: 15
+  voidBallCastRange: 18
   dangerCirclePrefab: {fileID: 5385389721141281123, guid: 139be3166f475d841adb3763335e7541,
     type: 3}
   blinkDistance: 6

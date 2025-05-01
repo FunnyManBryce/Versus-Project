@@ -24,16 +24,15 @@ public class VoidBallController : NetworkBehaviour
     public void Initialize(float moveSpeed, float damageAmount, NetworkObjectReference caster, float armorPenetration, VoidPlayerController casterPlayer)
     {
         speed = moveSpeed;
-        damage = damageAmount;
+        damage = damageAmount; 
         armorPen = armorPenetration;
         casterRef = caster;
         voidPlayer = casterPlayer;
 
-        // Start as not returning
         isReturning = false;
 
         // Begin return behavior after a short delay
-        StartCoroutine(ReturnAfterDelay(0.5f));
+        StartCoroutine(ReturnAfterDelay(0.01f));
     }
 
     private IEnumerator ReturnAfterDelay(float delay)
@@ -87,7 +86,15 @@ public class VoidBallController : NetworkBehaviour
                 {
                     hitTargets.Add(targetObj.NetworkObjectId);
 
-                    health.TakeDamageServerRPC(damage, casterRef, armorPen, false);
+                    // Get current damage from the VoidPlayerController
+                    float currentDamage = damage;
+                    if (voidPlayer != null)
+                    {
+                        // Use the voidPlayer's current attackDamage * ballDamageMultiplier
+                        currentDamage = voidPlayer.attackDamage * voidPlayer.ballDamageMultiplier;
+                    }
+
+                    health.TakeDamageServerRPC(currentDamage, casterRef, armorPen, false);
 
                     if (hitEffectPrefab != null)
                     {
