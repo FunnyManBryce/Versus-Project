@@ -101,9 +101,9 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 15
-  - 300
-  goldCost: 1100
+  - 7
+  - 450
+  goldCost: 950
   specialEffect: 
   Description: {fileID: 8857401324507193527}
   itemNumber: 0
@@ -310,9 +310,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Effect: +40 Attack Damage
 
-    +15 CDR
+    +7 CDR
 
-    +300 Max Health
+    +450 Max Health
 
     +15 Armor
     Pen'
@@ -451,7 +451,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Description: Lore will go here'
+  m_text: 'Description: B. F. Sword
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -661,7 +663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -844,7 +846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold Cost: 1100'
+  m_text: 'Gold Cost: 950'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -68,7 +68,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 4934320704928411282, guid: ad9db3f728e91024cb0239bec91e01df,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -98,11 +99,11 @@ MonoBehaviour:
   - 70
   - 0
   - 0
-  - 8
+  - 15
   - 0
   - 0
   - 0
-  - 300
+  - 600
   goldCost: 1100
   specialEffect: 
   Description: {fileID: 8857401324507193527}
@@ -308,11 +309,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Effect: +300 Max Health
+  m_text: 'Effect: +600 Max Health
 
     +70 Armor
 
-    +8 HP Regen
+    +15 HP Regen
 
 '
   m_isRightToLeft: 0
@@ -660,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

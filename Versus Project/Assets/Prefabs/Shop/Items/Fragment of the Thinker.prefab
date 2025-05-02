@@ -68,7 +68,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -4327863181262640249, guid: 8a477220c95ddf946a37fb5010f05062,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -94,14 +95,14 @@ MonoBehaviour:
   itemName: Fragment of the Thinker
   StatBuffs:
   - 0
+  - 15
+  - 0
+  - 0
+  - 0
+  - 0
   - 10
-  - 0
-  - 0
-  - 0
-  - 0
-  - 8
   - 600
-  - 20
+  - 10
   - 0
   goldCost: 850
   specialEffect: 
@@ -308,13 +309,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Effect: +10 Attack Damage
+  m_text: 'Effect: +15 Attack Damage
 
     +600 Max Mana
 
-    +8 Mana Regen
+    +10 Mana Regen
 
-    +20
+    +10
     CDR'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -662,7 +663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
