@@ -580,7 +580,7 @@ MonoBehaviour:
   blinkDistance: 6
   ultimateDuration: 6
   cameraZoomOutMultiplier: 1.5
-  abilityCooldownReduction: 0.001
+  abilityCooldownReduction: 0.5
   movementSpeedReduction: 0.999
   voidBallUltimateRangeMultiplier: 20
   VoidBall:
