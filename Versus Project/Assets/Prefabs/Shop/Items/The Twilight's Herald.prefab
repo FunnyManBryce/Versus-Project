@@ -95,14 +95,14 @@ MonoBehaviour:
   itemName: The Twilight's Herald
   StatBuffs:
   - 0
-  - 70
+  - 60
   - 0
   - 0
   - 0
   - 0
   - 0
   - 400
-  - 25
+  - 17
   - 0
   goldCost: 1200
   specialEffect: 
