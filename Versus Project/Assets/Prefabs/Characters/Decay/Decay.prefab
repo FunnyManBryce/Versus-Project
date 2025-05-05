@@ -570,7 +570,7 @@ MonoBehaviour:
   AOEDamageMultiplier: 0.375
   speedReductionDuration: 5
   AOESpeedSteal: 0
-  shockwaveDamageMultiplier: 2.5
+  shockwaveDamageMultiplier: 3
   shockwavePrefab: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
     type: 3}
   shockWaveDuration: 2
@@ -624,7 +624,7 @@ MonoBehaviour:
     playerController: {fileID: 2299055155951191650}
     inputKey: 114
     isUnlocked: 0
-    cooldown: 60
+    cooldown: 100
     manaCost: 100
     lastUsed: 0
     pointClickTimeUsed: 0
@@ -638,8 +638,8 @@ MonoBehaviour:
     levelUpEffects:
     - Unlocks Ability
     - Ultimate increases Decay's speed by 2 for the duration.
-    - Cooldown reduced by 10
-    - Cooldown reduced by 10
+    - Cooldown reduced by 15
+    - Cooldown reduced by 20
     - Ultimate duration increased by 5 seconds
 --- !u!212 &176950742428784287
 SpriteRenderer:

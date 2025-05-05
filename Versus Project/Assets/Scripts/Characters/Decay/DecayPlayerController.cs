@@ -313,7 +313,7 @@ public class DecayPlayerController : BasePlayerController
             }
             if (Shockwave.abilityLevel == 3)
             {
-                shockwaveDamageMultiplier += 0.5f;
+                shockwaveDamageMultiplier += 0.6f;
             }
             if (Shockwave.abilityLevel == 4)
             {
@@ -360,11 +360,11 @@ public class DecayPlayerController : BasePlayerController
             }
             if (Ultimate.abilityLevel == 3)
             {
-                Ultimate.cooldown -= 10;
+                Ultimate.cooldown -= 15;
             }
             if (Ultimate.abilityLevel == 4)
             {
-                Ultimate.cooldown -= 10;
+                Ultimate.cooldown -= 20;
             }
             if (Ultimate.abilityLevel == 5)
             {

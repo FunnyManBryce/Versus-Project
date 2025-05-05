@@ -149,6 +149,7 @@ public class PuppeteeringPlayerController : BasePlayerController
             BaseRegen.Value = regen;
             BaseManaRegen.Value = manaRegen;
             BaseSpeed.Value = maxSpeed;
+            Gold.Value = 200;
         }
         health.currentHealth.OnValueChanged += (float previousValue, float newValue) => //Checking if dead
         {
