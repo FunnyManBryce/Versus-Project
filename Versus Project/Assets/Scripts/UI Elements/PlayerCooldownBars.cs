@@ -25,6 +25,7 @@ public class PlayerCooldownBars : MonoBehaviour
     public bool initializedCooldown;
     [SerializeField] private bool isPlayer1UI;
     [SerializeField] private int abilityIndex; // 0 for passive, 1 for ability1, 2 for ability2, 3 for ultimate
+    [SerializeField] private GameObject upgradeButton;
 
     // Instead of direct reference, use delegates to access ability properties
     private Func<bool> isOffCooldown;
@@ -304,6 +305,13 @@ public class PlayerCooldownBars : MonoBehaviour
     {
         if (isOffCooldown == null) return;
 
+        if(playerController.unspentUnlocks.Value > 0 || playerController.unspentUpgrades.Value > 0)
+        {
+            upgradeButton.SetActive(true);
+        } else
+        {
+            upgradeButton.SetActive(false);
+        }
         if (cooldownSlider != null)
         {
             // Update slider to show remaining cooldown (inverted - full when ready)

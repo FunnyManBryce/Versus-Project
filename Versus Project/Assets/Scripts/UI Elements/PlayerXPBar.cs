@@ -95,7 +95,7 @@ public class PlayerXPBar : MonoBehaviour
     {
         if (xpText != null)
         {
-            xpText.text = $"{Mathf.Floor(currentXP)}/{playerController.XPToNextLevel.Value}";
+            xpText.text = $"XP: {Mathf.Floor(currentXP)}/{playerController.XPToNextLevel.Value}";
         }
     }
 

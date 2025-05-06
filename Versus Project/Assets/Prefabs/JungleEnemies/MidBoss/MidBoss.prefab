@@ -323,6 +323,7 @@ MonoBehaviour:
   animator: {fileID: 4642984067137895406}
   bossSprite: {fileID: 385054977924169405}
   isAttacking: 0
+  isStunned: 0
   playerInRange: 0
   distanceFromPOne: {x: 0, y: 0, z: 0}
   distanceFromPTwo: {x: 0, y: 0, z: 0}
@@ -330,8 +331,8 @@ MonoBehaviour:
   cooldownDuration: 1
   armorPen: 5
   projDamage: 20
-  slamDamage: 100
-  AOEDamage: 25
+  slamDamage: 150
+  AOEDamage: 30
   Projectile: {fileID: 315554442559877787, guid: ec3a454b975de604fb02f4d0842e7460,
     type: 3}
   minionSpawn: {fileID: 8942386518775928844, guid: c8681df72fb74874ba3078066dcaf533,
