@@ -25,7 +25,10 @@ public class PlayerCooldownBars : MonoBehaviour
     public bool initializedCooldown;
     [SerializeField] private bool isPlayer1UI;
     [SerializeField] private int abilityIndex; // 0 for passive, 1 for ability1, 2 for ability2, 3 for ultimate
+
     [SerializeField] private GameObject upgradeButton;
+    [SerializeField] private bool isUnlocked;
+    [SerializeField] private bool isMaxLevel;
 
     // Instead of direct reference, use delegates to access ability properties
     private Func<bool> isOffCooldown;
@@ -305,7 +308,11 @@ public class PlayerCooldownBars : MonoBehaviour
     {
         if (isOffCooldown == null) return;
 
-        if(playerController.unspentUnlocks.Value > 0 || playerController.unspentUpgrades.Value > 0)
+        if(playerController.unspentUnlocks.Value > 0 && !isUnlocked)
+        {
+            upgradeButton.SetActive(true);
+        }
+        else if (playerController.unspentUpgrades.Value > 0 && !isMaxLevel && isUnlocked)
         {
             upgradeButton.SetActive(true);
         } else
@@ -332,6 +339,7 @@ public class PlayerCooldownBars : MonoBehaviour
 
     private void UpdateCooldownText()
     {
+        Debug.Log("ahh");
         if (playerController is DecayPlayerController decayPlayer)
         {
             switch (abilityIndex)
@@ -344,6 +352,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     if (decayPlayer.AOE.isUnlocked && decayPlayer.AOE.abilityLevel < 5)
                     {
                         descLevelUpEffect.text = "Next Level: " + decayPlayer.AOE.levelUpEffects[decayPlayer.AOE.abilityLevel];
+                        isUnlocked = true;
                     }
                     else if (!decayPlayer.AOE.isUnlocked)
                     {
@@ -351,6 +360,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (decayPlayer.AOE.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -362,6 +372,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     if (decayPlayer.Shockwave.isUnlocked && decayPlayer.Shockwave.abilityLevel < 5)
                     {
                         descLevelUpEffect.text = "Next Level: " + decayPlayer.Shockwave.levelUpEffects[decayPlayer.Shockwave.abilityLevel];
+                        isUnlocked = true;
                     }
                     else if (!decayPlayer.Shockwave.isUnlocked)
                     {
@@ -369,6 +380,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (decayPlayer.Shockwave.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -379,6 +391,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = decayPlayer.Ultimate.abilityName;
                     if (decayPlayer.Ultimate.isUnlocked && decayPlayer.Ultimate.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + decayPlayer.Ultimate.levelUpEffects[decayPlayer.Ultimate.abilityLevel];
                     }
                     else if (!decayPlayer.Ultimate.isUnlocked)
@@ -387,6 +400,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (decayPlayer.Ultimate.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -403,6 +417,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = puppetPlayer.String.abilityName;
                     if (puppetPlayer.String.isUnlocked && puppetPlayer.String.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + puppetPlayer.String.levelUpEffects[puppetPlayer.String.abilityLevel];
                     }
                     else if (!puppetPlayer.String.isUnlocked)
@@ -411,6 +426,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (puppetPlayer.String.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -421,6 +437,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = puppetPlayer.ModeSwitch.abilityName;
                     if (puppetPlayer.ModeSwitch.isUnlocked && puppetPlayer.ModeSwitch.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + puppetPlayer.ModeSwitch.levelUpEffects[puppetPlayer.ModeSwitch.abilityLevel];
                     }
                     else if (!puppetPlayer.ModeSwitch.isUnlocked)
@@ -429,6 +446,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (puppetPlayer.ModeSwitch.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -439,6 +457,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = puppetPlayer.Ultimate.abilityName;
                     if (puppetPlayer.Ultimate.isUnlocked && puppetPlayer.Ultimate.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + puppetPlayer.Ultimate.levelUpEffects[puppetPlayer.Ultimate.abilityLevel];
                     }
                     else if(!puppetPlayer.Ultimate.isUnlocked)
@@ -446,6 +465,7 @@ public class PlayerCooldownBars : MonoBehaviour
                         descLevelUpEffect.text = "Spend an unlock to get this ability";
                     } else if(puppetPlayer.Ultimate.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -462,6 +482,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = greedPlayer.QuickPunch.abilityName;
                     if (greedPlayer.QuickPunch.isUnlocked && greedPlayer.QuickPunch.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + greedPlayer.QuickPunch.levelUpEffects[greedPlayer.QuickPunch.abilityLevel];
                     }
                     else if (!greedPlayer.QuickPunch.isUnlocked)
@@ -470,6 +491,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (greedPlayer.QuickPunch.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -480,6 +502,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = greedPlayer.GroundSlam.abilityName;
                     if (greedPlayer.GroundSlam.isUnlocked && greedPlayer.GroundSlam.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + greedPlayer.GroundSlam.levelUpEffects[greedPlayer.GroundSlam.abilityLevel];
                     }
                     else if (!greedPlayer.GroundSlam.isUnlocked)
@@ -488,6 +511,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (greedPlayer.GroundSlam.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -498,6 +522,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = greedPlayer.UncivRage.abilityName;
                     if (greedPlayer.UncivRage.isUnlocked && greedPlayer.UncivRage.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + greedPlayer.UncivRage.levelUpEffects[greedPlayer.UncivRage.abilityLevel];
                     }
                     else if (!greedPlayer.UncivRage.isUnlocked)
@@ -506,6 +531,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (greedPlayer.UncivRage.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -530,6 +556,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = voidPlayer.VoidBall.abilityName;
                     if (voidPlayer.VoidBall.isUnlocked && voidPlayer.VoidBall.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + voidPlayer.VoidBall.levelUpEffects[voidPlayer.VoidBall.abilityLevel];
                     }
                     else if (!voidPlayer.VoidBall.isUnlocked)
@@ -538,6 +565,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (voidPlayer.VoidBall.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -548,6 +576,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = voidPlayer.BlinkAbility.abilityName;
                     if (voidPlayer.BlinkAbility.isUnlocked && voidPlayer.BlinkAbility.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + voidPlayer.BlinkAbility.levelUpEffects[voidPlayer.BlinkAbility.abilityLevel];
                     }
                     else if (!voidPlayer.BlinkAbility.isUnlocked)
@@ -556,6 +585,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (voidPlayer.BlinkAbility.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;
@@ -566,6 +596,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     descName.text = voidPlayer.VoidPerspective.abilityName;
                     if (voidPlayer.VoidPerspective.isUnlocked && voidPlayer.VoidPerspective.abilityLevel < 5)
                     {
+                        isUnlocked = true;
                         descLevelUpEffect.text = "Next Level: " + voidPlayer.VoidPerspective.levelUpEffects[voidPlayer.VoidPerspective.abilityLevel];
                     }
                     else if (!voidPlayer.VoidPerspective.isUnlocked)
@@ -574,6 +605,7 @@ public class PlayerCooldownBars : MonoBehaviour
                     }
                     else if (voidPlayer.VoidPerspective.abilityLevel == 5)
                     {
+                        isMaxLevel = true;
                         descLevelUpEffect.text = "Max Level";
                     }
                     break;

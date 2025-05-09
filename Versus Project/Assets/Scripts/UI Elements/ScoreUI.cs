@@ -1,13 +1,14 @@
 using TMPro;
 using UnityEngine;
 
-public class PlayerUnspentUpgradsUI : MonoBehaviour
+public class ScoreUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI upgradesText;
-    [SerializeField] private TextMeshProUGUI unlocksText;
-    [SerializeField] private GameObject unspentUpgrades;
-    [SerializeField] private GameObject unspentUnlocks;
-
+    [SerializeField] private TextMeshProUGUI P1Kills;
+    [SerializeField] private TextMeshProUGUI P2Kills;
+    [SerializeField] private TextMeshProUGUI P1Gold;
+    [SerializeField] private TextMeshProUGUI P2Gold;
+    [SerializeField] private TextMeshProUGUI P1Level;
+    [SerializeField] private TextMeshProUGUI P2Level;
 
     [SerializeField] private BasePlayerController playerController;
     public bool initialized;
@@ -48,32 +49,11 @@ public class PlayerUnspentUpgradsUI : MonoBehaviour
         }
         else
         {
-            UpdateUpgradesText();
+            UpdateText();
         }
     }
-    private void UpdateUpgradesText()
+    private void UpdateText()
     {
-        if (upgradesText != null)
-        {
-            upgradesText.text = $"Unspent Upgrades: {playerController.unspentUpgrades.Value}";
-        }
-        if (unlocksText != null)
-        {
-            unlocksText.text = $"Unspent Unlocks: {playerController.unspentUnlocks.Value}";
-            if(playerController.unspentUnlocks.Value == 0)
-            {
-                unspentUnlocks.SetActive(false);
-            } else
-            {
-                unspentUnlocks.SetActive(true);
-            }
-            if(playerController.unspentUpgrades.Value == 0)
-            {
-                unspentUpgrades.SetActive(false);
-            } else
-            {
-                unspentUpgrades.SetActive(true);
-            }
-        }
+        
     }
 }

@@ -398,6 +398,9 @@ public class PuppeteeringPlayerController : BasePlayerController
 
                 GameObject upgradesDisplay = Instantiate(unspentUpgradesPrefab, playerCanvas.transform);
                 upgradesDisplay.GetComponent<PlayerUnspentUpgradsUI>().enabled = true;
+
+                GameObject scoreDisplay = Instantiate(scorePrefab, playerCanvas.transform);
+                scoreDisplay.GetComponent<ScoreUI>().enabled = true;
             }
         }
         if (!IsOwner)
@@ -505,11 +508,11 @@ public class PuppeteeringPlayerController : BasePlayerController
     private void UltimateServerRpc()
     {
         maxPuppets.Value = 2;
-        PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ultSpawn");
         if (doubleUltSpawn && puppetsAlive.Value == 0)
         {
             PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ultSpawn");
         }
+        PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "ultSpawn");
         lastUltTime.Value = lameManager.matchTimer.Value;
         ultActive.Value = true;
     }

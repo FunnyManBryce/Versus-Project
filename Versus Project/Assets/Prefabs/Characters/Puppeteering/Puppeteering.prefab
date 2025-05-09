@@ -198,6 +198,7 @@ MonoBehaviour:
   initializedCooldown: 0
   isPlayer1UI: 0
   abilityIndex: 0
+  upgradeButton: {fileID: 0}
 --- !u!114 &138302581809136694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +384,8 @@ MonoBehaviour:
   shopPrefab: {fileID: 6259355584637624107, guid: 2d38d59c16c31f0408b4fc6a6db1f2fd,
     type: 3}
   unspentUpgradesPrefab: {fileID: 2114343820725859254, guid: 0d009522e8f9d304b8798afcf5e8cb3e,
+    type: 3}
+  scorePrefab: {fileID: 2114343820725859254, guid: ebb2240060c7f0140aa4f140fb3a9dbf,
     type: 3}
   enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: f9329fa1a6869f84caca61dc8635e238,
     type: 3}
