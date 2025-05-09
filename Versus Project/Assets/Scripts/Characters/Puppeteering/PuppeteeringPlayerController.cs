@@ -400,7 +400,10 @@ public class PuppeteeringPlayerController : BasePlayerController
                 upgradesDisplay.GetComponent<PlayerUnspentUpgradsUI>().enabled = true;
 
                 GameObject scoreDisplay = Instantiate(scorePrefab, playerCanvas.transform);
-                scoreDisplay.GetComponent<ScoreUI>().enabled = true;
+                //scoreDisplay.GetComponent<ScoreUI>().enabled = true;
+
+                GameObject deathScreen = Instantiate(deathScreenPrefab, playerCanvas.transform);
+                deathScreen.GetComponent<DeathScreen>().enabled = true;
             }
         }
         if (!IsOwner)

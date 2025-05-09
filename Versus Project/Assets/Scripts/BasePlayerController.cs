@@ -106,6 +106,7 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject shopPrefab;
     public GameObject unspentUpgradesPrefab;
     public GameObject scorePrefab;
+    public GameObject deathScreenPrefab;
 
     public GameObject enemyHealthBarPrefab;
     public GameObject HealthBar;
@@ -330,7 +331,10 @@ public class BasePlayerController : NetworkBehaviour
                 upgradesDisplay.GetComponent<PlayerUnspentUpgradsUI>().enabled = true;
                 
                 GameObject scoreDisplay = Instantiate(scorePrefab, playerCanvas.transform);
-                scoreDisplay.GetComponent<ScoreUI>().enabled = true;
+                //scoreDisplay.GetComponent<ScoreUI>().enabled = true;
+                
+                GameObject deathScreen = Instantiate(deathScreenPrefab, playerCanvas.transform);
+                deathScreen.GetComponent<DeathScreen>().enabled = true;
             }
         }
         if (!IsOwner)

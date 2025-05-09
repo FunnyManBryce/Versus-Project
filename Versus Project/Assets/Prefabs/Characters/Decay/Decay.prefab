@@ -557,6 +557,8 @@ MonoBehaviour:
     type: 3}
   scorePrefab: {fileID: 2114343820725859254, guid: ebb2240060c7f0140aa4f140fb3a9dbf,
     type: 3}
+  deathScreenPrefab: {fileID: 2114343820725859254, guid: 7d9ef2fb8a817ae428a3815233351c80,
+    type: 3}
   enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: f9329fa1a6869f84caca61dc8635e238,
     type: 3}
   HealthBar: {fileID: 0}
