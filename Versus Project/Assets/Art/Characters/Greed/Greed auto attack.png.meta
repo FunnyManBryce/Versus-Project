@@ -1,52 +1,43 @@
 fileFormatVersion: 2
-guid: 8b3c1cddb03b6404eb08066876050eaa
+guid: 37355638ed5be7d43ab5161fe323ce1b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 815797629493583029
-    second: Greed slam_0
+      213: -2179991008640133330
+    second: Greed auto attack_0
   - first:
-      213: 1530604240824715132
-    second: Greed slam_1
+      213: -2143051560925599029
+    second: Greed auto attack_1
   - first:
-      213: -5549942031289319498
-    second: Greed slam_2
+      213: -6756863374257585629
+    second: Greed auto attack_2
   - first:
-      213: 4548824691286200040
-    second: Greed slam_3
+      213: -6485573310693605634
+    second: Greed auto attack_3
   - first:
-      213: -9220959795920186494
-    second: Greed slam_4
+      213: 5032990236684205448
+    second: Greed auto attack_4
   - first:
-      213: 8488375854509038019
-    second: Greed slam_5
+      213: 4665425204216137860
+    second: Greed auto attack_5
   - first:
-      213: 4076087934105345583
-    second: Greed slam_6
+      213: -8089352892899765987
+    second: Greed auto attack_6
   - first:
-      213: -1578225298768626297
-    second: Greed slam_7
+      213: 3465037352946000853
+    second: Greed auto attack_7
   - first:
-      213: -7541079761149480801
-    second: Greed slam_8
+      213: -6410503413302951591
+    second: Greed auto attack_8
   - first:
-      213: -8743950279656475082
-    second: Greed slam_9
+      213: 9136565050519332294
+    second: Greed auto attack_9
   - first:
-      213: -7970443966229405793
-    second: Greed slam_10
+      213: 4271052526300440101
+    second: Greed auto attack_10
   - first:
-      213: -1884730225501143990
-    second: Greed slam_11
-  - first:
-      213: -5587520086876964278
-    second: Greed slam_12
-  - first:
-      213: 7124344484759879264
-    second: Greed slam_13
-  - first:
-      213: 8906247097335674166
-    second: Greed slam_14
+      213: 7989258460114417407
+    second: Greed auto attack_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -142,232 +133,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Greed slam_0
+      name: Greed auto attack_0
       rect:
         serializedVersion: 2
         x: 0
         y: 8
-        width: 70
-        height: 53
+        width: 63
+        height: 56
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5bc129a2f9b425b00800000000000000
-      internalID: 815797629493583029
+      spriteID: e27957c4abd1fb1e0800000000000000
+      internalID: -2179991008640133330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Greed slam_1
+      name: Greed auto attack_1
       rect:
         serializedVersion: 2
-        x: 160
+        x: 150
         y: 8
-        width: 70
-        height: 53
+        width: 62
+        height: 56
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c774012927ccd3510800000000000000
-      internalID: 1530604240824715132
+      spriteID: bcaeeafa5f95242e0800000000000000
+      internalID: -2143051560925599029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Greed slam_2
+      name: Greed auto attack_2
       rect:
         serializedVersion: 2
-        x: 320
+        x: 300
         y: 8
-        width: 69
-        height: 53
+        width: 62
+        height: 56
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6bf7dfc9025aaf2b0800000000000000
-      internalID: -5549942031289319498
+      spriteID: 322878d7f8cca32a0800000000000000
+      internalID: -6756863374257585629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Greed slam_3
+      name: Greed auto attack_3
       rect:
         serializedVersion: 2
-        x: 480
-        y: 6
+        x: 450
+        y: 8
+        width: 62
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe7a5b9f6d9ef5a0800000000000000
+      internalID: -6485573310693605634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Greed auto attack_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 8
+        width: 62
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88d329f44f5c8d540800000000000000
+      internalID: 5032990236684205448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Greed auto attack_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 8
         width: 72
-        height: 55
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 56
+      alignment: 9
+      pivot: {x: 0.44519466, y: 0.50391454}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8eec3adb4fba02f30800000000000000
-      internalID: 4548824691286200040
+      spriteID: 4880577318beeb040800000000000000
+      internalID: 4665425204216137860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Greed slam_4
+      name: Greed auto attack_6
       rect:
         serializedVersion: 2
-        x: 640
+        x: 900
         y: 8
-        width: 72
-        height: 70
+        width: 74
+        height: 56
       alignment: 9
-      pivot: {x: 0.49699572, y: 0.39873284}
+      pivot: {x: 0.43038198, y: 0.50195736}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 283d40c9be1980080800000000000000
-      internalID: -9220959795920186494
+      spriteID: d115ee33768dcbf80800000000000000
+      internalID: -8089352892899765987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Greed slam_5
+      name: Greed auto attack_7
       rect:
         serializedVersion: 2
-        x: 800
-        y: 10
-        width: 80
-        height: 61
-      alignment: 9
-      pivot: {x: 0.43405035, y: 0.48511407}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3c99308cdd4ccc570800000000000000
-      internalID: 8488375854509038019
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Greed slam_6
-      rect:
-        serializedVersion: 2
-        x: 960
+        x: 1050
         y: 8
-        width: 91
-        height: 67
+        width: 75
+        height: 56
       alignment: 9
-      pivot: {x: 0.37726098, y: 0.47918275}
+      pivot: {x: 0.4108496, y: 0.50782937}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2eda99416c219830800000000000000
-      internalID: 4076087934105345583
+      spriteID: 5d36ecb2d19461030800000000000000
+      internalID: 3465037352946000853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Greed slam_7
+      name: Greed auto attack_8
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 0
-        width: 109
-        height: 70
+        x: 1200
+        y: 8
+        width: 79
+        height: 56
       alignment: 9
-      pivot: {x: 0.30883676, y: 0.5227633}
+      pivot: {x: 0.40287685, y: 0.49804264}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 78d7c5bd374091ae0800000000000000
-      internalID: -1578225298768626297
+      spriteID: 95106a22c115907a0800000000000000
+      internalID: -6410503413302951591
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Greed slam_8
+      name: Greed auto attack_9
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 0
-        width: 111
-        height: 85
+        x: 1350
+        y: 8
+        width: 63
+        height: 56
       alignment: 9
-      pivot: {x: 0.31677577, y: 0.41438434}
+      pivot: {x: 0.4756421, y: 0.49999994}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f903ccd59e3b85790800000000000000
-      internalID: -7541079761149480801
+      spriteID: 6c5247f71899bce70800000000000000
+      internalID: 9136565050519332294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Greed slam_9
+      name: Greed auto attack_10
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 3
-        width: 106
-        height: 78
-      alignment: 9
-      pivot: {x: 0.3430717, y: 0.42926458}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 636f56f4c8f37a680800000000000000
-      internalID: -8743950279656475082
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Greed slam_10
-      rect:
-        serializedVersion: 2
-        x: 1600
-        y: 7
-        width: 76
-        height: 59
+        x: 1500
+        y: 8
+        width: 62
+        height: 56
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f9f9db2217b436190800000000000000
-      internalID: -7970443966229405793
+      spriteID: 5262c27c4a3d54b30800000000000000
+      internalID: 4271052526300440101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Greed auto attack_11
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 8
+        width: 62
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff677e59d3c8fde60800000000000000
+      internalID: 7989258460114417407
       vertices: []
       indices: 
       edges: []
@@ -375,7 +387,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9b7bd282130424e4cb55662fe12096fe
+    spriteID: 76b11e5067fabab4b9c7a8c821c7d58b
     internalID: 0
     vertices: []
     indices: 
@@ -383,17 +395,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Greed slam_0: 815797629493583029
-      Greed slam_1: 1530604240824715132
-      Greed slam_10: -7970443966229405793
-      Greed slam_2: -5549942031289319498
-      Greed slam_3: 4548824691286200040
-      Greed slam_4: -9220959795920186494
-      Greed slam_5: 8488375854509038019
-      Greed slam_6: 4076087934105345583
-      Greed slam_7: -1578225298768626297
-      Greed slam_8: -7541079761149480801
-      Greed slam_9: -8743950279656475082
+      Greed auto attack_0: -2179991008640133330
+      Greed auto attack_1: -2143051560925599029
+      Greed auto attack_10: 4271052526300440101
+      Greed auto attack_11: 7989258460114417407
+      Greed auto attack_2: -6756863374257585629
+      Greed auto attack_3: -6485573310693605634
+      Greed auto attack_4: 5032990236684205448
+      Greed auto attack_5: 4665425204216137860
+      Greed auto attack_6: -8089352892899765987
+      Greed auto attack_7: 3465037352946000853
+      Greed auto attack_8: -6410503413302951591
+      Greed auto attack_9: 9136565050519332294
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
