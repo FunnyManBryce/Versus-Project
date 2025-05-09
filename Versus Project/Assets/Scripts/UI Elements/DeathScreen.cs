@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeathScreen : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI respawnText;
+    [SerializeField] private GameObject TextObject;
     [SerializeField] private BasePlayerController playerController;
     public bool initialized;
     [SerializeField] private bool isPlayer1UI;
     [SerializeField] private bool isPlayerDead;
     [SerializeField] private GameObject deathScreen;
+
+    [SerializeField] private float annoyingTimer;
 
     private void Start()
     {
@@ -51,9 +55,16 @@ public class DeathScreen : MonoBehaviour
             if(isPlayerDead)
             {
                 deathScreen.SetActive(true);
+                annoyingTimer -= Time.deltaTime;
+                if(annoyingTimer <= 0)
+                {
+                    TextObject.SetActive(true);
+                }
             } else
             {
+                annoyingTimer = 0.5f;
                 deathScreen.SetActive(false);
+                TextObject.SetActive(false);
             }
             RespawnText();
         }
@@ -62,7 +73,7 @@ public class DeathScreen : MonoBehaviour
     {
         if (respawnText != null)
         {
-            respawnText.text = "erm";
+            respawnText.text = "" + FindObjectOfType<LameManager>().currentRespawnTimer.ConvertTo<int>();
         }
     }
 }

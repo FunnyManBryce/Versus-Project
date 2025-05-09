@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 499071658822526999}
   - component: {fileID: 3253642432431796508}
   - component: {fileID: 7824983121112235251}
+  - component: {fileID: 6657290445307065945}
   m_Layer: 5
   m_Name: PlayerDeathUI
   m_TagString: Untagged
@@ -31,7 +32,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2747046633384694219}
-  - {fileID: 2366495593310807242}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -102,12 +102,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ba25b17f936ed4292d4b00896ee484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnText: {fileID: 0}
+  respawnText: {fileID: 3908532290970464336}
+  TextObject: {fileID: 9113678585420655403}
   playerController: {fileID: 0}
   initialized: 0
   isPlayer1UI: 0
   isPlayerDead: 0
   deathScreen: {fileID: 5643754341038441516}
+  annoyingTimer: 0
+--- !u!222 &6657290445307065945
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114343820725859254}
+  m_CullTransparentMesh: 1
 --- !u!1 &5643754341038441516
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,13 +129,14 @@ GameObject:
   - component: {fileID: 2747046633384694219}
   - component: {fileID: 1729174546327498465}
   - component: {fileID: 4755520373950270696}
+  - component: {fileID: 418591001239698188}
   m_Layer: 5
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2747046633384694219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -137,7 +148,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 2366495593310807242}
   m_Father: {fileID: 499071658822526999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -183,6 +195,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &418591001239698188
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5643754341038441516}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f34545828c16fe947a53438a0794b3ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9113678585420655403
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2366495593310807242
 RectTransform:
   m_ObjectHideFlags: 0
@@ -208,16 +242,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9113678585420655403}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.02, z: 0.02}
+  m_LocalScale: {x: 0.010000001, y: 0.0016666667, z: 0.0016666667}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 499071658822526999}
+  m_Father: {fileID: 2747046633384694219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.557, y: -0.11}
   m_SizeDelta: {x: 696.3204, y: 41.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2113342442628986163
@@ -248,7 +282,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: N/A
+  m_text: 10.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -313,7 +347,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 62.21576, y: 3.1368866, z: 0, w: 0}
+  m_margin: {x: 343.7647, y: 3.1368866, z: 246.09367, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -18,6 +18,9 @@ public class LameManager : NetworkBehaviour
     public NetworkVariable<float> respawnLength = new NetworkVariable<float>(2, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> IsOneVOne = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    public float currentRespawnTimer;
+    public bool isRespawning;
+
     public float oneVOneTime = 600f;
 
     [SerializeField] private GameObject lameManager;
@@ -68,6 +71,13 @@ public class LameManager : NetworkBehaviour
 
     void Update()
     {
+        if (isRespawning)
+        {
+            currentRespawnTimer -= Time.deltaTime;
+        } else
+        {
+            currentRespawnTimer = respawnLength.Value;
+        }
         if (!IsServer) return;
         if(matchTimer.Value >= oneVOneTime && IsOneVOne.Value == false)
         {
@@ -143,7 +153,9 @@ public class LameManager : NetworkBehaviour
 
     public IEnumerator PlayerDeath(NetworkObject player, float respawnTimer, ulong clientID)
     {
-        if(IsOneVOne.Value)
+        isRespawning = true;
+        currentRespawnTimer = respawnTimer;
+        if (IsOneVOne.Value)
         {
             if(clientID == 0)
             {
@@ -154,15 +166,14 @@ public class LameManager : NetworkBehaviour
             }
             yield break;
         }
-        Debug.Log(respawnTimer);
         yield return new WaitForSeconds(respawnTimer);
+        isRespawning = false;
         if (IsOneVOne.Value)
         {
             yield break;
         }
         else
         {
-            Debug.Log("timerend");
             player.transform.position = playerSP[Team - 1];
             player.GetComponent<BasePlayerController>().isDead.Value = false;
         }
