@@ -5787,6 +5787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
         type: 3}
+      propertyPath: characterNumber
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878530254789991727, guid: 8b67c947c2328df45b82c13c0f4a9955,
+        type: 3}
       propertyPath: LaneSP.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -12101,6 +12106,11 @@ PrefabInstance:
       propertyPath: charSelectionUI
       value: 
       objectReference: {fileID: 1113446576}
+    - target: {fileID: 7218120947281338993, guid: a675514261b47cd478ba26b22178edb5,
+        type: 3}
+      propertyPath: characterNumber
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7218120947281338993, guid: a675514261b47cd478ba26b22178edb5,
         type: 3}
       propertyPath: lobbyCreationUI

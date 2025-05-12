@@ -197,16 +197,17 @@ public class NetworkManagerUI : NetworkBehaviour
         bAM.Play("Button Press", gameObject.transform.position);
         charSelectionUI.SetActive(true);
         readyToStartUI.SetActive(false);
-        foreach (GameObject character in characterInfoUI)
+        /*foreach (GameObject character in characterInfoUI)
         {
             character.SetActive(false);
-        }
+        }*/
         UnReadyUpServerRPC();
     }
 
     public void Quit()
     {
         bAM.Play("Button Press", gameObject.transform.position);
+        characterNumber = -1;
         foreach (GameObject character in characterInfoUI)
         {
             character.SetActive(false);
