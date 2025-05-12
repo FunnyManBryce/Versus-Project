@@ -124,7 +124,7 @@ public class GreedPlayerController : BasePlayerController
             isAttacking = false;
             animator.SetBool("AutoAttack", false);
         }
-        
+
         base.Update();
         if (!IsOwner || isDead.Value) return;
 
@@ -207,13 +207,11 @@ public class GreedPlayerController : BasePlayerController
         }
     }
 
-
     [ServerRpc(RequireOwnership = false)]
     public void QuickPunchServerRpc(Vector2 dashDirection)
     {
-        //bAM.PlayServerRpc("Greed Punch", Greed.transform.position);
-        //bAM.PlayClientRpc("Greed Punch", Greed.transform.position);
-
+        /*bAM.PlayServerRpc("Greed Punch", Greed.transform.position);
+        bAM.PlayClientRpc("Greed Punch", Greed.transform.position);*/
 
         // Calculate an offset point behind the player based on dash direction
         Vector2 offsetDirection = -dashDirection; // Opposite of dash direction
@@ -224,7 +222,6 @@ public class GreedPlayerController : BasePlayerController
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(offsetOrigin, punchRange);
 
         bool hitPlayerController = false;
-
 
         foreach (var collider in hitColliders)
         {
@@ -246,13 +243,14 @@ public class GreedPlayerController : BasePlayerController
                 }
             }
         }
-        
+
         if (hitPlayerController)
         {
             QuickPunch.lastUsed += QuickPunch.cooldown * (punchPlayerHitCooldownReduction);
         }
 
-        StartCoroutine(DashCoroutine(dashDirection, dashDistance, dashSpeed));
+        // Start the dash coroutine on the server and sync to clients
+        StartDashClientRpc(dashDirection, dashDistance, dashSpeed);
 
         // Update sprite direction to match dash direction
         if (dashDirection.x < 0)
@@ -263,6 +261,12 @@ public class GreedPlayerController : BasePlayerController
         {
             SetSpriteDirectionServerRpc(false); // sprite faces right
         }
+    }
+
+    [ClientRpc]
+    private void StartDashClientRpc(Vector2 direction, float distance, float speed)
+    {
+        StartCoroutine(DashCoroutine(direction, distance, speed));
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -287,13 +291,21 @@ public class GreedPlayerController : BasePlayerController
         while (Time.time < startTime + (distance / speed))
         {
             float t = (Time.time - startTime) / (distance / speed);
-            transform.position = Vector3.Lerp(startPos, targetPos, t);
+            if (IsServer || IsOwner)
+            {
+                transform.position = Vector3.Lerp(startPos, targetPos, t);
+            }
             yield return null;
+        }
+
+        // Ensure we reach the final position
+        if (IsServer || IsOwner)
+        {
+            transform.position = targetPos;
         }
 
         isDashing = false;
     }
-
 
     [ServerRpc(RequireOwnership = false)]
     public void GroundSlamServerRpc()
@@ -318,6 +330,15 @@ public class GreedPlayerController : BasePlayerController
                 health.InflictBuffServerRpc(targetObj, "Stun", 1, stunDuration, true);
             }
         }
+
+        // Notify all clients that the slam happened
+        GroundSlamEffectClientRpc(origin, slamRadius);
+    }
+
+    [ClientRpc]
+    private void GroundSlamEffectClientRpc(Vector2 origin, float radius)
+    {
+
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -328,6 +349,7 @@ public class GreedPlayerController : BasePlayerController
         bAM.PlayClientRpc("Greed Ultimate", Greed.transform.position);
 
         isUltActive = true;
+        UltActiveClientRpc(true);
 
         // Check if we have a target to dash to
         if (targetRef.TryGet(out NetworkObject targetObject) && targetObject != null)
@@ -346,13 +368,30 @@ public class GreedPlayerController : BasePlayerController
                 SetSpriteDirectionServerRpc(false); // sprite faces right
             }
 
-            StartCoroutine(DashCoroutine(dashDirection, dashDistance, ultDashSpeed));
+            // Start the ult dash on all clients
+            UltDashClientRpc(dashDirection, dashDistance, ultDashSpeed);
         }
 
         TriggerBuffServerRpc("Speed", ultMovementSpeedIncrease, ultimateDuration, true);
 
-        IEnumerator coroutine = UltimateDuration();
-        StartCoroutine(coroutine);
+        StartCoroutine(UltimateDuration());
+    }
+
+    [ClientRpc]
+    private void UltActiveClientRpc(bool active)
+    {
+        isUltActive = active;
+        if (active)
+        {
+
+            StartCoroutine(UltimateDuration());
+        }
+    }
+
+    [ClientRpc]
+    private void UltDashClientRpc(Vector2 direction, float distance, float speed)
+    {
+        StartCoroutine(DashCoroutine(direction, distance, speed));
     }
 
     public IEnumerator UltimateDuration()
@@ -360,7 +399,16 @@ public class GreedPlayerController : BasePlayerController
         yield return new WaitForSeconds(ultimateDuration);
         yield return new WaitUntil(() => (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false));
 
-        isUltActive = false;
+        if (IsServer)
+        {
+            isUltActive = false;
+            UltActiveClientRpc(false);
+        }
+        else if (IsOwner)
+        {
+            // Client is ending the ultimate locally
+            isUltActive = false;
+        }
     }
 
     // Ability Level Up Effects
