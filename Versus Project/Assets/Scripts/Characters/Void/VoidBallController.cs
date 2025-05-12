@@ -121,6 +121,24 @@ public class VoidBallController : NetworkBehaviour
             }
         }
     }
+    [ClientRpc]
+    public void SyncVisualsClientRpc()
+    {
+        // Ensure trail renderer is visible and properly configured on all clients
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = true;
+            trailRenderer.emitting = true;
+        }
+
+        // Make sure any other visual components are properly enabled
+        // If you have other renderers that might be affected:
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.enabled = true;
+        }
+    }
 
     private IEnumerator DestroyAfterDelay(GameObject obj, float delay)
     {

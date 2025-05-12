@@ -17,6 +17,7 @@ public class VoidPlayerController : BasePlayerController
 
     // Passive - Damage stacking
     public float passiveDamageIncrease = 0.1f;
+    public float level5PassiveIncrease = 0.2f;
     public float passiveDuration = 8f; // Duration before stacks reset if no Q hits
     private float lastAbilityHitTime;
     public NetworkVariable<int> passiveStacks = new NetworkVariable<int>();
@@ -305,7 +306,7 @@ public class VoidPlayerController : BasePlayerController
         // Spawn danger circle indicator
         GameObject dangerCircle = Instantiate(dangerCirclePrefab, position, Quaternion.identity);
         NetworkObject dangerCircleNet = dangerCircle.GetComponent<NetworkObject>();
-        dangerCircleNet.Spawn();
+        dangerCircleNet.Spawn(true);
 
         // Set size of danger circle
         dangerCircle.transform.localScale = new Vector3(dangerCircleRadius * 2, dangerCircleRadius * 2, 1);
@@ -329,7 +330,8 @@ public class VoidPlayerController : BasePlayerController
         // Spawn the void ball
         GameObject voidBall = Instantiate(voidBallPrefab, position, Quaternion.identity);
         NetworkObject voidBallNet = voidBall.GetComponent<NetworkObject>();
-        voidBallNet.Spawn();
+
+        voidBallNet.Spawn(true);
 
         bAM.PlayServerRpc("Void Ball Launch", new Vector3(position.x, position.y, 0));
         bAM.PlayClientRpc("Void Ball Launch", new Vector3(position.x, position.y, 0));
@@ -341,6 +343,9 @@ public class VoidPlayerController : BasePlayerController
             ballController.Initialize(ballReturnSpeed, attackDamage * ballDamageMultiplier,
                                     new NetworkObjectReference(gameObject.GetComponent<NetworkObject>()),
                                     armorPen, this);
+
+            // Explicitly sync visual properties to clients
+            ballController.SyncVisualsClientRpc();
         }
     }
 
@@ -622,7 +627,7 @@ public class VoidPlayerController : BasePlayerController
             if (VoidBall.abilityLevel == 5)
             {
                 // Add multi-cast at max level
-                passiveDamageIncrease += 0.1f;
+                passiveDamageIncrease += level5PassiveIncrease;
             }
         }
 
@@ -689,7 +694,7 @@ public class VoidPlayerController : BasePlayerController
             if (BlinkAbility.abilityLevel == 5)
             {
                 blinkDistance += 1.5f; // Further increase distance
-                passiveDamageIncrease += 0.1f;
+                passiveDamageIncrease += level5PassiveIncrease;
             }
         }
     }
@@ -739,7 +744,7 @@ public class VoidPlayerController : BasePlayerController
             }
             if (VoidPerspective.abilityLevel == 5)
             {
-                passiveDamageIncrease += 0.2f;
+                passiveDamageIncrease += level5PassiveIncrease;
             }
         }
     }
