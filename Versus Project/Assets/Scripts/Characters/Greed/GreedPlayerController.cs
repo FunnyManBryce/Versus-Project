@@ -208,7 +208,7 @@ public class GreedPlayerController : BasePlayerController
     }
 
 
-    [Rpc(SendTo.Server)]
+    [ServerRpc(RequireOwnership = false)]
     public void QuickPunchServerRpc(Vector2 dashDirection)
     {
         bAM.PlayServerRpc("Greed Punch", Greed.transform.position);
@@ -295,7 +295,7 @@ public class GreedPlayerController : BasePlayerController
     }
 
 
-    [Rpc(SendTo.Server)]
+    [ServerRpc(RequireOwnership = false)]
     public void GroundSlamServerRpc()
     {
         bAM.PlayServerRpc("Greed Slam", Greed.transform.position);
@@ -320,7 +320,7 @@ public class GreedPlayerController : BasePlayerController
         }
     }
 
-    [Rpc(SendTo.Server)]
+    [ServerRpc(RequireOwnership = false)]
     public void UncivRageServerRpc(NetworkObjectReference targetRef)
     {
         Debug.Log("Greed Ultimate is happening!");
