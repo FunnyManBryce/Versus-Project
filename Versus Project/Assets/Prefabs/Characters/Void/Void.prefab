@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 321467190
+  GlobalObjectIdHash: 14862719
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -574,12 +574,13 @@ MonoBehaviour:
   currentMaxCasts:
     m_InternalValue: 0
   passiveDamageIncrease: 0.1
+  level5PassiveIncrease: 0.2
   passiveDuration: 1.5
   passiveStacks:
     m_InternalValue: 0
   baseAttackDamage: 0
   dangerCircleRadius: 1
-  dangerCircleWarningTime: 1.75
+  dangerCircleWarningTime: 1.25
   ballReturnSpeed: 20
   ballDamageMultiplier: 1
   voidBallCastRange: 18
