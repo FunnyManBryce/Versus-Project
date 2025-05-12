@@ -1,6 +1,11 @@
 using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
+using Unity.Networking.Transport.Relay;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
+using Unity.Services.Relay;
+using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,11 +17,14 @@ public class NetworkManagerUI : NetworkBehaviour
     [SerializeField] private NetworkManager networkManagerScript;
     public GameObject playersInLobby;
     public TMP_Text playersInLobbyText;
+    public TMP_Text codeText;
     public NetworkVariable<int> totalPlayers = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<int> playerMaximum = new NetworkVariable<int>(2, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<int> playersReady = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> readyToStart = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private bool serverQuitting = false;
+
+    public string joinCode;
     [SerializeField] private Button hostButton;
     [SerializeField] private Button clientButton;
     [SerializeField] private Button startButton;
@@ -38,17 +46,33 @@ public class NetworkManagerUI : NetworkBehaviour
     private void Awake()
     {
         bAM.Play("Main Menu Theme", gameObject.transform.position);
-        hostButton.onClick.AddListener(() =>
+        hostButton.onClick.AddListener(async () =>
         { //Host button creates a lobby
+            Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
+
+            joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+
+            Debug.Log(joinCode);
+            RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
+
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
+
             bAM.Play("Button Press", gameObject.transform.position);
             NetworkManager.Singleton.StartHost();
+            codeText.text = "Join Code: " + joinCode;
             QuitOption.SetActive(true);
-            //lobbySelectionUI.SetActive(true); //For now let's only have a 1v1 mode. The code is in place to change this though
+            //lobbySelectionUI.SetActive(true);
         });
-        clientButton.onClick.AddListener(() =>
+        clientButton.onClick.AddListener(async () =>
         { //Lobby button joins a lobby
+            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+
+            RelayServerData relayServerData = new RelayServerData(joinAllocation, "dtls");
+
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
             bAM.Play("Button Press", gameObject.transform.position);
             NetworkManager.Singleton.StartClient();
+            codeText.text = null;
             QuitOption.SetActive(true);
         });
         startButton.onClick.AddListener(() => //starts game
@@ -116,16 +140,18 @@ public class NetworkManagerUI : NetworkBehaviour
         }
     }
 
-    private void Start()
+    private async void Start()
     {
+        await UnityServices.InitializeAsync();
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
         DontDestroyOnLoad(networkManagerUI);
         networkManagerScript.OnClientDisconnectCallback += PlayerDisconnectedServerRPC; //Makes it so PlayerDisconnectedServerRPC triggers whenever a client disconnects
     }
 
+
     public void IPString(string s) //Sets IP to whatever is typed into the IP box
     {
-        networkManager.GetComponent<UnityTransport>().ConnectionData.Address = s;
-        Debug.Log(networkManager.GetComponent<UnityTransport>().ConnectionData.Address);
+        joinCode = s;
     }
 
     public void CharacterSelected(GameObject character) //Allows us to make each button choose a seperate characters! Needs a way to determine if people pick the same one though...

@@ -145,21 +145,22 @@ public class MeleeMinion : NetworkBehaviour
 
     void Update()
     {
+        if (agent.desiredVelocity.x < 0 && IsServer)
+        {
+            minionSprite.flipX = true;
+            FlipSpriteClientRpc(true);
+        }
+        else if(IsServer)
+        {
+            minionSprite.flipX = false;
+            FlipSpriteClientRpc(false);
+        }
         if (isStunned)
         {
             isAttacking = false;
             animator.SetBool("Attacking", isAttacking);
         }
         if (isStunned) return;
-        if (agent.desiredVelocity.x < 0)
-        {
-            minionSprite.flipX = true;
-            FlipSpriteClientRpc(true);
-        } else
-        {
-            minionSprite.flipX = false;
-            FlipSpriteClientRpc(false);
-        }
         if (isAttacking) return;
         if (cooldown == true && cooldownTimer < cooldownLength)
         {
