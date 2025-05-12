@@ -57,9 +57,6 @@ public class VoidBallController : NetworkBehaviour
 
     private void Update()
     {
-        // Allow both server and client to update visual position for smooth movement
-        // But only server should control actual game logic
-
         if (isReturning)
         {
             // Calculate return path to caster
