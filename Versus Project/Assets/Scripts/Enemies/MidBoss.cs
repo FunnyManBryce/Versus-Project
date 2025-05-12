@@ -211,6 +211,30 @@ public class MidBoss : NetworkBehaviour
         animator.SetBool("Slam", false);
         animator.SetBool("ProjSummon", false);
     }
+
+    public void SlamHostCheck()
+    {
+        if (!IsServer) return;
+        Slam();
+    }
+
+    public void ProjectileHostCheck()
+    {
+        if (!IsServer) return;
+        ProjectileAttack();
+    }
+    public void AOEHostCheck()
+    {
+        if (!IsServer) return;
+        AOESpawn();
+    }
+
+    public void SummonHostCheck()
+    {
+        if (!IsServer) return;
+        Summon();
+    }
+
     public void Slam()
     {
         Vector2 pos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);

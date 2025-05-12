@@ -211,8 +211,8 @@ public class GreedPlayerController : BasePlayerController
     [ServerRpc(RequireOwnership = false)]
     public void QuickPunchServerRpc(Vector2 dashDirection)
     {
-        bAM.PlayServerRpc("Greed Punch", Greed.transform.position);
-        bAM.PlayClientRpc("Greed Punch", Greed.transform.position);
+        //bAM.PlayServerRpc("Greed Punch", Greed.transform.position);
+        //bAM.PlayClientRpc("Greed Punch", Greed.transform.position);
 
 
         // Calculate an offset point behind the player based on dash direction
@@ -265,7 +265,7 @@ public class GreedPlayerController : BasePlayerController
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void SetSpriteDirectionServerRpc(bool flipX)
     {
         SetSpriteDirectionClientRpc(flipX);

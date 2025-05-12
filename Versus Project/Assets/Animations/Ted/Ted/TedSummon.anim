@@ -176,7 +176,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.4833333
-    functionName: Summon
+    functionName: SummonHostCheck
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
