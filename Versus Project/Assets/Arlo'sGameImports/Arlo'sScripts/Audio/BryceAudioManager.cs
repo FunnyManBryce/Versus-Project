@@ -47,7 +47,7 @@ public class BryceAudioManager : NetworkBehaviour
         {
             if (sourcesPlaying[i] == null || !sourcesPlaying[i].isPlaying)
             {
-                if(sourcesPlaying[i].gameObject != null)
+                if(sourcesPlaying[i] != null && sourcesPlaying[i].gameObject != null)
                 {
                     Destroy(sourcesPlaying[i].gameObject);
                 }

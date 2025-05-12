@@ -1,4 +1,6 @@
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameResolver : MonoBehaviour
 {
@@ -16,7 +18,26 @@ public class GameResolver : MonoBehaviour
         else
         {
             TeamTwoWoo.SetActive(true);
+
         }
+    }
+
+    public void RestartGame()
+    {
+        LameManager lameManager = FindFirstObjectByType<LameManager>();
+        Destroy(lameManager.gameObject);
+
+        BryceAudioManager bam = FindFirstObjectByType<BryceAudioManager>();
+        Destroy(bam.gameObject);
+
+        NetworkManagerUI netManager = FindFirstObjectByType<NetworkManagerUI>();
+        Destroy(netManager.gameObject);
+
+        NetworkManager netManagerNotUI = FindFirstObjectByType<NetworkManager>();
+        Destroy(netManagerNotUI.gameObject);
+
+        SceneManager.LoadScene("MainMenu");
+
     }
 
 

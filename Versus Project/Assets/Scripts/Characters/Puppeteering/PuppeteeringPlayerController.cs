@@ -191,6 +191,14 @@ public class PuppeteeringPlayerController : BasePlayerController
         {
             if (SuddenDeath.Value)
             {
+                if (teamNumber.Value == 1)
+                {
+                    transform.position = new Vector3(410, 70, 0);
+                }
+                else
+                {
+                    transform.position = new Vector3(440, 70, 0);
+                }
                 currentTarget = null;
                 if (IsServer)
                 {
@@ -241,14 +249,6 @@ public class PuppeteeringPlayerController : BasePlayerController
                     {
                         StopCoroutine(Buffs[i]);
                     }
-                }
-                if (teamNumber.Value == 1)
-                {
-                    transform.position = new Vector3(410, 70, 0);
-                }
-                else
-                {
-                    transform.position = new Vector3(440, 70, 0);
                 }
                 PuppetSpawnServerRpc(health.Team.Value, attackDamage, maxSpeed, "Normal");
             }
@@ -404,6 +404,12 @@ public class PuppeteeringPlayerController : BasePlayerController
 
                 GameObject deathScreen = Instantiate(deathScreenPrefab, playerCanvas.transform);
                 deathScreen.GetComponent<DeathScreen>().enabled = true;
+
+                GameObject timerText = Instantiate(timerTextPrefab, playerCanvas.transform);
+                timerText.GetComponent<MatchTimer>().enabled = true;
+
+                GameObject customText = Instantiate(customTextPrefab, playerCanvas.transform);
+                customText.GetComponent<CustomCharacterUI>().enabled = true;
             }
         }
         if (!IsOwner)

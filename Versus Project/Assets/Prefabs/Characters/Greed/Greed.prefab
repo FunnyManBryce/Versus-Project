@@ -603,7 +603,7 @@ MonoBehaviour:
     type: 3}
   attackSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: ce33ba5ce3d771a46ada95ebda640cd1,
     type: 3}
-  attackRangeDisplayPrefab: {fileID: 2114343820725859254, guid: 88d565695519f874cb903757d61700f1,
+  attackRangeDisplayPrefab: {fileID: 2114343820725859254, guid: 19039bc4899dad14398bb8b84a9032bb,
     type: 3}
   armorDisplayPrefab: {fileID: 2114343820725859254, guid: c5e01f7ad1aa4f64681a752ffcb8f685,
     type: 3}
@@ -626,6 +626,10 @@ MonoBehaviour:
   scorePrefab: {fileID: 2114343820725859254, guid: ebb2240060c7f0140aa4f140fb3a9dbf,
     type: 3}
   deathScreenPrefab: {fileID: 2114343820725859254, guid: 7d9ef2fb8a817ae428a3815233351c80,
+    type: 3}
+  timerTextPrefab: {fileID: 2114343820725859254, guid: 88d565695519f874cb903757d61700f1,
+    type: 3}
+  customTextPrefab: {fileID: 2114343820725859254, guid: b8a76b48e0eedfd4bb8a67c94713eaab,
     type: 3}
   enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
     type: 3}

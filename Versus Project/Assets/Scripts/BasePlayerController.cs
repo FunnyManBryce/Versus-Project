@@ -107,6 +107,8 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject unspentUpgradesPrefab;
     public GameObject scorePrefab;
     public GameObject deathScreenPrefab;
+    public GameObject timerTextPrefab;
+    public GameObject customTextPrefab;
 
     public GameObject enemyHealthBarPrefab;
     public GameObject HealthBar;
@@ -335,6 +337,12 @@ public class BasePlayerController : NetworkBehaviour
                 
                 GameObject deathScreen = Instantiate(deathScreenPrefab, playerCanvas.transform);
                 deathScreen.GetComponent<DeathScreen>().enabled = true;
+
+                GameObject timerText = Instantiate(timerTextPrefab, playerCanvas.transform);
+                timerText.GetComponent<MatchTimer>().enabled = true;
+
+                GameObject customText = Instantiate(customTextPrefab, playerCanvas.transform);
+                customText.GetComponent<CustomCharacterUI>().enabled = true;
             }
         }
         if (!IsOwner)

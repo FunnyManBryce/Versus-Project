@@ -28,6 +28,7 @@ public class DecayPlayerController : BasePlayerController
     public RuntimeAnimatorController NormalAnimator;
     public float ultimateDuration = 10;
     public bool ultSpeedIncrease = false;
+    public NetworkVariable<bool> isUlting = new NetworkVariable<bool>();
     private NetworkObject ultTarget;
 
     public AbilityBase<DecayPlayerController> AOE;
@@ -129,8 +130,10 @@ public class DecayPlayerController : BasePlayerController
 
     public IEnumerator UltimateDuration() 
     {
+        isUlting.Value = true;
         yield return new WaitForSeconds(ultimateDuration);
         yield return new WaitUntil(() => (animator.GetBool("AbilityTwo") == false && animator.GetBool("AbilityOne") == false && animator.GetBool("Ult") == false && animator.GetBool("AutoAttack") == false));
+        isUlting.Value = false;
         animator.runtimeAnimatorController = NormalAnimator;
         UltEndAnimChangeClientRpc();
     }
