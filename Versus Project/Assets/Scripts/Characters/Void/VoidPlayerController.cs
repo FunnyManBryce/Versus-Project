@@ -306,16 +306,40 @@ public class VoidPlayerController : BasePlayerController
         // Spawn danger circle indicator
         GameObject dangerCircle = Instantiate(dangerCirclePrefab, position, Quaternion.identity);
         NetworkObject dangerCircleNet = dangerCircle.GetComponent<NetworkObject>();
+
+        // Make the danger circle visible to all clients immediately
         dangerCircleNet.Spawn(true);
 
         // Set size of danger circle
         dangerCircle.transform.localScale = new Vector3(dangerCircleRadius * 2, dangerCircleRadius * 2, 1);
+
+        ShowDangerCircleClientRpc(position, dangerCircleRadius * 2);
 
         bAM.PlayServerRpc("Void Ball Warning", new Vector3(position.x, position.y, 0));
         bAM.PlayClientRpc("Void Ball Warning", new Vector3(position.x, position.y, 0));
 
         // Start the sequence to spawn the void ball after warning time
         StartCoroutine(SpawnVoidBallAfterWarning(position, dangerCircleNet));
+    }
+
+    [ClientRpc]
+    private void ShowDangerCircleClientRpc(Vector2 position, float size)
+    {
+        if (!IsServer)
+        {
+            // Find the danger circle at this position
+            GameObject[] dangerCircles = GameObject.FindGameObjectsWithTag("DangerCircle");
+            foreach (var circle in dangerCircles)
+            {
+                if (Vector2.Distance(circle.transform.position, position) < 0.1f)
+                {
+                    // Make sure it's visible
+                    circle.GetComponent<SpriteRenderer>().enabled = true;
+                    circle.transform.localScale = new Vector3(size, size, 1);
+                    break;
+                }
+            }
+        }
     }
 
     private IEnumerator SpawnVoidBallAfterWarning(Vector2 position, NetworkObject dangerCircle)
@@ -344,8 +368,9 @@ public class VoidPlayerController : BasePlayerController
                                     new NetworkObjectReference(gameObject.GetComponent<NetworkObject>()),
                                     armorPen, this);
 
-            // Explicitly sync visual properties to clients
-            ballController.SyncVisualsClientRpc();
+            // Explicitly sync the ball's state to all clients
+            ballController.SyncInitialStateClientRpc(
+                new ClientRpcParams { Send = new ClientRpcSendParams { TargetClientIds = new ulong[0] } }); // Empty array means send to all
         }
     }
 

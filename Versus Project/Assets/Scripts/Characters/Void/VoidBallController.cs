@@ -24,7 +24,7 @@ public class VoidBallController : NetworkBehaviour
     public void Initialize(float moveSpeed, float damageAmount, NetworkObjectReference caster, float armorPenetration, VoidPlayerController casterPlayer)
     {
         speed = moveSpeed;
-        damage = damageAmount; 
+        damage = damageAmount;
         armorPen = armorPenetration;
         casterRef = caster;
         voidPlayer = casterPlayer;
@@ -35,6 +35,20 @@ public class VoidBallController : NetworkBehaviour
         StartCoroutine(ReturnAfterDelay(0.01f));
     }
 
+    [ClientRpc]
+    public void SyncInitialStateClientRpc(ClientRpcParams clientRpcParams = default)
+    {
+        // This method ensures the initial state is synchronized to all clients
+        if (!IsServer)
+        {
+            // Make sure trail renderer and visual elements are active
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = true;
+            }
+        }
+    }
+
     private IEnumerator ReturnAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -43,7 +57,8 @@ public class VoidBallController : NetworkBehaviour
 
     private void Update()
     {
-        if (!IsServer) return;
+        // Allow both server and client to update visual position for smooth movement
+        // But only server should control actual game logic
 
         if (isReturning)
         {
@@ -51,18 +66,22 @@ public class VoidBallController : NetworkBehaviour
             if (casterRef.TryGet(out NetworkObject casterObj))
             {
                 Vector3 direction = (casterObj.transform.position - transform.position).normalized;
+
+                // Client prediction for smoother movement
                 transform.position += direction * speed * Time.deltaTime;
 
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, angle);
 
-                if (Vector3.Distance(transform.position, casterObj.transform.position) < 1.0f)
+                // Only server should handle despawn logic
+                if (IsServer && Vector3.Distance(transform.position, casterObj.transform.position) < 1.0f)
                 {
                     NetworkObject.Despawn(true);
                 }
             }
-            else
+            else if (IsServer)
             {
+                // If caster no longer exists, despawn the ball (server-side only)
                 NetworkObject.Despawn(true);
             }
         }
@@ -100,7 +119,10 @@ public class VoidBallController : NetworkBehaviour
                     {
                         GameObject hitEffect = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
                         NetworkObject netObj = hitEffect.GetComponent<NetworkObject>();
-                        netObj.Spawn();
+                        netObj.Spawn(true); // Make sure hit effects are visible to all
+
+                        // Play hit effect on all clients
+                        PlayHitEffectClientRpc(transform.position);
 
                         StartCoroutine(DestroyAfterDelay(hitEffect, 1.0f));
                     }
@@ -121,22 +143,14 @@ public class VoidBallController : NetworkBehaviour
             }
         }
     }
-    [ClientRpc]
-    public void SyncVisualsClientRpc()
-    {
-        // Ensure trail renderer is visible and properly configured on all clients
-        if (trailRenderer != null)
-        {
-            trailRenderer.enabled = true;
-            trailRenderer.emitting = true;
-        }
 
-        // Make sure any other visual components are properly enabled
-        // If you have other renderers that might be affected:
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        foreach (Renderer renderer in renderers)
+    [ClientRpc]
+    private void PlayHitEffectClientRpc(Vector3 position)
+    {
+        // Create visual-only effects on clients for better feedback
+        if (!IsServer && hitEffectPrefab != null)
         {
-            renderer.enabled = true;
+            Instantiate(hitEffectPrefab, position, Quaternion.identity);
         }
     }
 
