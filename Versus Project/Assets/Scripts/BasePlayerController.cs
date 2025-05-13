@@ -225,7 +225,7 @@ public class BasePlayerController : NetworkBehaviour
             if (isDead.Value)
             {
                 currentTarget = null;
-                transform.position = new Vector3(10000, 0, 0);
+                transform.position = new Vector3(1000, 1000, 0);
                 StartCoroutine(lameManager.PlayerDeath(gameObject.GetComponent<NetworkObject>(), lameManager.respawnLength.Value, OwnerClientId));
                 attackDamage = BaseDamage.Value;
                 autoAttackSpeed = BaseAttackSpeed.Value;

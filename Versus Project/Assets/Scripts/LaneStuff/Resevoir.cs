@@ -15,7 +15,7 @@ public class Resevoir : NetworkBehaviour
         networkResevoir = resevoir.GetComponent<NetworkObject>();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (IsServer && other.tag == "Player" && other.GetComponent<BasePlayerController>().teamNumber.Value == Team)
         {
