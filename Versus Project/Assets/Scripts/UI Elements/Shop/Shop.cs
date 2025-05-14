@@ -16,6 +16,7 @@ public class Shop : MonoBehaviour
 
     public Animator animator;
     public bool isOpen;
+    public bool firstBuy = true;
 
     [SerializeField] private BasePlayerController playerController;
     public bool initialized;
@@ -200,6 +201,21 @@ public class Shop : MonoBehaviour
                 animator.SetBool("isYapping", isYapping);
                 Text.GetComponent<TextMeshProUGUI>().text = purchasingDialogue[Random.Range(0, purchasingDialogue.Length)];
                 yapTimer = timeForYap;
+                if (!itemScript.isStarterItem && firstBuy)
+                {
+                    foreach (var i in CurrentItems)
+                    {
+                        if (i != null)
+                        {
+                            i.GetComponent<Item>().isDiscounted = false;
+                            if (!i.GetComponent<Item>().isStarterItem)
+                            {
+                                i.GetComponent<Item>().goldCost += 500;
+                            }
+                        }
+                    }
+                    firstBuy = false;
+                }
             }
         }
         else

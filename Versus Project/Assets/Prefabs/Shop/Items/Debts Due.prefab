@@ -108,6 +108,9 @@ MonoBehaviour:
   specialEffect: Player Kill Money
   Description: {fileID: 8857401324507193527}
   itemNumber: 0
+  isStarterItem: 0
+  isDiscounted: 1
+  costText: {fileID: 5913211506908496102}
 --- !u!1 &2697933005182123455
 GameObject:
   m_ObjectHideFlags: 0

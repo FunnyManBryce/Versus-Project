@@ -187,6 +187,9 @@ MonoBehaviour:
   specialEffect: 
   Description: {fileID: 7246102276589774806}
   itemNumber: 0
+  isStarterItem: 1
+  isDiscounted: 0
+  costText: {fileID: 5594940734039510925}
 --- !u!1 &1490429918093039289
 GameObject:
   m_ObjectHideFlags: 0

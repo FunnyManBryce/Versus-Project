@@ -108,6 +108,9 @@ MonoBehaviour:
   specialEffect: 25% Lifesteal
   Description: {fileID: 6208750970993936572}
   itemNumber: 0
+  isStarterItem: 0
+  isDiscounted: 1
+  costText: {fileID: 7542516664209196431}
 --- !u!1 &2028573222974838455
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Item : MonoBehaviour
 {
@@ -14,7 +15,17 @@ public class Item : MonoBehaviour
     public string specialEffect;
     public GameObject Description;
     public int itemNumber;
+    public bool isStarterItem;
+    public bool isDiscounted = true;
 
+    public TMP_Text costText;
+
+
+    public void Update()
+    {
+        costText.text = "Gold Cost: " + goldCost;
+        //Add a feature to show the first item bought is at a discount
+    }
 
     public void Click()
     {
@@ -30,4 +41,5 @@ public class Item : MonoBehaviour
     {
         Description.SetActive(false);
     }
+
 }
