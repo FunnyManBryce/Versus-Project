@@ -9,6 +9,7 @@ public class DecayAOE : NetworkBehaviour
     public float damagePerTick;
     public float speedReductionPerTick;
     public float reductionDuration = 5f;
+    public float auraDecayRatio = 0.5f;
     public Transform AOEPos;
     public float lifespan = 5f;
     public NetworkObject sender;
@@ -51,10 +52,13 @@ public class DecayAOE : NetworkBehaviour
                     collider.GetComponent<Health>().TakeDamageServerRPC(damagePerTick, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, false);
                     if (!collider.GetComponent<NetworkObject>().IsSpawned == false)
                     {
-                        InflictBuffServerRpc(new NetworkObjectReference(collider.GetComponent<NetworkObject>()), "Speed", speedReductionPerTick, reductionDuration, true);
-                        if (sender.GetComponent<DecayPlayerController>().AOESpeedSteal) //Decay gains some speed for every hit enemy if the ability is level 3
+                        if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
                         {
-                            sender.GetComponent<DecayPlayerController>().TriggerBuffServerRpc("Speed", -(speedReductionPerTick * 0.2f), reductionDuration, true);
+                            InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -(auraDecayRatio * sender.GetComponent<DecayPlayerController>().totalStatDecay.Value), reductionDuration, true);
+                            InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -(auraDecayRatio * sender.GetComponent<DecayPlayerController>().totalStatDecay.Value), reductionDuration, true);
+                            InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -(auraDecayRatio * sender.GetComponent<DecayPlayerController>().totalStatDecay.Value), reductionDuration, true);
+                            InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", -(auraDecayRatio * 0.05f * sender.GetComponent<DecayPlayerController>().totalStatDecay.Value), reductionDuration, true);
+                            InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", -(auraDecayRatio* 0.05f * sender.GetComponent<DecayPlayerController>().totalStatDecay.Value), reductionDuration, true);
                         }
                     }
                 }

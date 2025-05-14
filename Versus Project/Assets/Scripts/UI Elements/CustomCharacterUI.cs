@@ -57,13 +57,7 @@ public class CustomCharacterUI : MonoBehaviour
                 // Handle different player controller types
                 if (playerController is DecayPlayerController decayPlayer)
                 {
-                    if(!decayPlayer.isUlting.Value)
-                    {
-                        Text.text = $"Stat Decay: {decayPlayer.totalStatDecay.Value}";
-                    } else
-                    {
-                        Text.text = $"Stat Decay: 0";
-                    }
+                    Text.text = $"Stat Decay: {decayPlayer.totalStatDecay.Value}";
                 }
                 else if (playerController is PuppeteeringPlayerController puppetPlayer)
                 {

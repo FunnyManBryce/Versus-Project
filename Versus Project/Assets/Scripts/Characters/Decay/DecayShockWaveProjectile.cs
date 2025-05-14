@@ -11,6 +11,8 @@ public class DecayShockWaveProjectile : NetworkBehaviour
     public float damage;
     public NetworkObject sender;
     public Vector2 target;
+    public float reductionDuration;
+    public float speedReduction;
 
     public override void OnNetworkSpawn()
     {
@@ -45,6 +47,10 @@ public class DecayShockWaveProjectile : NetworkBehaviour
         if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
         {
             collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
+            if (!collider.GetComponent<NetworkObject>().IsSpawned == false)
+            {
+                InflictBuffServerRpc(new NetworkObjectReference(collider.GetComponent<NetworkObject>()), "Speed", -speedReduction, reductionDuration, true);
+            }
         }
     }
 

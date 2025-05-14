@@ -18,16 +18,18 @@ public class DecayPlayerController : BasePlayerController
     public GameObject AOEPrefab;
     public float AOEDamageMultiplier;
     public float speedReductionDuration = 5f;
-    public bool AOESpeedSteal = false;
+    public float auraDecayAmount = 0.5f;
 
     public float shockwaveDamageMultiplier;
     public GameObject shockwavePrefab;
-    public float shockWaveDuration = 2f;
+    public float shockWaveReductionDuration = 5f;
+    public float shockWaveReduction = 2f;
 
     public RuntimeAnimatorController UltAnimator;
     public RuntimeAnimatorController NormalAnimator;
     public float ultimateDuration = 10;
     public bool ultSpeedIncrease = false;
+    public float ultimateStatGain = 2;
     public NetworkVariable<bool> isUlting = new NetworkVariable<bool>();
     private NetworkObject ultTarget;
 
@@ -55,6 +57,7 @@ public class DecayPlayerController : BasePlayerController
         var AOE = Instantiate(AOEPrefab, Decay.transform.position, Quaternion.identity);
         AOE.GetComponent<DecayAOE>().damagePerTick = attackDamage * AOEDamageMultiplier;
         AOE.GetComponent<DecayAOE>().reductionDuration = speedReductionDuration;
+        AOE.GetComponent<DecayAOE>().auraDecayRatio = auraDecayAmount;
         AOE.GetComponent<DecayAOE>().team = teamNumber.Value;
         AOE.GetComponent<DecayAOE>().sender = Decay.GetComponent<NetworkObject>();
         var AOENetworkObject = AOE.GetComponent<NetworkObject>();
@@ -84,7 +87,8 @@ public class DecayPlayerController : BasePlayerController
     public void ShockwaveServerRpc()
     {
         var shockwave = Instantiate(shockwavePrefab, Decay.transform.position, Quaternion.identity);
-        shockwave.GetComponent<DecayShockWaveProjectile>().lifespan = shockWaveDuration;
+        shockwave.GetComponent<DecayShockWaveProjectile>().reductionDuration = shockWaveReductionDuration;
+        shockwave.GetComponent<DecayShockWaveProjectile>().speedReduction = shockWaveReduction;
         shockwave.GetComponent<DecayShockWaveProjectile>().damage = attackDamage * shockwaveDamageMultiplier;
         shockwave.GetComponent<DecayShockWaveProjectile>().team = teamNumber.Value;
         shockwave.GetComponent<DecayShockWaveProjectile>().sender = Decay.GetComponent<NetworkObject>();
@@ -100,28 +104,11 @@ public class DecayPlayerController : BasePlayerController
         UltAnimChangeClientRpc();
         IEnumerator coroutine = UltimateDuration();
         StartCoroutine(coroutine);
-        Vector2 pos = new Vector2(Decay.transform.position.x, Decay.transform.position.y);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 10);
-        foreach (var collider in hitColliders)
-        {
-            if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
-            {
-                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Attack Damage", -totalStatDecay.Value, ultimateDuration, true);
-                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor", -totalStatDecay.Value, ultimateDuration, true);
-                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Armor Pen", -totalStatDecay.Value, ultimateDuration, true);
-                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
-                health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Mana Regen", -(0.05f * totalStatDecay.Value), ultimateDuration, true);
-                if (ultSpeedIncrease)
-                {
-                    health.InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Speed", -2f, ultimateDuration, true);
-                }
-            }
-        }
-        TriggerBuffServerRpc("Attack Damage", totalStatDecay.Value, ultimateDuration, true);
-        TriggerBuffServerRpc("Armor", totalStatDecay.Value, ultimateDuration, true);
-        TriggerBuffServerRpc("Armor Pen", totalStatDecay.Value, ultimateDuration, true);
-        TriggerBuffServerRpc("Regen", (totalStatDecay.Value), ultimateDuration, true);
-        TriggerBuffServerRpc("Mana Regen", (totalStatDecay.Value), ultimateDuration, true);
+        TriggerBuffServerRpc("Attack Damage", ultimateStatGain * totalStatDecay.Value, ultimateDuration, true);
+        TriggerBuffServerRpc("Armor", ultimateStatGain * totalStatDecay.Value, ultimateDuration, true);
+        TriggerBuffServerRpc("Armor Pen", ultimateStatGain * totalStatDecay.Value, ultimateDuration, true);
+        TriggerBuffServerRpc("Regen", (ultimateStatGain * totalStatDecay.Value), ultimateDuration, true);
+        TriggerBuffServerRpc("Mana Regen", (ultimateStatGain * totalStatDecay.Value), ultimateDuration, true);
         if (ultSpeedIncrease)
         {
             TriggerBuffServerRpc("Speed", 2f, ultimateDuration, true);
@@ -270,7 +257,7 @@ public class DecayPlayerController : BasePlayerController
             }
             if (AOE.abilityLevel == 3)
             {
-                AOESpeedSteal = true;
+                auraDecayAmount = 0.75f;
             }
             if (AOE.abilityLevel == 4)
             {
@@ -316,11 +303,11 @@ public class DecayPlayerController : BasePlayerController
             }
             if (Shockwave.abilityLevel == 3)
             {
-                shockwaveDamageMultiplier += 0.6f;
+                shockWaveReduction += 1;
             }
             if (Shockwave.abilityLevel == 4)
             {
-                shockwaveDamageMultiplier += 0.75f;
+                shockwaveDamageMultiplier += 0.5f;
             }
             if (Shockwave.abilityLevel == 5)
             {
@@ -363,7 +350,7 @@ public class DecayPlayerController : BasePlayerController
             }
             if (Ultimate.abilityLevel == 3)
             {
-                Ultimate.cooldown -= 15;
+                ultimateStatGain = 3;
             }
             if (Ultimate.abilityLevel == 4)
             {
