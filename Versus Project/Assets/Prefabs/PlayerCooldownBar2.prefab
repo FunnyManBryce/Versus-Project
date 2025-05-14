@@ -125,6 +125,8 @@ MonoBehaviour:
   isPlayer1UI: 0
   abilityIndex: 2
   upgradeButton: {fileID: 1309383129420131533}
+  isUnlocked: 0
+  isMaxLevel: 0
 --- !u!223 &6660326912890916886
 Canvas:
   m_ObjectHideFlags: 0

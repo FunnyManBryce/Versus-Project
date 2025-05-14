@@ -321,6 +321,7 @@ MonoBehaviour:
   playerLastHit: 0
   midBossSpawn: 0
   dead: 0
+  isStunned: 0
   targetName: 
   Damage: 12
   armorPen: 1
@@ -332,8 +333,8 @@ MonoBehaviour:
   cooldownLength: 1.25
   cooldownTimer: 0
   XPRange: 20
-  XPGiven: 75
-  goldGiven: 50
+  XPGiven: 100
+  goldGiven: 80
   spawner: {fileID: 0}
   PlayerOne: {fileID: 0}
   PlayerTwo: {fileID: 0}
@@ -364,7 +365,7 @@ MonoBehaviour:
   Team:
     m_InternalValue: 0
   markedValue: 1
-  startingMaxHealth: 200
+  startingMaxHealth: 500
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0

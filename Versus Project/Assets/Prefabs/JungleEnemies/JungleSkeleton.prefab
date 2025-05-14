@@ -320,6 +320,7 @@ MonoBehaviour:
   playerLastHit: 0
   midBossSpawn: 0
   dead: 0
+  isStunned: 0
   targetName: 
   Damage: 7
   armorPen: 1
@@ -369,6 +370,7 @@ MonoBehaviour:
   invulnerable: 0
   isNPC: 1
   healthSetManual: 0
+  darknessEffect: 0
 --- !u!61 &4178726544735896045
 BoxCollider2D:
   m_ObjectHideFlags: 0

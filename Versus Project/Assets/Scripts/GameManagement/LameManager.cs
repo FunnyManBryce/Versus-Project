@@ -153,6 +153,7 @@ public class LameManager : NetworkBehaviour
 
     public IEnumerator PlayerDeath(NetworkObject player, float respawnTimer, ulong clientID)
     {
+        
         isRespawning = true;
         currentRespawnTimer = respawnTimer;
         if (IsOneVOne.Value)

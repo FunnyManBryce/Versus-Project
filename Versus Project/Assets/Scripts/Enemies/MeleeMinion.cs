@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -125,8 +126,10 @@ public class MeleeMinion : NetworkBehaviour
         {
             lameManager = FindObjectOfType<LameManager>();
             health.healthSetManual = true;
-            health.maxHealth.Value = baseHP + (baseHP * lameManager.matchTimer.Value * 0.004f);
+            health.maxHealth.Value = baseHP + (baseHP * lameManager.matchTimer.Value * 0.006f);
             health.currentHealth.Value = health.maxHealth.Value;
+            Damage = Damage + (Damage * lameManager.matchTimer.Value * 0.006f);
+            goldGiven = (goldGiven + (goldGiven * lameManager.matchTimer.Value * 0.006f)).ConvertTo<int>();
         }
     }
 

@@ -219,7 +219,8 @@ MonoBehaviour:
   aggro: 0
   playerLastHit: 0
   dead: 0
-  baseHP: 60
+  isStunned: 0
+  baseHP: 90
   Damage: 10
   chasePlayerDistance: 7
   chaseMinionDistance: 10
@@ -232,7 +233,7 @@ MonoBehaviour:
   cooldownTimer: 0
   armorPen: 1
   XPRange: 20
-  XPGiven: 20
+  XPGiven: 25
   goldGiven: 20
   enemyPlayer: {fileID: 0}
   enemyPuppet: {fileID: 0}

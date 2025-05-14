@@ -66,8 +66,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8104e3c300e5eb49bb2a75de4a749aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimerEnd: 50
+  spawnTimerEnd: 70
   onlySpawnedOnce: 0
+  isRandom: 0
+  SpawnOptions: []
   isSpawnedEnemyAlive: 0
   enemyToSpawn: {fileID: 8942386518775928844, guid: 86daf0de353be4e40b4e31a725c1e634,
     type: 3}

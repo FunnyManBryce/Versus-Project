@@ -396,9 +396,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentItems:
-  - {fileID: 5970470812080279079}
+  - {fileID: 4034864912625715452}
   - {fileID: 2899617947262239056}
-  - {fileID: 1160686103847944703}
+  - {fileID: 5970470812080279079}
   - {fileID: 9055479787507538038}
   - {fileID: 5997023323629616480}
   - {fileID: 5281681967591461314}
@@ -408,7 +408,7 @@ MonoBehaviour:
   - {fileID: 8673835987677644034}
   - {fileID: 3897927171209119238}
   - {fileID: 3421260184445263691}
-  - {fileID: 4034864912625715452}
+  - {fileID: 1160686103847944703}
   player: {fileID: 0}
   openShopButton: {fileID: 0}
   animator: {fileID: 338434531490188724}
@@ -460,7 +460,9 @@ MonoBehaviour:
   - There aren't THAT many choices, hurry up!
   - If time is money, you'd be broke, my friend!
   hoverDialogue:
-  - If you wanna be quick, this is for you!
+  - A great starter item for mana users!
+  - A great starter item for damage and health!
+  - If you want speed, this is for you!
   - Placeholder dialogue...
   - Placeholder dialogue...
   - Placeholder dialogue...
@@ -471,8 +473,6 @@ MonoBehaviour:
   - Placeholder dialogue...
   - Placeholder dialogue...
   - Placeholder dialogue...
-  - Placeholder dialogue...
-  - This is overpowered...
   enteringDialogue:
   - Gods killing each other for sport! Gotta love it!
   - Welcome!
@@ -622,12 +622,12 @@ PrefabInstance:
     - target: {fileID: 1069702871258644278, guid: e16fc2fa2d067994f8092130c7ece31e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1069702871258644278, guid: e16fc2fa2d067994f8092130c7ece31e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 1069702871258644278, guid: e16fc2fa2d067994f8092130c7ece31e,
         type: 3}
@@ -1229,12 +1229,12 @@ PrefabInstance:
     - target: {fileID: 1069702871258644278, guid: 79ed6f6d66a937c4b9c7bbffce4ac6b3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 80
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 1069702871258644278, guid: 79ed6f6d66a937c4b9c7bbffce4ac6b3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -35
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 1069702871258644278, guid: 79ed6f6d66a937c4b9c7bbffce4ac6b3,
         type: 3}
@@ -1254,7 +1254,7 @@ PrefabInstance:
     - target: {fileID: 1464155880601952244, guid: 79ed6f6d66a937c4b9c7bbffce4ac6b3,
         type: 3}
       propertyPath: m_Name
-      value: TestItem 4
+      value: Cracked Core
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1686,7 +1686,7 @@ PrefabInstance:
     - target: {fileID: 1069702871258644278, guid: 86f65453c5b07934c9a6e77dd717961b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1069702871258644278, guid: 86f65453c5b07934c9a6e77dd717961b,
         type: 3}

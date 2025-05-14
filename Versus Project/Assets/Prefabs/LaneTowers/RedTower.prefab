@@ -150,8 +150,8 @@ MonoBehaviour:
   networkTower: {fileID: 0}
   currentTarget: {fileID: 0}
   distanceFromPuppet: {x: 0, y: 0, z: 0}
-  goldRange: 10
-  goldGiven: 200
+  goldRange: 20
+  goldGiven: 300
   Damage: 200
   armorPen: 1
   orderInLane: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
   Team:
     m_InternalValue: 0
   markedValue: 1
-  startingMaxHealth: 500
+  startingMaxHealth: 1000
   armor: 0
   initialValuesSynced: 0
   invulnerable: 0
