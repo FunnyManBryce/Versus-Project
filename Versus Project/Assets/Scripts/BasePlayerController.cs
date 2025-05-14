@@ -993,9 +993,6 @@ public class BasePlayerController : NetworkBehaviour
         if(Level.Value < 4)
         {
             unspentUnlocks.Value++;
-        } else
-        {
-            unspentUpgrades.Value++;
         }
     }
 }
