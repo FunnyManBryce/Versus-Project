@@ -741,14 +741,42 @@ public class BasePlayerController : NetworkBehaviour
     public void SyncStats()
     {
         attackDamage = BaseDamage.Value + DamageBuff.Value;
+        if (attackDamage < 1)
+        {
+            attackDamage = 1;
+        }
         autoAttackSpeed = BaseAttackSpeed.Value + AttackSpeedBuff.Value;
+        if (autoAttackSpeed < 0.1f)
+        {
+            autoAttackSpeed = 0.1f;
+        }
         attackRange = BaseRange.Value + RangeBuff.Value;
+        if (attackRange < 1)
+        {
+            attackRange = 1;
+        }
         cDR = BaseCDR.Value + CDRBuff.Value;
+        if (cDR < 0)
+        {
+            cDR = 0;
+        }
         health.armor = BaseArmor.Value + ArmorBuff.Value;
+        if (cDR < 0)
+        {
+            cDR = 0;
+        }
         armorPen = BaseArmorPen.Value + ArmorPenBuff.Value;
+        if (armorPen < 0)
+        {
+            armorPen = 0;
+        }
         regen = BaseRegen.Value + RegenBuff.Value;
         manaRegen = BaseManaRegen.Value + ManaRegenBuff.Value;
         maxSpeed = BaseSpeed.Value + SpeedBuff.Value;
+        if (maxSpeed < 1)
+        {
+            maxSpeed = 1;
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]

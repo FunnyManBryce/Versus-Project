@@ -198,8 +198,20 @@ public class DecayPlayerController : BasePlayerController
     {
         totalStatDecay.Value += 1;
         BaseDamage.Value -= decayAmount;
+        /*if(BaseDamage.Value < 1) BasePlayerController code should make this obselete
+        {
+            BaseDamage.Value = 1;
+        }*/
         BaseArmor.Value -= decayAmount;
+        /*if (BaseArmor.Value < 0)
+        {
+            BaseArmor.Value = 0;
+        }*/
         BaseArmorPen.Value -= decayAmount;
+        /*if (BaseArmorPen.Value < 0)
+        {
+            BaseArmorPen.Value = 0;
+        }*/
         BaseRegen.Value -= (0.05f * decayAmount);
         BaseManaRegen.Value -= (0.05f * decayAmount);
     }

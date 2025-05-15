@@ -47,9 +47,12 @@ public class DecayShockWaveProjectile : NetworkBehaviour
         if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
         {
             collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
-            if (!collider.GetComponent<NetworkObject>().IsSpawned == false)
+            if (!collider.GetComponent<NetworkObject>().IsSpawned == false && collider.GetComponent<MeleeMinion>() == null)
             {
                 InflictBuffServerRpc(new NetworkObjectReference(collider.GetComponent<NetworkObject>()), "Speed", -speedReduction, reductionDuration, true);
+            } else if(collider.GetComponent<MeleeMinion>() != null)
+            {
+                InflictBuffServerRpc(new NetworkObjectReference(collider.GetComponent<NetworkObject>()), "Speed", -speedReduction/2, reductionDuration, true);
             }
         }
     }
