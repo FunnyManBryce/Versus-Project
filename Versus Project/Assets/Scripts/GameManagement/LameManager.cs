@@ -175,7 +175,7 @@ public class LameManager : NetworkBehaviour
         }
         else
         {
-            player.transform.position = playerSP[Team - 1];
+            player.transform.position = playerSP[player.GetComponent<BasePlayerController>().teamNumber.Value - 1];
             player.GetComponent<BasePlayerController>().isDead.Value = false;
         }
     }

@@ -206,6 +206,7 @@ public class Tower : NetworkBehaviour
                 bAM.PlayServerRpc("Tower Alert", tower.transform.position);
                 bAM.PlayClientRpc("Tower Alert", tower.transform.position);
             }
+            
         }
     }
 
