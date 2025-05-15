@@ -303,9 +303,9 @@ RectTransform:
   m_Children:
   - {fileID: 4130110392077864432}
   - {fileID: 5307843413375806030}
-  - {fileID: 5211435037032984293}
+  - {fileID: 3276187716277790782}
   - {fileID: 3653650978947457426}
-  - {fileID: 761801857140318525}
+  - {fileID: 5211435037032984293}
   - {fileID: 7431614483599980724}
   - {fileID: 5309840633625501090}
   - {fileID: 6036423118453616896}
@@ -315,7 +315,7 @@ RectTransform:
   - {fileID: 7121955468968502720}
   - {fileID: 3211588803139561156}
   - {fileID: 3887487319398039433}
-  - {fileID: 3276187716277790782}
+  - {fileID: 761801857140318525}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -413,6 +413,7 @@ MonoBehaviour:
   openShopButton: {fileID: 0}
   animator: {fileID: 338434531490188724}
   isOpen: 0
+  firstBuy: 1
   playerController: {fileID: 0}
   initialized: 0
   isPlayer1UI: 0
@@ -648,6 +649,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arlo's Dagger
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101906702970434100, guid: e16fc2fa2d067994f8092130c7ece31e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

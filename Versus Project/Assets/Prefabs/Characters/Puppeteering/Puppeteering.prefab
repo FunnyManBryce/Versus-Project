@@ -247,12 +247,12 @@ MonoBehaviour:
   currentSpeed: 0
   statGrowthRate:
   - 0
-  - 2
-  - 2
+  - 5
+  - 3
   - 0
   - 0
   - 0.2
-  - 0.15
+  - 0.1
   - 50
   - 0
   - 70

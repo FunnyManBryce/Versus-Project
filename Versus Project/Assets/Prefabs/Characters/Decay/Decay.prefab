@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3800055814
+  GlobalObjectIdHash: 2062833195
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -414,8 +414,8 @@ MonoBehaviour:
   currentSpeed: 0
   statGrowthRate:
   - 0
-  - 4
-  - 3
+  - 8
+  - 5
   - 0
   - 0
   - 0.1
@@ -577,7 +577,7 @@ MonoBehaviour:
     type: 3}
   AOEDamageMultiplier: 0.375
   speedReductionDuration: 5
-  AOESpeedSteal: 0
+  auraDecayAmount: 0.5
   shockwaveDamageMultiplier: 2
   shockwavePrefab: {fileID: 315554442559877787, guid: 8663d8aa882b61a4c89f2fa994aca86c,
     type: 3}
@@ -587,6 +587,7 @@ MonoBehaviour:
   NormalAnimator: {fileID: 9100000, guid: 255bf4f12ce881843b7a629ec6bc1d55, type: 2}
   ultimateDuration: 15
   ultSpeedIncrease: 0
+  ultimateStatGain: 2
   isUlting:
     m_InternalValue: 0
   AOE:
