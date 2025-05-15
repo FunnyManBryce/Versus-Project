@@ -374,6 +374,7 @@ public class BasePlayerController : NetworkBehaviour
     private protected void Update()
     {
         SyncStats(); //Takes the base value of each stat, and adds whatever the current buff/debuff is
+        animator.SetFloat("AutoSpeed", autoAttackSpeed);
         if (!IsOwner) return;
         if(appliesDarkness.Value && darknessDuration > 0)
         {
