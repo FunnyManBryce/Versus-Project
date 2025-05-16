@@ -675,6 +675,8 @@ MonoBehaviour:
     - Dash distance and punch range increased
     - Punch cooldown reduction for hitting a player increased
     - Punch now has a higher base damage multiplyer
+    abilityIcon: {fileID: 1138436177677800832, guid: 5cf45114446f6c24a9e77b631e768111,
+      type: 3}
   GroundSlam:
     playerController: {fileID: -4589182503098133746}
     inputKey: 101
@@ -695,6 +697,8 @@ MonoBehaviour:
     - Cooldown reduced by 3 seconds
     - Slam radius increased by 33%
     - Slam does 66% more damage
+    abilityIcon: {fileID: -170405437162950039, guid: ff710deb07d108e4794f4ad281cd0fd8,
+      type: 3}
   UncivRage:
     playerController: {fileID: -4589182503098133746}
     inputKey: 114
@@ -717,3 +721,5 @@ MonoBehaviour:
     - Increase the passive conversion ratio from 2x to 2.5x
     - Increase the ultimate duration to 10 seconds
     - Increase the missing health ratio on the heal by 50%
+    abilityIcon: {fileID: -1127122248400331327, guid: 01b5ec576d6287b41a6bcfacce6a5458,
+      type: 3}

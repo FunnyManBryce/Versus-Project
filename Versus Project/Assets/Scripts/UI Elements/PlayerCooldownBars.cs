@@ -133,6 +133,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getManaCost = () => player.AOE.manaCost;
                 cooldownDuration = player.AOE.cooldown;
                 descDescription.text = "Description: " + player.AOE.abilityDescription;
+                abilityIcon.GetComponent<Image>().sprite = player.AOE.abilityIcon;
                 break;
             case 2: // Second ability (Shockwave)
                 isOffCooldown = () => player.Shockwave.OffCooldown();
@@ -141,6 +142,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getManaCost = () => player.Shockwave.manaCost;
                 cooldownDuration = player.Shockwave.cooldown;
                 descDescription.text = "Description: " + player.Shockwave.abilityDescription;
+                abilityIcon.GetComponent<Image>().sprite = player.Shockwave.abilityIcon;
                 break;
             case 3: // Ultimate
                 isOffCooldown = () => player.Ultimate.OffCooldown();
@@ -149,6 +151,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getManaCost = () => player.Ultimate.manaCost;
                 cooldownDuration = player.Ultimate.cooldown;
                 descDescription.text = "Description: " + player.Ultimate.abilityDescription;
+                abilityIcon.GetComponent<Image>().sprite = player.Ultimate.abilityIcon;
                 break;
         }
     }
@@ -164,6 +167,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getManaCost = () => player.String.manaCost;
                 cooldownDuration = player.String.cooldown;
                 descDescription.text = "Description: " + player.String.abilityDescription;
+                abilityIcon.GetComponent<Image>().sprite = player.String.abilityIcon;
                 break;
             case 2: // Second ability (ModeSwitch)
                 isOffCooldown = () => player.ModeSwitch.OffCooldown();
@@ -172,6 +176,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getManaCost = () => player.ModeSwitch.manaCost;
                 cooldownDuration = player.ModeSwitch.cooldown;
                 descDescription.text = "Description: " + player.ModeSwitch.abilityDescription;
+                abilityIcon.GetComponent<Image>().sprite = player.ModeSwitch.abilityIcon;
                 break;
             case 3: // Ultimate
                 isOffCooldown = () => player.Ultimate.OffCooldown();
@@ -180,6 +185,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getManaCost = () => player.Ultimate.manaCost;
                 cooldownDuration = player.Ultimate.cooldown;
                 descDescription.text = "Description: " + player.Ultimate.abilityDescription;
+                abilityIcon.GetComponent<Image>().sprite = player.Ultimate.abilityIcon;
                 break;
         }
     }
@@ -201,6 +207,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.QuickPunch.CooldownDurationLeft();
                 getManaCost = () => player.QuickPunch.manaCost;
                 cooldownDuration = player.QuickPunch.cooldown;
+                abilityIcon.GetComponent<Image>().sprite = player.QuickPunch.abilityIcon;
                 break;
             case 2: // Second ability (GroundSlam)
                 isOffCooldown = () => player.GroundSlam.OffCooldown();
@@ -208,6 +215,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.GroundSlam.CooldownDurationLeft();
                 getManaCost = () => player.GroundSlam.manaCost;
                 cooldownDuration = player.GroundSlam.cooldown;
+                abilityIcon.GetComponent<Image>().sprite = player.GroundSlam.abilityIcon;
                 break;
             case 3: // Ultimate (UncivRage)
                 isOffCooldown = () => player.UncivRage.OffCooldown();
@@ -215,6 +223,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getCooldownTimeLeft = () => player.UncivRage.CooldownDurationLeft();
                 getManaCost = () => player.UncivRage.manaCost;
                 cooldownDuration = player.UncivRage.cooldown;
+                abilityIcon.GetComponent<Image>().sprite = player.UncivRage.abilityIcon;
                 break;
         }
     }
@@ -256,6 +265,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 {
                     descLevelUpEffect.text = "Max Level";
                 }
+                abilityIcon.GetComponent<Image>().sprite = player.VoidBall.abilityIcon;
                 break;
 
             case 2: // Second ability (Blink)
@@ -278,6 +288,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 {
                     descLevelUpEffect.text = "Max Level";
                 }
+                abilityIcon.GetComponent<Image>().sprite = player.BlinkAbility.abilityIcon;
                 break;
 
             case 3: // Ultimate (Void Perspective)
@@ -300,6 +311,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 {
                     descLevelUpEffect.text = "Max Level";
                 }
+                abilityIcon.GetComponent<Image>().sprite = player.VoidPerspective.abilityIcon;
                 break;
         }
     }

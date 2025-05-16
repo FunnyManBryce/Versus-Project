@@ -611,6 +611,8 @@ MonoBehaviour:
     - Stat decay debuff is 50% stronger.
     - Cooldown reduced by 10 seconds.
     - Stat decay debuff lasts +5 seconds
+    abilityIcon: {fileID: 1138436177677800832, guid: 5cf45114446f6c24a9e77b631e768111,
+      type: 3}
   Shockwave:
     playerController: {fileID: 2299055155951191650}
     inputKey: 101
@@ -632,6 +634,8 @@ MonoBehaviour:
     - Enemies hit are slowed down more.
     - Increases damage by 25%
     - Reduces mana cost by 15
+    abilityIcon: {fileID: -170405437162950039, guid: ff710deb07d108e4794f4ad281cd0fd8,
+      type: 3}
   Ultimate:
     playerController: {fileID: 2299055155951191650}
     inputKey: 114
@@ -653,6 +657,8 @@ MonoBehaviour:
     - Stats are increased by 3 time the stat decay for the duration.
     - Cooldown reduced by 20
     - Ultimate duration increased by 5 seconds
+    abilityIcon: {fileID: -1127122248400331327, guid: 01b5ec576d6287b41a6bcfacce6a5458,
+      type: 3}
 --- !u!212 &176950742428784287
 SpriteRenderer:
   m_ObjectHideFlags: 0

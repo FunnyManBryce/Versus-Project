@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 14862719
+  GlobalObjectIdHash: 321467190
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -613,6 +613,8 @@ MonoBehaviour:
     - Ball warning circle 0.5 seconds shorter and increase multicast by 1
     - Cooldown reduced by 2 seconds
     - 'Passive gains a additional 10% attack growth on consecutive abilty hit '
+    abilityIcon: {fileID: 1138436177677800832, guid: 5cf45114446f6c24a9e77b631e768111,
+      type: 3}
   BlinkAbility:
     playerController: {fileID: -7934763187758970237}
     inputKey: 101
@@ -635,6 +637,8 @@ MonoBehaviour:
     - Abilty cooldown reduced by 3 seconds
     - Passive gains a additional 10% attack growth on consecutive abilty hit (slightly
       increase blink distance
+    abilityIcon: {fileID: -170405437162950039, guid: ff710deb07d108e4794f4ad281cd0fd8,
+      type: 3}
   VoidPerspective:
     playerController: {fileID: -7934763187758970237}
     inputKey: 114
@@ -656,6 +660,8 @@ MonoBehaviour:
     - Voids camera zooms out further in ult and add a multicast
     - decrease cooldown of this abilty by 25 seconds
     - 'Passive gains a additional 20% attack growth on consecutive abilty hit '
+    abilityIcon: {fileID: -1127122248400331327, guid: 01b5ec576d6287b41a6bcfacce6a5458,
+      type: 3}
   targetableLayer:
     serializedVersion: 2
     m_Bits: 0
