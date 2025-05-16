@@ -65,7 +65,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold Cost: 800'
+  m_text: 'Gold Cost: 611
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -369,16 +371,16 @@ MonoBehaviour:
   itemName: Arlo's Dagger
   StatBuffs:
   - 0
-  - 20
+  - 30
   - 0
   - 30
-  - 0.25
+  - 0.3
   - 0
   - 0
   - 0
   - 0
   - 0
-  goldCost: 800
+  goldCost: 611
   specialEffect: 
   Description: {fileID: 9101906702970434100}
   itemNumber: 0
@@ -665,11 +667,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Effect: +20 Attack Damage
+  m_text: 'Effect: +30 Attack Damage
 
     +30 Armor Pen
 
-    +0.25 Attack Speed'
+    +0.3 Attack Speed'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

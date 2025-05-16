@@ -96,15 +96,15 @@ MonoBehaviour:
   StatBuffs:
   - 0
   - 0
-  - 70
+  - 55
   - 0
   - 0
   - 15
   - 0
   - 0
   - 0
-  - 600
-  goldCost: 1100
+  - 550
+  goldCost: 1200
   specialEffect: 
   Description: {fileID: 8857401324507193527}
   itemNumber: 0
@@ -312,9 +312,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Effect: +600 Max Health
+  m_text: 'Effect: +550 Max Health
 
-    +70 Armor
+    +55 Armor
 
     +15 HP Regen
 
@@ -847,7 +847,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold Cost: 1100'
+  m_text: 'Gold Cost: 1200'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

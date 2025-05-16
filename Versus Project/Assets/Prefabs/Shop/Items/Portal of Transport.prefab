@@ -94,7 +94,7 @@ MonoBehaviour:
   Shop: {fileID: 0}
   itemName: Portal of Transport
   StatBuffs:
-  - 1
+  - 1.5
   - 15
   - 0
   - 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   - 0
   - 12
   - 250
-  goldCost: 1050
+  goldCost: 1075
   specialEffect: 
   Description: {fileID: 8857401324507193527}
   itemNumber: 0
@@ -312,8 +312,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Effect: +1 Move Speed\n+0.2 Attack Speed\n+250 Health \n+12 CDR\n+15 Attack
-    Damage"
+  m_text: "Effect: +1.5 Move Speed\n+0.2 Attack Speed\n+250 Health \n+12 CDR\n+15
+    Attack Damage"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -842,7 +842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold Cost: 1050
+  m_text: 'Gold Cost: 1075
 
 '
   m_isRightToLeft: 0

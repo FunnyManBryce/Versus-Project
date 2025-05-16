@@ -104,7 +104,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  goldCost: 1300
+  goldCost: 1200
   specialEffect: 25% Lifesteal
   Description: {fileID: 6208750970993936572}
   itemNumber: 0

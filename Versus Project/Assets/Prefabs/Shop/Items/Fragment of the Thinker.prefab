@@ -95,16 +95,16 @@ MonoBehaviour:
   itemName: Fragment of the Thinker
   StatBuffs:
   - 0
-  - 15
+  - 10
   - 0
   - 0
   - 0
   - 0
   - 10
   - 600
-  - 10
+  - 20
   - 0
-  goldCost: 850
+  goldCost: 700
   specialEffect: 
   Description: {fileID: 8857401324507193527}
   itemNumber: 0
@@ -312,13 +312,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Effect: +15 Attack Damage
+  m_text: 'Effect: +10 Attack Damage
 
     +600 Max Mana
 
     +10 Mana Regen
 
-    +10
+    +20
     CDR'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -849,7 +849,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold Cost: 850'
+  m_text: 'Gold Cost: 700
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -95,16 +95,16 @@ MonoBehaviour:
   itemName: The Twilight's Herald
   StatBuffs:
   - 0
-  - 60
+  - 110
   - 0
   - 0
   - 0
   - 0
   - 0
   - 400
-  - 17
+  - 8
   - 0
-  goldCost: 1200
+  goldCost: 1300
   specialEffect: 
   Description: {fileID: 8857401324507193527}
   itemNumber: 0
@@ -314,9 +314,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Effect: +400 Max Mana
 
-    +25 CDR
+    +8 CDR
 
-    +70 Attack Damage'
+    +110 Attack Damage'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold Cost: 1200'
+  m_text: 'Gold Cost: 1300'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
