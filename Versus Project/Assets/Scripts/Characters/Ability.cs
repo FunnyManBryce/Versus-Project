@@ -26,7 +26,7 @@ public class AbilityBase<T> where T : BasePlayerController
     public string[] levelUpEffects;
     public bool OffCooldown() => lastUsed + (cooldown * ((100 - playerController.cDR) / 100)) < Time.time;
     public float NormalizedCooldown() => Mathf.Min((Time.time - lastUsed) / (cooldown * ((100 - playerController.cDR) / 100)), 1);
-    public string CooldownDurationLeft() => ((cooldown * ((100 - playerController.cDR) / 100)) - (Time.time - lastUsed)).ToString("0.00");
+    public string CooldownDurationLeft() => ((cooldown * ((100 - playerController.cDR) / 100)) - (Time.time - lastUsed)).ToString("0");
     public bool CanUse() => OffCooldown() && playerController.mana >= manaCost;
     public bool PointAndClickDelay() => pointClickTimeUsed + 0.5f > Time.time;
     public virtual void OnUse()

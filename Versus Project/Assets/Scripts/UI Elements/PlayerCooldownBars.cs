@@ -37,7 +37,7 @@ public class PlayerCooldownBars : MonoBehaviour
     private Func<float> getManaCost;
     private float cooldownDuration;
 
-    private Color normalColor = new Color(0.706f, 0.851f, 0.702f, 1);
+    private Color normalColor = new Color(0.706f, 0.950f, 0.702f, 1);
     private Color insufficientManaColor = new Color(0.722f, 0.427f, 0.427f, 1);
 
     private void Start()
@@ -329,7 +329,7 @@ public class PlayerCooldownBars : MonoBehaviour
             {
                 fillImage.color = isOffCooldown() ?
                     (playerController.mana >= getManaCost() ? normalColor : insufficientManaColor) :
-                    Color.gray;
+                    Color.white;
             }
         }
 
@@ -615,7 +615,8 @@ public class PlayerCooldownBars : MonoBehaviour
         {
             if (isOffCooldown())
             {
-                cooldownText.text = playerController.mana >= getManaCost() ? "READY" : "NO MANA";
+                cooldownText.text = "";
+                //cooldownText.text = playerController.mana >= getManaCost() ? "READY" : "NO MANA";
             }
             else
             {
@@ -634,7 +635,7 @@ public class PlayerCooldownBars : MonoBehaviour
 
             // Color the text based on whether the player has enough mana
             manaCostText.color = playerController.mana >= getManaCost() ?
-                Color.white :
+                Color.cyan :
                 insufficientManaColor;
         }
     }
