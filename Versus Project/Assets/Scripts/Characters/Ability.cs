@@ -24,6 +24,7 @@ public class AbilityBase<T> where T : BasePlayerController
     public string abilityName;
     public string abilityDescription;
     public string[] levelUpEffects;
+    public Sprite abilityIcon;
     public bool OffCooldown() => lastUsed + (cooldown * ((100 - playerController.cDR) / 100)) < Time.time;
     public float NormalizedCooldown() => Mathf.Min((Time.time - lastUsed) / (cooldown * ((100 - playerController.cDR) / 100)), 1);
     public string CooldownDurationLeft() => ((cooldown * ((100 - playerController.cDR) / 100)) - (Time.time - lastUsed)).ToString("0");

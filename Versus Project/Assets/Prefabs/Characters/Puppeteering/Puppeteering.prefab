@@ -446,6 +446,8 @@ MonoBehaviour:
     - Marked enemies take 50% more damage instead of 33%
     - String damage increased by 66%
     - Reduces cooldown by 5 seconds. String can now target towers.
+    abilityIcon: {fileID: 5539437303405510802, guid: 5aa25fed6aacbeb4faea91b914bb966f,
+      type: 3}
   ModeSwitch:
     playerController: {fileID: 2414812415466740570}
     inputKey: 101
@@ -468,6 +470,8 @@ MonoBehaviour:
     - Reduces cooldown by 5 seconds.
     - Offensive lifesteal is 1.5X stronger. Defensive regen increased by +10.
     - Mana cost reduced by 10
+    abilityIcon: {fileID: 247135545103945264, guid: 80842e83698b0ec4aa595186cda2af0b,
+      type: 3}
   Ultimate:
     playerController: {fileID: 2414812415466740570}
     inputKey: 114
@@ -489,6 +493,8 @@ MonoBehaviour:
     - Ult will spawn up to two puppets if none are alive. Mana cost reduced by 10.
     - Reduces cooldown by 10
     - +5 second duration
+    abilityIcon: {fileID: 97583598086974273, guid: 23e8b6337ebd1e24d9a168291b031c77,
+      type: 3}
 --- !u!114 &2628991981076659366
 MonoBehaviour:
   m_ObjectHideFlags: 0
