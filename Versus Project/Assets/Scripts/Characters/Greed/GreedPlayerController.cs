@@ -10,6 +10,7 @@ public class GreedPlayerController : BasePlayerController
     public float goldConversionRatio = 0.1f; // Base amount of damage gained per gold
     public GameObject Greed;
     public float basePlayerDamage;
+    private float previousGoldValue = 0;
 
     // Ability 1 - Quick Punch with Dash
     public float dashDistance = 3f;
@@ -173,16 +174,25 @@ public class GreedPlayerController : BasePlayerController
             }
         }
     }
+
     private void UpdateGoldPassive()
     {
+        // Calculate how gold affects damage
         float goldMultiplier = isUltActive ? ultPassiveMultiplier : 1.0f;
         float goldBonus = Gold.Value * goldConversionRatio * goldMultiplier;
 
-        // Update the attack damage with base damage plus gold bonus
+        // Calculate total damage including base damage from the BaseDamage property plus gold bonus
+        // BaseDamage already includes item bonuses from the BasePlayerController class
+        float totalDamage = BaseDamage.Value + goldBonus;
+
+        // Only update when owner to prevent multiple updates
         if (IsOwner)
         {
-            UpdateAttackDamageServerRpc(basePlayerDamage + goldBonus);
+            UpdateAttackDamageServerRpc(totalDamage);
         }
+
+        // Update previous gold value
+        previousGoldValue = Gold.Value;
     }
 
     [ServerRpc]
