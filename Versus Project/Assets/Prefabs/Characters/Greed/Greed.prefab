@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3671417763
+  GlobalObjectIdHash: 1307297395
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -675,7 +675,7 @@ MonoBehaviour:
     - Dash distance and punch range increased
     - Punch cooldown reduction for hitting a player increased
     - Punch now has a higher base damage multiplyer
-    abilityIcon: {fileID: 1138436177677800832, guid: 5cf45114446f6c24a9e77b631e768111,
+    abilityIcon: {fileID: 6775490835325385982, guid: a4aa320ab8f7ee94394c973d323b64da,
       type: 3}
   GroundSlam:
     playerController: {fileID: -4589182503098133746}
@@ -697,7 +697,7 @@ MonoBehaviour:
     - Cooldown reduced by 3 seconds
     - Slam radius increased by 33%
     - Slam does 66% more damage
-    abilityIcon: {fileID: -170405437162950039, guid: ff710deb07d108e4794f4ad281cd0fd8,
+    abilityIcon: {fileID: -2368094544657192679, guid: b30e5d884b2c2294eaa4359767e08369,
       type: 3}
   UncivRage:
     playerController: {fileID: -4589182503098133746}
@@ -721,5 +721,5 @@ MonoBehaviour:
     - Increase the passive conversion ratio from 2x to 2.5x
     - Increase the ultimate duration to 10 seconds
     - Increase the missing health ratio on the heal by 50%
-    abilityIcon: {fileID: -1127122248400331327, guid: 01b5ec576d6287b41a6bcfacce6a5458,
+    abilityIcon: {fileID: -8802704010337080833, guid: 2abad92decf715f4d9e1c7634f59ceec,
       type: 3}
