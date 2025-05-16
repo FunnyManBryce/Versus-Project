@@ -332,6 +332,7 @@ MonoBehaviour:
   aggroLength: 5
   cooldownLength: 1.25
   cooldownTimer: 0
+  attackType: Normal
   XPRange: 20
   XPGiven: 100
   goldGiven: 80

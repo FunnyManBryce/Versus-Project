@@ -323,15 +323,16 @@ MonoBehaviour:
   dead: 0
   isStunned: 0
   targetName: 
-  Damage: 17.5
+  Damage: 30
   armorPen: 1
   chasePlayerDistance: 10
   range: 10
   moveSpeed: 0
   aggroTimer: 0
   aggroLength: 5
-  cooldownLength: 0.75
+  cooldownLength: 1.5
   cooldownTimer: 0
+  attackType: Projectile
   XPRange: 20
   XPGiven: 120
   goldGiven: 120
@@ -343,6 +344,8 @@ MonoBehaviour:
   jungleEnemy: {fileID: 8942386518775928844}
   networkEnemy: {fileID: 6782888038592277727}
   currentTarget: {fileID: 0}
+  projectilePrefab: {fileID: 1586315482002129850, guid: 32c6039d36d542c4aaa1dd59ba4918b0,
+    type: 3}
   healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
     type: 3}
   HealthBar: {fileID: 0}

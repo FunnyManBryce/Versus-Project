@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Netcode;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -44,6 +45,7 @@ public class JungleEnemy : NetworkBehaviour
     public float aggroLength = 10f;
     public float cooldownLength = 0.5f;
     public float cooldownTimer = 0f;
+    public string attackType;
 
     public float XPRange;
     public float XPGiven;
@@ -57,6 +59,7 @@ public class JungleEnemy : NetworkBehaviour
     public GameObject jungleEnemy;
     public NetworkObject networkEnemy;
     public NetworkObject currentTarget;
+    public GameObject projectilePrefab;
 
     public GameObject healthBarPrefab;
     public GameObject HealthBar;
@@ -163,7 +166,7 @@ public class JungleEnemy : NetworkBehaviour
         {
             aggro = true;
         }
-        if (aggro)
+        if (aggro && attackType == "Normal")
         {
             if (PlayerOne != null)
             {
@@ -227,21 +230,87 @@ public class JungleEnemy : NetworkBehaviour
             {
                 distanceFromPlayerTwo = new Vector3(1000, 1000, 1000);
             }
-        }
-        if (distanceFromPlayerOne.magnitude < distanceFromPlayerTwo.magnitude && distanceFromPlayerOne.magnitude < range && aggro == true && cooldown == false)
+            if (distanceFromPlayerOne.magnitude < distanceFromPlayerTwo.magnitude && distanceFromPlayerOne.magnitude < range && aggro == true && cooldown == false)
+            {
+                currentTarget = playerOneTarget.GetComponent<NetworkObject>();
+                agent.speed = 0;
+                isAttacking = true;
+                animator.SetBool("Attacking", isAttacking);
+            }
+            else if (distanceFromPlayerTwo.magnitude < range && aggro == true && cooldown == false)
+            {
+                currentTarget = playerTwoTarget.GetComponent<NetworkObject>();
+                agent.speed = 0;
+                isAttacking = true;
+                animator.SetBool("Attacking", isAttacking);
+            }
+        } else if(aggro && attackType != null && cooldown == false)
         {
-            currentTarget = playerOneTarget.GetComponent<NetworkObject>();
-            agent.speed = 0;
-            isAttacking = true;
-            animator.SetBool("Attacking", isAttacking);
+            if (attackType == "Slam")
+            {
+                isAttacking = true;
+                animator.SetBool("Attacking", isAttacking);
+                //Slam();
+            }
+            if(attackType == "Projectile")
+            {
+                Vector3 oldTarget = new Vector3(1000, 1000, 0);
+                bool foundTarget = false;
+                Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, range);
+                foreach (var collider in hitColliders)
+                {
+                    if (collider.GetComponent<BasePlayerController>() != null && collider.isTrigger || collider.GetComponent<Puppet>() != null && collider.isTrigger)
+                    {
+                        foundTarget = true;
+                        GameObject potentialTarget = collider.gameObject;
+                        Vector3 directionToTarget = new Vector3(transform.position.x - potentialTarget.transform.position.x, transform.position.y - potentialTarget.transform.position.y, 0);
+                        if (oldTarget.magnitude > directionToTarget.magnitude)
+                        {
+                            oldTarget = directionToTarget;
+                            distanceFromTarget = directionToTarget;
+                            currentTarget = potentialTarget.GetComponent<NetworkObject>();
+                        }
+                    }
+                }
+                if (foundTarget && currentTarget != null)
+                {
+                    isAttacking = true;
+                    animator.SetBool("Attacking", isAttacking);
+                }
+            }
         }
-        else if (distanceFromPlayerTwo.magnitude < range && aggro == true && cooldown == false)
+    }
+
+    public void Projectile()
+    {
+        if (!IsServer) return;
+        var proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        proj.GetComponent<JungleProj>().damage = Damage;
+        proj.GetComponent<JungleProj>().target = currentTarget.transform.position;
+        proj.GetComponent<JungleProj>().sender = networkEnemy;
+        var projNetwork = proj.GetComponent<NetworkObject>();
+        projNetwork.Spawn();
+        isAttacking = false;
+        animator.SetBool("Attacking", isAttacking);
+        cooldown = true;
+    }
+
+    public void Slam()
+    {
+        if (!IsServer) return;
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, range);
+        foreach (var collider in hitColliders)
         {
-            currentTarget = playerTwoTarget.GetComponent<NetworkObject>();
-            agent.speed = 0;
-            isAttacking = true;
-            animator.SetBool("Attacking", isAttacking);
+            if (collider.GetComponent<BasePlayerController>() != null && collider.isTrigger || collider.GetComponent<Puppet>() != null && collider.isTrigger)
+            {
+                collider.GetComponent<Health>().TakeDamageServerRPC(Damage, new NetworkObjectReference(networkEnemy), armorPen, false);
+            }
         }
+        isAttacking = false;
+        animator.SetBool("Attacking", isAttacking);
+        cooldown = true;
     }
 
     public void MultiAttack()
@@ -254,6 +323,7 @@ public class JungleEnemy : NetworkBehaviour
     }
     public void DealDamage()
     {
+        if (!IsServer) return;
         if (currentTarget != null)
         {
             Debug.Log(currentTarget.name);
