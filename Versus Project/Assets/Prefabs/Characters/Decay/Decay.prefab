@@ -563,6 +563,8 @@ MonoBehaviour:
     type: 3}
   customTextPrefab: {fileID: 2114343820725859254, guid: b8a76b48e0eedfd4bb8a67c94713eaab,
     type: 3}
+  StatDisplayPrefab: {fileID: 4300833039706499006, guid: 9003418133c6e9742a077eb231dd1bb2,
+    type: 3}
   enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: f9329fa1a6869f84caca61dc8635e238,
     type: 3}
   HealthBar: {fileID: 0}

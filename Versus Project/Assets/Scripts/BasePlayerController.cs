@@ -109,6 +109,7 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject deathScreenPrefab;
     public GameObject timerTextPrefab;
     public GameObject customTextPrefab;
+    public GameObject StatDisplayPrefab;
 
     public GameObject enemyHealthBarPrefab;
     public GameObject HealthBar;
@@ -278,6 +279,9 @@ public class BasePlayerController : NetworkBehaviour
 
             if (playerCanvas != null)
             {
+                GameObject statDisplay = Instantiate(StatDisplayPrefab, playerCanvas.transform);
+
+
                 GameObject shop = Instantiate(shopPrefab, playerCanvas.transform);
                 shop.GetComponent<Shop>().enabled = true;
 
@@ -299,33 +303,6 @@ public class BasePlayerController : NetworkBehaviour
                 GameObject ultimateCooldownBar = Instantiate(UltimateCooldownBarPrefab, playerCanvas.transform);
                 ultimateCooldownBar.GetComponent<PlayerCooldownBars>().enabled = true;
 
-                GameObject AttackDisplay = Instantiate(attackDamagePrefab, playerCanvas.transform);
-                AttackDisplay.GetComponent<PlayerDamageDisplay>().enabled = true;
-
-                GameObject attackSpeedDisplay = Instantiate(attackSpeedDisplayPrefab, playerCanvas.transform);
-                attackSpeedDisplay.GetComponent<PlayerAttackSpeedDisplay>().enabled = true;
-
-                GameObject attackRangeDisplay = Instantiate(attackRangeDisplayPrefab, playerCanvas.transform);
-                attackRangeDisplay.GetComponent<PlayerAttackRangeDisplay>().enabled = true;
-
-                GameObject armorDisplay = Instantiate(armorDisplayPrefab, playerCanvas.transform);
-                armorDisplay.GetComponent<PlayerArmorDisplay>().enabled = true;
-
-                GameObject cDRDisplay = Instantiate(cDRDisplayPrefab, playerCanvas.transform);
-                cDRDisplay.GetComponent<PlayerCDRDisplay>().enabled = true;
-
-                GameObject armorPenDisplay = Instantiate(armorPenDisplayPrefab, playerCanvas.transform);
-                armorPenDisplay.GetComponent<PlayerArmorPenDisplay>().enabled = true;
-
-                GameObject moveSpeedDisplay = Instantiate(moveSpeedDisplayPrefab, playerCanvas.transform);
-                moveSpeedDisplay.GetComponent<PlayerMoveSpeedDisplay>().enabled = true;
-
-                GameObject regenDisplay = Instantiate(regenDisplayPrefab, playerCanvas.transform);
-                regenDisplay.GetComponent<PlayerRegenDisplay>().enabled = true;
-
-                GameObject manaRegenDisplay = Instantiate(manaRegenDisplayPrefab, playerCanvas.transform);
-                manaRegenDisplay.GetComponent<PlayerManaRegenDisplay>().enabled = true;
-
                 GameObject goldDisplay = Instantiate(goldDisplayPrefab, playerCanvas.transform);
                 goldDisplay.GetComponent<PlayerGoldDisplay>().enabled = true;
                 
@@ -341,8 +318,6 @@ public class BasePlayerController : NetworkBehaviour
                 GameObject timerText = Instantiate(timerTextPrefab, playerCanvas.transform);
                 timerText.GetComponent<MatchTimer>().enabled = true;
 
-                GameObject customText = Instantiate(customTextPrefab, playerCanvas.transform);
-                customText.GetComponent<CustomCharacterUI>().enabled = true;
             }
         }
         if (!IsOwner)
