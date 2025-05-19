@@ -659,6 +659,7 @@ public class PlayerCooldownBars : MonoBehaviour
 
     public void AbilityUpgrade()
     {
+        //abilityLock.GetComponent<Animator>().SetTrigger("Unlocking");
         if (playerController is DecayPlayerController decayPlayer)
         {
             switch (abilityIndex)

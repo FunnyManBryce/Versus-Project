@@ -116,9 +116,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
+        y: 0
         width: 16
-        height: 12
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,10 +136,10 @@ TextureImporter:
       name: LV-Button_1
       rect:
         serializedVersion: 2
-        x: 15
-        y: 2
-        width: 17
-        height: 12
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +157,10 @@ TextureImporter:
       name: LV-Button_2
       rect:
         serializedVersion: 2
-        x: 31
-        y: 2
-        width: 17
-        height: 12
+        x: 32
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +178,10 @@ TextureImporter:
       name: LV-Button_3
       rect:
         serializedVersion: 2
-        x: 47
-        y: 2
-        width: 17
-        height: 12
+        x: 48
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,10 +199,10 @@ TextureImporter:
       name: LV-Button_4
       rect:
         serializedVersion: 2
-        x: 63
-        y: 2
-        width: 17
-        height: 13
+        x: 64
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,7 +219,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9074ba9be84510f438a31a0fdfa90280
     internalID: 0
     vertices: []
     indices: 
