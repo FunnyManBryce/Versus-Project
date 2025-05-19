@@ -126,7 +126,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.008199044, y: -0.021628018}
+  m_Offset: {x: 0.0050138533, y: -0.070042945}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -136,7 +136,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.0703673, y: 0.18748319}
+  m_Size: {x: 0.05125615, y: 0.06389777}
   m_EdgeRadius: 0
 --- !u!114 &6782888038592277727
 MonoBehaviour:
@@ -344,6 +344,7 @@ MonoBehaviour:
   jungleEnemy: {fileID: 8942386518775928844}
   networkEnemy: {fileID: 6782888038592277727}
   currentTarget: {fileID: 0}
+  projectilePrefab: {fileID: 0}
   healthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
     type: 3}
   HealthBar: {fileID: 0}
