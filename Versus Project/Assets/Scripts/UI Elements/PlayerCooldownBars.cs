@@ -13,7 +13,8 @@ public class PlayerCooldownBars : MonoBehaviour
     [SerializeField] private TextMeshProUGUI manaCostText;
     [SerializeField] private BasePlayerController playerController;
     [SerializeField] private GameObject abilityIcon;
-    
+    [SerializeField] private GameObject abilityLock;
+
     //Ability Description text
     [SerializeField] private GameObject Description;
     [SerializeField] private TextMeshProUGUI descCooldown;
@@ -76,6 +77,10 @@ public class PlayerCooldownBars : MonoBehaviour
         else
         {
             UpdateCooldownBar();
+        }
+        if(isUnlocked)
+        {
+            abilityLock.GetComponent<Animator>().SetTrigger("Unlocking");
         }
     }
 
