@@ -4496,14 +4496,14 @@ RectTransform:
   m_GameObject: {fileID: 416620156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 300, y: 80, z: 155.87473}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 250, y: 66.666664, z: 129.8956}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 25816021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -119.8, y: -26.2}
+  m_AnchoredPosition: {x: -133.7, y: -22.3}
   m_SizeDelta: {x: 0.26, y: 0.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &416620158
@@ -6275,7 +6275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "In order to create a lobby, the first player must press \"Host Game\"
+  m_text: "In order to create a lobby, the first player must press \"Host Game\",
     This will give you a join code at the top of the screen.\n\nThe second player
     can then type in this join code and press \"Join Game\" \n\nFrom there, each
     player will select a character and ready up.\n\nOnce the host clicks start game,
@@ -11581,8 +11581,8 @@ MonoBehaviour:
 
 
 
-    They give more XP and gold than minions, so kill them when you''re
-    able to!'
+    They give more XP and Gold than minions, so kill them before the
+    other player does!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12216,8 +12216,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Gold can be spent at the shop to buy items. \n\nYou can only buy things
     at the resevoir\n\n\nThis button         Opens/Closes the shop. You can also
-    press B.\n\nYou start with 200 gold, which is enough to buy a starter item\n\n\n\nOther
-    items will start out at a 500 gold discount. After you buy your first non-starter
+    press B!\n\nYou start with 200 gold, which is enough to buy a starter item\n\n\n\nOther
+    items will start out with a 500 gold discount. After you buy your first non-starter
     item, they will go back to full price."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15380,9 +15380,15 @@ MonoBehaviour:
 
 
 
+
     Minions will attack enemy minions and towers. Towers
     also take more damage when enemy minions are nearby, so you should wait to push
-    towers until you have minions with you.'
+    towers until you have minions with you.
+
+
+    When enemy minions die while you
+    are near them, you gain XP. If you land the final hit on the minion, you will
+    also gain gold!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15409,8 +15415,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15447,7 +15453,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -17.709091, y: 0, z: 76.044785, w: 0}
+  m_margin: {x: -17.709091, y: -10.498974, z: 76.044785, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -17999,7 +18005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Killing enemies will give you XP, which can allow you to level up.
+  m_text: 'Killing enemies will give you XP, which will allow you to level up.
 
 
     When
@@ -19096,7 +19102,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'WASD - Movement
 
-    Left Mouseclick - Move towards target and begin autoattacking
+    Left Mouseclick - Move towards target and begin auto-attacking
     once in range.
 
     Q - Use Ability 1
