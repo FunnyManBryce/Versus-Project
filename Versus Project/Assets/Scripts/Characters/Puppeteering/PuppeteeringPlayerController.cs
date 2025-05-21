@@ -24,7 +24,6 @@ public class PuppeteeringPlayerController : BasePlayerController
     public float stringDamageMultiplier;
     public float stringMarkValue;
     public bool stringMoveReduction = false;
-    public bool stringTargetsAll = false;
 
     public float lifestealMultiplier;
 
@@ -578,11 +577,10 @@ public class PuppeteeringPlayerController : BasePlayerController
             }
             if (String.abilityLevel == 4)
             {
-                stringDamageMultiplier += 2f;
+                stringDamageMultiplier += 1f;
             }
             if (String.abilityLevel == 5)
             {
-                stringTargetsAll = true;
                 String.cooldown -= 5f;
             }
         }

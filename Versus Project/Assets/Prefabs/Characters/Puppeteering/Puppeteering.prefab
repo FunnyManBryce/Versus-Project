@@ -422,10 +422,9 @@ MonoBehaviour:
   stringObject: {fileID: 6191041724843646727, guid: 1d92c1d73869e6541bcf099f570f9f4f,
     type: 3}
   passiveLevel: 0
-  stringDamageMultiplier: 3
+  stringDamageMultiplier: 1.5
   stringMarkValue: 0.33
   stringMoveReduction: 0
-  stringTargetsAll: 0
   lifestealMultiplier: 0
   ultimateDuration: 20
   String:
@@ -448,7 +447,7 @@ MonoBehaviour:
     - String reduces movespeed of hit enemies for 5 seconds.
     - Marked enemies take 50% more damage instead of 33%
     - String damage increased by 66%
-    - Reduces cooldown by 5 seconds. String can now target towers.
+    - Reduces cooldown by 5 seconds
     abilityIcon: {fileID: 5539437303405510802, guid: 5aa25fed6aacbeb4faea91b914bb966f,
       type: 3}
   ModeSwitch:

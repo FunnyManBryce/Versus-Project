@@ -46,6 +46,7 @@ public class DecayShockWaveProjectile : NetworkBehaviour
         if (!IsServer) return;
         if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
         {
+            if (collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Inhibitor") return;
             collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
             if (!collider.GetComponent<NetworkObject>().IsSpawned == false && collider.GetComponent<MeleeMinion>() == null)
             {
