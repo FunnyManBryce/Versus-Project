@@ -30,9 +30,9 @@ public class StringAbility : NetworkBehaviour
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
-                if (collider.gameObject.tag != "Tower" && collider.gameObject.tag != "Inhibitor" || sender.GetComponent<PuppeteeringPlayerController>().stringTargetsAll)
+                if (collider.gameObject.tag != "Tower" && collider.gameObject.tag != "Inhibitor")
                 {
-                    collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, true);
+                    collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(sender), sender.GetComponent<BasePlayerController>().armorPen, false);
                     if (!collider.GetComponent<NetworkObject>().IsSpawned == false)
                     {
                         InflictBuffServerRpc(collider.GetComponent<NetworkObject>(), "Marked", markAmount, 10f, true);
