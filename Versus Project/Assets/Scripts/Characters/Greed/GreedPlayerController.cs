@@ -195,7 +195,7 @@ public class GreedPlayerController : BasePlayerController
         previousGoldValue = Gold.Value;
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void UpdateAttackDamageServerRpc(float newAttackDamage)
     {
         attackDamage = newAttackDamage;

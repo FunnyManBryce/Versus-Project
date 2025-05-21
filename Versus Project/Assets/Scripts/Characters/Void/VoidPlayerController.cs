@@ -18,6 +18,7 @@ public class VoidPlayerController : BasePlayerController
     // Passive - Damage stacking
     public float passiveDamageIncrease = 0.1f;
     public float level5PassiveIncrease = 0.2f;
+    public float baseUnaffectedDamage = 10f;
     public float passiveDuration = 8f; // Duration before stacks reset if no Q hits
     private float lastAbilityHitTime;
     public NetworkVariable<int> passiveStacks = new NetworkVariable<int>();
@@ -239,9 +240,8 @@ public class VoidPlayerController : BasePlayerController
             baseAttackDamage = BaseDamage.Value;
         }
 
-        // Calculate damage increase based on stacks (multiplicative)
-        float damageMultiplier = Mathf.Pow(1 + passiveDamageIncrease, passiveStacks.Value);
-        float newDamage = baseAttackDamage * damageMultiplier;
+        float damageAddition = baseAttackDamage * ( passiveDamageIncrease * passiveStacks.Value) + (baseUnaffectedDamage + passiveStacks.Value);
+        float newDamage = baseAttackDamage + damageAddition;
 
         // Update the attack damage
         if (IsOwner)
@@ -300,7 +300,7 @@ public class VoidPlayerController : BasePlayerController
         Debug.Log($"Remaining Void Ball casts: {remainingCasts}");
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void VoidBallPlaceServerRpc(Vector2 position)
     {
         // Spawn danger circle indicator
@@ -313,7 +313,7 @@ public class VoidPlayerController : BasePlayerController
         // Set size of danger circle
         dangerCircle.transform.localScale = new Vector3(dangerCircleRadius * 2, dangerCircleRadius * 2, 1);
 
-        ShowDangerCircleClientRpc(position, dangerCircleRadius * 2);
+        ShowDangerCircleServerRpc(position, dangerCircleRadius * 2);
 
         bAM.PlayServerRpc("Void Ball Warning", new Vector3(position.x, position.y, 0));
         bAM.PlayClientRpc("Void Ball Warning", new Vector3(position.x, position.y, 0));
@@ -322,8 +322,8 @@ public class VoidPlayerController : BasePlayerController
         StartCoroutine(SpawnVoidBallAfterWarning(position, dangerCircleNet));
     }
 
-    [ClientRpc]
-    private void ShowDangerCircleClientRpc(Vector2 position, float size)
+    [ServerRpc(RequireOwnership = false)]
+    private void ShowDangerCircleServerRpc(Vector2 position, float size)
     {
         if (!IsServer)
         {
