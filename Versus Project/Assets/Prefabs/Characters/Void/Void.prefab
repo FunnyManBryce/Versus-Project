@@ -575,16 +575,16 @@ MonoBehaviour:
   multiCastDelay: 0.3
   currentMaxCasts:
     m_InternalValue: 0
-  passiveDamageIncrease: 0.3
+  passiveDamageIncrease: 0.15
   level5PassiveIncrease: 0.2
-  baseUnaffectedDamage: 20
+  baseUnaffectedDamage: 10
   passiveDuration: 1.5
   passiveStacks:
     m_InternalValue: 0
   baseAttackDamage: 0
   dangerCircleRadius: 1
   dangerCircleWarningTime: 1
-  ballReturnSpeed: 20
+  ballReturnSpeed: 25
   ballDamageMultiplier: 1
   voidBallCastRange: 18
   dangerCirclePrefab: {fileID: 5385389721141281123, guid: 139be3166f475d841adb3763335e7541,

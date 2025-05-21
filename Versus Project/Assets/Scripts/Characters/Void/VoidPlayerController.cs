@@ -240,7 +240,7 @@ public class VoidPlayerController : BasePlayerController
             baseAttackDamage = BaseDamage.Value;
         }
 
-        float damageAddition = baseAttackDamage * ( passiveDamageIncrease * passiveStacks.Value) + (baseUnaffectedDamage + passiveStacks.Value);
+        float damageAddition = (baseAttackDamage * (passiveDamageIncrease * passiveStacks.Value) + (baseUnaffectedDamage * passiveStacks.Value));
         float newDamage = baseAttackDamage + damageAddition;
 
         // Update the attack damage
