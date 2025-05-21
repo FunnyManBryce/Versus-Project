@@ -464,7 +464,7 @@ MonoBehaviour:
     preventAbilityUse: 0
     abilityName: Cunning Mix-up
     abilityDescription: Swaps Puppet between offensive and defensive mode, providing
-      temporary buffs to Puppeteering depending on the mode.
+      temporary buffs to Puppeteering for each mode. Can also respawn the puppet.
     levelUpEffects:
     - Unlocks Ability
     - Offensive mode provides puppet lifesteal to player. Defensive mode provides
