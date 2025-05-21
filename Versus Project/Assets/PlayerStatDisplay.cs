@@ -16,6 +16,10 @@ public class PlayerStatDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            isOpen = !isOpen;
+        }
         if (isOpen && Vector3.Distance(transform.position, new Vector3(-660, -200, 0)) <= 100f)
         {
             gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-660, -200, 0);

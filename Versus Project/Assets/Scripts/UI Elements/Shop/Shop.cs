@@ -38,6 +38,21 @@ public class Shop : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            if (animator.GetBool("Opening") || animator.GetBool("Closing")) return;
+            if (!isOpen)
+            {
+                animator.SetBool("Opening", true);
+            }
+            else
+            {
+                animator.SetBool("Closing", true);
+                isYapping = true;
+                Text.GetComponent<TextMeshProUGUI>().text = exitingDialogue[Random.Range(0, exitingDialogue.Length)];
+                yapTimer = timeForYap + 3;
+            }
+        }
         if(isYapping && yapTimer >= 0)
         {
             yapTimer -= Time.deltaTime;
