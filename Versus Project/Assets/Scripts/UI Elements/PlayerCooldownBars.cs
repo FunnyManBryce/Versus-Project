@@ -332,7 +332,7 @@ public class PlayerCooldownBars : MonoBehaviour
         else if (playerController.unspentUpgrades.Value > 0 && !isMaxLevel && isUnlocked)
         {
             upgradeButton.SetActive(true);
-        } else
+        } else 
         {
             upgradeButton.SetActive(false);
         }
