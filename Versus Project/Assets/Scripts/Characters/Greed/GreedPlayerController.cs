@@ -220,8 +220,8 @@ public class GreedPlayerController : BasePlayerController
     [ServerRpc(RequireOwnership = false)]
     public void QuickPunchServerRpc(Vector2 dashDirection)
     {
-        /*bAM.PlayServerRpc("Greed Punch", Greed.transform.position);
-        bAM.PlayClientRpc("Greed Punch", Greed.transform.position);*/
+        bAM.PlayServerRpc("Greed Q", Greed.transform.position);
+        bAM.PlayClientRpc("Greed Q", Greed.transform.position);
 
         // Calculate an offset point behind the player based on dash direction
         Vector2 offsetDirection = -dashDirection; // Opposite of dash direction
@@ -320,8 +320,8 @@ public class GreedPlayerController : BasePlayerController
     [ServerRpc(RequireOwnership = false)]
     public void GroundSlamServerRpc()
     {
-        bAM.PlayServerRpc("Greed Slam", Greed.transform.position);
-        bAM.PlayClientRpc("Greed Slam", Greed.transform.position);
+        bAM.PlayServerRpc("Greed E", Greed.transform.position);
+        bAM.PlayClientRpc("Greed E", Greed.transform.position);
 
         // Apply damage and stun in radius (direct detection)
         Vector2 origin = Greed.transform.position;
@@ -355,8 +355,8 @@ public class GreedPlayerController : BasePlayerController
     public void UncivRageServerRpc(NetworkObjectReference targetRef)
     {
         Debug.Log("Greed Ultimate is happening!");
-        bAM.PlayServerRpc("Greed Ultimate", Greed.transform.position);
-        bAM.PlayClientRpc("Greed Ultimate", Greed.transform.position);
+        bAM.PlayServerRpc("Greed Ult", Greed.transform.position);
+        bAM.PlayClientRpc("Greed Ult", Greed.transform.position);
 
         isUltActive = true;
         UltActiveClientRpc(true);

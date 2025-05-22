@@ -595,6 +595,11 @@ public class BasePlayerController : NetworkBehaviour
                 bAM.PlayServerRpc("Decay Auto", gameObject.transform.position);
                 bAM.PlayClientRpc("Decay Auto", gameObject.transform.position);
             }
+            if (charName == "Greed")
+            {
+                bAM.PlayServerRpc("Greed Auto", gameObject.transform.position);
+                bAM.PlayClientRpc("Greed Auto", gameObject.transform.position);
+            }
             target.GetComponent<Health>().TakeDamageServerRPC(damage, sender, armorPen, false);
             if(appliesDarkness.Value && target.GetComponent<Health>().darknessEffect == false)
             {

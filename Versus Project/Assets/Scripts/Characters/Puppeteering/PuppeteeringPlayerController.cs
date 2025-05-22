@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
+using Unity.Services.Relay;
 using UnityEngine;
 
 public class PuppeteeringPlayerController : BasePlayerController
@@ -451,6 +452,8 @@ public class PuppeteeringPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void StringSummonServerRpc()
     {
+        bAM.PlayServerRpc("Puppeteer String", transform.position);
+        bAM.PlayClientRpc("Puppeteer String", transform.position);
         var String = Instantiate(stringObject, gameObject.transform.position, Quaternion.identity);
         String.GetComponent<StringAbility>().damage = attackDamage * stringDamageMultiplier;
         String.GetComponent<StringAbility>().markAmount = stringMarkValue;
@@ -487,6 +490,8 @@ public class PuppeteeringPlayerController : BasePlayerController
     [Rpc(SendTo.Server)]
     private void UltimateServerRpc()
     {
+        bAM.PlayServerRpc("Puppeteer Ult", transform.position);
+        bAM.PlayClientRpc("Puppeteer Ult", transform.position);
         maxPuppets.Value = 2;
         if (doubleUltSpawn && puppetsAlive.Value == 0)
         {

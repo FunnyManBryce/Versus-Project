@@ -7130,6 +7130,62 @@ MonoBehaviour:
     pitch: 1
     spread: 0
     source: {fileID: 0}
+  - name: Puppeteer String
+    clip: {fileID: 8300000, guid: b51ec072ba5e3eb4384953bf41aad4d8, type: 3}
+    loop: 0
+    spatialBlend: 0
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Puppeteer Ult
+    clip: {fileID: 8300000, guid: 7e1c0d1cecdecc6449ea7b9e17cd841d, type: 3}
+    loop: 0
+    spatialBlend: 0
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Decay Ult
+    clip: {fileID: 8300000, guid: 54ad8bd964c5b8145a2b7922aa6b6a2d, type: 3}
+    loop: 0
+    spatialBlend: 0
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Greed Auto
+    clip: {fileID: 8300000, guid: 91f743978f74d674f97a8adeed6c8487, type: 3}
+    loop: 0
+    spatialBlend: 0
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Greed E
+    clip: {fileID: 8300000, guid: 94aa53b0f5a751647b5840bf2267e8bd, type: 3}
+    loop: 0
+    spatialBlend: 0
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Greed Q
+    clip: {fileID: 8300000, guid: b905c3e67ae448a46bac3107d946d7c8, type: 3}
+    loop: 0
+    spatialBlend: 0
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
+  - name: Greed Ult
+    clip: {fileID: 8300000, guid: 21c3f2d66cfb36041b168b2e225eccba, type: 3}
+    loop: 0
+    spatialBlend: 0
+    volume: 3
+    pitch: 1
+    spread: 0
+    source: {fileID: 0}
   - name: Button Press
     clip: {fileID: 8300000, guid: 5f2a5742609baec4496268dc848b566e, type: 3}
     loop: 0

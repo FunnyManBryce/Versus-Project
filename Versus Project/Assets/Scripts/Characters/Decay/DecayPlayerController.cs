@@ -100,6 +100,8 @@ public class DecayPlayerController : BasePlayerController
     public void UltimateServerRpc()
     {
         Debug.Log("Ult is happening!");
+        bAM.PlayServerRpc("Decay Ult", Decay.transform.position);
+        bAM.PlayClientRpc("Decay Ult", Decay.transform.position);
         animator.runtimeAnimatorController = UltAnimator;
         UltAnimChangeClientRpc();
         IEnumerator coroutine = UltimateDuration();
