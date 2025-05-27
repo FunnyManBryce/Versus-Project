@@ -184,8 +184,11 @@ public class BasePlayerController : NetworkBehaviour
                 {
                     transform.position = new Vector3(440, 70, 0);
                 }
-                isDead.Value = false;
-                health.currentHealth.Value = health.maxHealth.Value;
+                if(IsServer)
+                {
+                    health.currentHealth.Value = health.maxHealth.Value;
+                    isDead.Value = false;
+                }
                 mana = maxMana;
                 attackDamage = BaseDamage.Value;
                 autoAttackSpeed = BaseAttackSpeed.Value;

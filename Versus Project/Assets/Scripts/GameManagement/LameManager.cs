@@ -81,6 +81,9 @@ public class LameManager : NetworkBehaviour
         if (!IsServer) return;
         if(matchTimer.Value >= oneVOneTime && IsOneVOne.Value == false)
         {
+            IsOneVOne.Value = true;
+            playerOneChar.GetComponent<BasePlayerController>().SuddenDeath.Value = true;
+            playerTwoChar.GetComponent<BasePlayerController>().SuddenDeath.Value = true;
             foreach (var tower in teamOneTowers)
             {
                 if (tower != null)
@@ -97,9 +100,7 @@ public class LameManager : NetworkBehaviour
                     tower.GetComponent<Health>().invulnerable = true;
                 }
             }
-            IsOneVOne.Value = true;
-            playerOneChar.GetComponent<BasePlayerController>().SuddenDeath.Value = true;
-            playerTwoChar.GetComponent<BasePlayerController>().SuddenDeath.Value = true;
+            
         }
         if (gameStarted)
         {
@@ -153,20 +154,20 @@ public class LameManager : NetworkBehaviour
 
     public IEnumerator PlayerDeath(NetworkObject player, float respawnTimer, ulong clientID)
     {
-        
-        isRespawning = true;
-        currentRespawnTimer = respawnTimer;
         if (IsOneVOne.Value)
         {
-            if(clientID == 0)
+            if (clientID == 0)
             {
                 TeamTwoWinServerRPC();
-            } else
+            }
+            else
             {
                 TeamOneWinServerRPC();
             }
             yield break;
         }
+        isRespawning = true;
+        currentRespawnTimer = respawnTimer;
         yield return new WaitForSeconds(respawnTimer);
         isRespawning = false;
         if (IsOneVOne.Value)
