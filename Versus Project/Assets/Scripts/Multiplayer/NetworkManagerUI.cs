@@ -142,10 +142,10 @@ public class NetworkManagerUI : NetworkBehaviour
 
     private async void Start()
     {
-        await UnityServices.InitializeAsync();
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
         DontDestroyOnLoad(networkManagerUI);
         networkManagerScript.OnClientDisconnectCallback += PlayerDisconnectedServerRPC; //Makes it so PlayerDisconnectedServerRPC triggers whenever a client disconnects
+        await UnityServices.InitializeAsync();
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 
 

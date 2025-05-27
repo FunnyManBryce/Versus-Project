@@ -213,6 +213,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getManaCost = () => player.QuickPunch.manaCost;
                 cooldownDuration = player.QuickPunch.cooldown;
                 abilityIcon.GetComponent<Image>().sprite = player.QuickPunch.abilityIcon;
+                cooldownText.color = Color.black;
                 break;
             case 2: // Second ability (GroundSlam)
                 isOffCooldown = () => player.GroundSlam.OffCooldown();
@@ -221,6 +222,7 @@ public class PlayerCooldownBars : MonoBehaviour
                 getManaCost = () => player.GroundSlam.manaCost;
                 cooldownDuration = player.GroundSlam.cooldown;
                 abilityIcon.GetComponent<Image>().sprite = player.GroundSlam.abilityIcon;
+                cooldownText.color = Color.black;
                 break;
             case 3: // Ultimate (UncivRage)
                 isOffCooldown = () => player.UncivRage.OffCooldown();
