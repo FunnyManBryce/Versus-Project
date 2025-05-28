@@ -251,4 +251,9 @@ public class Shop : MonoBehaviour
         Text.GetComponent<TextMeshProUGUI>().text = hoverDialogue[itemNumber];
         yapTimer = timeForYap;
     }
+
+    public void ArlosGame()
+    {
+        Application.OpenURL("https://funny-man-bryce.itch.io/arlos-game");
+    }
 }
