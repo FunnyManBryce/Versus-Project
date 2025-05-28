@@ -68,7 +68,7 @@ public class VoidPlayerController : BasePlayerController
 
         // Setup ability actions
         VoidBall.activateAbility = VoidBallHostCheck;
-        BlinkAbility.activateAbility = BlinkHostCheck;
+        BlinkAbility.activateAbility = AbilityTwoAnimation;
         VoidPerspective.activateAbility = VoidPerspectiveHostCheck;
 
         // Setup level up actions
@@ -221,14 +221,15 @@ public class VoidPlayerController : BasePlayerController
                 }
 
                 // Handle blink activation
-                if (Input.GetKeyDown(BlinkAbility.inputKey) &&
+                BlinkAbility.AttemptUse();
+                /*if (Input.GetKeyDown(BlinkAbility.inputKey) &&
                     BlinkAbility.isUnlocked &&
                     !BlinkAbility.preventAbilityUse &&
                     BlinkAbility.CanUse() &&
                     !isProcessingBlink)
                 {
                     BlinkHostCheck();
-                }
+                }*/
             }
         }
     }
@@ -390,8 +391,8 @@ public class VoidPlayerController : BasePlayerController
 
         // Execute blink
         // Bug fix: Call OnUse() here to deduct mana only once
-        BlinkAbility.OnUse();
-        AbilityTwoAnimation();
+        //BlinkAbility.OnUse();
+        //AbilityTwoAnimation();
         BlinkServerRpc(blinkTargetPosition);
 
         // Reset processing flag after a short delay
@@ -409,8 +410,8 @@ public class VoidPlayerController : BasePlayerController
     private void BlinkServerRpc(Vector3 position)
     {
         // Play effects
-        bAM.PlayServerRpc("Void Blink", transform.position);
-        bAM.PlayClientRpc("Void Blink", transform.position);
+        //bAM.PlayServerRpc("Void Blink", transform.position);
+        //bAM.PlayClientRpc("Void Blink", transform.position);
 
         // Teleport to the position
         transform.position = position;
