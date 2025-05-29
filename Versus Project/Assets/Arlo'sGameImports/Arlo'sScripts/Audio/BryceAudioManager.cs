@@ -10,6 +10,7 @@ public class BryceAudioManager : NetworkBehaviour
     public Sound[] sounds;
     public List<AudioSource> sourcesPlaying;
     public List<String> sourceNames;
+    public List<float> sourceVolume;
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,7 +21,8 @@ public class BryceAudioManager : NetworkBehaviour
             //volumeControl.audioSource.Add(s.source);
             s.source.clip = s.clip;
             s.source.spread = s.spread;
-            s.source.volume = s.volume;
+            s.source.volume = s.iniitalVolume;
+            s.volume = s.iniitalVolume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
             s.source.spatialBlend = s.spatialBlend;
@@ -53,6 +55,7 @@ public class BryceAudioManager : NetworkBehaviour
                 }
                 sourcesPlaying.Remove(sourcesPlaying[i]);
                 sourceNames.Remove(sourceNames[i]);
+                sourceVolume.Remove(sourceVolume[i]);
             }
         }
     }
@@ -73,6 +76,7 @@ public class BryceAudioManager : NetworkBehaviour
         audioSource.Play();
         sourceNames.Add(name);
         sourcesPlaying.Add(audioSource);
+        sourceVolume.Add(s.iniitalVolume);
     }
 
     [ClientRpc(RequireOwnership = false)]
@@ -92,6 +96,7 @@ public class BryceAudioManager : NetworkBehaviour
         audioSource.Play();
         sourceNames.Add(name);
         sourcesPlaying.Add(audioSource);
+        sourceVolume.Add(s.iniitalVolume);
     }
 
     public void Play(string name, Vector3 spawnLocation)
@@ -109,6 +114,7 @@ public class BryceAudioManager : NetworkBehaviour
         audioSource.Play();
         sourceNames.Add(name);
         sourcesPlaying.Add(audioSource);
+        sourceVolume.Add(s.iniitalVolume);
     }
 
     public void Stop(string name)
@@ -124,6 +130,7 @@ public class BryceAudioManager : NetworkBehaviour
                 }
                 sourcesPlaying.Remove(sourcesPlaying[i]);
                 sourceNames.Remove(sourceNames[i]);
+                sourceVolume.Remove(sourceVolume[i]);
             }
         }
     }

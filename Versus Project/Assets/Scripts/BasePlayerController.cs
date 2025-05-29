@@ -93,16 +93,7 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject abilty1CooldownBarPrefab;
     public GameObject abilty2CooldownBarPrefab;
     public GameObject UltimateCooldownBarPrefab;
-    public GameObject attackDamagePrefab;
-    public GameObject attackSpeedDisplayPrefab;
-    public GameObject attackRangeDisplayPrefab;
-    public GameObject armorDisplayPrefab;
-    public GameObject cDRDisplayPrefab;
-    public GameObject armorPenDisplayPrefab;
-    public GameObject regenDisplayPrefab;
-    public GameObject manaRegenDisplayPrefab;
     public GameObject goldDisplayPrefab;
-    public GameObject moveSpeedDisplayPrefab;
     public GameObject shopPrefab;
     public GameObject unspentUpgradesPrefab;
     public GameObject scorePrefab;
@@ -110,6 +101,7 @@ public class BasePlayerController : NetworkBehaviour
     public GameObject timerTextPrefab;
     public GameObject customTextPrefab;
     public GameObject StatDisplayPrefab;
+    public GameObject SettingsMenuPrefab;
 
     public GameObject enemyHealthBarPrefab;
     public GameObject HealthBar;
@@ -320,6 +312,8 @@ public class BasePlayerController : NetworkBehaviour
 
                 GameObject timerText = Instantiate(timerTextPrefab, playerCanvas.transform);
                 timerText.GetComponent<MatchTimer>().enabled = true;
+
+                GameObject settingsMenu = Instantiate(SettingsMenuPrefab, playerCanvas.transform);
 
             }
         }

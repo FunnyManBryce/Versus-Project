@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 14862719
+  GlobalObjectIdHash: 321467190
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -530,25 +530,7 @@ MonoBehaviour:
     type: 3}
   UltimateCooldownBarPrefab: {fileID: 291330824319171567, guid: 7645ac993ecc8e54c832e06adf6d110b,
     type: 3}
-  attackDamagePrefab: {fileID: 2114343820725859254, guid: 9398b58b1e556ef4496d900f58da2cd9,
-    type: 3}
-  attackSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: ce33ba5ce3d771a46ada95ebda640cd1,
-    type: 3}
-  attackRangeDisplayPrefab: {fileID: 2114343820725859254, guid: 19039bc4899dad14398bb8b84a9032bb,
-    type: 3}
-  armorDisplayPrefab: {fileID: 2114343820725859254, guid: c5e01f7ad1aa4f64681a752ffcb8f685,
-    type: 3}
-  cDRDisplayPrefab: {fileID: 2114343820725859254, guid: 74cc74eeb9a66534eae5d814423aeb2e,
-    type: 3}
-  armorPenDisplayPrefab: {fileID: 2114343820725859254, guid: 6e92c9de323add145afb927bb16ce057,
-    type: 3}
-  regenDisplayPrefab: {fileID: 2114343820725859254, guid: e50ac21fc97b40649945f31cb7911be0,
-    type: 3}
-  manaRegenDisplayPrefab: {fileID: 2114343820725859254, guid: 3b6cb034afe0709459b3446ac02d6019,
-    type: 3}
   goldDisplayPrefab: {fileID: 2114343820725859254, guid: a4ec6120fbb465b49a740b2b6cc6a51d,
-    type: 3}
-  moveSpeedDisplayPrefab: {fileID: 2114343820725859254, guid: de99e14a79e2418449adef0612bf0764,
     type: 3}
   shopPrefab: {fileID: 6259355584637624107, guid: 2d38d59c16c31f0408b4fc6a6db1f2fd,
     type: 3}
@@ -563,6 +545,8 @@ MonoBehaviour:
   customTextPrefab: {fileID: 2114343820725859254, guid: b8a76b48e0eedfd4bb8a67c94713eaab,
     type: 3}
   StatDisplayPrefab: {fileID: 4300833039706499006, guid: 9003418133c6e9742a077eb231dd1bb2,
+    type: 3}
+  SettingsMenuPrefab: {fileID: 2114343820725859254, guid: 52d2091087da4b34ca360dea46f67627,
     type: 3}
   enemyHealthBarPrefab: {fileID: 8908759716115922835, guid: 759b700693ad1e5419a050b9df3a5137,
     type: 3}

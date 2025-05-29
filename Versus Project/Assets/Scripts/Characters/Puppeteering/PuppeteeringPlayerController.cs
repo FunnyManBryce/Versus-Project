@@ -382,6 +382,9 @@ public class PuppeteeringPlayerController : BasePlayerController
 
                 GameObject timerText = Instantiate(timerTextPrefab, playerCanvas.transform);
                 timerText.GetComponent<MatchTimer>().enabled = true;
+
+                GameObject settingsMenu = Instantiate(SettingsMenuPrefab, playerCanvas.transform);
+
             }
         }
         if (!IsOwner)
