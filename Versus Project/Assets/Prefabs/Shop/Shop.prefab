@@ -131,7 +131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.0630169, y: 64.79472, z: 0.19078837, w: 0.80270576}
+  m_margin: {x: 1.0630169, y: 64.79472, z: 0.19078837, w: 20.475933}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
   - If pain will help you win, I guess it's worth it!
   - Oh, wizards. Always seem to cause and fix every problem!
   - Love the cosmic blanket? Then never leave!
-  - An artifact from Ember! Love that guy!
+  - An artifact from one of the oldest gods...
   - Don't worry, I don't get the reference either...
   - It's a good thing I wasn't a diety during THAT war!
   - Arlo? I love that guy! Go check out his game!
