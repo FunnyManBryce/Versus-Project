@@ -100,6 +100,7 @@ public class VoidBallController : NetworkBehaviour
             {
                 if (controller.CanAttackTarget(targetObj) && targetObj.NetworkObjectId != casterObj.NetworkObjectId)
                 {
+                    if (other.gameObject.tag == "Tower" || other.gameObject.tag == "Inhibitor") return;
                     hitTargets.Add(targetObj.NetworkObjectId);
 
                     // Get current damage from the VoidPlayerController

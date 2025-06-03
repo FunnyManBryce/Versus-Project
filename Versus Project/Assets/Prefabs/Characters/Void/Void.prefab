@@ -584,7 +584,7 @@ MonoBehaviour:
     inputKey: 113
     isUnlocked: 0
     cooldown: 7
-    manaCost: 30
+    manaCost: 80
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
@@ -600,14 +600,14 @@ MonoBehaviour:
     - Ball warning circle 0.5 seconds shorter and increase multicast by 1
     - Cooldown reduced by 2 seconds
     - 'Passive gains a additional 10% attack growth on consecutive abilty hit '
-    abilityIcon: {fileID: 1138436177677800832, guid: 5cf45114446f6c24a9e77b631e768111,
+    abilityIcon: {fileID: 719426900563858686, guid: 1560857121f09c24da1fb3479a25a768,
       type: 3}
   BlinkAbility:
     playerController: {fileID: -7934763187758970237}
     inputKey: 101
     isUnlocked: 0
     cooldown: 12
-    manaCost: 60
+    manaCost: 40
     lastUsed: 0
     pointClickTimeUsed: 0
     abilityLevel: 1
@@ -624,7 +624,7 @@ MonoBehaviour:
     - Abilty cooldown reduced by 3 seconds
     - Passive gains a additional 10% attack growth on consecutive abilty hit (slightly
       increase blink distance
-    abilityIcon: {fileID: -170405437162950039, guid: ff710deb07d108e4794f4ad281cd0fd8,
+    abilityIcon: {fileID: -469294609568595857, guid: a647d2d2eedc0624fb8be5374c2f88b7,
       type: 3}
   VoidPerspective:
     playerController: {fileID: -7934763187758970237}

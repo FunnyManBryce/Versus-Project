@@ -237,6 +237,7 @@ public class GreedPlayerController : BasePlayerController
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
+                if (collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Inhibitor") return;
                 Vector2 directionToTarget = ((Vector2)collider.transform.position - offsetOrigin).normalized;
                 float angle = Vector2.Angle(dashDirection, directionToTarget);
 
@@ -331,6 +332,7 @@ public class GreedPlayerController : BasePlayerController
         {
             if (collider.GetComponent<Health>() != null && CanAttackTarget(collider.GetComponent<NetworkObject>()) && collider.isTrigger)
             {
+                if (collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Inhibitor") return;
                 // Apply damage
                 float damage = attackDamage * slamDamageMultiplier;
                 collider.GetComponent<Health>().TakeDamageServerRPC(damage, new NetworkObjectReference(NetworkObject), armorPen, false);

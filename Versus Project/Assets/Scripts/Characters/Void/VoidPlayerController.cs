@@ -277,6 +277,7 @@ public class VoidPlayerController : BasePlayerController
         }
 
         waitingForBallPlacement = true;
+
         AbilityOneAnimation();
 
         // Update UI to show available casts
@@ -309,7 +310,7 @@ public class VoidPlayerController : BasePlayerController
         var dangerCircleNet = dangerCircle.GetComponent<NetworkObject>();
 
         // Set size of danger circle
-        dangerCircle.transform.localScale = new Vector3(dangerCircleRadius * 2, dangerCircleRadius * 2, 1);
+        //dangerCircle.transform.localScale = new Vector3(dangerCircleRadius * 2, dangerCircleRadius * 2, 1);
 
         // Make the danger circle visible to all clients immediately
         dangerCircleNet.Spawn();
