@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 14862719
+  GlobalObjectIdHash: 321467190
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -638,16 +638,16 @@ MonoBehaviour:
     abilityBeingUsed: 0
     waitingForClick: 0
     preventAbilityUse: 0
-    abilityName: Void's Perspective
-    abilityDescription: Zoom out camera a large distance, Coalesce cooldown is cut
-      by 75% with no more mana cost for 6 seconds
+    abilityName: Voids Perspective
+    abilityDescription: Zoom out camera, have Your camera gets zoomed out, Coalesce
+      cooldown is cut by 75% with no more mana cost for 6 seconds
     levelUpEffects:
     - Unlock Abilty
     - increase the duration of the ultimate by 3 seconds and zoom out farther
     - Voids camera zooms out further in ult and add a multicast
     - decrease cooldown of this abilty by 25 seconds
     - 'Passive gains a additional 20% attack growth on consecutive abilty hit '
-    abilityIcon: {fileID: -7092421045990812212, guid: ef0c8951f476b6c44be015bd8802304e,
+    abilityIcon: {fileID: -1127122248400331327, guid: 01b5ec576d6287b41a6bcfacce6a5458,
       type: 3}
   targetableLayer:
     serializedVersion: 2
